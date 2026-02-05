@@ -1,0 +1,52 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=IFS2SRC.Copy Source Member from IFS File
+:P.This command copies one source member from a file in the ifs to a
+source member in a library. It
+can be used to convert IFS source files to source members just
+to back up sources or move them from one machine to another.
+:P.The comand SRC2IFS does the oposite, it copies a source member to
+an IFS file.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFS2SRC/IFSFILE'.IFS File Path - HELP
+:XH3.RTEPATH - IFS File Path
+:P.Enter the full path to the IFS file to be copied.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFS2SRC/SRCFILE'.Source File Name - HELP
+:XH3.SRCFILE - Source File Name
+:P.Enter the file and library of the source file you want
+to copy to.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFS2SRC/MBR'.Member - HELP
+:XH3.MBR - Member
+:P.Enter the name of the member you want to copy to.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFS2SRC/TEXT'.Member Text - HELP
+:XH3.MBR - Member Text
+:P.Enter text for the member. This is what is shown in PDM in the text
+column. If left blank the program will try to retieve text from the
+file. However file text only exists for files originally created in the
+IFS and never moved to a different machine or filing system.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFS2SRC/MBROPT'.Member Option - HELP
+:XH3.MBROPT - Member Option
+:P.Specifies whether the copy operation replaces, adds, or
+fails to copy the records if the object specified on the
+:HP2.To file member (MBR):EHP2. parameter already
+exists. If the object does not exist, it is created.
+:UL.
+:LI.:HP2.*NONE:EHP2. - No records are copied and the operation will fail if
+the object exists.
+:LI.:HP2.*ADD:EHP2. - The copied records are added to the end of the
+existing records.
+the program straight to the update screen for that query.
+:LI.:HP2.*REPLACE:EHP2. - The copied records replace the existing records.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

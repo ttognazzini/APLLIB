@@ -1,0 +1,34 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=CPYMSD.Copy Message Description
+:P.This command was created to allow a message description to be copied. It
+pulls all the values from an existing message description and then passes
+them to the ADDMSGD command.
+:P.The command does not allow all the values to be passed, instead it is
+meant to be called and the have the values modified.
+:H2.Examples:
+:P.CPYMSD MSGID(APL0000) MSGF(APLLIB/APLMSGF) <ENTER>
+:P.CPYMSD MSGID(XLS6001) MSGF(#$XLSX1.0/#$XLSX) <ENTER>
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CPYMSD/MSGID'.Message ID (MSGID)
+:XH3.MSGID - Message ID - HELP
+:P.This field allows entry of the messasge ID to be copied.  It is
+required.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CPYMSD/MSGF'.Message File (MSGF)
+:XH3.MSGF - Message File - Help
+:P.Specifies name of a message file that the message id exists in.
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Enter the name of the message file. CHAR(10)
+:EPARML.
+:H3.Element 2: Library
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Enter the library name the message file exists in. CHAR(10)
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

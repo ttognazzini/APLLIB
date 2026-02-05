@@ -1,0 +1,292 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=OTOPMTD2.Output Options - Email Options
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: OTOPMTF2 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,47)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: OTOPMTF2 Field: PGMNME
+Type: CHAR(10)
+Location: (1,122)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MDE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: OTOPMTF2 Field: MDE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FRMEML'.From Email Address
+:XH3.From Email Address
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: FRMEML
+Type: CHAR(60)
+Location: (4,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FRMNME'.From Email Name
+:XH3.From Email Name
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: FRMNME
+Type: CHAR(30)
+Location: (4,73)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLADD'.Email Address
+:XH3.Email Address
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLADD
+Type: CHAR(60)
+Location: (5,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLNME'.Email Name
+:XH3.Email Name
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLNME
+Type: CHAR(30)
+Location: (5,73)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CC1EML'.CC Email Address 1
+:XH3.CC Email Address 1
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: CC1EML
+Type: CHAR(60)
+Location: (6,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CC1NME'.CC Email Name 1
+:XH3.CC Email Name 1
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: CC1NME
+Type: CHAR(30)
+Location: (6,73)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CC2EML'.CC Email Address 2
+:XH3.CC Email Address 2
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: CC2EML
+Type: CHAR(60)
+Location: (7,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CC2NME'.CC Email Name 2
+:XH3.CC Email Name 2
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: CC2NME
+Type: CHAR(30)
+Location: (7,73)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CC3EML'.CC Email Address 3
+:XH3.CC Email Address 3
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: CC3EML
+Type: CHAR(60)
+Location: (8,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CC3NME'.CC Email Name 3
+:XH3.CC Email Name 3
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: CC3NME
+Type: CHAR(30)
+Location: (8,73)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='BCCEML'.BCC Email Address
+:XH3.BCC Email Address
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: BCCEML
+Type: CHAR(60)
+Location: (9,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='BCCNME'.BCC Email Name
+:XH3.BCC Email Name
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: BCCNME
+Type: CHAR(30)
+Location: (9,73)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSBJ'.Email Subject
+:XH3.Email Subject
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLSBJ
+Type: CHAR(60)
+Location: (10,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ATATYP'.Attachment Type
+:XH3.Attachment Type
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: ATATYP
+Type: CHAR(5)
+Location: (11,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='VLDATY'.Error name not found (VLDATY)
+:XH3.Error name not found (VLDATY)
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: VLDATY
+Type: CHAR(50)
+Location: (11,18)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ATAFMT'.Attachment Format
+:XH3.Attachment Format
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: ATAFMT
+Type: CHAR(1)
+Location: (11,85)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ATANME'.Attachment Name
+:XH3.Attachment Name
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: ATANME
+Type: CHAR(128)
+Location: (12,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG01'.Email Message 1
+:XH3.Email Message 1
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG01
+Type: CHAR(75)
+Location: (14,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG02'.Email Message 2
+:XH3.Email Message 2
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG02
+Type: CHAR(75)
+Location: (15,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG03'.Email Message 3
+:XH3.Email Message 3
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG03
+Type: CHAR(75)
+Location: (16,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG04'.Email Message 4
+:XH3.Email Message 4
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG04
+Type: CHAR(75)
+Location: (17,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG05'.Email Message 5
+:XH3.Email Message 5
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG05
+Type: CHAR(75)
+Location: (18,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG06'.Email Message 6
+:XH3.Email Message 6
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG06
+Type: CHAR(75)
+Location: (19,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG07'.Email Message 7
+:XH3.Email Message 7
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG07
+Type: CHAR(75)
+Location: (20,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG08'.Email Message 8
+:XH3.Email Message 8
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG08
+Type: CHAR(75)
+Location: (21,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG09'.Email Message 9
+:XH3.Email Message 9
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG09
+Type: CHAR(75)
+Location: (22,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG10'.Email Message 10
+:XH3.Email Message 10
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG10
+Type: CHAR(75)
+Location: (23,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG11'.Email Message 11
+:XH3.Email Message 11
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG11
+Type: CHAR(75)
+Location: (24,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLMSG12'.Email Message 12
+:XH3.Email Message 12
+:P.Help text not entered.
+:P.Screen: OTOPMTF2 Field: EMLMSG12
+Type: CHAR(75)
+Location: (25,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F4=Prompt:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

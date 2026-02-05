@@ -1,0 +1,38 @@
+/* Move source member with search capabilities */
+Pgm Parm(&srcMbr &srcFle &srcLib &server)
+  /* Input parameters */
+  Dcl &srcmbr   *Char Len(10)
+  Dcl &srCfle   *Char Len(10)
+  Dcl &srClib   *Char Len(10)
+  Dcl &server   *Char Len(50)
+
+  /* If a library or file is not passed try to find them */
+  Call FSMCMDC1 (&srcMbr &srcFle &srcLib)
+
+  If (&srcLib *eq ' ') (Do)
+    SndPgmMsg  Msg('Error source library not provided or found, +
+                    source code not moved.')
+    Return
+  EndDo
+
+  If (&srcFle *eq ' ') (Do)
+    SndPgmMsg  Msg('Error source file not provided or found, +
+                    source code not moved.')
+    Return
+  EndDo
+
+  /* For this to work an RDBDIRE must first be created, example command: +
+  /* ADDRDBDIRE RDB(&server) RMTLOCNAME('10.32.226.41' *IP)              +
+  /*            TEXT('A Description of the server')                      */
+
+  CrtDDMF File(QTEMP/MSMTEMP) RmtFile(&srcLib/&srcFle) +
+          RmtLocName(*RDB) RDB(&server)
+
+  RmvM   File(QTEMP/MSMTEMP) Mbr(&srcMbr)
+  MonMsg  CPF0000
+  CpyF    FromFile(&srcLib/&srcFle) +
+            ToFile(QTEMP/MSMTEMP) FromMbr(&SRCMBR) +
+            ToMbr(*FROMMBR) MbrOpt(*ADD)
+  DltF    File(QTEMP/MSMTEMP)
+
+EndPgm

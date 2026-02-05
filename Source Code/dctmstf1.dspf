@@ -1,0 +1,159 @@
+     A*%%TS  SD  20240227  101032  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master List
+     A*
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A                                      HLPTITLE('Dictionary Master - List-
+     A                                       Screen')
+     A          R SFL                       SFL
+     A*%%TS  SD  20240227  101032  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A            SEL@           1A  P
+     A            ROWCLR@        1A  P
+     A            KEY       R        H      REFFLD(DCTMSTIDN)
+     A            SEL       R        B  9  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL@)
+     A            DCTNME    R        O  9  5DSPATR(&ROWCLR@)
+     A            DES       R        O  9 16DSPATR(&ROWCLR@)
+     A            ACVDES    R        O  9 57DSPATR(&ROWCLR@)
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20240227  101032  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      SFLPAG(0014)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(DCTMSTD1 DCTMSTP1)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' DCTMSTP1)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' DCTMSTP1)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' DCTMSTP1)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('SCHVAL' DCTMSTP1)
+     A                                      HLPARA(*FLD SCHVAL)
+     A          H                           HLPPNLGRP('OPTIONS' DCTMSTP1)
+     A                                      HLPARA(*FLD OPTIONS)
+     A          H                           HLPPNLGRP('OPTIONS' DCTMSTP1)
+     A                                      HLPARA(08 002 22 003)
+     A          H                           HLPPNLGRP('DCTNME' DCTMSTP1)
+     A                                      HLPARA(08 005 22 014)
+     A          H                           HLPPNLGRP('DES' DCTMSTP1)
+     A                                      HLPARA(08 016 22 055)
+     A          H                           HLPPNLGRP('ACVDES' DCTMSTP1)
+     A                                      HLPARA(08 057 22 064)
+     A*                                     End Automated help text information
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            FLTEFF         1A  H
+     A            SEL1@          1A  P
+     A            DCTNME1@       1A  P
+     A            DES1@          1A  P
+     A            ACVDES1@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 30'Dictionary Master List'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A            OPTIONS       79A  O  6  1COLOR(BLU)
+     A                                  4  1'Search:'
+     A            SCHVAL    R        B  4  9
+     A                                  7  1'Sel'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  7  5'Dictionary'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 16'Description                       -
+     A                                            '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 57'Active    '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A            SEL1      R        B  8  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            DCTNME1   R        B  8  5REFFLD(DCTNME)
+     A                                      DSPATR(&DCTNME1@)
+     A            DES1      R        B  8 16REFFLD(DES)
+     A                                      DSPATR(&DES1@)
+     A                                      CHECK(LC)
+     A            ACVDES1   R        B  8 57REFFLD(ACVDES)
+     A                                      DSPATR(&ACVDES1@)
+     A                                      CHECK(LC)
+     A*
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A                                      OVERLAY
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(DCTMSTD1 DCTMSTP1)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('FNCKEYS' DCTMSTP1)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

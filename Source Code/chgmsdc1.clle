@@ -1,0 +1,19 @@
+/* this progrm just creates a message file, adds some messges and then runs +
+   the CHGMSD command on them to ensure it picks up all the correct values. */
+Pgm
+
+ DLTMSGF APLLIB/CHGMSD
+ MONMSG  CPF0000
+ CRTMSGF MSGF(APLLIB/CHGMSD) TEXT('Test Message File for the CHGMSD Command')
+
+ ADDMSGD MSGID(TST0001) +
+         MSGF(APLLIB/CHGMSD) +
+         MSG('Message Test 1, Replacement Formats') +
+         SECLVL('This message has 3 replacement text fields. +
+                 &n &n Make sure all 3 are there. 1=Char(10), +
+                 2=Dec(9 2), 3=char(*VARY)') +
+         FMT((*CHAR 10) (*DEC 9 2) (*CHAR))
+ CHGMSD MSGID(TST0001) MSGF(APLLIB/CHGMSD)
+
+
+EndPgm

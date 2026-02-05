@@ -1,0 +1,22 @@
+create or replace function APLLIB/current_program ()
+returns char(10)
+LANGUAGE SQL
+DETERMINISTIC
+begin
+  Declare program_name char(10);
+
+  set program_name = '';
+
+  Select program_name
+  into program_name
+  from table (STACK_INFO(job_name))
+  where program_library_name not in ('QSYS','QSYS2')
+   and right(trim(program_name),3) <> 'TRG'
+   and right(trim(program_name),5) not between '00001' and '99999'
+  Order by ORDINAL_POSITION desc
+  limit 1;
+
+  return program_name;
+
+end;
+Label on Function APLLIB/current_program is 'Return the Current Program From the Call Stack';

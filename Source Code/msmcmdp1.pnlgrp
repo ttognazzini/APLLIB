@@ -1,0 +1,66 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=MSM.Move Srouce Member (MSM)
+:P.This command provides a way to move source members to different
+servers. This is primarily used to move program source code to the
+development server for testing. It can also be used to move source
+back to the production server or to any other server on the network.
+:P.:HP2.Example 1:EHP2. Moving a source member from a development
+library on the production server to the development server for testing.
+This option uses all the defaults so only the source member name is
+needed.
+:XMP.
+MSM NVC023
+:EXMP.
+:P.:HP2.Example 2:EHP2. Move a program back to the production server.
+:XMP.
+MSM NVC023 SERVER(WINCH400)
+:EXMP.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSM/SRCMBR'.Source Member - Help
+:XH3.SRCMBR - Source Member
+:P.This is the name of the source member you want to move.
+This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSM/SRCFLE'.Source File - Help
+:XH3.SRCFLE - Source File
+:P.This is the name of the source file that the member is in.
+:p.This is a required parameter.
+:p.There is a special value of *SEARCH. This will look for the member in
+one of the following files and use that source file if the member is found
+in it.
+:ul.
+:li.QRPGLESRC
+:li.QRPGSRC
+:li.QDDSSRC
+:li.QCLSRC
+:li.QSRC
+:li.QCMDSRC
+:li.QSRVSRC
+:li.QPNLSRC
+:eul.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSM/SRCLIB'.Library - Help
+:XH3.LIB - Library
+:P.Enter the name of the library or leave the default of *SEARCH and
+the system will figure it out for you.
+:P. If *SEARCH is used the system will first check the your ion
+developemnt library. It assumes the developement library is the same
+as your user profile. If not found it will look in the production
+library MRPS36S.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSM/SERVER'.To Server - Help
+:XH3.SERVER - To Server
+:P.This parameter allows entry of the server to move the source to.
+The server the command is run on is always the from server.
+The default of WINCHTST moves the source to the development server. To
+move the source back to the production server you can call the command
+from the development server and change the server option to WINCH400.
+:p.The command can be used to move source code to any server recahable on
+the network. Just use the host name or I/P address of the server.
+:EHELP.
+:EPNLGRP.

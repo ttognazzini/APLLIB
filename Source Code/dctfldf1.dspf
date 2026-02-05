@@ -1,0 +1,548 @@
+     A*%%TS  SD  20230420  133834  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Field
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4                 -
+     A                                             24 80 *DS3)
+     A                                      REF(APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT
+     A          R SFLB1                     SFL
+     A            SEL@           1A  P
+     A            DCTNMETST R        H      REFFLD(DCTNME)
+     A            KEY       R        H      REFFLD(DCTFLDIDN)
+     A            SEL            2A  B  8  2
+     A                                      DSPATR(&SEL@)
+     A            FLDNME    R        O  8  6REFFLD(FLDNME)
+     A            COLTXT    R        O  8 18REFFLD(COLTXT)
+     A            ACVDES    R        O  8 70
+     A            TYP           30A  O  8 82
+     A            FLDENMD        3A  O  8114
+     A          R SFLCTLB1                  SFLCTL(SFLB1)
+     A*%%TS  SD  20230420  133407  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A  *DS4                                SFLPAG(0018)
+     A  *DS3                                SFLPAG(0005)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      DSPMOD(*DS4)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            FLDNME1@       1A  P
+     A            COLTXT1@       1A  P
+     A            TYP1@          1A  P
+     A            ACVDES1@       1A  P
+     A            FLDENMD1@      1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R   10A  O  1118
+     A            MDE       R   10A  O  2  2
+     A                                  2 56'Dictionary Field List'
+     A                                      COLOR(WHT)
+     A                                  2118USER
+     A                                  4  5'Search:'
+     A            SCHVAL    R        B  4 13
+     A                                  6  1'Opt'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A            SEL1      R    2A  B  7  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            FLDNME1   R        B  7  6REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNME1@)
+     A            COLTXT1   R        B  7 18REFFLD(COLTXT)
+     A                                      DSPATR(&COLTXT1@)
+     A            TYP1          30A  B  7 82DSPATR(&TYP1@)
+     A                                  6  6'  Field   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 18'                   Column Text    -
+     A                                                      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 82'            Type              '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  3  1'Dictionary:'
+     A            DCTNME    R        O  3 13
+     A            DES       R        O  3 26REFFLD(APLDCT/DES APLDCT)
+     A                                  6 70' Active '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            ACVDES1   R        B  7 70REFFLD(ACVDES)
+     A                                      DSPATR(&ACVDES1@)
+     A                                  6114'Enumerated'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            FLDENMD1       3A  B  7114DSPATR(&FLDENMD1@)
+     A            OPTIONS      131A  O  5  1COLOR(BLU)
+     A          R SFLB2                     SFL
+     A            SEL@           1A  P
+     A            KEY       R        H      REFFLD(DCTFLDIDN)
+     A            SEL       R        B  8  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL@)
+     A            FLDNME    R        O  8  6REFFLD(FLDNME)
+     A            DFTVAL    R        O  8 18
+     A            ALWNUL    R        O  8 82
+     A          R SFLCTLB2                  SFLCTL(SFLB2)
+     A*%%TS  SD  20230420  133834  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A  *DS4                                SFLPAG(0018)
+     A  *DS3                                SFLPAG(0005)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      DSPMOD(*DS4)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            FLDNME1@       1A  P
+     A            DFTVAL1@       1A  P
+     A            ALWNUL1@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1118
+     A            MDE       R        O  2  2
+     A                                  2 56'Dictionary Field List'
+     A                                      COLOR(WHT)
+     A                                  2118USER
+     A                                  3  1'Dictionary:'
+     A            DCTNME    R        O  3 13
+     A            DES       R        O  3 26REFFLD(APLDCT/DES APLDCT)
+     A                                  4  5'Search:'
+     A            SCHVAL    R        B  4 13
+     A                                  6  1'Opt'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  6  6'  Field   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 18'                   Default Value  -
+     A                                                                '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 80'Null '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SEL1      R        B  7  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            FLDNME1   R        B  7  6REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNME1@)
+     A            DFTVAL1   R        B  7 18REFFLD(DFTVAL)
+     A                                      DSPATR(&DFTVAL1@)
+     A            ALWNUL1   R        B  7 82REFFLD(ALWNUL)
+     A                                      DSPATR(&ALWNUL1@)
+     A            OPTIONS      131A  O  5  1COLOR(BLU)
+     A          R FOOTERB
+     A                                      OVERLAY
+     A                                      DSPMOD(*DS4)
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+     A          R SFLS1                     SFL
+     A*%%TS  SD  20210922  134003  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A            SEL@           1A  P
+     A            KEY       R        H      REFFLD(DCTFLDIDN)
+     A            SEL       R        B  8  2REFFLD(OPTION) DSPATR(&SEL@)
+     A            FLDNME    R        O  8  5REFFLD(FLDNME)
+     A            COLTXT    R        O  8 17REFFLD(COLTXT)
+     A            ACVDES    R        O  8 69
+     A          R SFLCTLS1                  SFLCTL(SFLS1)
+     A*%%TS  SD  20230420  133407  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A  *DS4                                SFLPAG(0014)
+     A  *DS3                                SFLPAG(0014)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      DSPMOD(*DS3)
+     A                                      OVERLAY
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            FLDNME1@       1A  P
+     A            COLTXT1@       1A  P
+     A            ACVDES1@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 30'Dictionary Field List'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3  1'Dictionary:'
+     A            DCTNME    R        O  3 13
+     A            DES       R        O  3 26REFFLD(APLDCT/DES APLDCT)
+     A                                  4  5'Search:'
+     A            SCHVAL    R        B  4 13
+     A                                  6  1'Opt'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  6  5'  Field   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 17'                   Column Text    -
+     A                                                      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 69' Active '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SEL1      R        B  7  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            FLDNME1   R        B  7  5REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNME1@)
+     A            COLTXT1   R        B  7 17REFFLD(COLTXT)
+     A                                      DSPATR(&COLTXT1@)
+     A            ACVDES1   R        B  7 69REFFLD(ACVDES)
+     A                                      DSPATR(&ACVDES1@)
+     A            OPTIONSS      79A  O  5  1COLOR(BLU)
+     A          R SFLS2                     SFL
+     A*%%TS  SD  20210922  134003  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A            SEL@           1A  P
+     A            KEY       R        H      REFFLD(DCTFLDIDN)
+     A            SEL       R        B  8  2REFFLD(OPTION) DSPATR(&SEL@)
+     A            FLDNME    R        O  8  5REFFLD(FLDNME)
+     A            TYP           30A  O  8 16
+     A            FLDENMD        3A  O  8 47
+     A            ALWNUL    R        O  8 59
+     A          R SFLCTLS2                  SFLCTL(SFLS2)
+     A*%%TS  SD  20230420  133407  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A  *DS4                                SFLPAG(0014)
+     A  *DS3                                SFLPAG(0014)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      DSPMOD(*DS3)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            FLDNME1@       1A  P
+     A            TYP1@          1A  P
+     A            FLDENMD1@      1A  P
+     A            ALWNUL1@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 30'Dictionary Field List'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3  1'Dictionary:'
+     A            DCTNME    R        O  3 13
+     A            DES       R        O  3 26REFFLD(APLDCT/DES APLDCT)
+     A                                  4  5'Search:'
+     A            SCHVAL    R        B  4 13
+     A                                  6  1'Opt'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  6  5'  Field   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 16'            Type              '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 47'Enumerated'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 58'Null '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SEL1      R        B  7  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            FLDNME1   R        B  7  5REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNME1@)
+     A            TYP1          30A  B  7 16DSPATR(&TYP1@)
+     A            FLDENMD1       3A  B  7 47DSPATR(&FLDENMD1@)
+     A            ALWNUL1   R        B  7 59REFFLD(ALWNUL)
+     A                                      DSPATR(&ALWNUL1@)
+     A            OPTIONSS      79A  O  5  1COLOR(BLU)
+     A          R SFLS3                     SFL
+     A*%%TS  SD  20210922  134003  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A            SEL@           1A  P
+     A            KEY       R        H      REFFLD(DCTFLDIDN)
+     A            SEL       R        B  8  2REFFLD(OPTION) DSPATR(&SEL@)
+     A            FLDNME    R        O  8  5REFFLD(FLDNME)
+     A            DFTVAL    R        O  8 16
+     A          R SFLCTLS3                  SFLCTL(SFLS3)
+     A*%%TS  SD  20230420  133407  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A  *DS4                                SFLPAG(0014)
+     A  *DS3                                SFLPAG(0014)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      DSPMOD(*DS3)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            FLDNME1@       1A  P
+     A            DFTVAL1@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 30'Dictionary Field List'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3  1'Dictionary:'
+     A            DCTNME    R        O  3 13
+     A            DES       R        O  3 26REFFLD(APLDCT/DES APLDCT)
+     A                                  4  5'Search:'
+     A            SCHVAL    R        B  4 13
+     A                                  6  1'Opt'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  6  5'  Field   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6 16'                   Default Value  -
+     A                                                                '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SEL1      R        B  7  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            FLDNME1   R        B  7  5REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNME1@)
+     A            DFTVAL1   R        B  7 16REFFLD(DFTVAL)
+     A                                      DSPATR(&DFTVAL1@)
+     A            OPTIONSS      79A  O  5  1COLOR(BLU)
+     A          R FOOTERS
+     A*%%TS  SD  20210922  095828  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      OVERLAY
+     A                                      DSPMOD(*DS3)
+     A            FNCKEYSS      79A  O 23  2COLOR(BLU)
+     A          R MSGRCDB                   TEXT('MSG SFL RECORD')
+     A                                      SFL
+     A  *DS4                                SFLMSGRCD(27)
+     A  *DS3                                SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTLB                   TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCDB) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A                                      DSPMOD(*DS4)
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGRCDS                   TEXT('MSG SFL RECORD')
+     A                                      SFL
+     A  *DS4                                SFLMSGRCD(24)
+     A  *DS3                                SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTLS                   TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCDS) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A                                      DSPMOD(*DS3)
+     A            CALLSTK                   SFLPGMQ

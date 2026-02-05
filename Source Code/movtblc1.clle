@@ -1,0 +1,22 @@
+/* Move Table to Tableau CPP for MVOTBL Command */
+Pgm (&fle &newTblNme)
+  /* Input parameters */
+  Dcl &FLE       *char Len(20)
+  Dcl   &FLENME  *char Len(10) stg(*DEFINED) defvar(&FLE 1)
+  Dcl   &FLELIB  *char Len(10) stg(*DEFINED) defvar(&FLE 11)
+  Dcl &NEWTBLNME *char Len(128)
+
+  /* add APLLIB to libl if it does not already exists */
+  AddLible APLLIB *last
+  MonMsg CPF0000
+
+  /* Finds the real library if *LIBL or *CURLIB is used, also ensures the file exists */
+  RtvObjD OBJ(&FLELIB/&FLENME) OBJTYPE(*FILE) RTNLIB(&FLELIB)
+  MonMsg CPF0000 Exec(DO)
+    SndPgmMsg ('Error file' *bcat &fleNme *tCat ' not found in library' *bcat *fleLib *tcat '.')
+  EndDo
+
+  /* Call the program to move the file */
+  Call APLLIB/JDBMSQB3 (&fleNme &fleLib &newTblNme)
+
+EndPgm

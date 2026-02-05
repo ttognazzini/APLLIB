@@ -1,0 +1,91 @@
+     A*%%TS  SD  20211216  154332  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master Filter
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT
+     A          R SCREEN
+     A*%%TS  SD  20211216  154332  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FLTEFF         1A  H
+     A            DCTNME@        1A  P
+     A            FLDNME@        1A  P
+     A            DSPFLE@        1A  P
+     A            VAL@           1A  P
+     A            HLPTYPD@       1A  P
+     A            SRTCDE@        1A  P
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 71
+     A                                  2 32'Help Master Filter'
+     A                                      DSPATR(HI)
+     A                                  2 71USER
+     A                                  5  2'Dictionary'
+     A            DCTNME    R        B  5 15REFFLD(DCTNME)
+     A                                      DSPATR(&DCTNME@)
+     A                                  6  2'Field'
+     A            FLDNME    R        B  6 15DSPATR(&FLDNME@)
+     A                                  7  2'Screen'
+     A            DSPFLE    R        B  7 15DSPATR(&DSPFLE@)
+     A                                  8  2'Val'
+     A            VAL       R        B  8 15DSPATR(&VAL@)
+     A                                  9  2'Type'
+     A            HLPTYPD       20A  B  9 15DSPATR(&HLPTYPD@)
+     A                                 12  2'Sort By'
+     A            SRTCDE    R        B 12 15DSPATR(&SRTCDE@)
+     A                                 12 22'(1=Dictionary,2=Field,3=Screen,4=V-
+     A                                      alue,5=Type,6=Count)'
+     A                                      COLOR(WHT)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  9 36'?'
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

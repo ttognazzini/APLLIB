@@ -1,0 +1,205 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=DCTSEGD1.Dictionary Segments - List
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: DCTSEGF1 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: DCTSEGF1 Field: PGMNME
+Type: CHAR(10)
+Location: (1,70)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MDE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: DCTSEGF1 Field: MDE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=OPTIONS.Program Options
+:XH3.Program Options
+:P.Program options are entered in front of any entry in the list or on the
+entry line at the top of the list.
+:P.This program includes the following options.
+:UL.
+:LI.:HP2.1=Select:EHP2.
+Option 1 is generally used for add on maintenance screens or select when
+prompting. The options are included in blue at the top of the list. The mode
+is displayed in the upper left hand corner below the date.
+:LI.:HP2.1=Add:EHP2.
+Option 1 is generally used for add on maintenance screens or select when
+prompting. The options are included in blue at the top of the list. The mode
+is displayed in the upper left hand corner below the date.
+:LI.:HP2.2=Update:EHP2.
+Option 2 is used to update an entry in a list. It goes to the detail screen
+for whatever type of entry is being listed.
+:LI.:HP2.3=Copy:EHP2.
+Option 3 is used to copy an entry in a list. It goes to the detail screen
+for the type of entry in the list. The detail screen will be in copy
+mode. Copy mode allows a new entry to be created with most of the same values
+as the entry being copied.
+:LI.:HP2.4=Deactivate:EHP2.
+Option 4 deactivates an entry in list. Deactivating an entry does not delete
+it. It just flags it as inactive. Most list screens hide inactive entries
+by default. Inactive entries are also excluded from most reports by
+default. Inactive entries can be reactivated if needed.
+:LI.:HP2.5=View:EHP2.
+Option 5 is used on list screens to view details about an entry in the
+list. It opens the detail screen for the type of entry in the list. The
+detail screen is opened in view only mode.
+:LI.:HP2.13=Reactivate:EHP2.
+Option 13 is used to reactivate inactive entries in a list. By default list
+screens hide inactive entries. F11 is normally used to toggle between viewing
+and hiding inactive entries.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SCHVAL'.Search
+:XH3.Search
+:p.The search field is used on most list screens. It allows for a generic
+search over all columns in the list.
+:p.For example, on a vendor list screen, entering TX and Comp in the search
+field will show any vendor that has TX in either the name or address, or any
+other field for that matter. And also, has the letters comp in any of the
+columns. This allows for a quick filter by state and name. However, since it
+searches all fields, it will find entries with TX in the name as well. This
+does not happen much with TX, but if searching for California, CA, you will
+get a lot of entries that CA in the name, not just in the address.
+:p.The search also handle quoted strings using double quotes. Entering a value
+in double quotes will ensure that the value is found exactly as entered. For
+example, if the search string is AMERICAN CAST, the list will include vendors
+AMERICAN CASTING and AMERICAN SPINCAST, because both have both words in the
+search term. If you only wanted to find AMERICAN CASTING, a search term of
+"AMERICAN CAST" can be entered. This will only find vendors with the two words
+next to each other, including the space. With this search term AMERICAN
+CASTINGS would show up, but AMERICAN SPINCAST would not.
+:P.Screen: DCTSEGF1 Field: SCHVAL
+Type: CHAR(40)
+Location: (4,9)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DTASEG1'.Data Segment
+:XH3.Data Segment
+:P.Help text not entered.
+:P.Screen: DCTSEGF1 Field: DTASEG1
+Type: CHAR(3)
+Location: (6,5)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DES1'.Description
+:XH3.Description
+:P.Help text not entered.
+:P.Screen: DCTSEGF1 Field: DES1
+Type: CHAR(40)
+Location: (6,9)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES1'.Error name not found (ACVDES1)
+:XH3.Error name not found (ACVDES1)
+:P.Help text not entered.
+:P.Screen: DCTSEGF1 Field: ACVDES1
+Type: CHAR(10)
+Location: (6,50)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CNFEXSD1'.Error name not found (CNFEXSD1)
+:XH3.Error name not found (CNFEXSD1)
+:P.Help text not entered.
+:P.Screen: DCTSEGF1 Field: CNFEXSD1
+Type: CHAR(5)
+Location: (6,62)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DTASEG'.Data Segment
+:XH3.Data Segment
+:P.Help text not entered.
+:P.Screen: DCTSEGF1 Field: DTASEG
+Type: CHAR(3)
+Location: (7,5)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DES'.Description
+:XH3.Description
+:P.Help text not entered.
+:P.Screen: DCTSEGF1 Field: DES
+Type: CHAR(40)
+Location: (7,9)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES'.Active
+:XH3.Active
+:p.The active field is used to designate a record as active or inactive. The
+field is used on many screens throughout the system.
+:p.Many list screens
+hide inactive records by default, F11 normally toggles between showing them
+or not. On list screens option 13 generally reactivates an entry.
+:p.On detail screens the active field is normally displayed in the upper
+right corner. It designates the status of the entry, either active or
+inactive.
+:p.On report prompt screens the active field is generally used as a filter
+to include or exclude inactive entries from the report.
+:p.On filter screens it is used as a filter. The value is toggled on the
+list screen using the F11 function, but it can be manually changed on the
+filter screen as well.
+:P.Screen: DCTSEGF1 Field: ACVDES
+Type: CHAR(10)
+Location: (7,50)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CNFEXSD'.Error name not found (CNFEXSD)
+:XH3.Error name not found (CNFEXSD)
+:P.Help text not entered.
+:P.Screen: DCTSEGF1 Field: CNFEXSD
+Type: CHAR(5)
+Location: (7,62)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+F1 displays this help text. If used on a field, it includes the help text
+for that field. Otherwise, it shows the help text for the entire screen.
+:LI.:HP2.F3=Exit:EHP2.
+F3 exits a program. Any changes made on the screen will
+not be saved, unless the enter key is pressed first.
+:LI.:HP2.F5=Refresh:EHP2.
+F5 refreshes the screen. It will load the screen back to the state is would be
+in if it was just entered. This can be useful if a value is changed on
+another screen, or to just clear any changes made on the screen.
+:LI.:HP2.F6=Add:EHP2.
+F6 allows a new entry to be added to a list screen.
+:LI.:HP2.F12=Cancel:EHP2.
+F12 cancels out of the current screen. Any changes made on the screen will
+not be saved, unless the enter key is pressed first.
+:LI.:HP2.F13=Filter:EHP2.
+F3 shows the filter screen for a list program.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

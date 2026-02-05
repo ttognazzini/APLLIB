@@ -1,0 +1,179 @@
+/***************************************************************** +
+   This program emails an error message. It attaches the           +
+   job log and call stack to the message.                          +
+                                                                   +
+   Input parms                                                     +
+      Email to address char(50)                                    +
+      Subject char(100)                                            +
+      Message char(1000)                                           +
+      IncDmp  char(1) - optional (Y/ )                             +
+      Email from address char(50) - optional                       +
+      Email to address 2 char(50) - optional                       +
+      Email to address 3 char(50) - optional                       +
+                                                                   +
+   If calling from a CL Program use the command EMLERR.            +
+   If calling from an RPG program use the prototypes in            +
+   the EMLERRC1PR copybook.                                        +
+                                                                   +
+   The include dump option only works if the calling program       +
+   produces a dump first. It assumes the dump file is the lst dump +
+   produced for the job. The dump file is QPPGMDMP. The calling    +
+   program should OVRPTF QPPGMDMP HOLD(*YES) then call either      +
+   DMPCLPGM for CL Programs or use the DUMP opcode for RPG         +
+   programs. The dump must be done in the calling program so the   +
+   correct program is dumped.                                      +
+                                                                   +
+   See EMLERRC2 for example use from a CL program.                 +
+   See EMLERRB1 for example use from an RPG program.               +
+                                                                   +
+   This program uses RJS to send the email. Some boiler plate code +
+   has been added to make it work for GumboMail or KeyesMail, but  +
+   neither has been tested.                                        +
+                                                                   +
+ *******************************************************************/
+Pgm (&emlTo1 &subject &message &psIncDmp &psEmlFrm &psEmlTo2 &psemlTo3)
+
+    DCL   &emlto1     *CHAR 50
+    DCL   &subject    *CHAR 100
+    DCL   &message    *CHAR 1000
+    DCL   &psIncDmp   *CHAR 1
+    DCL   &psEmlFrm   *CHAR 50
+    DCL   &psEmlto2   *CHAR 50
+    DCL   &psEmlto3   *CHAR 50
+    DCL   &incDmp     *CHAR 1
+    DCL   &emlFrm     *CHAR 50
+    DCL   &emlto2     *CHAR 50
+    DCL   &emlto3     *CHAR 50
+    DCL   &sqlStm     *CHAR 1000
+    DCL   &mailMbr    *CHAR 10
+    DCL   &jobNme     *CHAR 10
+    DCL   &jobUsr     *CHAR 10
+    DCL   &jobNbr     *CHAR 6
+
+    /* Handle optional parameters */
+    ChgVar &incDmp &psIncDmp
+    MONMSG MSGID(MCH3601) EXEC(ChgVar &incDmp ' ')
+    ChgVar &emlFrm &psEmlFrm
+    MONMSG MSGID(MCH3601) EXEC(ChgVar &emlFrm ' ')
+    ChgVar &emlTo2 &psEmlTo2
+    MONMSG MSGID(MCH3601) EXEC(ChgVar &emlTo2 ' ')
+    ChgVar &emlTo3 &psEmlTo3
+    MONMSG MSGID(MCH3601) EXEC(ChgVar &emlTo3 ' ')
+
+    /* If the include dump option is used, copy the dump to a PDF file */
+    If (&incDmp *EQ 'Y') (Do)
+      CPYSPLF FILE(QPPGMDMP) +
+              TOFILE(*TOSTMF) +
+              JOB(*) SPLNBR(*LAST) +
+              TOSTMF('/email/tmp/Program Dump.pdf') +
+              WSCST(*PDF) +
+              STMFOPT(*REPLACE)
+      DLTSPLF  FILE(QPPGMDMP) SPLNBR(*LAST)
+    EndDo
+
+    /* create a pdf file of the current job log */
+    OVRPRTF QPJOBLOG OUTQ(TRASH2) HOLD(*YES) OVRSCOPE(*JOB)
+    DSPJOBLOG JOB(*) OUTPUT(*PRINT)
+    CPYSPLF FILE(QPJOBLOG) +
+            TOFILE(*TOSTMF) +
+            JOB(*) SPLNBR(*LAST) +
+            TOSTMF('/email/tmp/Job Log.pdf') +
+            WSCST(*PDF) +
+            STMFOPT(*REPLACE)
+    DLTSPLF  FILE(QPJOBLOG) SPLNBR(*LAST)
+
+    /* Create an Excel File of the call stack */
+    RtvJobA Job(&jobNme) User(&jobUsr) Nbr(&jobNbr)
+    Chgvar &sqlStm +
+        ('Select +
+           substr(REQUEST_LEVEL,1,3) "Level", +
+           PROGRAM_NAME, +
+           PROGRAM_LIBRARY_NAME, +
+           substr(coalesce(STATEMENT_IDENTIFIERS,+
+                  '' ''),1,10) "Statement", +
+           substr(coalesce(PROCEDURE_NAME,'' ''),1,50) "Procedure" +
+         From Table (STACK_INFO(''' *cat &jobNbr *tcat '/' *cat &jobUsr +
+                       *tcat '/' *cat &jobNme *tcat ''')) +
+          Order by ORDINAL_POSITION')
+    SQL File(&sqlStm) +
+        ACTION(*IFSFILE) +
+        IFSFOLDER('/EMAIL/TMP') +
+        IFSFILE('Call_Stack.xlsx')
+
+    /* Clean up some parameters */
+    If (&emlTo2 *eq ' ' *and &emlTo3 *ne ' ') (do)
+      ChgVar &emlTo2 &emlTo3
+      ChgVar &emlTo3 ' '
+    EndDo
+    If (&emlFrm *eq ' ') ChgVar &emlFrm '*DEFAULT' /* only for RJS */
+/*  If (&emlFrm *eq ' ') ChgVar &emlFrm '*SAME' /* only for KeyesMail */
+
+    /* Send the email with the attachments */
+
+
+    /* RJF version */
+    If (&incDmp = 'Y' & &emlTo2 = ' ' & &emlTo3 = ' ') +
+      RJSSMTP/SMTPSEND TOADDR(&EMLTO1) +
+                       FROMADDR(&EMLFRM) SUBJECT(&SUBJECT) +
+                       MESSAGE(&MESSAGE) CONTYPE('text/html') +
+                       ATTACHMENT('/email/tmp/Program Dump.pdf' +
+                                  '/email/tmp/Job Log.pdf' +
+                                  '/email/tmp/Call_Stack.xlsx')
+    Else If (&incDmp = 'Y' & &emlTo3 = ' ') +
+      RJSSMTP/SMTPSEND TOADDR(&EMLTO1 &EMLTO2) +
+                       FROMADDR(&EMLFRM) SUBJECT(&SUBJECT) +
+                       MESSAGE(&MESSAGE) CONTYPE('text/html') +
+                       ATTACHMENT('/email/tmp/Program Dump.pdf' +
+                                  '/email/tmp/Job Log.pdf' +
+                                  '/email/tmp/Call_Stack.xlsx')
+    Else If (&incDmp = 'Y') +
+      RJSSMTP/SMTPSEND TOADDR(&EMLTO1 &EMLTO2 &EMLTO3) +
+                       FROMADDR(&EMLFRM) SUBJECT(&SUBJECT) +
+                       MESSAGE(&MESSAGE) CONTYPE('text/html') +
+                       ATTACHMENT('/email/tmp/Program Dump.pdf' +
+                                  '/email/tmp/Job Log.pdf' +
+                                  '/email/tmp/Call_Stack.xlsx')
+    If (&emlTo2 = ' ' & &emlTo3 = ' ') +
+      RJSSMTP/SMTPSEND TOADDR(&EMLTO1) +
+                       FROMADDR(&EMLFRM) SUBJECT(&SUBJECT) +
+                       MESSAGE(&MESSAGE) CONTYPE('text/html') +
+                       ATTACHMENT('/email/tmp/Job Log.pdf' +
+                                  '/email/tmp/Call_Stack.xlsx')
+    Else If (&emlTo3 = ' ') +
+      RJSSMTP/SMTPSEND TOADDR(&EMLTO1 &EMLTO2) +
+                       FROMADDR(&EMLFRM) SUBJECT(&SUBJECT) +
+                       MESSAGE(&MESSAGE) CONTYPE('text/html') +
+                       ATTACHMENT('/email/tmp/Job Log.pdf' +
+                                  '/email/tmp/Call_Stack.xlsx')
+    Else +
+      RJSSMTP/SMTPSEND TOADDR(&EMLTO1 &EMLTO2 &EMLTO3) +
+                       FROMADDR(&EMLFRM) SUBJECT(&SUBJECT) +
+                       MESSAGE(&MESSAGE) CONTYPE('text/html') +
+                       ATTACHMENT('/email/tmp/Job Log.pdf' +
+                                  '/email/tmp/Call_Stack.xlsx')
+
+    /* gumbo version - I didn't have access to GumboMail so this may not work */
+ /* If (&incDmp *eq 'Y') +
+       GUMBOMAIL/GSENDMAIL TOSMTPNAME((&emlTo) (&emlTo2) (&emlTo3)) +
+             SUBJECT(&subject) +
+             MSG(&message) +
+             OBJ(('/email/tmp/Job_Log.pdf') +
+                 ('/email/tmp/Dump.pdf') +
+                 ('/email/tmp/Call_Stack.xlsx')) */
+ /* esle +
+       GUMBOMAIL/GSENDMAIL TOSMTPNAME((&emlTo) (&emlTo2) (&emlTo3)) +
+             SUBJECT(&subject) +
+             MSG(&message) +
+             OBJ(('/email/tmp/Job_Log.pdf') +
+                 ('/email/tmp/Call_Stack.xlsx')) */
+
+    /* KEYSMAIL Version - not tested */
+    /* Start email message, then add each attachment, the last attachments sends the email */
+/*  KMLTXTM  MAILMBR(&MAILMBR) TOADDR(&EMLTO1 &EMLTO2 &EMLTO3) FromAddr(&emlFrm) +
+             SUBJECT(&SUBJECT) TEXT(&MESSAGE) SENDMBR(*NO) */
+/*  KMLPCFAT MAILMBR(&MAILMBR) FOLDER('/Email/tmp')  FILENAME('Job_Log.pdf') ANUMBER(*MIDDLE) */
+/*  If (&incDmp *eq 'Y') +
+      KMLPCFAT MAILMBR(&MAILMBR) FOLDER('/Email/tmp')  FILENAME('Dump.pdf') ANUMBER(*MIDDLE) */
+/*  KMLPCFAT MAILMBR(&MAILMBR) FOLDER('/Email/tmp')  FILENAME('Call_Stack.xlsx') ANUMBER(*LAST) */
+
+    ENDPGM

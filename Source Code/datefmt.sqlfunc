@@ -1,0 +1,128 @@
+CREATE OR REPLACE FUNCTION APLLIB/DATEFMT(TS TIMESTAMP, FMT VARCHAR(20))
+RETURNS VARCHAR(20)
+RETURN
+WITH TMP (DD,MM,YYYY,YY,HH,MI,SS,NNNNNN) AS
+(
+    SELECT
+    SUBSTR( DIGITS (DAY(TS)),9),
+    SUBSTR( DIGITS (MONTH(TS)),9) ,
+    RTRIM(CHAR(YEAR(TS))) ,
+    SUBSTR(RTRIM(CHAR(YEAR(TS))),3,2) ,
+    SUBSTR( DIGITS (HOUR(TS)),9),
+    SUBSTR( DIGITS (MINUTE(TS)),9),
+    SUBSTR( DIGITS (SECOND(TS)),9),
+    RTRIM(CHAR(MICROSECOND(TS)))
+    FROM SYSIBM.SYSDUMMY1
+    )
+SELECT
+CASE UPPER(FMT)
+    WHEN 'YYYYMMDD'
+        THEN YYYY || MM || DD
+    WHEN 'YYMMDD'
+        THEN YY || MM || DD
+    WHEN 'MMDDYY'
+        THEN MM || DD || YY
+    WHEN 'MM/DD/YYYY'
+        THEN MM || '/' || DD || '/' || YYYY
+    WHEN 'YYYY/MM/DD'
+        THEN YYYY || '/' || MM || '/' || DD
+    WHEN 'YY/MM/DD'
+        THEN YY || '/' || MM || '/' || DD
+    WHEN 'MM/DD/YY'
+        THEN MM || '/' || DD || '/' || YY
+    WHEN 'YYYY/DD/MM HH:MI:SS'
+        THEN YYYY || '/' || MM || '/' || DD || ' ' ||
+               HH || ':' || MI || ':' || SS
+    WHEN 'YYYY/DD/MM HH:MM:SS'
+        THEN YYYY || '/' || MM || '/' || DD || ' ' ||
+               HH || ':' || MI || ':' || SS
+    WHEN 'HHMISS'
+        THEN HH || MI || SS
+    WHEN 'HHMMSS'
+        THEN HH || MI || SS
+    WHEN 'HH:MI:SS'
+        THEN HH || ':' || MI || ':' || SS
+    WHEN 'HH:MM:SS'
+        THEN HH || ':' || MI || ':' || SS
+    WHEN 'NNNNNN'
+        THEN NNNNNN
+    ELSE
+        'BAD FORMAT ' || COALESCE(FMT,' <NULL> ')
+    END
+FROM TMP;
+-- add label and long comment
+Label on function APLLIB/datefmt(TIMESTAMP,VARCHAR(20)) is 'Format Timetamp';
+Comment on function APLLIB/datefmt(TIMESTAMP,VARCHAR(20))
+  is 'Format Timestamp, Accepts a timestamp data type field and a format, Format options are ''YYYYMMDD'', ''YYMMDD'',''
+MMDDYY'',''MM/DD/YYYY'',''YYYY/MM/DD'',''YY/MM/DD'', ''MM/DD/YY'', ''YYYY/DD/MM HH:MI:SS'',''YYYY/DD/MM HH:MM:SS'', ''HH
+MISS'', ''HHMMSS'',''HH:MI:SS'' and ''HH:MM:SS''';
+
+CREATE OR REPLACE FUNCTION APLLIB/DATEFMT(DT DATE, FMT VARCHAR(20))
+RETURNS VARCHAR(20)
+RETURN
+WITH TMP (DD,MM,YYYY,YY) AS
+(
+    SELECT
+    SUBSTR( DIGITS (DAY(DT)),9),
+    SUBSTR( DIGITS (MONTH(DT)),9) ,
+    RTRIM(CHAR(YEAR(DT))) ,
+    SUBSTR(RTRIM(CHAR(YEAR(DT))),3,2)
+    FROM SYSIBM.SYSDUMMY1
+    )
+SELECT
+CASE UPPER(FMT)
+    WHEN 'YYYYMMDD'
+        THEN YYYY || MM || DD
+    WHEN 'YYMMDD'
+        THEN YY || MM || DD
+    WHEN 'MMDDYY'
+        THEN MM || DD || YY
+    WHEN 'MM/DD/YYYY'
+        THEN MM || '/' || DD || '/' || YYYY
+    WHEN 'YYYY/MM/DD'
+        THEN YYYY || '/' || MM || '/' || DD
+    WHEN 'YY/MM/DD'
+        THEN YY || '/' || MM || '/' || DD
+    WHEN 'MM/DD/YY'
+        THEN MM || '/' || DD || '/' || YY
+    ELSE
+        'BAD FORMAT ' || COALESCE(FMT,' <NULL> ')
+    END
+FROM TMP;
+-- add label and long comment
+Label on function APLLIB/datefmt(DATE,VARCHAR(20)) is 'Format Date Field';
+Comment on function APLLIB/datefmt(DATE,VARCHAR(20))
+  is 'Format Date, Accepts a date data type field and a format, Format options are ''YYYYMMDD'', ''YYMMDD'',''MMDDYY'',
+''MM/DD/YYYY'', ''YYYY/MM/DD'',''YY/MM/DD'' and ''MM/DD/YY''';
+
+CREATE OR REPLACE FUNCTION APLLIB/DATEFMT(TM TIME, FMT VARCHAR(20))
+RETURNS VARCHAR(20)
+RETURN
+WITH TMP (HH,MI,SS) AS
+(
+    SELECT
+    SUBSTR( DIGITS (HOUR(TM)),9),
+    SUBSTR( DIGITS (MINUTE(TM)),9),
+    SUBSTR( DIGITS (SECOND(TM)),9)
+    FROM SYSIBM.SYSDUMMY1
+    )
+SELECT
+CASE UPPER(FMT)
+    WHEN 'HHMISS'
+        THEN HH || MI || SS
+    WHEN 'HHMMSS'
+        THEN HH || MI || SS
+    WHEN 'HH:MI:SS'
+        THEN HH || ':' || MI || ':' || SS
+    WHEN 'HH:MM:SS'
+        THEN HH || ':' || MI || ':' || SS
+    ELSE
+        'BAD FORMAT ' || COALESCE(FMT,' <NULL> ')
+    END
+FROM TMP;
+-- add label and long comment
+Label on function APLLIB/datefmt(TIME,VARCHAR(20)) is 'Format Date, Timestamp or Time';
+Comment on function APLLIB/datefmt(TIME,VARCHAR(20))
+ is 'Format Time, Accepts a date timestamp or time field and a formats it as a varchar. The second parameter allows the
+format to be specified. The options are ''YYYYMMDD'',''YYMMDD'',''MMDDYY'',''MM/DD/YYYY'',''YYYY/MM/DD'',''YY/MM/DD'',''
+MM/DD/YY'',''YYYY/DD/MM HH:MI:SS'',''YYYY/DD/MM HH:MM:SS'',''HHMISS'',''HHMMSS'',''HH:MI:SS'',''HH:MM:SS'',''NNNNNN''';

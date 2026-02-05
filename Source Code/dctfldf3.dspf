@@ -1,0 +1,104 @@
+     A*%%TS  SD  20210929  074446  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A*  Dictionary Field Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20210929  074446  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            DTASEG1@       1A  P
+     A            DTASEG2@       1A  P
+     A            DTASEG3@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            MODE          10A  O  2  2
+     A                                  2 27'Dictionary Field Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3 34'Field Builder'
+     A                                      COLOR(WHT)
+     A                                  5  2'Dictionary'
+     A            DCTNME        10A  O  5 13
+     A            DCTDES        40A  O  5 24
+     A                                  8  2'Segment 1'
+     A            DTASEG1   R        B  8 13REFFLD(DTASEG)
+     A                                      DSPATR(&DTASEG1@)
+     A                                  8 17'?'
+     A            COLTXT1       50A  O  8 20
+     A                                  9  2'Segment 2'
+     A            DTASEG2        3A  B  9 13
+     A                                      DSPATR(&DTASEG2@)
+     A                                  9 17'?'
+     A            COLTXT2       50A  O  9 20
+     A                                 10  2'Segment 3'
+     A            DTASEG3        3A  B 10 13
+     A                                      DSPATR(&DTASEG3@)
+     A                                 10 17'?'
+     A            COLTXT3       50A  O 10 20
+     A                                 12  2'Built Column Text'
+     A                                      COLOR(WHT)
+     A            COLTXT    R        O 13  2
+     A                                 15  2'Built Column Headers'
+     A                                      COLOR(WHT)
+     A            COLHDG1       20A  O 16  2
+     A            COLHDG2       20A  O 17  2
+     A            COLHDG3       20A  O 18  2
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  7 20'Segment Text'
+     A                                      COLOR(WHT)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

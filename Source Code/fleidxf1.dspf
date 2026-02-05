@@ -1,0 +1,195 @@
+     A*%%TS  SD  20250813  153136  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A* FILE FILEDS LIST
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT
+     A                                      HLPTITLE('File Indexes - List')
+     A          R SFL                       SFL
+     A*%%TS  SD  20230410  121455  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A            SEL@           1A  P
+     A            KEY       R        H      REFFLD(FLEIDXIDN)
+     A            FLELIB    R        H
+     A            FLENME    R        H
+     A            SEL            2A  B  9  2DSPATR(&SEL@)
+     A            IDXLIB    R        O  9  6
+     A            IDXNME    R        O  9 17
+     A            IDXTXT    R        O  9 28
+     A            IDXUNID   R   15   O  9 79REFFLD(IDXUNI)
+     A            ACVDES    R        O  9 95
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20230414  131547  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      SFLPAG(0017)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(FLEIDXD1 FLEIDXP1)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' FLEIDXP1)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' FLEIDXP1)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' FLEIDXP1)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('DESLINE' FLEIDXP1)
+     A                                      HLPARA(*FLD DESLINE)
+     A          H                           HLPPNLGRP('FLEDES' FLEIDXP1)
+     A                                      HLPARA(*FLD FLEDES)
+     A          H                           HLPPNLGRP('PRDFLE' FLEIDXP1)
+     A                                      HLPARA(*FLD PRDFLE)
+     A          H                           HLPPNLGRP('FLESTS' FLEIDXP1)
+     A                                      HLPARA(*FLD FLESTS)
+     A          H                           HLPPNLGRP('DCTNME' FLEIDXP1)
+     A                                      HLPARA(*FLD DCTNME)
+     A          H                           HLPPNLGRP('DCTDES' FLEIDXP1)
+     A                                      HLPARA(*FLD DCTDES)
+     A          H                           HLPPNLGRP('CHGSCD' FLEIDXP1)
+     A                                      HLPARA(*FLD CHGSCD)
+     A          H                           HLPPNLGRP('TBLNME' FLEIDXP1)
+     A                                      HLPARA(*FLD TBLNME)
+     A          H                           HLPPNLGRP('SCHVAL' FLEIDXP1)
+     A                                      HLPARA(*FLD SCHVAL)
+     A          H                           HLPPNLGRP('OPTIONS' FLEIDXP1)
+     A                                      HLPARA(*FLD OPTIONS)
+     A          H                           HLPPNLGRP('OPTIONS' FLEIDXP1)
+     A                                      HLPARA(08 002 22 003)
+     A          H                           HLPPNLGRP('IDXLIB' FLEIDXP1)
+     A                                      HLPARA(08 006 22 015)
+     A          H                           HLPPNLGRP('IDXNME' FLEIDXP1)
+     A                                      HLPARA(08 017 22 026)
+     A          H                           HLPPNLGRP('IDXTXT' FLEIDXP1)
+     A                                      HLPARA(08 028 22 077)
+     A          H                           HLPPNLGRP('IDXUNID' FLEIDXP1)
+     A                                      HLPARA(08 079 22 093)
+     A          H                           HLPPNLGRP('ACVDES' FLEIDXP1)
+     A                                      HLPARA(08 095 22 102)
+     A*                                     End Automated help text information
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            IDXLIB1@       1A  P
+     A            IDXNME1@       1A  P
+     A            IDXTXT1@       1A  P
+     A            IDXUNID1@      1A  P
+     A            ACVDES1@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R   10A  O  1118
+     A            MDE       R   10A  O  2  2
+     A                                  2 58'File Indexes List'
+     A                                      COLOR(WHT)
+     A                                  2118USER
+     A                                  3  1'File'
+     A            DESLINE       20A  O  3 12
+     A            FLEDES    R        O  3 33
+     A                                  3 85'Production'
+     A            PRDFLE    R    3   O  3 96
+     A                                  3101'Status'
+     A            FLESTS    R   20   O  3108
+     A                                  4  1'Dictionary'
+     A            DCTNME    R        O  4 12
+     A            DCTDES    R        O  4 33REFFLD(DES)
+     A                                  4 85'Change Scd'
+     A            CHGSCD    R    3   O  4 96
+     A                                  4101'Table'
+     A            TBLNME    R   24   O  4108
+     A                                  5  1'Search'
+     A            SCHVAL    R        B  5 12
+     A            OPTIONS      131A  O  6  1COLOR(BLU)
+     A                                  7  1'Opt'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  7  6'Library   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 17'Index     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 28'Description                       -
+     A                                                      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 79'Index Type     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 95'Active  '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SEL1      R    2A  B  8  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            IDXLIB1   R        B  8  6REFFLD(IDXLIB)
+     A                                      DSPATR(&IDXLIB1@)
+     A            IDXNME1   R        B  8 17REFFLD(IDXNME)
+     A                                      DSPATR(&IDXNME1@)
+     A            IDXTXT1   R        B  8 28REFFLD(IDXTXT)
+     A                                      DSPATR(&IDXTXT1@)
+     A            IDXUNID1  R   15   B  8 79REFFLD(IDXUNI)
+     A                                      DSPATR(&IDXUNID1@)
+     A            ACVDES1   R        B  8 95REFFLD(ACVDES)
+     A                                      DSPATR(&ACVDES1@)
+     A          R FOOTER
+     A                                      OVERLAY
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(FLEIDXD1 FLEIDXP1)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('FNCKEYS' FLEIDXP1)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL
+     A                                      SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

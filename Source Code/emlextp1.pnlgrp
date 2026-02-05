@@ -1,0 +1,45 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME='START'.Email an Spooled File from WRKSPLF
+:P.This allows emailing of a spooled file from with in the WRKSPLF
+command. To do so just use option E in front of the spooled file you
+to email.
+:P.The spooled file is emailed as a PDF file.
+:P.The option works with the following commands:
+:UL.
+:LI.Work with Printer Output (WRKSPLF ASTLVL(*BASIC))
+:LI.Work with Spooled Files (WRKSPLF ASTLVL(*INTERMED))
+:LI.Work with Job Spooled Files (WRKJOB OPTION(*SPLF))
+:LI.Work with Output Queue (WRKOUTQ output queue name)
+:LI.Work with Spooled File Status (D P or WRKSPLF DSPFMT(*S36FMT))
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMAIL'.Email Address - HELP
+:XH3.EMAIL - Email Address
+:P.Enter the email address you want the spooled file sent to.
+:P.It will default to the email address of the user that is signed on.
+It pulls the default from the ACCESSPF file.
+:P.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CCAD'.Carbon Copy (CC) Address - HELP
+:XH3.CCAD - Carbon Copy (CC) Address
+:P.These fields allow you to enter up to two additional email addresses
+to send the spool file to.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SUBJECT'.Email Subject - HELP
+:XH3.SUBJECT - Email Subject
+:P.Enter a subject for the email.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MESSAGE'.Email Message - HELP
+:XH3.MESSAGE - Email Message
+:P.Enter a message for the body of the email.
+:P.If the spooled output is of type USER ASCII you will not have the option
+to enter a message. User ASCII output has to be emailed via the FASTFAX IAP
+queue and that does not handle adding a message.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

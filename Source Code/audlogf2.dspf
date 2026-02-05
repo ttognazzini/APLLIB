@@ -1,0 +1,130 @@
+     A*%%TS  SD  20230525  110425  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*  Dictionary Master Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A                                      HLPTITLE('File Audit Log Detail')
+     A          R SCREEN
+     A*%%TS  SD  20230525  110425  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(AUDLOGD2 AUDLOGP2)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' AUDLOGP2)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' AUDLOGP2)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' AUDLOGP2)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('AUDLOGIDNC' AUDLOGP2)
+     A                                      HLPARA(*FLD AUDLOGIDNC)
+     A          H                           HLPPNLGRP('FLELIB' AUDLOGP2)
+     A                                      HLPARA(*FLD FLELIB)
+     A          H                           HLPPNLGRP('FLENME' AUDLOGP2)
+     A                                      HLPARA(*FLD FLENME)
+     A          H                           HLPPNLGRP('FLEDES' AUDLOGP2)
+     A                                      HLPARA(*FLD FLEDES)
+     A          H                           HLPPNLGRP('FLDNME' AUDLOGP2)
+     A                                      HLPARA(*FLD FLDNME)
+     A          H                           HLPPNLGRP('FLDDES' AUDLOGP2)
+     A                                      HLPARA(*FLD FLDDES)
+     A          H                           HLPPNLGRP('BFRVAL' AUDLOGP2)
+     A                                      HLPARA(*FLD BFRVAL)
+     A          H                           HLPPNLGRP('AFTVAL' AUDLOGP2)
+     A                                      HLPARA(*FLD AFTVAL)
+     A          H                           HLPPNLGRP('CRTDTM' AUDLOGP2)
+     A                                      HLPARA(*FLD CRTDTM)
+     A          H                           HLPPNLGRP('CRTUSR' AUDLOGP2)
+     A                                      HLPARA(*FLD CRTUSR)
+     A          H                           HLPPNLGRP('CRTJOB' AUDLOGP2)
+     A                                      HLPARA(*FLD CRTJOB)
+     A          H                           HLPPNLGRP('CRTPGM' AUDLOGP2)
+     A                                      HLPARA(*FLD CRTPGM)
+     A          H                           HLPPNLGRP('FNCKEYS' AUDLOGP2)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 32'Audit Log Details'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  5  2'Log Id'
+     A                                  6  2'Library/File'
+     A            FLELIB        10A  O  6 15
+     A                                  6 26'/'
+     A            FLENME        10A  O  6 28
+     A            FLEDES        40A  O  6 40
+     A                                  7  2'Field'
+     A            FLDNME        10A  O  7 15
+     A            FLDDES        40A  O  7 40
+     A                                 10  2'Before Value'
+     A            BFRVAL    R        O 10 15
+     A                                 13  2'After Value'
+     A            AFTVAL    R        O 13 15
+     A                                 17  2'Date/Time'
+     A            CRTDTM    R        O 17 15
+     A                                 18  2'User'
+     A            CRTUSR    R        O 18 15
+     A                                 19  2'Job'
+     A            CRTJOB    R        O 19 15
+     A                                 20  2'Program'
+     A            CRTPGM    R        O 20 15
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A            AUDLOGIDNC    18A  O  5 15
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

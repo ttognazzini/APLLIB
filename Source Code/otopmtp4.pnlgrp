@@ -1,0 +1,108 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=OTOPMTD4.Output Options - Archive Options
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: OTOPMTF4 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: OTOPMTF4 Field: PGMNME
+Type: CHAR(10)
+Location: (1,70)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MDE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: OTOPMTF4 Field: MDE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ARCFLR'.Archive Folder
+:XH3.Archive Folder
+:P.Help text not entered.
+:P.Screen: OTOPMTF4 Field: ARCFLR
+Type: CHAR(128)
+Location: (6,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ATANME'.Attachment Name
+:XH3.Attachment Name
+:P.Help text not entered.
+:P.Screen: OTOPMTF4 Field: ATANME
+Type: CHAR(128)
+Location: (9,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ATATYP'.Attachment Type
+:XH3.Attachment Type
+:P.Help text not entered.
+:P.Screen: OTOPMTF4 Field: ATATYP
+Type: CHAR(5)
+Location: (12,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='VLDATY'.Error name not found (VLDATY)
+:XH3.Error name not found (VLDATY)
+:P.Help text not entered.
+:P.Screen: OTOPMTF4 Field: VLDATY
+Type: CHAR(50)
+Location: (12,28)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CRTXMA'.Create XML Attribute File
+:XH3.Create XML Attribute File
+:P.Help text not entered.
+:P.Screen: OTOPMTF4 Field: CRTXMA
+Type: CHAR(1)
+Location: (14,29)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ATAFMT'.Attachment Format
+:XH3.Attachment Format
+:P.Help text not entered.
+:P.Screen: OTOPMTF4 Field: ATAFMT
+Type: CHAR(1)
+Location: (16,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F4=Prompt:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

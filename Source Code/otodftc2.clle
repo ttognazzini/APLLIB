@@ -1,0 +1,45 @@
+PGM (&prtOtq &prtDev)
+  DCLPRCOPT  DFTACTGRP(*NO) ACTGRP(*CALLER)
+  Dcl &prtOtq *char 10
+  Dcl &prtDev *char 10
+  Dcl &devd   *char 10
+
+  /* used for call to QDCRDEVD, retreive device description api */
+  DCL VAR(&DEVINFO) TYPE(*CHAR) LEN(999)
+  DCL VAR(&LENVAR) TYPE(*DEC) LEN(3 0) VALUE(999)
+  DCL VAR(&LENVARBIN) TYPE(*CHAR) LEN(4) VALUE(X'00000000')
+  DCL VAR(&ERRCDE) TYPE(*CHAR) LEN(32)
+
+  RTVJOBA   job(&devD)
+
+  IF (&prtOtq *EQ '*USRPRF') (RTVUSRPRF OUTQ(&prtOtq))
+  IF (&prtDev *EQ '*USRPRF') (RTVUSRPRF PRTDEV(&prtDev))
+  IF (&prtDev *EQ '*WRKSTN') (callsubr rtvDevPrt)
+  IF (&prtOtq *EQ '*WRKSTN') (callsubr rtvDevOtq)
+  IF (&prtDev *EQ '*SYSVAL') (RTVSYSVAL SYSVAL(QPRTDEV) RTNVAR(&PRTDEV))
+
+subr rtvDevPrt
+
+  CHGVAR %BIN(&LENVARBIN) &LENVAR
+
+  CALL QDCRDEVD (&DEVINFO &LENVARBIN 'DEVD0600' &DEVD &ERRCDE)
+  MONMSG MSGID(CPF2702) EXEC(GOTO CMDLBL(NODEV))
+  CHGVAR VAR(&prtDev) VALUE(%SST(&DEVINFO 245 10))
+  NODEV:
+
+endsubr
+
+subr rtvDevOtq
+
+  CHGVAR %BIN(&LENVARBIN) &LENVAR
+
+  CALL QDCRDEVD (&DEVINFO &LENVARBIN 'DEVD0600' &DEVD &ERRCDE)
+  MONMSG MSGID(CPF2702) EXEC(GOTO CMDLBL(NODEV))
+  CHGVAR VAR(&prtDev) VALUE(%SST(&DEVINFO 335 10))
+  NODEV:
+
+endsubr
+
+
+ENDPGM
+

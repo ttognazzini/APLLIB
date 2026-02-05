@@ -1,0 +1,158 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=OTOPMTD1.Output Options - Selection/Print Screen
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: OTOPMTF1 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: OTOPMTF1 Field: PGMNME
+Type: CHAR(10)
+Location: (1,70)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MDE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: OTOPMTF1 Field: MDE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTOUT'.Print Output
+:XH3.Print Output
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: PRTOUT
+Type: CHAR(1)
+Location: (6,41)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLOUT'.Email Output
+:XH3.Email Output
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: EMLOUT
+Type: CHAR(1)
+Location: (7,41)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ARCOUT'.Archive Output
+:XH3.Archive Output
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: ARCOUT
+Type: CHAR(1)
+Location: (8,41)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FAXOUT'.Fax Output
+:XH3.Fax Output
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: FAXOUT
+Type: CHAR(1)
+Location: (9,41)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTDEV'.Print Device
+:XH3.Print Device
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: PRTDEV
+Type: CHAR(10)
+Location: (13,27)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTOTQ'.Print Output Queue
+:XH3.Print Output Queue
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: PRTOTQ
+Type: CHAR(10)
+Location: (14,27)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='HLDOUT'.Hold Output
+:XH3.Hold Output
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: HLDOUT
+Type: CHAR(5)
+Location: (15,27)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SAVOUT'.Save Output
+:XH3.Save Output
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: SAVOUT
+Type: CHAR(5)
+Location: (16,27)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTFRM'.Printer Form
+:XH3.Printer Form
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: PRTFRM
+Type: CHAR(10)
+Location: (17,27)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRDTA'.User Data
+:XH3.User Data
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: USRDTA
+Type: CHAR(10)
+Location: (18,27)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='NBRCPY'.Number of Copies
+:XH3.Number of Copies
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: NBRCPY
+Type: CHAR(3)
+Location: (19,27)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTQUL'.Print Quality
+:XH3.Print Quality
+:P.Help text not entered.
+:P.Screen: OTOPMTF1 Field: PRTQUL
+Type: CHAR(10)
+Location: (20,27)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F4=Prompt:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F16=User Defaults:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

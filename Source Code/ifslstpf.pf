@@ -1,0 +1,14 @@
+     A* FILE FOR LISTING OF AN IFS DIRECTORY
+     A*
+     A          R IFSLSTR
+     A            IFSFILE      256          TEXT('FILE')
+     A            IFSFOLD      256          TEXT('FOLDER')
+     A            IFSPATH      512          TEXT('FULL PATH')
+     A            IFSFLLN       10S 0       TEXT('FILE NAME LENGTH')
+     A            IFSFLNO       10S 0       TEXT('FILE NUMBER')
+     A            IFSCSID       10S 0       TEXT('CCSID')
+     A            IFCNTRY        2          TEXT('COUNTRY')
+     A            IFSLANG        3          TEXT('LANGUAGE')
+     A            IFSTYPE       10          TEXT('OBJECT TYPE')
+     A            IFSSIZE       10S 0       TEXT('SIZE IN BYTES')
+     A          K IFSFILE

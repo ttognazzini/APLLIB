@@ -1,0 +1,103 @@
+     A*%%TS  SD  20220705  133812  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*  Program Action Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20220705  133812  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FRMKEYS@       1A  P
+     A            PGMNMECPY@     1A  P
+     A            ACTCDECPY@     1A  P
+     A            PGMNME@        1A  P
+     A            ACTCDE@        1A  P
+     A            OPTION@        1A  P
+     A            DES@           1A  P
+     A            FNCKEY@        1A  P
+     A            SEQNBR@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME2   R        O  1 70REFFLD(PGMNME)
+     A                                      ALIAS(PROGRM_NAME_)
+     A            MODE          10A  O  2  2
+     A                                  2 29'Program Actions Details'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  4  2'Copy Program'
+     A                                      DSPATR(&FRMKEYS@)
+     A            PGMNMECPY R        O  4 18REFFLD(PGMNME)
+     A                                      ALIAS(PROGRAM_NAME_COPY)
+     A                                      DSPATR(&PGMNMECPY@)
+     A                                  5  2'Copy Action'
+     A                                      DSPATR(&FRMKEYS@)
+     A            ACTCDECPY R        O  5 18REFFLD(ACTCDE)
+     A                                      ALIAS(ACTION_CODE_COPY)
+     A                                      DSPATR(&ACTCDECPY@)
+     A                                  7  2'Program'
+     A            PGMNME    R        B  7 18DSPATR(&PGMNME@)
+     A                                  8  2'Action Code'
+     A            ACTCDE    R        B  8 18DSPATR(&ACTCDE@)
+     A                                 11  2'Sequence'
+     A            SEQNBR    R        B 11 18DSPATR(&SEQNBR@)
+     A                                 12  2'Description'
+     A            DES       R        B 12 18DSPATR(&DES@)
+     A                                      CHECK(LC)
+     A                                 13  2'Function Key'
+     A            FNCKEY    R        B 13 18DSPATR(&FNCKEY@)
+     A                                 14  2'Program Option'
+     A            OPTION    R        B 14 18DSPATR(&OPTION@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

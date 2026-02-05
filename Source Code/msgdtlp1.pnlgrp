@@ -1,0 +1,165 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=MSGDTLD1.Message File Detail - List
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: MSGDTLF1 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,20)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: MSGDTLF1 Field: PGMNME
+Type: CHAR(10)
+Location: (1,70)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MODE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: MSGDTLF1 Field: MODE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSFLIB'.Error name not found (MSFLIB)
+:XH3.Error name not found (MSFLIB)
+:P.Help text not entered.
+:P.Screen: MSGDTLF1 Field: MSFLIB
+Type: CHAR(10)
+Location: (4,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSFNME'.Error name not found (MSFNME)
+:XH3.Error name not found (MSFNME)
+:P.Help text not entered.
+:P.Screen: MSGDTLF1 Field: MSFNME
+Type: CHAR(10)
+Location: (4,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSFDES'.Error name not found (MSFDES)
+:XH3.Error name not found (MSFDES)
+:P.Help text not entered.
+:P.Screen: MSGDTLF1 Field: MSFDES
+Type: CHAR(45)
+Location: (4,34)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SCHVAL'.Display Search Value
+:XH3.Display Search Value
+:P.Help text not entered.
+:P.Screen: MSGDTLF1 Field: SCHVAL
+Type: CHAR(40)
+Location: (6,10)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=OPTIONS.Program Options
+:XH3.Program Options
+:P.Program options are entered in front of any entry in the list or on the
+entry line at the top of the list.
+:P.This program includes the following options.
+:UL.
+:LI.:HP2.1=Select:EHP2.
+:P.Help text not entered.
+:LI.:HP2.1=Add:EHP2.
+:P.Help text not entered.
+:LI.:HP2.2=Update:EHP2.
+:P.Help text not entered.
+:LI.:HP2.3=Copy:EHP2.
+:P.Help text not entered.
+:LI.:HP2.4=Deactivate:EHP2.
+:P.Help text not entered.
+:LI.:HP2.5=View:EHP2.
+:P.Help text not entered.
+:LI.:HP2.13=Reactivate:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSGIDN1'.Message Identification Number
+:XH3.Message Identification Number
+:P.Help text not entered.
+:P.Screen: MSGDTLF1 Field: MSGIDN1
+Type: CHAR(7)
+Location: (9,5)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSGDES581'.Error name not found (MSGDES581)
+:XH3.Error name not found (MSGDES581)
+:P.Help text not entered.
+:P.Screen: MSGDTLF1 Field: MSGDES581
+Type: CHAR(58)
+Location: (9,13)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES1'.Active Description
+:XH3.Active Description
+:p.This field or column denotes that an entry is active or inactive.
+:P.Screen: MSGDTLF1 Field: ACVDES1
+Type: CHAR(8)
+Location: (9,72)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSGIDN'.Message Identification Number
+:XH3.Message Identification Number
+:P.Help text not entered.
+:P.Screen: MSGDTLF1 Field: MSGIDN
+Type: CHAR(7)
+Location: (10,5)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSGDES58'.Error name not found (MSGDES58)
+:XH3.Error name not found (MSGDES58)
+:P.Help text not entered.
+:P.Screen: MSGDTLF1 Field: MSGDES58
+Type: CHAR(58)
+Location: (10,13)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES'.Active Description
+:XH3.Active Description
+:p.This field or column denotes that an entry is active or inactive.
+:P.Screen: MSGDTLF1 Field: ACVDES
+Type: CHAR(8)
+Location: (10,72)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F11=More Detail:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F13=Filter:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

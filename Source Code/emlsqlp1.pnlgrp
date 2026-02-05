@@ -1,0 +1,300 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=EMLSQL.Email an SQL Select Statement as Excel
+:P.This command was created to allow emailing the output of an SQL
+select statement.
+:P.The SQL statement must output a table to work. The command only works
+with tables of up to 500 columns. An error message will be recieved if the
+SQL statement produces a data set with more than 500 columns(fields).
+:H2.Example 1:
+:P.The following example emails an Excel file with all fields from the
+customer file for the test customer.
+:P.EMLSQL 'SELECT * FROM CUST WHERE CNUM=9624'
+:H2.Example 2:
+:P.The following example emails an Excel file with select fields from the
+customer file for the test customer.
+:P.EMLSQL SQL('Select CNUM, CNAM, CDOPEN2K, CLOPR, CLMODS2K from cust where
+cnum=9624')
+:H2.Example 3:
+:P.The following example emails an Excel file with select fields from the
+customer file. It also overrides the headers for each field and converts
+the date fields to a date type in Excel.
+:P.EMLSQL SQL('Select CNUM Customer, CNAM "Customer Name",
+FDATE(CDOPEN2K) "Open Date", CLOPR "Last Changed By",
+FDATE(CLMODS2K) "Last Changed Date" from cust where
+cnum=9624')
+:P.To override a column name just use an alias in the SQL statement. To
+format a date field so it comes out in Excel as an atual date, use the
+FDAT function.
+:p.This same function can be used in CSV, XML and JSON output,
+but it works a little differently. In CSV, XML and JSON it just formats
+the value as a date. In JSON it is better to just give the date as a
+number because it is easier for web type programs to convert it to a
+true date data type.
+:H2.Example 4:
+:P.The following example emails an Excel file with all fields from the
+customer file. It overrides the subject and the message of the email.
+It also goes out to multiple addresses and includes a second
+attachment from the IFS.
+:P.EMLSQL 'SELECT * FROM CUST WHERE CNUM=9624' EMAIL(*CURRENT
+'TIM.TOGNAZZINI@FABRICUT.COM') MESSAGE('SOME MESSAGE HERE' *TEXTPLAIN)
+OBJ(('/TOG/#$outfts.xlsx'))
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/SQL'.SQL Select Statement - HELP
+:XH3.SQL - SQL Select Statement
+:P.Enter a valid SQL select statement. It must return at least
+one row with at least one column or nothing will be sent.
+:P.Example: Select * from custs where cnum=9624
+:P.This is a required parameter.
+:P.The SQL statement must be able to generate a column name for
+each column. To generate a column name the column must reference a
+field from a file or an alias. The following example explain this in
+detail.
+:P.SELECT CNUM FROM CUST WHERE CNUM=9624
+:P. In this example the column name will be pulled from the customer
+file since the field directly references a field in a file.
+:P.SELECT CNUM, CASE CNUM WHEN 9624 THEN 'TEST' ELSE 'LIVE' END
+FROM CUST
+:P.This statement will receive an error. The case clause returns
+returns the word test or live. The system will not know what to
+call this column in the temporary table created and will receive an
+error. To correct this just add an alias after the case's END. For
+instance ... END AS STATUS, the AS is optional so ...END STATUS does
+the same thing.
+:P.If a column name cannot be found then a exception error will be
+generated with the previous job log message being
+"Column list required.".
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/FILE'.File (FILE) - Help
+:XH3.FILE - File
+:P.Specifies the name of the file to be created. CHAR(123)
+:P.If this is left blank a default name will be generated.
+:NT.If the file extension is not added the program will
+add it for you. If the file extension is wrong, the wrong
+extension will be left on, then the correct extension will
+be added after it.:ENT.
+:NT.Valid extensions are .xlsx for an Excel file, .xml for an
+XML file and .csv for a comma separated text file.:ENT.
+:P.:HP2.Example:EHP2. '/tog/test.xlsx'
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/TYPE'.File Type (TYPE) - Help
+:XH3.TYPE - File Type
+:P.Specifies the type of file to create. The valid types are:
+:UL.
+:LI.:HP2.*XLS:EHP2. - Creates an Excel file.
+:LI.:HP2.*XML:EHP2. - Creates an Excel formatted XML file.
+:LI.:HP2.*CSV:EHP2. - Creates a Comma Separated Variable text file.
+:LI.:HP2.*JSON:EHP2. - Creates a file containing a JSON string of the data.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/READABLE'.Readable JSON Format (READABLE) - Help
+:XH3.READABLE - Readable JSON Format
+:P.Specifies if the JSON file should be formated in an easily readable
+format. This format makes a larger file than the non-readable format,
+but it makes it a lot easier to manually view the data.
+:P.This parameter will only be displayed if the file type is *JSON.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/ZIP'.ZIP File (ZIP) - Help
+:XH3.ZIP - ZIP File
+:P.Specifies if the attached file should be zipped or not. Zipping the
+file makes it smaller so the email goes faster. If zipped, the file will
+need to be unzipped by the person receiving the email before it can be
+used.
+:P.Zipping Excel files does not do much good as the Excel file format
+is already compressed. Zipping CSV files helps the most if the data
+in the file is repetative. Zipping a JSON or XML file helps a lot as
+the data is plain text data and each field name is duplicated on
+every record.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/USETEXT'.Use Field Text (USETEXT) - Help
+:XH3.USETEXT - Use Field Text
+:P.This option allows using the field text for the column headers. By
+default the program will field names or aliases if entered in the SQL
+statement. Entering *YES here changes the program to use the text defined
+in the file.
+:P.If using this option any aliases are replaced with the text from the
+file. So the aliases for fields become useless.
+:P.This option does not work for calculated fields or functions. This
+is because there is no field associated with the calculated column. For
+instance if you selected a column calculating the unit price in PLISTD
+times the quantity like this PDQTY*PDUPRI, then there would not be a
+direct field referenced for the column so the program cannot figure
+out what text to use. In this case you will need to supply a column
+alias for the column.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/SHEET'.Sheet Name (SHEET) - Help
+:XH3.SHEET - Sheet Name
+:P.This option allows adding a name to the sheet. It will be ignored
+for CSV and JSON files because they do not contain a sheet. For Excel
+and XML it will be the name on the tab at the bottom.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/TITLE1'.Report Title (TITLEx) - Help
+:XH3.TITLEx - Report Title
+:P.These options allow adding up to five title lines to the file. For
+Excel, CSV and XML the titles will be included at the top of the file.
+For JSON files the titles will be included as keyed pairs before the
+data array.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/EMAIL'.Email Address - Help
+:XH3.EMAIL - Email Addresses
+:P.Specifies the email address to send to Excel file to.
+:P.The field allows email addresses up to 50 characters and allows up
+50 addresses to be included.
+:PARML.
+:PT.:PK def.*CURRENT:EPK.
+:PD.The email address stored in the ACCESSPF for the current
+user running the job is used.
+:PT.:PK def.*RPTDSTID:EPK.
+:PD.The RPTDSTID field is displayed and a report distribution ID
+can be entered. The email addresses will be pulled from that ID.
+:PT.:Pk.*USRID:EPK.
+:PD.Specify the directory entry or distribution list that file.
+supplies the email address(es). The correct form is:
+:HP2.*USRID:NAME:ADDRESS:EHP2. where :HP2.NAME:EHP2. is either a directory
+entry's "User ID" or a distribution list's "List ID"
+and where :hp2.ADDRESS:ehp2. is either a directory entry's
+"Address" or a distribution list's "List ID
+qualifier". The email address found on the directory
+entry, or the email address found on each directory
+entry found on the distribution list, is/are used.
+:PT.:PV.*USRPRF:EPV.
+:PD.Specify the user profile that supplies the email
+address. The correct form is: :hp2.*USRPRF:NAME:ehp2. where :hp2.NAME:ehp2.
+is a user profile. The directory entry associated with
+the profile is located and the email address contained
+in the directory entry is used.
+:PT.:PV.email-address:EPV.
+:PD.Specify the email address of the recipient.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/RPTDSTID'.Report Distribution ID (RPTDSTID)- Help
+:XH3.RPTDSTID - Report Distribution ID
+:P.Specifies a report distribution ID to pull the email addresses from.
+:NT.This parameter will not be displayed unless a special value of
+*RPTDSTID is entered in the email field.:ENT.
+:P.The email addresses will be pulled from ACCESSPF for all users
+setup in the report distribution queue for the EMAIL/*ALL/*ALL
+entry.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/SUBJECT'.Subject (SUBJECT) - Help
+:XH3.SUBJECT - Subject
+:P.Specifies the subject for the email. CHAR(128)
+:NT.When prompting, the input field can be expanded
+by entering an ampersand (&) in the first position of
+the field, followed by a blank.:ENT.
+:PARML.
+:PT.:PK def.*NONE:EPK.
+:PD.No subject is included in the email.
+:PT.:PV.character-value:EPV.
+:PD.Specify the subject of the email.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/MESSAGE'.Message (MESSAGE) - Help
+:XH3.MESSAGE - Message
+:P.Specifies a message to include in the email, and its content type.
+:H3.Single values
+:PARML.
+:PT.:PK def.*NONE:EPK.
+:PD.This parameter does not place a message in the email.
+:EPARML.
+:H3.Element 1: Content
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Specify the content placed in the email. CHAR(5000)
+:EPARML.
+:H3.Element 2: Send as
+:PARML.
+:PT.:PV.*TEXTPLAIN:EPV.
+:PD.Copy the content into the body of the mail message
+specifying content type text/plain.
+:P.Line breaks can be added by placing hex value X'0D25'
+in the data.
+:PT.:PV.*TEXTHTML:EPV.
+:PD.Copy the content into the body of the mail message
+specifying content type text/html.
+:P.Line breaks can be added by placing '<br>' in the data.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/EMPTY'.Send Empty File (EMPTY) - Help
+:XH3.EMPTY - Send Empty File
+:P.This option allows the program to either send or not send an
+email if the SQL result set is empty.
+:PARML.
+:PT.:PK def.*YES:EPK.
+:PD.If the SQL statement returns an empty result set, a file with
+just a header line will be emailed.
+:EPARML.
+:PARML.
+:PT.:PK.*NO:EPK.
+:PD.If the SQL statement returns an empty result set, no email
+will be sent.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLSQL/OBJ'.Objects (OBJ) - Help
+:XH3.OBJ - Objects
+:P.Specifies the path name of additional objects to send. A maximum
+of 64 path names can be specified. The object must already exist in
+the IFS.
+:H3.Single values
+:PARML.
+:PT.:PK def.*NONE:EPK.
+:PD.No objects are sent.
+:EPARML.
+:H3.Element 1: Name
+:PARML.
+:PT.:PV.path-name:EPV.
+:PD.Specify an object path name. CHAR(128)
+:EPARML.
+:H3.Element 2: Send as
+:PARML.
+:PT.:PV def.*ATTACH:EPV.
+:PD.Send the object as an attached file using MIME and
+specifying "application/octet-stream". This works for
+most PC type files.
+:PT.:PV.*TEXTPLAIN:EPV.
+:PD.Copy the object into the body of the mail message
+specifying content type text/plain. The CCSID of the
+file must match the value specified for CHRENC().
+:NT.Some servers disregard this request and
+form an attachment from the message in all cases.
+Some servers disregard this request for the second
+and subsequent body parts. If this is the case,
+try MSG(*NONE).:ENT.
+:PT.:PV.*TEXTHTML:EPV.
+:PD.Copy the object into the body of the mail message
+specifying content type text/html. The CCSID of the
+file must match the value specified for CHRENC().
+:NT.Some servers disregard this request and
+form an attachment from the message in all cases.
+Some servers disregard this request for the second
+and subsequent body parts. If this is the case,
+try MSG(*NONE).:ENT.
+:PT.:PV.*ATTACHPDF:EPV.
+:PD.Send the object as an attached file using MIME and
+specifying "application/pdf". Use this value if the
+attached file contains Adobe's Portable Document
+Format (pdf) data.
+:PT.:PV.*ATTACHPS:EPV.
+:PD.Send the object as an attached file using MIME and
+specifying "application/postscript". Use this value if
+the attached file contains postscript data.
+:PT.:PV.*NOTE:EPV.
+:PD.Same as *TEXTPLAIN which is preferred.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

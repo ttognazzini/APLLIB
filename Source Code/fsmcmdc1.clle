@@ -1,0 +1,110 @@
+/* Find Source File, used in DSM,MSM and ESM commands */
+
+/* If the SRCFLE or SCRLIB are blank or *SEARCH, this tries to populate them.   */
+/* It tries to look in a library with the same name as the user for a dev lib,  */
+/* then it looks in a hard coded library list. The list will need to be cahnged */
+/* for the specific enviuronment this is used in. */
+
+Pgm Parm(&srcMbr &srcFle &srcLib)
+  /* Input parameters */
+  Dcl &srcMbr   *Char Len(10)
+  Dcl &srcFle   *Char Len(10)
+  Dcl &srcLib   *Char Len(10)
+  Dcl &serVer   *Char Len(50)
+
+  /* Work varriables */
+  Dcl &wrkFle   *Char Len(10)
+  Dcl &wrkLib   *Char Len(10)
+  Dcl &posF     *Dec  Len(3 0) Value(1)
+  Dcl &posL     *Dec  Len(3 0) Value(1)
+  Dcl &eof      *Lgl  Len(1)   Value('1')
+  Dcl &found    *Lgl  Len(1)
+  /* list of source file to search in */
+  Dcl &files    *Char Len(200) Value('QRPGLESRC  +
+                                      QRPGSRC    +
+                                      QDDSSRC    +
+                                      QCLSRC     +
+                                      QSRC       +
+                                      QCMDSRC    +
+                                      QSRVSRC    +
+                                      QPNLSRC    +
+                                      1234567890')
+
+  /* list of libraries to search in */
+  Dcl &libs     *Char Len(200) Value('MRPS38SRC  +
+                                      APLLIB     +
+                                      1234567890')
+
+  /* If the source file or library are *SEARCH clear them so we do not have to +
+     check for either value below */
+  If (&srcFle = '*SEARCH') (ChgVar &srcFle ' ')
+  If (&srcLib = '*SEARCH') (ChgVar &srcLib ' ')
+
+  /* if a library is passed use it, otherwise search for it */
+  If (&srcLib *ne ' ') Do
+    ChgVar &WRKLIB &SRCLIB
+    CallSubr SchForFile
+  EndDo
+  Else Do
+    /* Check file in dev lib, use the user profile for the dev lib */
+    RtvJobA user(&wrkLib)
+    CallSubr SchForFile
+    If (&found *ne '1') (Do)
+      /* Loop through source libraries, use the first one it is found in */
+      ChgVar &posL 1
+      DoWhile &eof
+        ChgVar &wrkLib %sst(&libs &posL 10)
+        If (&wrkLib *eq '1234567890') (DO)
+          ChgVar &wrkLib ' '
+          Leave
+        EndDo
+        CallSubr SchForFile
+        If (&found *eq '1') (Leave)
+        ChgVar &posL (&posL + 11)
+      EndDo
+    EndDo
+  EndDo
+
+  RmvMsg CLEAR(*all)
+  MonMsg CPF0000
+
+  ChgVar &srcFle &wrkFle
+  ChgVar &srcLib &wrkLib
+
+  /****************************************************************************/
+  /* Try to find member in a list of source files                             */
+  SUBR SUBR(SCHFORFILE)
+
+    /* If a src file is passed, use it, otherwise search for it */
+    If (&srcFle *ne ' ') do
+      CHGVAR &WRKFLE &SRCFLE
+      CALLSUBR TEST
+    EndDo
+    Else Do
+      /* Loop through source files and see if each one is in the passed library */
+      CHGVAR &POSF 1
+      DOWHILE &EOF
+        CHGVAR &WRKFLE %SST(&FILES &POSF 10)
+        IF (&WRKFLE *EQ '1234567890') (DO)
+          CHGVAR &WRKFLE ' '
+          Leave
+        EndDo
+        CALLSUBR TEST
+        IF (&FOUND *EQ '1') (LEAVE)
+        CHGVAR &POSF (&POSF + 11)
+      EndDo
+    EndDo
+
+  ENDSUBR
+
+  /****************************************************************************/
+  SUBR       SUBR(TEST)
+
+    CHGVAR     VAR(&found) VALUE('0')
+    CHKOBJ     OBJ(&WRKLIB/&WRKFLE) OBJTYPE(*FILE) MBR(&SRCMBR)
+    MONMSG     MSGID(CPF0000) EXEC(RTNSUBR)
+    CHGVAR     VAR(&found) VALUE('1')
+
+  ENDSUBR
+
+ENDPGM

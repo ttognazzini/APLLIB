@@ -1,0 +1,80 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=LSM.Move Srouce Member (LSM)
+:P.This command is used to write RPG Nesting levels to the gutter,
+this is the first 6 characters of the source line, the part before
+the line type.
+:p.This program will wipe out anything else in that
+6 characters, so if it was used to track changes you will loose that
+information. Consider saving the source member to a different name and
+using it to work on, then moving your changes back into the original
+source file.
+:P.:HP2.Example 1:EHP2. Adding levels to the first match instance of
+the srouce file. This first looks to see if it is in a library the same
+as the user profile name, if not it searches the produciton libraries. The
+list of libraries is int he FSMCMDC1 program, it may have to modified for
+your specific company.
+:XMP.
+LSM NVC023
+:EXMP.
+:P.:HP2.Example 2:EHP2. Provide the specific source file to use.
+:XMP.
+LSM SRCMBR(TESTRPGPGM) SRCFLE(QRPGLESRC) SRCLIB(TTOGNAZZIN)
+:EXMP.
+:P.:HP2.Example 3:EHP2. You can clear the source levels using the option
+parametere, it defualts to writing nesting levels but accepts *CLEAR to
+clear them. This will clear anything in gutter, not just nesting levels.
+:XMP.
+LSM SRCMBR(TESTRPGPGM) SRCFLE(QRPGLESRC) SRCLIB(TTOGNAZZIN) OPTION(*CLEAR)
+:EXMP.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSM/SRCMBR'.Source Member - Help
+:XH3.SRCMBR - Source Member
+:P.This is the name of the source member you want to add levels to.
+This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSM/SRCFLE'.Source File - Help
+:XH3.SRCFLE - Source File
+:P.This is the name of the source file that the member is in.
+:p.This is a required parameter.
+:p.There is a special value of *SEARCH. This will look for the member in
+one of the following files and use that source file if the member is found
+in it.
+:ul.
+:li.QRPGLESRC
+:li.QRPGSRC
+:li.QDDSSRC
+:li.QCLSRC
+:li.QSRC
+:li.QCMDSRC
+:li.QSRVSRC
+:li.QPNLSRC
+:eul.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSM/SRCLIB'.Library - Help
+:XH3.LIB - Library
+:P.Enter the name of the library or leave the default of *SEARCH and
+the system will figure it out for you.
+:P. If *SEARCH is used the system will first check the your
+developemnt library. It assumes the developement library is the same
+as your user profile. If not found it will look in the production
+library MRPS36S.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSM/OPTION'.Option - Help
+:XH3.OPTION - Option
+:P.This program can add or clear the nesting levels. This parameter
+allows you to select which option you want. It defaults to writing
+nesting levels.
+:PARML.
+:PT.:PK def.*NEST:EPK.
+:PD.Adds nesting levels to the source member.
+:PT.:PK.*CLEAR:EPK.
+:PD.Clears the nesting levels. Really all characters before the
+line type.
+:EPARML.
+:EHELP.
+:EPNLGRP.

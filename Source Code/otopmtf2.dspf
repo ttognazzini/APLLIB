@@ -1,0 +1,249 @@
+     A*%%TS  SD  20240316  082528  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A                                      HLPTITLE('Output Options - Email O-
+     A                                      ptions')
+     A          R SCREEN
+     A*%%TS  SD  20240316  082528  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(OTOPMTD2 OTOPMTP2)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' OTOPMTP2)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' OTOPMTP2)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' OTOPMTP2)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('FRMEML' OTOPMTP2)
+     A                                      HLPARA(*FLD FRMEML)
+     A          H                           HLPPNLGRP('FRMNME' OTOPMTP2)
+     A                                      HLPARA(*FLD FRMNME)
+     A          H                           HLPPNLGRP('EMLADD' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLADD)
+     A          H                           HLPPNLGRP('EMLNME' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLNME)
+     A          H                           HLPPNLGRP('CC1EML' OTOPMTP2)
+     A                                      HLPARA(*FLD CC1EML)
+     A          H                           HLPPNLGRP('CC1NME' OTOPMTP2)
+     A                                      HLPARA(*FLD CC1NME)
+     A          H                           HLPPNLGRP('CC2EML' OTOPMTP2)
+     A                                      HLPARA(*FLD CC2EML)
+     A          H                           HLPPNLGRP('CC2NME' OTOPMTP2)
+     A                                      HLPARA(*FLD CC2NME)
+     A          H                           HLPPNLGRP('CC3EML' OTOPMTP2)
+     A                                      HLPARA(*FLD CC3EML)
+     A          H                           HLPPNLGRP('CC3NME' OTOPMTP2)
+     A                                      HLPARA(*FLD CC3NME)
+     A          H                           HLPPNLGRP('BCCEML' OTOPMTP2)
+     A                                      HLPARA(*FLD BCCEML)
+     A          H                           HLPPNLGRP('BCCNME' OTOPMTP2)
+     A                                      HLPARA(*FLD BCCNME)
+     A          H                           HLPPNLGRP('EMLSBJ' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLSBJ)
+     A          H                           HLPPNLGRP('ATATYP' OTOPMTP2)
+     A                                      HLPARA(*FLD ATATYP)
+     A          H                           HLPPNLGRP('VLDATY' OTOPMTP2)
+     A                                      HLPARA(*FLD VLDATY)
+     A          H                           HLPPNLGRP('ATAFMT' OTOPMTP2)
+     A                                      HLPARA(*FLD ATAFMT)
+     A          H                           HLPPNLGRP('ATANME' OTOPMTP2)
+     A                                      HLPARA(*FLD ATANME)
+     A          H                           HLPPNLGRP('EMLMSG01' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG01)
+     A          H                           HLPPNLGRP('EMLMSG02' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG02)
+     A          H                           HLPPNLGRP('EMLMSG03' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG03)
+     A          H                           HLPPNLGRP('EMLMSG04' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG04)
+     A          H                           HLPPNLGRP('EMLMSG05' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG05)
+     A          H                           HLPPNLGRP('EMLMSG06' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG06)
+     A          H                           HLPPNLGRP('EMLMSG07' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG07)
+     A          H                           HLPPNLGRP('EMLMSG08' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG08)
+     A          H                           HLPPNLGRP('EMLMSG09' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG09)
+     A          H                           HLPPNLGRP('EMLMSG10' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG10)
+     A          H                           HLPPNLGRP('EMLMSG11' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG11)
+     A          H                           HLPPNLGRP('EMLMSG12' OTOPMTP2)
+     A                                      HLPARA(*FLD EMLMSG12)
+     A          H                           HLPPNLGRP('FNCKEYS' OTOPMTP2)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FRMEML@        1A  P
+     A            FRMNME@        1A  P
+     A            EMLADD@        1A  P
+     A            EMLNME@        1A  P
+     A            CC1EML@        1A  P
+     A            CC1NME@        1A  P
+     A            CC2EML@        1A  P
+     A            CC2NME@        1A  P
+     A            CC3EML@        1A  P
+     A            CC3NME@        1A  P
+     A            BCCEML@        1A  P
+     A            BCCNME@        1A  P
+     A            ATATYP@        1A  P
+     A            ATAFMT@        1A  P
+     A            EMLSBJ@        1A  P
+     A            ATANME@        1A  P
+     A            EMLMSG01@      1A  P
+     A            EMLMSG02@      1A  P
+     A            EMLMSG03@      1A  P
+     A            EMLMSG04@      1A  P
+     A            EMLMSG05@      1A  P
+     A            EMLMSG06@      1A  P
+     A            EMLMSG07@      1A  P
+     A            EMLMSG08@      1A  P
+     A            EMLMSG09@      1A  P
+     A            EMLMSG10@      1A  P
+     A            EMLMSG11@      1A  P
+     A            EMLMSG12@      1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1122
+     A            MDE       R        O  2  2
+     A                                  2 60'Email Options'
+     A                                      DSPATR(HI)
+     A                                  2122USER
+     A                                  3 12'Email Address                     -
+     A                                                                '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  3 73'Name                              -
+     A                                                                '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4  2'From'
+     A            FRMEML    R        B  4 12CHECK(LC)
+     A                                      DSPATR(&FRMEML@)
+     A            FRMNME    R        B  4 73CHECK(LC)
+     A                                      DSPATR(&FRMNME@)
+     A                                  5  2'To'
+     A            EMLADD    R        B  5 12CHECK(LC)
+     A                                      DSPATR(&EMLADD@)
+     A            EMLNME    R        B  5 73CHECK(LC)
+     A                                      DSPATR(&EMLNME@)
+     A                                  6  2'CC 1'
+     A            CC1EML    R        B  6 12CHECK(LC)
+     A                                      DSPATR(&CC1EML@)
+     A            CC1NME    R        B  6 73CHECK(LC)
+     A                                      DSPATR(&CC1NME@)
+     A                                  7  2'CC 2'
+     A            CC2EML    R        B  7 12CHECK(LC)
+     A                                      DSPATR(&CC2EML@)
+     A            CC2NME    R        B  7 73CHECK(LC)
+     A                                      DSPATR(&CC2NME@)
+     A                                  8  2'CC 3'
+     A            CC3EML    R        B  8 12CHECK(LC)
+     A                                      DSPATR(&CC3EML@)
+     A            CC3NME    R        B  8 73CHECK(LC)
+     A                                      DSPATR(&CC3NME@)
+     A                                  9  2'BCC'
+     A            BCCEML    R        B  9 12CHECK(LC)
+     A                                      DSPATR(&BCCEML@)
+     A            BCCNME    R        B  9 73CHECK(LC)
+     A                                      DSPATR(&BCCNME@)
+     A                                 10  2'Subject'
+     A            EMLSBJ    R        B 10 12CHECK(LC)
+     A                                      DSPATR(&EMLSBJ@)
+     A                                 11  2'Type'
+     A            ATATYP    R        B 11 12DSPATR(&ATATYP@)
+     A            VLDATY        50A  O 11 18
+     A                                 11 73'File Format'
+     A            ATAFMT    R        B 11 85CHECK(LC)
+     A                                      DSPATR(&ATAFMT@)
+     A                                 11 87'(1=Data,2=Report)'
+     A                                 12  2'File Name'
+     A            ATANME    R        B 12 12CHECK(LC)
+     A                                      DSPATR(&ATANME@)
+     A                                 13 12'Email Body (Message)              -
+     A                                                                         -
+     A                                            '
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)
+     A            EMLMSG01  R        B 14 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG01@)
+     A            EMLMSG02  R        B 15 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG02@)
+     A            EMLMSG03  R        B 16 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG03@)
+     A            EMLMSG04  R        B 17 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG04@)
+     A            EMLMSG05  R        B 18 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG05@)
+     A            EMLMSG06  R        B 19 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG06@)
+     A            EMLMSG07  R        B 20 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG07@)
+     A            EMLMSG08  R        B 21 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG08@)
+     A            EMLMSG09  R        B 22 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG09@)
+     A            EMLMSG10  R        B 23 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG10@)
+     A            EMLMSG11  R        B 24 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG11@)
+     A            EMLMSG12  R        B 25 12CHECK(LC)
+     A                                      DSPATR(&EMLMSG12@)
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

@@ -1,0 +1,48 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=MSGDTLDZ.Message File Detail - Filter
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: MSGDTLFZ Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: MSGDTLFZ Field: PGMNME
+Type: CHAR(10)
+Location: (1,71)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRTCDE'.Sort Code
+:XH3.Sort Code
+:P.Help text not entered.
+:P.Screen: MSGDTLFZ Field: SRTCDE
+Type: DECIMAL(2,0)
+Location: (12,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

@@ -1,0 +1,62 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+/*   IFS Monitor Log                                       */
+
+Create or Replace Table APLLIB.IFMLOG (
+  active_row                     for Column ACVROW    CHAR(1) Not Null Default '1',
+  ifs_monitor_log_id             for Column IFMLOGIDN BIGINT Not Null
+                                 Generated Always as Identity (Start With 1 Increment by 1),
+  from_path                      for Column FRMPTH    VARCHAR(132) ALLOCATE(30) Not Null With Default,
+  destination_path               for Column DSTPTH    VARCHAR(132) ALLOCATE(30) Not Null With Default,
+  ifs_monitor_status             for Column IFMSTS    CHAR(1) Not Null With Default,
+  long_comment                   for Column LNGCMT    VARCHAR(250) Not Null With Default,
+  create_time_stamp              for Column CRTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  create_user                    for Column CRTUSR    CHAR(18) Not Null Default USER,
+  create_job                     for Column CRTJOB    CHAR(28) Not Null With Default,
+  create_program                 for Column CRTPGM    CHAR(10) Not Null With Default,
+  maintenance_time_stamp         for Column MNTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  maintenance_user               for Column MNTUSR    CHAR(18) Not Null Default USER,
+  maintenance_job                for Column MNTJOB    CHAR(28) Not Null With Default,
+  maintenance_program            for Column MNTPGM    CHAR(10) Not Null With Default,
+  primary key (IFMLOGIDN)
+);
+
+Label on Table IFMLOG is 'IFS Monitor Log';
+Create or Replace Alias ifs_monitor_log For APLLIB.IFMLOG;
+
+Label on Column APLLIB.IFMLOG (
+  ACVROW     is 'Active              Row',
+  IFMLOGIDN  is 'IFS Monitor         Log                 Id',
+  FRMPTH     is 'From                Path',
+  DSTPTH     is 'Destination         Path',
+  IFMSTS     is 'IFS                 Monitor             Status',
+  LNGCMT     is 'Long Comment',
+  CRTDTM     is 'Create              Date',
+  CRTUSR     is 'Create              User',
+  CRTJOB     is 'Create              Job',
+  CRTPGM     is 'Create              Program',
+  MNTDTM     is 'Maintenance         Date',
+  MNTUSR     is 'Maintenance         User',
+  MNTJOB     is 'Maintenance         Job',
+  MNTPGM     is 'Maintenance         Program'
+);
+
+Label on Column APLLIB.IFMLOG (
+  ACVROW     text is 'Active Row',
+  IFMLOGIDN  text is 'IFS Monitor Log Id',
+  FRMPTH     text is 'From Path',
+  DSTPTH     text is 'Destination Path',
+  IFMSTS     text is 'IFS Monitor Status',
+  LNGCMT     text is 'Long Comment',
+  CRTDTM     text is 'Create Date',
+  CRTUSR     text is 'Create User',
+  CRTJOB     text is 'Create Job',
+  CRTPGM     text is 'Create Program',
+  MNTDTM     text is 'Maintenance Date',
+  MNTUSR     text is 'Maintenance User',
+  MNTJOB     text is 'Maintenance Job',
+  MNTPGM     text is 'Maintenance Program'
+);

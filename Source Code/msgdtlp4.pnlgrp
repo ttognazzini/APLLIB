@@ -1,0 +1,197 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=MSGDTLD4.Message File Detail - Field Overrides
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: MSGDTLF4 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,20)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: MSGDTLF4 Field: PGMNME
+Type: CHAR(10)
+Location: (1,70)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MODE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: MSGDTLF4 Field: MODE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSFLIB'.Message File Library
+:XH3.Message File Library
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSFLIB
+Type: CHAR(10)
+Location: (4,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSFNME'.Message File Name
+:XH3.Message File Name
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSFNME
+Type: CHAR(10)
+Location: (4,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSFDES'.Message File Description
+:XH3.Message File Description
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSFDES
+Type: CHAR(40)
+Location: (4,34)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSGIDN'.Message Identification Number
+:XH3.Message Identification Number
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSGIDN
+Type: CHAR(7)
+Location: (5,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSGDES'.Error name not found (MSGDES)
+:XH3.Error name not found (MSGDES)
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSGDES
+Type: CHAR(45)
+Location: (5,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SCHVAL'.Display Search Value
+:XH3.Display Search Value
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: SCHVAL
+Type: CHAR(40)
+Location: (7,10)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=OPTIONS.Program Options
+:XH3.Program Options
+:P.Program options are entered in front of any entry in the list or on the
+entry line at the top of the list.
+:P.This program includes the following options.
+:UL.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSDLNE1'.Message File Data Line Number
+:XH3.Message File Data Line Number
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSDLNE1
+Type: CHAR(5)
+Location: (10,5)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSDTYP1'.Error name not found (MSDTYP1)
+:XH3.Error name not found (MSDTYP1)
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSDTYP1
+Type: CHAR(8)
+Location: (10,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSDLEN1'.Message Data Length
+:XH3.Message Data Length
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSDLEN1
+Type: CHAR(5)
+Location: (10,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSDVRY1'.Error name not found (MSDVRY1)
+:XH3.Error name not found (MSDVRY1)
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSDVRY1
+Type: ZONED(5,0)
+Location: (10,30)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES1'.Active Description
+:XH3.Active Description
+:p.This field or column denotes that an entry is active or inactive.
+:P.Screen: MSGDTLF4 Field: ACVDES1
+Type: CHAR(8)
+Location: (10,37)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSDLNE'.Message File Data Line Number
+:XH3.Message File Data Line Number
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSDLNE
+Type: CHAR(5)
+Location: (11,5)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSDTYP'.Error name not found (MSDTYP)
+:XH3.Error name not found (MSDTYP)
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSDTYP
+Type: CHAR(8)
+Location: (11,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSDLEN'.Message Data Length
+:XH3.Message Data Length
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSDLEN
+Type: CHAR(5)
+Location: (11,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MSDVRY'.Message Data Varying Length
+:XH3.Message Data Varying Length
+:P.Help text not entered.
+:P.Screen: MSGDTLF4 Field: MSDVRY
+Type: DECIMAL(5,0)
+Location: (11,30)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES'.Active Description
+:XH3.Active Description
+:p.This field or column denotes that an entry is active or inactive.
+:P.Screen: MSGDTLF4 Field: ACVDES
+Type: CHAR(8)
+Location: (11,37)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F11=More Detail:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

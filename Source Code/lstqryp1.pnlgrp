@@ -1,0 +1,18 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=LSTQRY.List Query Details
+:P.This command is used to create a file of query details.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSTQRY/QRY'.Query Definition
+:XH3.QRY - Query Definition
+:P.Enter the query to generate a file for.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSTQRY/OUTF'.Output File
+:XH3.OUTF - Output File
+:P.Enter the file that will be created when the program runs. If the
+file already exists it will be replaced.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

@@ -1,0 +1,119 @@
+     A*%%TS  SD  20220428  113210  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Segment Filter
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT
+     A*----------------------------------------------------------------
+     A                                      HLPTITLE('Dictionary Segments - Fi-
+     A                                      lters')
+     A          R SCREEN
+     A*%%TS  SD  20220428  113210  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(DCTSEGDZ DCTSEGPZ)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' DCTSEGPZ)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' DCTSEGPZ)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('DTASEG' DCTSEGPZ)
+     A                                      HLPARA(*FLD DTASEG)
+     A          H                           HLPPNLGRP('DES' DCTSEGPZ)
+     A                                      HLPARA(*FLD DES)
+     A          H                           HLPPNLGRP('COLTXT' DCTSEGPZ)
+     A                                      HLPARA(*FLD COLTXT)
+     A          H                           HLPPNLGRP('COLHDGSEG' DCTSEGPZ)
+     A                                      HLPARA(*FLD COLHDGSEG)
+     A          H                           HLPPNLGRP('ACVDES' DCTSEGPZ)
+     A                                      HLPARA(*FLD ACVDES)
+     A          H                           HLPPNLGRP('CNFEXSD' DCTSEGPZ)
+     A                                      HLPARA(*FLD CNFEXSD)
+     A          H                           HLPPNLGRP('SRTCDE' DCTSEGPZ)
+     A                                      HLPARA(*FLD SRTCDE)
+     A          H                           HLPPNLGRP('FNCKEYS' DCTSEGPZ)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            DTASEG@        1A  P
+     A            DES@           1A  P
+     A            COLTXT@        1A  P
+     A            COLHDGSEG@     1A  P
+     A            ACVDES@        1A  P
+     A            CNFEXSD@       1A  P
+     A            SRTCDE@        1A  P
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 71
+     A                                  2 31'Data Segment Filter'
+     A                                      DSPATR(HI)
+     A                                  2 71USER
+     A            DTASEG    R        B  4 23DSPATR(&DTASEG@)
+     A                                  6  2'Description Contains'
+     A            DES       R        B  6 23DSPATR(&DES@)
+     A                                      CHECK(LC)
+     A                                  7  2'Col Text Contains'
+     A            COLTXT    R        B  7 23DSPATR(&COLTXT@)
+     A                                      CHECK(LC)
+     A                                  8  2'Col Heading Contains'
+     A            COLHDGSEG R        B  8 23DSPATR(&COLHDGSEG@)
+     A                                      CHECK(LC)
+     A                                  9  2'Active'
+     A            ACVDES    R        B  9 23DSPATR(&ACVDES@)
+     A                                  9 35'(Active, Inactive, Blank for All)'
+     A                                      COLOR(WHT)
+     A                                 10  2'Conflict Exists'
+     A            CNFEXSD        3A  B 10 23DSPATR(&CNFEXSD@)
+     A                                 10 35'(Yes,No,Blank for All)'
+     A                                      COLOR(WHT)
+     A                                 11  2'Sort By'
+     A            SRTCDE    R        B 11 23DSPATR(&SRTCDE@)
+     A                                  4  2'Segment'
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

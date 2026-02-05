@@ -1,0 +1,94 @@
+     A*%%TS  SD  20230331  125243  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*  Dictionary Master Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20230331  125243  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+COPY A            FRMKEYS@       1A  P
+COPY A            LIBNMECPY@     1A  P
+KEY  A            LIBNME@        1A  P
+     A            LIBDES@        1A  P
+     A            LIBTYPD@       1A  P
+     A            DEVUSR@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 27'Fabricut Library Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  4  2'Copy Library'
+     A                                      DSPATR(&FRMKEYS@)
+     A            LIBNMECPY R        O  4 19REFFLD(LIBNME)
+     A                                      DSPATR(&LIBNMECPY@)
+     A                                      ALIAS(LIBRARY_NAME_COPY)
+     A                                  5  2'Library'
+     A            LIBNME    R        B  5 19REFFLD(LIBNME)
+     A                                      DSPATR(&LIBNME@)
+     A                                  7  2'Description'
+     A            LIBDES    R        B  7 19REFFLD(LIBDES)
+     A                                      DSPATR(&LIBDES@)
+     A                                      CHECK(LC)
+     A                                  8  2'Library Type'
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  9  2'Development User'
+     A            LIBTYPD       15A  B  8 19DSPATR(&LIBTYPD@)
+     A            DEVUSR    R        B  9 19DSPATR(&DEVUSR@)
+     A                                  8 35'?'
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

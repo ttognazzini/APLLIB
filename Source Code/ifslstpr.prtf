@@ -1,0 +1,46 @@
+     A          R #HDR
+     A                                      SKIPB(001)
+     A                                     1
+     A                                      DATE(*YY)
+     A                                      EDTCDE(Y)
+     A                                    52
+     A                                      'LIST OBJECTS IN AN IFS DIRECTORY'
+     A                                    81
+     A                                      'PAGE'
+     A                                    88
+     A                                      PAGNBR
+     A                                      EDTCDE(1)
+     A***
+     A                                     1
+     A                                      'FOLDER:'
+     A                                      SPACEB(001)
+     A            FOLDER124    124A       95
+     A***
+     A                                    26
+     A                                      'MFTYPE'
+     A***
+     A                                     1 'OBJECT'
+     A                                      SPACEB(002)
+     A                                   104 'TYPE'
+     A                                   120 'SIZE(BYTES)'
+     A                                   138 'LAST ACCESSED'
+     A                                   158 'LAST MODIFIED'
+     A                                   178 'STATUS CHANGE'
+     A                                      SPACEA(001)
+     A          R #DTL
+     A                                      SPACEB(001)
+     A            OBJ100       100A        1
+     A            IFSTYPE       10A      104
+     A            IFSSIZE       10S 0    117 EDTCDE(J)
+     A            LADATE         8S 0    134 EDTWRD('    /  / 0')
+     A            LATIME         6S 0    145 EDTWRD('  :  : 0')
+     A            LMDATE         8S 0    154 EDTWRD('    /  / 0')
+     A            LMTIME         6S 0    165 EDTWRD('  :  : 0')
+     A            LCDATE         8S 0    174 EDTWRD('    /  / 0')
+     A            LCTIME         6S 0    185 EDTWRD('  :  : 0')
+     A          R #TOT
+     A                                      SPACEB(002)
+     A                                     1'OBJECTS:'
+     A            LRCNT          6S 0     10EDTCDE(J)
+     A                                    20'TOTAL SIZE:'
+     A            LRSIZE        12S 0     32EDTCDE(J)

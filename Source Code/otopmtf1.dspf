@@ -1,0 +1,172 @@
+     A*%%TS  SD  20240314  171156  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A                                      HLPTITLE('Output Options - Selecti-
+     A                                      on/Print Screen')
+     A          R SCREEN
+     A*%%TS  SD  20240314  171156  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(OTOPMTD1 OTOPMTP1)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' OTOPMTP1)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' OTOPMTP1)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' OTOPMTP1)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('PRTOUT' OTOPMTP1)
+     A                                      HLPARA(*FLD PRTOUT)
+     A          H                           HLPPNLGRP('EMLOUT' OTOPMTP1)
+     A                                      HLPARA(*FLD EMLOUT)
+     A          H                           HLPPNLGRP('ARCOUT' OTOPMTP1)
+     A                                      HLPARA(*FLD ARCOUT)
+     A          H                           HLPPNLGRP('FAXOUT' OTOPMTP1)
+     A                                      HLPARA(*FLD FAXOUT)
+     A          H                           HLPPNLGRP('PRTDEV' OTOPMTP1)
+     A                                      HLPARA(*FLD PRTDEV)
+     A          H                           HLPPNLGRP('PRTOTQ' OTOPMTP1)
+     A                                      HLPARA(*FLD PRTOTQ)
+     A          H                           HLPPNLGRP('HLDOUT' OTOPMTP1)
+     A                                      HLPARA(*FLD HLDOUT)
+     A          H                           HLPPNLGRP('SAVOUT' OTOPMTP1)
+     A                                      HLPARA(*FLD SAVOUT)
+     A          H                           HLPPNLGRP('PRTFRM' OTOPMTP1)
+     A                                      HLPARA(*FLD PRTFRM)
+     A          H                           HLPPNLGRP('USRDTA' OTOPMTP1)
+     A                                      HLPARA(*FLD USRDTA)
+     A          H                           HLPPNLGRP('NBRCPY' OTOPMTP1)
+     A                                      HLPARA(*FLD NBRCPY)
+     A          H                           HLPPNLGRP('PRTQUL' OTOPMTP1)
+     A                                      HLPARA(*FLD PRTQUL)
+     A          H                           HLPPNLGRP('FNCKEYS' OTOPMTP1)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            PRTOUTH@       1A  P
+     A            PRTOUT@        1A  P
+     A            EMLOUTH@       1A  P
+     A            EMLOUT@        1A  P
+     A            ARCOUTH@       1A  P
+     A            ARCOUT@        1A  P
+     A            FAXOUTH@       1A  P
+     A            FAXOUT@        1A  P
+     A            PRTDEV@        1A  P
+     A            PRTOTQ@        1A  P
+     A            SAVOUT@        1A  P
+     A            HLDOUT@        1A  P
+     A            PRTFRM@        1A  P
+     A            USRDTA@        1A  P
+     A            NBRCPY@        1A  P
+     A            PRTQUL@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 34'Output Options'
+     A                                      DSPATR(HI)
+     A                                  2 70USER
+     A                                  6 27'Print Output:'
+     A                                      DSPATR(&PRTOUTH@)
+     A            PRTOUT    R        B  6 41DSPATR(&PRTOUT@)
+     A                                  6 43'(Y/N)'
+     A                                      DSPATR(&PRTOUTH@)
+     A                                  7 27'Email Output:'
+     A                                      DSPATR(&EMLOUTH@)
+     A            EMLOUT    R        B  7 41DSPATR(&EMLOUT@)
+     A                                  7 43'(Y/N)'
+     A                                      DSPATR(&EMLOUTH@)
+     A                                  8 25'Archive Output:'
+     A                                      DSPATR(&ARCOUTH@)
+     A            ARCOUT    R        B  8 41DSPATR(&ARCOUT@)
+     A                                  8 43'(Y/N)'
+     A                                      DSPATR(&ARCOUTH@)
+     A                                  9 29'Fax Output:'
+     A                                      DSPATR(&FAXOUTH@)
+     A            FAXOUT    R        B  9 41DSPATR(&FAXOUT@)
+     A                                  9 43'(Y/N)'
+     A                                      DSPATR(&FAXOUTH@)
+     A                                 12  7'                          Print Op-
+     A                                      tions                             '
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)
+     A                                 13 11'Printer Device:'
+     A            PRTDEV    R        B 13 27DSPATR(&PRTDEV@)
+     A                                 13 40'(*USRPRF, Device)'
+     A                                 14 13'Output Queue:'
+     A            PRTOTQ    R        B 14 27DSPATR(&PRTOTQ@)
+     A                                 14 40'(*DEV, OUTQ)'
+     A                                 15 14'Hold Output:'
+     A            HLDOUT    R        B 15 27DSPATR(&HLDOUT@)
+     A                                 15 40'(*YES/*NO)'
+     A                                 16 14'Save Output:'
+     A            SAVOUT    R        B 16 27DSPATR(&SAVOUT@)
+     A                                 16 40'(*YES/*NO)'
+     A                                 17 20'Forms:'
+     A            PRTFRM    R        B 17 27DSPATR(&PRTFRM@)
+     A                                 17 40'(*STD, Name)'
+     A                                 18 16'User Data:'
+     A            USRDTA    R        B 18 27DSPATR(&USRDTA@)
+     A                                 18 40'(*SOURCE, Description)'
+     A                                 19 19'Copies:'
+     A            NBRCPY    R        B 19 27DSPATR(&NBRCPY@)
+     A                                 19 40'(1-255)'
+     A                                 20 12'Print Quality:'
+     A            PRTQUL    R        B 20 27DSPATR(&PRTQUL@)
+     A                                 20 40'(*DEVD,*STD,*DRAFT,*NLQ,*FASTDRAFT-
+     A                                      )'
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

@@ -1,0 +1,52 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=MONMSQ.Monitor Message Queue
+:P.This command was created to monitor a message queue and email specific
+message to someone. The command has parameters for the message queue to monitor,
+what type of messages to email, and who to email them to.
+:P.When run the command submits another job to batch that does the monitoring. The
+command allows the job name, user and job description for the batch job to be specified.
+:H2.Example:
+:P.The following example monitors the QSYSOPR message queue and emails messaged to the specified address.
+:P.MONMSQ MSGQ(QSYSOPR)
+          EMLTO(TIM.TOGNAZZINI@ARROWHEADWINCH.COM)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MONMSQ/MSGQ'.Message Queue
+:XH3.MSGQ Message Queue
+:P.Specifies the message queue to monitor, the name can be qualified with
+wihtthe library name or not. If the labray name is left the default of *LIBL the
+program will look for the message queue in the current jobs library list and monitor that queue.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MONMSQ/EMLTO'.Email To
+:XH3.EMLTO Email To
+:P.Specifies the emall address toforward messages to.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MONMSQ/JOBNME'.Job Name
+:XH3.JOBNME Job Name
+:P.Specifies the anme of the job that is submitted. The defautl value of *MSGQ, sets the job
+name to the name of the message queue being monitored.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MONMSQ/JOBD'.Job Description
+:XH3.JOBD Job Description
+:P.Sets the job description used for the submitted job.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MONMSQ/USER'.User
+:XH3.USER User
+:P.Sets the user profile used for the submitted job.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MONMSQ/DEBUG'.Debug
+:XH3.DEBUG Debug
+:P.If set to *YES logging messages will be put in the joblog of the submitted job
+with informationabout the steps the program is taken. This option was meant for testin
+but can also be used for additinall logging if desired.
+:p.When debugging in is activated, the program will always email the last message that meets
+the selection criteria. Otherwise only new messages will be emailed.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

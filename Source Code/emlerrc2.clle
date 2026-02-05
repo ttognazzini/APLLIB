@@ -1,0 +1,38 @@
+/***************************************************************** +
+   This program just test EMLERRC1, see that program for           +
+   a descrption of what it does.                                   +
+ *******************************************************************/
+Pgm
+
+  Goto Test5
+
+  /* test with 1,2 or 3 email addresses */
+  EMLERR  EMLTO(TIM.TOGNAZZINI@ARROWHEADWINCH.COM) +
+          SUBJECT('EMLERR CL Test 1')  +
+          MESSAGE('This email should include a job log and call stack attachment.')
+  EMLERR  EMLTO(TIM.TOGNAZZINI@ARROWHEADWINCH.COM) +
+          SUBJECT('EMLERR CL Test 2')  +
+          MESSAGE('This email should go to 2 different addresses.') +
+          EMLTO2(TOGNAZZINI@hotmail.com)
+  EMLERR  EMLTO(TIM.TOGNAZZINI@ARROWHEADWINCH.COM) +
+          SUBJECT('EMLERR CL Test 3')  +
+          MESSAGE('This email should go to 3 different addresses.') +
+          EMLTO2(TOGNAZZINI@hotmail.com) +
+          EMLTO3(TTOGNAZZINI@gmail.COM)
+
+  /* test with a from address email addresses */
+  EMLERR  EMLTO(TIM.TOGNAZZINI@ARROWHEADWINCH.COM) +
+          SUBJECT('EMLERR CL Test 4')  +
+          MESSAGE('This email should come from tim.tognazzini@arrowheadwinch') +
+          EMLFRM(TIM.TOGNAZZINI@ARROWHEADWINCH.COM)
+
+  /* test with a dump */
+  Test5:
+  OVRPRTF QPPGMDMP hold(*yes)
+  dmpclpgm
+  EMLERR  EMLTO(TIM.TOGNAZZINI@ARROWHEADWINCH.COM) +
+          SUBJECT('EMLERR CL Test 5')  +
+          MESSAGE('This email should include a job log, call stack and program dump attachment.') +
+          incDmp(Y)
+
+ENDPGM

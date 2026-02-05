@@ -1,0 +1,154 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=AUDLOGD2.File Audit Log Detail
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: AUDLOGF2 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: AUDLOGF2 Field: PGMNME
+Type: CHAR(10)
+Location: (1,70)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MDE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: AUDLOGF2 Field: MDE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='AUDLOGIDNC'.Error name not found (AUDLOGIDNC)
+:XH3.Error name not found (AUDLOGIDNC)
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: AUDLOGIDNC
+Type: CHAR(18)
+Location: (5,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FLELIB'.Error name not found (FLELIB)
+:XH3.Error name not found (FLELIB)
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: FLELIB
+Type: CHAR(10)
+Location: (6,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FLENME'.Error name not found (FLENME)
+:XH3.Error name not found (FLENME)
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: FLENME
+Type: CHAR(10)
+Location: (6,28)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FLEDES'.Error name not found (FLEDES)
+:XH3.Error name not found (FLEDES)
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: FLEDES
+Type: CHAR(40)
+Location: (6,40)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FLDNME'.Error name not found (FLDNME)
+:XH3.Error name not found (FLDNME)
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: FLDNME
+Type: CHAR(10)
+Location: (7,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FLDDES'.Error name not found (FLDDES)
+:XH3.Error name not found (FLDDES)
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: FLDDES
+Type: CHAR(40)
+Location: (7,40)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='BFRVAL'.Before Value
+:XH3.Before Value
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: BFRVAL
+Type: VARCHAR
+Location: (10,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='AFTVAL'.After Value
+:XH3.After Value
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: AFTVAL
+Type: VARCHAR
+Location: (13,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CRTDTM'.Creation Date
+:XH3.Creation Date
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: CRTDTM
+Type: TIMESTAMP
+Location: (17,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CRTUSR'.Creation User
+:XH3.Creation User
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: CRTUSR
+Type: CHAR(18)
+Location: (18,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CRTJOB'.Creation Job
+:XH3.Creation Job
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: CRTJOB
+Type: CHAR(28)
+Location: (19,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CRTPGM'.Creation Program
+:XH3.Creation Program
+:P.Help text not entered.
+:P.Screen: AUDLOGF2 Field: CRTPGM
+Type: CHAR(10)
+Location: (20,15)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

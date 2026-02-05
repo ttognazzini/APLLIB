@@ -1,0 +1,40 @@
+Create or Replace Function APLLIB/DATE8M (DateDec Decimal(8, 0) )
+  Returns Date
+  Language SQL
+  Deterministic
+  Contains SQL
+  Returns Null on Null Input
+  No External Action
+  Set Option DATFMT=*ISO
+Begin
+  Declare ResultDate Date ;
+  Declare InvalidDate Condition For '22007';
+  Declare Exit Handler For InvalidDate
+
+    Begin
+      Return cast(Null as Date);
+      Signal SQLState '01HDI' Set Message_Text='Invalid date';
+    End;
+
+  If DateDec = 999999   Then Set DateDec = 99999999;
+     End If;
+  If DateDec = 99999999 Then
+     Set ResultDate = date('9999-12-31');
+     Return ResultDate;
+     End If;
+  If DateDec = 0 Then
+     Set ResultDate = date('0001-01-01');
+     Return ResultDate;
+     End If;
+  If DateDec < 1000000  Then Set DateDec = DateDec + 20000000;
+     End If;
+
+  Set ResultDate = date(
+  substring(digits(DateDec),5,4) || '-' ||
+  substring(digits(DateDec),1,2) || '-' ||
+  substring(digits(DateDec),3,2));
+  Return ResultDate;
+End;
+Label on function APLLIB/DATE8M is 'Convert MMDDYYYY date to Date type';
+Comment on function APLLIB/DATE8M is 'Convert MMDDYYYY date to Date type. A zero date return ''0001-01-01''. A date of
+99999999 returns ''9999-12-31''. An invalid date returns null.';

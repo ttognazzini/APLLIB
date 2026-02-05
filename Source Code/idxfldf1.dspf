@@ -1,0 +1,190 @@
+     A*%%TS  SD  20230420  125419  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT
+     A          R SFL1                      SFL
+     A*%%TS  SD  20230417  084333  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A            IDXSEQ@        1A  P
+     A            KEY           20A  H
+     A            FLELIB    R        H
+     A            FLENME    R        H
+     A            SAVSEQ    R        H      REFFLD(IDXSEQ)
+     A                                      ALIAS(SAVE_SEQ)
+     A            IDXSEQ    R        B 13  2REFFLD(IDXSEQ)
+     A                                      EDTCDE(Z)
+     A                                      DSPATR(&IDXSEQ@)
+     A            PRIKEY    R    3   O 13 10REFFLD(PRIKEY)
+     A            FLDNME    R        O 13 14
+     A            COLTXT    R   40   O 13 25REFFLD(COLTXT)
+     A            TYP           30A  O 13 66
+     A            FLDENMD        3A  O 13 98
+     A            ALWNUL    R    3   O 13104REFFLD(ALWNUL)
+     A          R SFLCTL1                   SFLCTL(SFL1)
+     A*%%TS  SD  20230420  125419  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A  51                                  SFLEND(*MORE)
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      SFLPAG(0012)
+     A            OUTRRN1        4S 0H      SFLRCDNBR(CURSOR)
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            FLDNME1@       1A  P
+     A            COLTXT1@       1A  P
+     A            TYP1@          1A  P
+     A            FLDENMD1@      1A  P
+     A            ALWNUL1@       1A  P
+     A            IDXSEQ1@       1A  P
+     A            PRIKEY1@       1A  P
+     A            FRMKEYS@       1A  P
+     A            IDXNMECPY@     1A  P
+     A            IDXLIBCPY@     1A  P
+     A            IDXNME@        1A  P
+     A            IDXLIB@        1A  P
+     A            IDXTXT@        1A  P
+     A            IDXUNID@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R   10A  O  1118
+     A            MDE       R   10A  O  2  2
+     A                                  2 58'Index Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2118USER
+     A                                  3  1'File'
+     A            DESLINE       20A  O  3 12
+     A            FLEDES    R        O  3 33
+     A                                  3 85'Production'
+     A            PRDFLE    R    3   O  3 96
+     A                                  3101'Status'
+     A            FLESTS    R   20   O  3108
+     A                                  4  1'Dictionary'
+     A            DCTNME    R        O  4 12
+     A            DCTDES    R        O  4 33REFFLD(DES)
+     A                                  4 85'Change Scd'
+     A            CHGSCD    R    3   O  4 96
+     A                                  4101'Table'
+     A            TBLNME    R   24   O  4108
+     A                                  5  5'Copy Library'
+     A                                      DSPATR(&FRMKEYS@)
+     A            IDXLIBCPY R        O  5 23REFFLD(IDXLIB)
+     A                                      DSPATR(&IDXLIBCPY@)
+     A                                      ALIAS(INDEX_LIBRARY_COPY)
+     A                                  5 41'Copy Name'
+     A                                      DSPATR(&FRMKEYS@)
+     A            IDXNMECPY R        O  5 53REFFLD(IDXNME)
+     A                                      DSPATR(&IDXNMECPY@)
+     A                                      ALIAS(INDEX_NAME_COPY)
+     A                                  6  5'Index Library'
+     A            IDXLIB    R        B  6 23DSPATR(&IDXLIB@)
+     A                                  6 41'Index Name'
+     A            IDXNME    R        B  6 53DSPATR(&IDXNME@)
+     A                                  7  5'Index Description'
+     A            IDXTXT    R        B  7 23DSPATR(&IDXTXT@)
+     A                                      CHECK(LC)
+     A                                  7 76'Index Type'
+     A            IDXUNID   R   20A  B  7 87REFFLD(IDXUNI)
+     A                                      DSPATR(&IDXUNID@)
+     A                                      CHECK(LC)
+     A                                  7108'?'
+     A                                      DSPATR(HI)
+     A                                  9  1'Search'
+     A            SCHVAL    R        B  9 12
+     A                                 10  2'Enter a Seq number next to the fie-
+     A                                      lds to key the index on, the fields-
+     A                                       will be added in the order of the -
+     A                                      Seq number.'
+     A                                      COLOR(BLU)
+     A                                 11  2'  Seq  '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 11 10'Key'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 11 14'  Field   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 11 25'             Column Text          -
+     A                                            '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 11 66'            Type              '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 11 98'Enum'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 11103'Nulls'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            IDXSEQ1   R        B 12  2REFFLD(IDXSEQ)
+     A                                      EDTCDE(Z)
+     A                                      DSPATR(&IDXSEQ1@)
+     A            PRIKEY1   R    3   B 12 10REFFLD(PRIKEY)
+     A                                      DSPATR(&PRIKEY1@)
+     A            FLDNME1   R        B 12 14REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNME1@)
+     A            COLTXT1   R   40   B 12 25REFFLD(COLTXT)
+     A                                      DSPATR(&COLTXT1@)
+     A            TYP1          30A  B 12 66DSPATR(&TYP1@)
+     A            FLDENMD1       3A  B 12 98DSPATR(&FLDENMD1@)
+     A            ALWNUL1   R    3   B 12104REFFLD(ALWNUL)
+     A                                      DSPATR(&ALWNUL1@)
+     A          R FOOTER
+     A                                      OVERLAY
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL
+     A                                      SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

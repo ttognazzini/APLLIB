@@ -1,0 +1,198 @@
+     A*%%TS  SD  20250618  083710  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R F1
+     A*%%TS  SD  20250618  083710  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      CF01(27)
+     A                                      CF02(27)
+     A                                      CF03(03)
+     A                                      CF04(27)
+     A                                      CF05(05)
+     A                                      CF06(06)
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12)
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(27)
+     A                                      PAGEDOWN(27)
+     A                                      HOME(27)
+     A                                  1  2DATE(*JOB *YY)
+     A                                      EDTWRD('    /  / 0')
+     A                                  1 26'Display Data Queue Description'
+     A                                      DSPATR(HI)
+     A                                  1 70'DSPDTQD1-F1'
+     A                                  3  4'Data Queue . . . .'
+     A            #$DTAQNAME    10A  O  3 23DSPATR(HI)
+     A                                  3 42'Remote Name . . . .'
+     A            #$RMTQNAME    10A  O  3 62
+     A                                  4  6'Library  . . . .'
+     A            #$DTAQLIB     10A  O  4 24DSPATR(HI)
+     A                                  4 44'Library . . . . .'
+     A            #$RMTQLIB     10A  O  4 63
+     A                                  5  4'Text . . . . . . .'
+     A            #$TEXTDESC    50A  O  5 23
+     A                                  7  6'Maximum Entry Length  . . . . . . -
+     A                                      . . . . :'
+     A            MAXLEN        10A  O  7 51
+     A                                  8  6'Entry Sequence. . . . . . . . . . -
+     A                                      . . . . :'
+     A            DTAQSEQ       10A  O  8 51
+     A                                  9  6'Key Length  . . . . . . . . . . . -
+     A                                      . . . . :'
+     A            KEYLEN        10A  O  9 51
+     A                                 10  6'Force to Aux Storage  . . . . . . -
+     A                                      . . . . :'
+     A            FORCEWRITE    10A  O 10 51
+     A                                 11  6'Include Sender ID . . . . . . . . -
+     A                                      . . . . :'
+     A            SENDERID      10A  O 11 51
+     A                                 12  6'Size: Max Entries . . . . . . . . -
+     A                                      . . . . :'
+     A            MAXENTRY      10A  O 12 51
+     A                                 13 12'Initial Entries . . . . . . . . . -
+     A                                      . :'
+     A            INITENTRY     10A  O 13 51
+     A                                 14  6'Automatic Reclaim . . . . . . . . -
+     A                                      . . . . :'
+     A            AUTORCL       10A  O 14 51
+     A                                 15  6'Current Number of Msgs  . . . . . -
+     A                                      . . . . :'
+     A            CURMSGS       10A  O 15 51
+     A                                 16  6'Current Allocation Size . . . . . -
+     A                                      . . . . :'
+     A            CURCAP        10A  O 16 51
+     A                                 18  6'APPC Device Description . . . . . -
+     A                                      . . . . :'
+     A            #$APPCDEVD    10A  O 18 51
+     A                                 19  6'Local Location Name . . . . . . . -
+     A                                      . . . . :'
+     A            #$LCLLOCNM    10A  O 19 51
+     A                                 20  6'Remote Location Name  . . . . . . -
+     A                                      . . . . :'
+     A            #$RMTLOCNM    10A  O 20 51
+     A                                 21  6'Mode Name . . . . . . . . . . . . -
+     A                                      . . . . :'
+     A            #$MODENAME    10A  O 21 51
+     A                                 22  6'Remote Network ID . . . . . . . . -
+     A                                      . . . . :'
+     A            #$RMTNETID    10A  O 22 51
+     A                                 24  2'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 24 12'F5=Refresh'
+     A                                      COLOR(BLU)
+     A                                 24 46'F12=Cancel'
+     A                                      COLOR(BLU)
+     A                                 24 25'F6=Display Entries'
+     A                                      COLOR(BLU)
+     A            ERM           50A  O 23 16DSPATR(HI)
+     A  50                                  DSPATR(RI)
+     A          R F2S                       SFL
+     A            QUDATE         8A  O  7  2
+     A            QUTIME         8A  O  7 11
+     A            VIEWQ1        58A  O  7 21
+     A            VIEWQ2        58A  O  8 21
+     A          R F2C                       SFLCTL(F2S)
+     A*%%TS  SD  20250618  083710  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      SFLSIZ(0008)
+     A                                      SFLPAG(0007)
+     A                                      CF01(27)
+     A                                      CF02(27)
+     A                                      CF03(03)
+     A                                      CF04(27)
+     A                                      CF05(05)
+     A                                      CF06(06)
+     A                                      CF07(07)
+     A                                      CF08(08)
+     A                                      CF09(27)
+     A                                      CF10(10)
+     A                                      CF12(12)
+     A                                      CF13(27)
+     A                                      CF14(14)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(19)
+     A                                      CF20(20)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      OVERLAY
+     A  31                                  SFLDSP
+     A  32                                  SFLDSPCTL
+     A                                      SFLDROP(CF11)
+     A N31                                  SFLCLR
+     A  34                                  SFLEND(*MORE)
+     A            VSRECNUM       4S 0H      SFLRCDNBR
+     A                                  1 28'Data Queue Entries Display'
+     A                                      DSPATR(HI)
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  2  2'Name:'
+     A            SCOBJHEAD     63A  O  2  8
+     A                                  4 70'Len:'
+     A            SENTRYLEN      5Y 0O  4 75EDTCDE(4)
+     A                                  3  3'Seq:'
+     A            SACCESSTYP    17A  O  3  8
+     A                                  6  2'Date    '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  6 11'Time    '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A            SCRULER       58A  O  6 21DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  4  2'Total Queue Entries'
+     A                                  4 47'Current Column'
+     A                                  5  2'Position to Entry:'
+     A                                  5 47'Shift to column:'
+     A                                  1 70'DSPDTQD1-F2'
+     A            VQTOTCNT       9Y 0O  4 22EDTCDE(4)
+     A            VPOS           5Y 0O  4 64EDTCDE(4)
+     A            VDSPPOS        5Y 0B  5 64EDTCDE(4)
+     A            VENTNUM        9Y 0B  5 22EDTCDE(4)
+     A                                      CHANGE(23)
+     A          R F2F
+     A*%%TS  SD  20191010  120903  TTOGNAZZIN  REL-V7R1M0  5770-WDS
+     A                                 23  2'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 12'F5=Refresh'
+     A                                      COLOR(BLU)
+     A                                 23 25'F6=Last Entry'
+     A                                      COLOR(BLU)
+     A                                 23 74'F10=Hex'
+     A                                      COLOR(BLU)
+     A                                 24  2'F11=UnFold/Fold'
+     A                                      COLOR(BLU)
+     A                                 24 25'F12=Cancel'
+     A                                      COLOR(BLU)
+     A  52N51                          24 41'F14=Display Key'
+     A                                      COLOR(BLU)
+     A  52 51                          24 41'F14=Display Entry'
+     A                                      COLOR(BLU)
+     A                                 23 41'F7=Shift Left'
+     A                                      COLOR(BLU)
+     A                                 23 57'F8=Shift Right'
+     A                                      COLOR(BLU)
+     A            ERM           50A  O 22 16DSPATR(HI)
+     A  50                                  DSPATR(RI)

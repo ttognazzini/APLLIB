@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.IFMLOGIDN;
+Create Unique Index APLLIB.IFMLOGIDN on APLLIB.IFMLOG (
+  IFMLOGIDN
+);
+
+Label on Index APLLIB.IFMLOGIDN is 'IFS Monitor Log - Id';

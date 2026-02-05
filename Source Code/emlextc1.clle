@@ -1,0 +1,170 @@
+/***************************************************************** +
+   Exit program to email from WRKSPLF... RJS                       +
+                                                                   +
+   This program is called by using option E in the Wrksplf         +
+   command. The following command will add the exit point to allow +
+   the E option to be used with WRKSPLF and some other commands.   +
+                                                                   +
+   ADDEXITPGM EXITPNT(QIBM_QSP_SPLF_LSTACT) FORMAT(LASP0100)       +
+          PGMNBR(*LOW) PGM(APLLIB/EMLEXTC1) PGMDTA(*JOB 1 E)       +
+                                                                   +
+   The option will work in the following commands:                 +
+   Work with Printer Output (WRKSPLF ASTLVL(*BASIC))               +
+   Work with Spooled Files (WRKSPLF ASTLVL(*INTERMED))             +
+   Work with Job Spooled Files (WRKJOB OPTION(*SPLF))              +
+   Work with Output Queue (WRKOUTQ output queue name)              +
+   Work with Spooled File Status (D P or WRKSPLF DSPFMT(*S36FMT))  +
+                                                                   +
+   The D option has been added to display a spooled file as a PDF. +
+   CLP449 is called.                                               +
+                                                                   +
+   ADDEXITPGM EXITPNT(QIBM_QSP_SPLF_LSTACT) FORMAT(LASP0100)       +
+          PGMNBR(*LOW) PGM(EMLEXTC1) PGMDTA(*JOB 1 D)              +
+                                                                   +
+ *******************************************************************/
+Pgm        Parm(&Exit_Name &Format &Action &Spool_ID +
+                 &Spl_ID_Len)
+
+    DCL   &EXIT_NAME  *CHAR 20
+    DCL   &FORMAT     *CHAR 8
+    DCL   &ACTION     *CHAR 1
+    DCL   &SPOOL_ID   *CHAR 82
+      DCL &JOB_NAME   *CHAR 10 STG(*DEFINED) DEFVAR(&SPOOL_ID 1)
+      DCL &USER_NAME  *CHAR 10 STG(*DEFINED) DEFVAR(&SPOOL_ID 11)
+      DCL &JOB_NUMBER *CHAR 6  STG(*DEFINED) DEFVAR(&SPOOL_ID 21)
+      DCL &SPLF_NAME  *CHAR 10 STG(*DEFINED) DEFVAR(&SPOOL_ID 27)
+      DCL &SPLF_NBR   *INT     STG(*DEFINED) DEFVAR(&SPOOL_ID 37)
+      DCL &SYS_NAME   *CHAR 8  STG(*DEFINED) DEFVAR(&SPOOL_ID 41)
+      DCL &CRT_DATE   *CHAR 7  STG(*DEFINED) DEFVAR(&SPOOL_ID 49)
+      DCL &CRT_TIME   *CHAR 6  STG(*DEFINED) DEFVAR(&SPOOL_ID 56)
+      DCL &OUTQ_NAME  *CHAR 10 STG(*DEFINED) DEFVAR(&SPOOL_ID 62)
+      DCL &OUTQ_LIB   *CHAR 10 STG(*DEFINED) DEFVAR(&SPOOL_ID 72)
+    DCL   &SPL_ID_LEN *Int
+    DCL   &PASS       *CHAR 1
+    DCL   &TPDATE     *CHAR 6
+    DCL   &MESSAGE    *CHAR 310
+    DCL   &EOR        *CHAR 2  VALUE(x'0D25')
+    DCL   &USRDTA     *CHAR 10
+    DCL   &USER       *CHAR 10
+    DCL   &USRDTA     *CHAR 10
+    DCL   &jobn       *CHAR  6
+    DCLF  FILE(EMLEXTF1) RCDFMT(F1)
+
+    RTVJOBA    USER(&USER) NBR(&JOBN)
+
+    /* Several commands are in APLLIB, add to end of LIBL if not already there */
+    ADDLIBLE   LIB(APLLIB) POSITION(*LAST)
+    monmsg cpf0000
+
+    IF COND(&EXIT_NAME = 'QIBM_QSP_SPLF_LSTACT') THEN(DO)
+       IF COND(&FORMAT = 'LASP0100') THEN(DO)
+          IF COND(&ACTION = 'E') THEN(DO)
+
+/* GET VALUES/DEFAULTS FOR THE SCREEN */
+             CHGVAR     &F1JOBNAME  &JOB_NAME
+             CHGVAR     &F1JOBUSER  &USER_NAME
+             CHGVAR     &F1JOBNBR   &JOB_NUMBER
+             CHGVAR     &F1SYSNAME  &SYS_NAME
+             CHGVAR     &F1SPLFNAME &SPLF_NAME
+             CHGVAR     &F1SPLFNBR  &SPLF_NBR
+             CHGVAR     &TPDATE     %SST(&CRT_DATE 2 6)
+             CHGVAR     &F1CRTDATE  &TPDATE
+             CHGVAR     &F1CRTTIME  &CRT_TIME
+             CHGVAR     &F1OUTQ     &OUTQ_NAME
+             CHGVAR     &F1OUTQLIB  &OUTQ_LIB
+             RTVSPLFA   SPLF(&SPLF_NAME) +
+                          JOB(&JOB_NUMBER/&USER_NAME/&JOB_NAME) +
+                          SPLNBR(&F1SPLFNBR) DEVTYPE(&F1DEVTYP) +
+                          PRTTYPE(&F1PRTTYPE) USRDTA(&USRDTA) +
+                          TOTPAG(&F1TOTPAG)
+             GETEML   EMAIL(&F1EMAIL)
+             IF (&USRDTA *NE ' ') ( CHGVAR +
+                        &F1SUBJ (&SPLF_NAME *TCAT '(' *TCAT &USRDTA *TCAT +
+                        ') - Email from spooled file'))
+             ELSE ( CHGVAR &F1SUBJ (&SPLF_NAME *TCAT +
+                        ' - Email from spooled file'))
+             CHGVAR     &F1MS01  'Attached is a spooled File'
+             CHGVAR     &CONVTYPE 'PDF'
+             CHGVAR     &IN51 '1'
+
+/* IF A SPOOL FILE IS USER ASCII DO NOT ALLOW SELECTION OF A +
+   TRANSFORM TYPE OR MESSAGE. BECAUSE THEY HAVE TO GO THROUGH +
+   THE FASTFAX IAP QUEUE AND IT ONLY DOES PDF AND DOES NOT   +
+   ALLOW SETTING A MESSAGE */
+             IF (&F1PRTTYPE *NE '*SCS' *AND &F1PRTTYPE *NE '*AFPD') (DO)
+                CHGVAR &IN81 '1'
+             ENDDO
+
+START:       SNDRCVF RCDFMT(F1)
+             IF (&IN03 *OR &IN12) (RETURN)
+             CHGVAR     &IN50 '0'
+             CHGVAR     &IN51 '0'
+             CHGVAR     &IN52 '0'
+             CHGVAR     &IN53 '0'
+
+/* GIVE ERROR IF ANY OTHER FUNCTION KEY IS PRESSED */
+             IF (&IN27) (DO)
+                CNTVAR &ERM 'ERROR - INVALID FUNCTION KEY.'
+                GOTO START
+             ENDDO
+
+/* VALIDATION SECTION */
+             VALEML &F1EMAIL &PASS
+             IF (&PASS *EQ 'F') (DO)
+                CHGVAR &IN50 '1'
+                CHGVAR &IN51 '1'
+                CNTVAR &ERM 'ERROR - INVALID EMAIL ADDRESS.'
+                GOTO START
+             ENDDO
+
+             IF (&F1CCAD *NE ' ') (DO)
+             VALEML &F1CCAD  &PASS
+                IF (&PASS *EQ 'F') (DO)
+                   CHGVAR &IN50 '1'
+                   CHGVAR &IN52 '1'
+                   CNTVAR &ERM 'ERROR - INVALID EMAIL ADDRESS.'
+                   GOTO START
+                ENDDO
+             ENDDO
+
+             IF (&F1CCAD2 *NE ' ') (DO)
+             VALEML &F1CCAD2  &PASS
+                IF (&PASS *EQ 'F') (DO)
+                   CHGVAR &IN50 '1'
+                   CHGVAR &IN53 '1'
+                   CNTVAR &ERM 'ERROR - INVALID EMAIL ADDRESS.'
+                   GOTO START
+                ENDDO
+             ENDDO
+
+             IF (&CONVTYPE *NE 'TXT' & &CONVTYPE *NE 'SPL' & &CONVTYPE *NE 'PRN' & +
+                 &CONVTYPE *NE 'RTF' & &CONVTYPE *NE 'ADF' & &CONVTYPE *NE 'CSV' & +
+                 &CONVTYPE *NE 'PDF' & &CONVTYPE *NE 'AFP' & &CONVTYPE *NE 'MSG2'& +
+                 &CONVTYPE *NE 'HTM' & &CONVTYPE *NE 'TIF' & &CONVTYPE *NE 'MSG' & +
+                 &CONVTYPE *NE 'HTX' & &CONVTYPE *NE 'PCL' & &CONVTYPE *NE 'DIW') (DO)
+                CHGVAR &IN50 '1'
+                CHGVAR &IN54 '1'
+                CNTVAR &ERM 'ERROR - INVALID CONVERSION TYPE.'
+                GOTO START
+             ENDDO
+
+             CHGVAR &MESSAGE (&F1MS01 *TCAT &EOR *CAT +
+                              &F1MS02 *TCAT &EOR *CAT +
+                              &F1MS03 *TCAT &EOR *CAT +
+                              &F1MS04 *TCAT &EOR *CAT +
+                              &F1MS05 *TCAT &EOR)
+
+              RJSERS/MAILSPLF FILE(&SPLF_NAME) +
+                              JOB(&JOB_Number/&USER_NAME/&JOB_NAME) +
+                              SPLNBR(&SPLF_NBR) +
+                              TOADDRESS(&F1EMAIL &F1CCAD &F1CCAD2) +
+                              SUBJECT(&F1SUBJ) +
+                              MESSAGE(&MESSAGE) +
+                              CONVTYPE(&CONVTYPE)
+              SNDPGMMSG ('Spooled File Emailed')
+
+          ENDDO
+       ENDDO
+    ENDDO
+
+    ENDPGM

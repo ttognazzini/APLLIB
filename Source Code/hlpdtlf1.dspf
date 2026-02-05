@@ -1,0 +1,123 @@
+     A*%%TS  SD  20220801  083019  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Help Text Detail Maintenance
+     A*
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A          R SFL                       SFL
+     A*%%TS  SD  20220801  082853  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A            HLPTXT@        1A  P
+     A            SEQNBR    R        H
+     A            HLPTXT    R        B  8  2DSPATR(&HLPTXT@)
+     A                                      CHECK(LC)
+     A*
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20220801  083019  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      SFLPAG(0014)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A  98                                  SFLEND(*MORE)
+     A                                      SFLSIZ(&SFLSIZ)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SFLMODE        1A  H
+     A            DCTNME@        1A  P
+     A            FLDNME@        1A  P
+     A            DSPFLE@        1A  P
+     A            VAL@           1A  P
+     A            DES@           1A  P
+     A            HLPREF@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            MODE          10A  O  2  2
+     A                                  2 32'Help Detail'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3  2'Type'
+     A            HLPTYPD       25A  O  3  7
+     A                                  4  2'Dictionary'
+     A            DCTNME    R        O  4 13DSPATR(&DCTNME@)
+     A                                  4 24'Screen'
+     A            DSPFLE    R        O  4 31DSPATR(&DSPFLE@)
+     A                                  4 42'Field'
+     A            FLDNME    R        O  4 48DSPATR(&FLDNME@)
+     A                                  4 59'Val'
+     A            VAL       R        O  4 63DSPATR(&VAL@)
+     A                                  5  2'Help Referenced Field'
+     A            HLPREF    R        B  5 24DSPATR(&HLPREF@)
+     A                                  6  2'Field Description'
+     A            DES       R        B  6 24DSPATR(&DES@)
+     A                                      CHECK(LC)
+     A                                  7  2'                                  -
+     A                                      Help Text                          -
+     A                                                '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A*
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A                                      OVERLAY
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

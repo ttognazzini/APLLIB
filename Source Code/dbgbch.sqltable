@@ -1,0 +1,69 @@
+/* File for the dbgbch command */
+Create or Replace Table APLLIB.DBGBCH (
+  active_row             for Column acvRow Char(1) not null with default '1',
+  debug_batch_id         for Column dbgBchIdn bigInt
+            not null generated always as identity (start with 1 increment by 1),
+  user_to_notify         for Column dbgUser   char(10)   not null with default,
+  job_name               for Column dbgJbnm   char(10)   not null with default,
+  job_user               for Column dbgJbus   char(10)   not null with default,
+  job_number             for Column dbgJbno   Decimal(6) not null with default,
+  data_queue_name        for Column dbgDqNm   char(10)   not null with default,
+  data_queue_lib         for Column dbgDqlb   char(10)   not null with default,
+  program_name           for Column dbgPgm    char(10)   not null with default,
+  program_library        for Column dbgPgmlib char(10)   not null with default,
+  creation_time_stamp    for Column crtDtm    timestamp  not null with default current timestamp,
+  creation_user          for Column crtUsr    char(18)   not null with default user,
+  creation_job           for Column crtJob    char(28)   not null with default,
+  creation_program       for Column crtPgm    char(10)   not null with default,
+  maintenance_time_stamp for Column mntDtm    timeStamp  not null with default current timestamp,
+  maintenance_user       for Column mntUsr    char(18)   not null with default user,
+  maintenance_job        for Column mntJob    char(28)   not null with default,
+  maintenance_program    for Column MntPgm    char(10)   not null with default
+  )
+  RcdFmt DBGBCHR;
+
+Alter Table APLLIB.DBGBCH add Constraint APLLIB.DBGBCH Primary Key( dbgjbnm, dbgjbUs, dbgjbNo );
+
+Label on Table APLLIB/DBGBCH is 'Debug Batch Work File';
+
+Label on Column APLLIB.DBGBCH
+ (active_row             is 'Active              Row' ,
+  debug_batch_id         is 'Debug               Batch               Id' ,
+  user_to_notify         is 'User                To                  Notify',
+  job_name               is 'Job                 Name',
+  job_user               is 'Job                 User',
+  job_number             is 'Job                 Number',
+  data_queue_name        is 'Data                Queue               Name',
+  data_queue_lib         is 'Data                Queue               Lib',
+  program_name           is 'Program             Name',
+  program_library        is 'Program             Library',
+  creation_time_stamp    is 'Creation            Date' ,
+  creation_user          is 'Creation            User' ,
+  creation_job           is 'Creation            Job' ,
+  creation_program       is 'Creation            Program' ,
+  maintenance_time_stamp is 'Maintenance         Date' ,
+  maintenance_user       is 'Maintenance         User' ,
+  maintenance_job        is 'Maintenance         Job' ,
+  maintenance_program    is 'Maintenance         Program' ) ;
+
+Label on Column APLLIB.DBGBCH
+ (active_row             Text is 'Active Row' ,
+  debug_batch_id         Text is 'Debug Batch Id' ,
+  user_to_notify         Text is 'User To Notify',
+  job_name               Text is 'Job Name',
+  job_user               Text is 'Job User',
+  job_number             Text is 'Job Number',
+  data_queue_name        Text is 'Data Queue Name',
+  data_queue_lib         Text is 'Data Queue Lib',
+  program_name           Text is 'Program Name',
+  program_library        Text is 'Program Library',
+  creation_time_stamp    Text is 'Creation Date' ,
+  creation_user          Text is 'Creation User' ,
+  creation_job           Text is 'Creation Job' ,
+  creation_program       Text is 'Creation Program' ,
+  maintenance_time_stamp Text is 'Maintenance Date' ,
+  maintenance_user       Text is 'Maintenance User' ,
+  maintenance_job        Text is 'Maintenance Job' ,
+  maintenance_program    Text is 'Maintenance Program' ) ;
+
+Create Unique Index APLLIB.DBGBCHIDN on APLLIB.DBGBCH (dbgBchIdn);

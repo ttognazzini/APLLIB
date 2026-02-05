@@ -1,0 +1,139 @@
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A          R SFL                       SFL
+     A            SEL@           1A  P
+     A            KEY       R        H      REFFLD(FLEERRIDN)
+     A            FLELIBSFL R        H      REFFLD(FLELIB)
+     A            FLENMESFL R        H      REFFLD(FLENME)
+     A            SEL       R        B 11  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL@)
+     A            CRTDTM        19A  O 11  6
+     A            CRTUSR    R   10A  O 11 27
+     A            FLDNME    R        O 11 91
+     A            LOGDES    R        O 11 39
+     A            IDXNME    R        O 11103
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      SFLPAG(0015)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            FLTEFF         1A  H
+     A            SEL1@          1A  P
+     A            CRTDTM1@       1A  P
+     A            CRTUSR1@       1A  P
+     A            FLDNME1@       1A  P
+     A            IDXNME1@       1A  P
+     A            LOGDES1@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1122
+     A            MDE       R        O  2  2
+     A                                  2 59'File Error List'
+     A                                      COLOR(WHT)
+     A                                  2122USER
+     A                                  4  2'File'
+     A            LIBNME        21A  O  4  8
+     A            FLEDES    R        O  4 30
+     A                                  6  1'Search:'
+     A            SCHVAL    R        B  6  9
+     A            OPTIONS      131A  O  8  1COLOR(BLU)
+     A                                  9  1'Sel'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  9  6'Date/Time          '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  9 27'User      '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  9 91'Field     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  9 39'Description                       -
+     A                                                      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SEL1      R        B 10  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            CRTDTM1       19A  B 10  6DSPATR(&CRTDTM1@)
+     A            CRTUSR1   R   10A  B 10 27REFFLD(CRTUSR)
+     A                                      DSPATR(&CRTUSR1@)
+     A            FLDNME1   R        B 10 91REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNME1@)
+     A            DES1      R        B 10 39REFFLD(LOGDES)
+     A                                      DSPATR(&LOGDES1@)
+     A                                  9103'Index     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            IDXNME1   R        B 10103REFFLD(IDXNME)
+     A                                      DSPATR(&IDXNME1@)
+     A*
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A*%%TS  SD  20230327  103758  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      OVERLAY
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

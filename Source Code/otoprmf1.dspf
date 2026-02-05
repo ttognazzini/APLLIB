@@ -1,0 +1,108 @@
+     A*%%TS  SD  20240318  122046  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R SCREEN
+     A*%%TS  SD  20240318  122046  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            ALWEMLD@       1A  P
+     A            ALWARCD@       1A  P
+     A            ALWFAXD@       1A  P
+     A            AUTOPTD@       1A  P
+     A            SYSEML@        1A  P
+     A            SYSNME@        1A  P
+     A            SYSFLR@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A                                  1 66'Date:'
+     A            PGMNME    R        O  1 70
+     A            SSDATE         6Y 0O  1 72EDTWRD('  /  / 0')
+     A            MDE       R        O  2  2
+     A                                  2 24'Output Options - System Parameters'
+     A                                      DSPATR(HI)
+     A                                  2 66'Time:'
+     A                                  2 70USER
+     A                                  2 72TIME
+     A                                  5  4'Allow Email'
+     A            ALWEMLD   R    3A  B  5 25REFFLD(ALWEML)
+     A                                      DSPATR(&ALWEMLD@)
+     A                                  7  4'Allow Archive'
+     A            ALWARCD   R    3A  B  7 25REFFLD(ALWARC)
+     A                                      DSPATR(&ALWARCD@)
+     A                                  9  4'Allow Faxing'
+     A            ALWFAXD   R    3A  B  9 25REFFLD(ALWFAX)
+     A                                      DSPATR(&ALWFAXD@)
+     A                                 11  4'Auto Display Options'
+     A            AUTOPTD   R    3A  B 11 25REFFLD(AUTOPT)
+     A                                      DSPATR(&AUTOPTD@)
+     A                                 13  4'System Default Email'
+     A            SYSEML    R        B 13 25REFFLD(EMLADD)
+     A                                      DSPATR(&SYSEML@)
+     A                                      CHECK(LC)
+     A                                 15  4'System Default Name'
+     A            SYSNME    R        B 15 25REFFLD(EMLNME)
+     A                                      DSPATR(&SYSNME@)
+     A                                      CHECK(LC)
+     A                                 17  4'System Post Folder'
+     A            SYSFLR    R        B 17 25REFFLD(PSTFLR)
+     A                                      DSPATR(&SYSFLR@)
+     A                                      CHECK(LC)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  5 29'?'
+     A                                  7 29'?'
+     A                                  9 29'?'
+     A                                 11 29'?'
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

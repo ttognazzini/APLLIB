@@ -1,0 +1,77 @@
+     A*%%TS  SD  20230405  143301  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master Filter
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R SCREEN
+     A*%%TS  SD  20230405  143301  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF12
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FLDNME@        1A  P
+     A            COLTXT@        1A  P
+     A            STSDES@        1A  P
+     A            TYP@           1A  P
+     A            FLDENMD@       1A  P
+     A            SRTCDE@        1A  P
+     A            DVW@           1A  P
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 71
+     A                                  2 32'File Field Filter'
+     A                                      DSPATR(HI)
+     A                                  2 71USER
+     A                                  5  2'Field Contains'
+     A            FLDNME    R        B  5 21DSPATR(&FLDNME@)
+     A                                  6  2'Column Text Cntns'
+     A            COLTXT    R        B  6 21DSPATR(&COLTXT@)
+     A                                      CHECK(LC)
+     A                                  7  2'Field Status'
+     A            STSDES        11A  B  7 21DSPATR(&STSDES@)
+     A                                  7 33'?'
+     A                                  8  2'Type Contains'
+     A            TYP           30A  B  8 21DSPATR(&TYP@)
+     A                                  9  2'Enumerated'
+     A            FLDENMD        3A  B  9 21DSPATR(&FLDENMD@)
+     A                                  9 27'(Yes,No,Blank for All)'
+     A                                      COLOR(WHT)
+     A                                 12  2'Sort'
+     A            SRTCDE    R        B 12 21DSPATR(&SRTCDE@)
+     A                                 12 26'(1=Field,2=Column Text,3=Active,'
+     A                                      COLOR(WHT)
+     A                                 13 27'4=Type,5=Enumerated)'
+     A                                      COLOR(WHT)
+     A                                 15  2'View'
+     A            DVW       R        B 15 21DSPATR(&DVW@)
+     A                                 15 26'(1-2)'
+     A                                      COLOR(WHT)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  9 25'?'
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

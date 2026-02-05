@@ -1,0 +1,67 @@
+     A*%%TS  SD  20230414  133610  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master Filter
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R SCREEN
+     A*%%TS  SD  20230414  133610  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF12
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            IDXNME@        1A  P
+     A            IDXTXT@        1A  P
+     A            IDXUNID@       1A  P
+     A            ACVDES@        1A  P
+     A            SRTCDE@        1A  P
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 71
+     A                                  2 31'File Indexes Filter'
+     A                                      DSPATR(HI)
+     A                                  2 71USER
+     A                                  5  2'Index Contains'
+     A            IDXNME    R        B  5 21DSPATR(&IDXNME@)
+     A                                  6  2'Index Text Cnts'
+     A            IDXTXT    R        B  6 21DSPATR(&IDXTXT@)
+     A                                      CHECK(LC)
+     A                                  7  2'Index Type'
+     A            IDXUNID   R   15A  B  7 21DSPATR(&IDXUNID@)
+     A                                      REFFLD(IDXUNI)
+     A                                  7 37'?'
+     A                                  8  2'Active'
+     A            ACVDES    R    8A  B  8 21DSPATR(&ACVDES@)
+     A                                 12  2'Sort'
+     A            SRTCDE    R        B 12 21DSPATR(&SRTCDE@)
+     A                                 12 26'(1=Library,2=Name,3=Description,4=-
+     A                                      Type,5=Status)'
+     A                                      COLOR(WHT)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  8 30'?'
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

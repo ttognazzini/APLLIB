@@ -1,0 +1,81 @@
+     A*%%TS  SD  20220705  135033  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master Filter
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT
+     A          R SCREEN
+     A*%%TS  SD  20220705  135033  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            ACVDES@        1A  P
+     A            SRTCDE@        1A  P
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME2       10A  O  1 71
+     A                                  2 30'Program Actions Filter'
+     A                                      DSPATR(HI)
+     A                                  2 71USER
+     A                                  7  2'Active'
+     A            ACVDES        10A  B  7 15DSPATR(&ACVDES@)
+     A                                  7 28'(Active, InActive, Blank for All)'
+     A                                      COLOR(WHT)
+     A                                  8  2'Sort By'
+     A            SRTCDE    R        B  8 15DSPATR(&SRTCDE@)
+     A                                  8 28'(1=Sequence, 2=Code, 3=Option, 4=D-
+     A                                      escription,'
+     A                                      COLOR(WHT)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  7 26'?'
+     A                                  9 29'5=Function Key, 6=Active)'
+     A                                      COLOR(WHT)
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

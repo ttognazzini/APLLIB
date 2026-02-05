@@ -1,0 +1,835 @@
+     /* =================================================================== */
+     /*                                                                     */
+     /*  Application . : EXPJRNE                                            */
+     /*  Object  . . . : EXPJRNEC1                                          */
+     /*  Description . : Export Journal Entries - CPP                       */
+     /*  Author  . . . : Thomas Raddatz   <thomas.raddatz§tools400.de>      */
+     /*  Date  . . . . : 23.10.2001                                         */
+     /*                                                                     */
+     /* =================================================================== */
+     /*                                                                     */
+     /*  This software is free software, you can redistribute it and/or     */
+     /*  modify it under the terms of the GNU General Public License (GPL)  */
+     /*  as published by the Free Software Foundation.                      */
+     /*                                                                     */
+     /*  See GNU General Public License for details.                        */
+     /*          http://www.opensource.org                                  */
+     /*          http://www.opensource.org/licenses/gpl-license.html        */
+     /*                                                                     */
+     /* =================================================================== */
+     /*  History:                                                           */
+     /*                                                                     */
+     /*  Date        Name          Comment                                  */
+     /*  ----------  ------------  ---------------------------------------  */
+     /*  25.10.2001  Th.Raddatz    Added validity check for OUTFILE(*DFT).  */
+     /*                                                                     */
+     /*  23.12.2002  Th.Raddatz    Fixed problem that the English message   */
+     /*                            file was not found.                      */
+     /*                                                                     */
+     /*   23.12.2002  Th.Raddatz   Fixed problem that I_FROMDATE and        */
+     /*                            I_TODATE had to be specified as *DMY     */
+     /*                            which was not a valid input date for the */
+     /*                            DSPJRN command when the job uses a       */
+     /*                            different date format.                   */
+     /*                                                                     */
+     /*  02.01.2003  Th.Raddatz    Fixed problem that I_FROMDATE and        */
+     /*                            I_TODATE had to be specified as *DMY     */
+     /*                            which was not a valid input date for the */
+     /*                            DSPJRN command when the job uses a       */
+     /*                            different date format.                   */
+     /*                            Changed the program to use the current   */
+     /*                            library when *LIBL was specified at      */
+     /*                            the outfile parameter.                   */
+     /*                                                                     */
+     /*  10.11.2005  Th.Raddatz    Added option to select between outfile   */
+     /*                            types: *TYPE1 / *TYPE2.                  */
+     /*                                                                     */
+     /*  22.12.2005  Th.Raddatz    Now using service program BASICS1.       */
+     /*                                                                     */
+     /*  07.02.2006  Th.Raddatz    Added outfile type *TYPE3 to support     */
+     /*                            files with null-capable fields.          */
+     /*                            Changed EXPJRNE to use RCVJRNE instead   */
+     /*                            of DSPJRN.                               */
+     /*                                                                     */
+     /*  15.06.2007  Th.Raddatz    Added parameter RCVRNG.                  */
+     /*                                                                     */
+     /*  10.08.2007  Th.Raddatz    Added options *SQL and *DDS to           */
+     /*                            parameter CRTFILE in order to enable     */
+     /*                            export of records containing invalid     */
+     /*                            data.                                    */
+     /*                                                                     */
+     /*  19.09.2008  Th.Raddatz    Changed message data used to send        */
+     /*                            message USR0015 from &OUTFILE and        */
+     /*                            &OUTLIB to &FILE and &LIB.               */
+     /*                                                                     */
+     /*  20.09.2008  Th.Raddatz    Redesigned EXPJRNE to support additional */
+     /*                            object types, starting with *DTAARA.     */
+     /*                                                                     */
+     /*  26.01.2010  Th.Raddatz    Fixed error message CPD0078 when current */
+     /*                            library has not been set.                */
+     /*                            (Value '*NONE     ' for parameter OBJ    */
+     /*                             not a valid name.)                      */
+     /*                                                                     */
+     /*  23.05.2012  Th.Raddatz    Changed program to restrict the OBJTYPE  */
+     /*                            parameter to *FILE for release V5R3M0    */
+     /*                            and lower.                               */
+     /*                                                                     */
+     /*  17.09.2013  Th.Raddatz    Disabled error message USR0006, because  */
+     /*                            it does not really make sense.           */
+     /*                                                                     */
+     /*  21.10.2013  Th.Raddatz    Added parameter SIZE.                    */
+     /*                                                                     */
+     /*  08.02.2014  Th.Raddatz    Added parameter JRN.                     */
+     /*                                                                     */
+     /*  23.02.2014  Th.Raddatz    Added parameter FMTMINDTA(*YES) to       */
+     /*                            command RCVJRNE.                         */
+     /*                                                                     */
+     /*  08.10.2014  Th.Raddatz    Added parameter TPLFILE.                 */
+     /*                                                                     */
+     /*  08.10.2014  Th.Raddatz    Added parameter TPLFILE.                 */
+     /*                                                                     */
+     /*  02.01.2015  Th.Raddatz    Added option *OBJ to parameter OUTFILE.  */
+     /*                                                                     */
+     /*  04.10.2018  Th.Raddatz    Fixed external procedure name (typo).    */
+     /*                                                                     */
+     /* =================================================================== */
+     /* >>PRE-COMPILER<<                                                    */
+     /*                                                                     */
+     /*   >>CRTCMD<< CRTCLMOD     MODULE(&LI/&OB) +                         */
+     /*                           SRCFILE(&SL/&SF) +                        */
+     /*                           SRCMBR(&SM);                              */
+     /*                                                                     */
+     /*   >>IMPORTANT<<                                                     */
+     /*     >>PARM<< DBGVIEW(*LIST);                                        */
+     /*     >>PARM<< TGTRLS(V6R1M0);                                        */
+     /*     >>PARM<< OPTION(*EVENTF);                                       */
+     /*   >>END-IMPORTANT<<                                                 */
+     /*                                                                     */
+     /*   >>EXECUTE<<                                                       */
+     /*                                                                     */
+     /* >>END-PRE-COMPILER<<                                                */
+     /* =================================================================== */
+             PGM        PARM(&I_OBJ           +
+                             &I_FROMDATE      +
+                             &I_FROMTIME      +
+                             &I_TODATE        +
+                             &I_TOTIME        +
+                             &I_OBJTYPE       +
+                             &I_MBR           +
+                             &I_OUTFILE       +
+                             &I_MBROPT        +
+                             &I_CRTFILE       +
+                             &I_TPLFILE       +
+                             &I_OUTFILFM      +
+                             &I_JRN           +
+                             &I_RCVRNG        +
+                             &I_SIZE          +
+                             &I_LVLCHK        )
+
+             DCL        VAR(&I_OBJ     ) TYPE(*CHAR) LEN(20)
+             DCL        VAR(&I_FROMDATE) TYPE(*CHAR) LEN( 7)
+             DCL        VAR(&I_FROMTIME) TYPE(*CHAR) LEN( 6)
+             DCL        VAR(&I_TODATE  ) TYPE(*CHAR) LEN( 7)
+             DCL        VAR(&I_TOTIME  ) TYPE(*CHAR) LEN( 6)
+             DCL        VAR(&I_OBJTYPE ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&I_MBR     ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&I_OUTFILE ) TYPE(*CHAR) LEN(20)
+             DCL        VAR(&I_MBROPT  ) TYPE(*CHAR) LEN(22)
+             DCL        VAR(&I_CRTFILE ) TYPE(*CHAR) LEN( 1)
+             DCL        VAR(&I_TPLFILE ) TYPE(*CHAR) LEN(20)
+             DCL        VAR(&I_OUTFILFM) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&I_JRN     ) TYPE(*CHAR) LEN(20)
+             DCL        VAR(&I_RCVRNG  ) TYPE(*CHAR) LEN(42)
+             DCL        VAR(&I_SIZE    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&I_LVLCHK  ) TYPE(*CHAR) LEN( 1)
+
+             DCL        VAR(&OBJ       ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&LIB       ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&FROMDATE  ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&FROMTIME  ) TYPE(*CHAR) LEN( 6)
+             DCL        VAR(&TODATE    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&TOTIME    ) TYPE(*CHAR) LEN( 6)
+             DCL        VAR(&OBJTYPE   ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&MBR       ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&OUTFILE   ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&OUTLIB    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&MBROPT    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&CRTFILE   ) TYPE(*CHAR) LEN( 1)
+             DCL        VAR(&OUTFILFM  ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SIZE_INIT ) TYPE(*DEC ) LEN(10 0)
+             DCL        VAR(&SIZE_INCR ) TYPE(*DEC ) LEN( 5 0)
+             DCL        VAR(&SIZE_MAX  ) TYPE(*DEC ) LEN( 5 0)
+             DCL        VAR(&LVLCHK    ) TYPE(*CHAR) LEN( 1)
+             DCL        VAR(&FRM_RCV   ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&FRM_RCVLIB) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&TO_RCV    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&TO_RCVLIB ) TYPE(*CHAR) LEN(10)
+
+             DCL        VAR(&TPLFILE   ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&TPLLIB    ) TYPE(*CHAR) LEN(10)
+
+             DCL        VAR(&OUTMBR    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&CURLIB    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&USER      ) TYPE(*CHAR) LEN(10)
+
+             DCL        VAR(&ACTIVE    ) TYPE(*CHAR) LEN( 1)
+             DCL        VAR(&JRN       ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&JRNLIB    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&IMAGES    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&OMTJRNE   ) TYPE(*CHAR) LEN(10)
+
+             DCL        VAR(&RC2       ) TYPE(*CHAR) LEN( 2)
+             DCL        VAR(&RC        ) TYPE(*CHAR) LEN( 1)
+
+             DCL        VAR(&QADSPJRN  ) TYPE(*CHAR) LEN(10)
+
+             DCL        VAR(&NUMRCD    ) TYPE(*CHAR) LEN(10  )
+             DCL        VAR(&NUMRCD_B  ) TYPE(*DEC ) LEN(10 0)
+             DCL        VAR(&NUMRCD_A  ) TYPE(*DEC ) LEN(10 0)
+             DCL        VAR(&NUMRCD_T  ) TYPE(*DEC ) LEN(10 0)
+             DCL        VAR(&NUM_ERRORS) TYPE(*CHAR) LEN(10  )
+
+             DCL        VAR(&CMD       ) TYPE(*CHAR) LEN(512 )
+             DCL        VAR(&QUOTE     ) TYPE(*CHAR) LEN(  1 ) VALUE('''')
+
+             DCL        VAR(&JRNCDE    ) TYPE(*CHAR) LEN( 10 )
+             DCL        VAR(&ENTTYP    ) TYPE(*CHAR) LEN( 64 )
+
+             DCL        VAR(&RELEASE   ) TYPE(*CHAR) LEN(  6 )
+
+             DCL        VAR(&SAME      ) TYPE(*DEC ) LEN( 1 0) VALUE(-2)
+             DCL        VAR(&NOMAX     ) TYPE(*DEC ) LEN( 1 0) VALUE( 0)
+             DCL        VAR(&TMPCHAR   ) TYPE(*CHAR) LEN( 10)
+
+             DCL        VAR(&APP_MSG_F ) TYPE(*CHAR) LEN(10) VALUE('EXPJRNE')
+             DCL        VAR(&PRDLIB    ) TYPE(*CHAR) LEN(10)
+
+/* Error handling       */
+             DCL        VAR(&ERROR)      TYPE(*LGL) +
+                          VALUE('0')
+             DCL        VAR(&TRUE)       TYPE(*LGL) +
+                          VALUE('1')
+             DCL        VAR(&FALSE)      TYPE(*LGL) +
+                          VALUE('0')
+             DCL        VAR(&ERRMSGKEY)  TYPE(*CHAR) LEN(4)
+
+             DCL        VAR(&ERRMSGTYP)  TYPE(*CHAR) LEN(10) +
+                          VALUE('*DIAG')
+             DCL        VAR(&ERRNBRTYP)  TYPE(*CHAR) LEN(4) +
+                          VALUE(X'00000001')
+             DCL        VAR(&ERRPGMMSGQ) TYPE(*CHAR) LEN(10) +
+                          VALUE('*')
+             DCL        VAR(&ERRSTKCTR)  TYPE(*CHAR) LEN(4) +
+                          VALUE(X'00000001')
+             DCL        VAR(&ERRCODE  )  TYPE(*CHAR) LEN(4) +
+                          VALUE(X'00000000')
+
+             MONMSG     MSGID(CPF0000) EXEC(GOTO CMDLBL(ERROR))
+
+             CHGVAR     VAR(&ERROR    ) VALUE(&FALSE)
+
+  /* ------------------------------------------------------------------------ */
+  /* Set application message file.                                            */
+  /* ------------------------------------------------------------------------ */
+               CALLPRC    PRC('EXPJRNER7_Application_getLibrary') RTNVAL(&PRDLIB)
+
+
+               CALLPRC    PRC('BASICS1R1_p_setAppMsgFile') PARM((&APP_MSG_F *BYREF) +
+                                                                (&PRDLIB    *BYREF))
+
+  /* ------------------------------------------------------------------------ */
+  /* Break input variables into pieces.                                       */
+  /* ------------------------------------------------------------------------ */
+
+             CHGVAR     VAR(&OBJ    )   VALUE(%SST(&I_OBJ   1 10))
+             CHGVAR     VAR(&LIB    )   VALUE(%SST(&I_OBJ  11 10))
+             CHGVAR     VAR(&OBJTYPE)   VALUE(&I_OBJTYPE)
+             CHGVAR     VAR(&MBR    )   VALUE(&I_MBR)
+
+             CVTDAT     DATE(&I_FROMDATE) TOVAR(&FROMDATE) +
+                          FROMFMT(*CYMD) TOFMT(*JOB) TOSEP(*JOB)
+             CHGVAR     VAR(&FROMTIME  ) VALUE(&I_FROMTIME)
+
+             CVTDAT     DATE(&I_TODATE  ) TOVAR(&TODATE  ) +
+                          FROMFMT(*CYMD) TOFMT(*JOB) TOSEP(*JOB)
+             CHGVAR     VAR(&TOTIME    ) VALUE(&I_TOTIME  )
+
+             CHGVAR     VAR(&OUTFILE   ) VALUE(%SST(&I_OUTFILE  1 10))
+             CHGVAR     VAR(&OUTLIB    ) VALUE(%SST(&I_OUTFILE 11 10))
+             CHGVAR     VAR(&TPLFILE   ) VALUE(%SST(&I_TPLFILE  1 10))
+             CHGVAR     VAR(&TPLLIB    ) VALUE(%SST(&I_TPLFILE 11 10))
+             CHGVAR     VAR(&MBROPT    ) VALUE(%SST(&I_MBROPT   3 10))
+             CHGVAR     VAR(&CRTFILE   ) VALUE(&I_CRTFILE)
+             CHGVAR     VAR(&OUTFILFM  ) VALUE(&I_OUTFILFM)
+             CHGVAR     VAR(&SIZE_INIT ) VALUE(%BIN(&I_SIZE 3 4))
+             CHGVAR     VAR(&SIZE_INCR ) VALUE(%BIN(&I_SIZE 7 2))
+             CHGVAR     VAR(&SIZE_MAX  ) VALUE(%BIN(&I_SIZE 9 2))
+             CHGVAR     VAR(&LVLCHK    ) VALUE(&I_LVLCHK  )
+
+             CHGVAR     VAR(&OUTMBR    ) VALUE('*FIRST')
+
+             CHGVAR     VAR(&FRM_RCV   ) VALUE(%SST(&I_RCVRNG  3 10))
+             CHGVAR     VAR(&FRM_RCVLIB) VALUE(%SST(&I_RCVRNG 13 10))
+
+             IF         COND(%BIN(&I_RCVRNG 1 2) *EQ 2) THEN(DO)
+               CHGVAR     VAR(&TO_RCV    ) VALUE(%SST(&I_RCVRNG 23 10))
+               CHGVAR     VAR(&TO_RCVLIB ) VALUE(%SST(&I_RCVRNG 33 10))
+             ENDDO
+             ELSE       CMD(DO)
+               CHGVAR     VAR(&TO_RCV    ) VALUE('*N')
+               CHGVAR     VAR(&TO_RCVLIB ) VALUE('*N')
+             ENDDO
+
+             IF         COND(&OUTFILE *EQ '*OBJ') THEN(DO)
+               CHGVAR     VAR(&OUTFILE   ) VALUE(&OBJ)
+             ENDDO
+
+  /* ------------------------------------------------------------------------ */
+  /* Set template file and journal codes and types to export                  */
+  /* (used to generate the specific portion of the output file)               */
+  /* ------------------------------------------------------------------------ */
+             IF         COND(&OBJTYPE *EQ '*FILE') THEN(DO)
+               IF         COND(&TPLFILE *EQ '*OBJECT') THEN(DO)
+                 CHGVAR     VAR(&TPLFILE ) VALUE(&OBJ)
+                 CHGVAR     VAR(&TPLLIB  ) VALUE(&LIB)
+               ENDDO
+               CHGVAR     VAR(&JRNCDE  ) VALUE('*ALL')
+               CHGVAR     VAR(&ENTTYP  ) VALUE('BR DL DR PT PX UB UP UR CR DM')
+               RTVOBJD    OBJ(&TPLLIB/&TPLFILE) OBJTYPE(*FILE) +
+                            RTNLIB(&TPLLIB)
+             ENDDO
+
+             IF         COND(&OBJTYPE *EQ '*DTAARA') THEN(DO)
+               CHGVAR     VAR(&TPLFILE ) VALUE('*DTAARA')
+               CHGVAR     VAR(&TPLLIB  ) VALUE(' ')
+               CHGVAR     VAR(&JRNCDE  ) VALUE('E')
+               CHGVAR     VAR(&ENTTYP  ) VALUE('EE EA EB')
+             ENDDO
+
+             IF         COND(&OBJTYPE *EQ '*DTAQ') THEN(DO)
+               CHGVAR     VAR(&TPLFILE ) VALUE('*DTAQ')
+               CHGVAR     VAR(&TPLLIB  ) VALUE(' ')
+               CHGVAR     VAR(&JRNCDE  ) VALUE('Q')
+               CHGVAR     VAR(&ENTTYP  ) VALUE('QS QR QK QL QJ QC')
+             ENDDO
+
+  /* ------------------------------------------------------------------------ */
+  /* Set outfile type.                                                        */
+  /* ------------------------------------------------------------------------ */
+
+             IF         COND(&OUTFILFM *EQ '*TYPE1') THEN(DO)
+               CHGVAR     VAR(&QADSPJRN) VALUE('QADSPJRN')
+             ENDDO
+             IF         COND(&OUTFILFM *EQ '*TYPE2') THEN(DO)
+               CHGVAR     VAR(&QADSPJRN) VALUE('QADSPJR2')
+             ENDDO
+             IF         COND(&OUTFILFM *EQ '*TYPE3') THEN(DO)
+               CHGVAR     VAR(&QADSPJRN) VALUE('QADSPJR3')
+             ENDDO
+             IF         COND(&OUTFILFM *EQ '*TYPE4') THEN(DO)
+               CHGVAR     VAR(&QADSPJRN) VALUE('QADSPJR4')
+             ENDDO
+             IF         COND(&OUTFILFM *EQ '*TYPE5') THEN(DO)
+               CHGVAR     VAR(&QADSPJRN) VALUE('QADSPJR5')
+             ENDDO
+
+  /* ------------------------------------------------------------------------ */
+  /* Check object.                                                            */
+  /* ------------------------------------------------------------------------ */
+
+             IF         COND(&LIB *NE '*LIBL') THEN(DO)
+                CHKOBJ    OBJ(&LIB)   OBJTYPE(*LIB)  +
+                          MBR(*NONE) AUT(*NONE)
+             ENDDO
+
+             IF COND(&OBJTYPE = '*FILE') THEN(DO)
+               CHKOBJ    OBJ(&LIB/&OBJ)  OBJTYPE(*FILE) +
+                            MBR(*NONE) AUT(*NONE)
+               RTVOBJD    OBJ(&LIB/&OBJ) OBJTYPE(*FILE) RTNLIB(&LIB)
+             ENDDO
+
+             IF COND(&OBJTYPE = '*DTAARA') THEN(DO)
+               CHKOBJ    OBJ(&LIB/&OBJ)  OBJTYPE(*DTAARA) +
+                            MBR(*NONE) AUT(*NONE)
+               RTVOBJD    OBJ(&LIB/&OBJ) OBJTYPE(*DTAARA) RTNLIB(&LIB)
+             ENDDO
+
+             IF COND(&OBJTYPE = '*DTAQ') THEN(DO)
+               CHKOBJ    OBJ(&LIB/&OBJ)  OBJTYPE(*DTAQ) +
+                            MBR(*NONE) AUT(*NONE)
+               RTVOBJD    OBJ(&LIB/&OBJ) OBJTYPE(*DTAQ) RTNLIB(&LIB)
+             ENDDO
+
+             CALLPRC    PRC('EXPJRNER7_Object_setName'   ) PARM((&OBJ))
+             CALLPRC    PRC('EXPJRNER7_Object_setLibrary') PARM((&LIB))
+             CALLPRC    PRC('EXPJRNER7_Object_setType'   ) PARM((&OBJTYPE))
+
+  /* ------------------------------------------------------------------------ */
+  /* Validate input parameters.                                               */
+  /* ------------------------------------------------------------------------ */
+
+             CALLPRC    PRC('EXPJRNER7_System_getCurrentRelease') +
+                          RTNVAL(&RELEASE)
+             IF         COND(&RELEASE *LT 'V5R4M0' *AND +
+                             &OBJTYPE *NE '*FILE') THEN(DO)
+               /* Parameter OBJTYPE contains an invalid value. */
+               SNDPGMMSG  MSGID(USR0028) MSGF(&PRDLIB/&APP_MSG_F) +
+                          MSGDTA(&OBJTYPE *CAT &RELEASE) +
+                          TOPGMQ(*PRV (*PGMBDY)) +
+                          MSGTYPE(*ESCAPE)
+             ENDDO
+
+             IF         COND(&OUTFILE *EQ '*DFT' +
+                        *AND %SST(&OBJ 9 2) *NE ' '    ) THEN(DO)
+               /* Outfile default name can not be generated. */
+               SNDPGMMSG  MSGID(USR0005) MSGF(&PRDLIB/&APP_MSG_F) +
+                          TOPGMQ(*PRV (*PGMBDY)) +
+                          MSGTYPE(*ESCAPE)
+             ENDDO
+
+    /*       IF         COND(&MBROPT  *EQ '*ADD'  +                  */
+    /*                  *AND &CRTFILE *NE 'N'   ) THEN(DO)           */
+    /*         SNDPGMMSG  MSGID(USR0006) MSGF(&PRDLIB/&APP_MSG_F) +  */
+    /*                    TOPGMQ(*PRV (*PGMBDY)) +                   */
+    /*                    MSGTYPE(*ESCAPE)                           */
+    /*       ENDDO                                                   */
+
+  /* ------------------------------------------------------------------------ */
+  /* Retrieve journal information.                                            */
+  /* ------------------------------------------------------------------------ */
+
+             /* Retrieving journal information ... */
+             SNDPGMMSG  MSGID(USR0007) MSGF(&PRDLIB/&APP_MSG_F) +
+                          TOPGMQ(*EXT) MSGTYPE(*STATUS)
+
+             CALLPRC    PRC('EXPJRNER7_rtvJrnInf') +
+                          PARM(&OBJ       +
+                               &LIB       +
+                               &OBJTYPE   +
+                               &OBJ       +
+                               &LIB       +
+                               &ACTIVE    +
+                               &JRN       +
+                               &JRNLIB    +
+                               &IMAGES    +
+                               &OMTJRNE   ) +
+                          RTNVAL(&RC2)
+             CHGVAR     VAR(&RC) VALUE(%SST(&RC2 1 1))
+
+             IF         COND(&ACTIVE *EQ '0') THEN(DO)
+               /* Specified object is not journaled. */
+               SNDPGMMSG  MSGID(USR0008) MSGF(&PRDLIB/&APP_MSG_F) +
+                          TOPGMQ(*PRV (*PGMBDY)) +
+                          MSGTYPE(*ESCAPE)
+             ENDDO
+
+  /* Overwrite journal name and library */
+             IF         COND(&I_JRN *NE '*OBJ') THEN(DO)
+               CHGVAR     VAR(&JRN   ) VALUE(%SST(&I_JRN  1 10))
+               CHGVAR     VAR(&JRNLIB) VALUE(%SST(&I_JRN 11 10))
+               IF         COND(%SST(&JRNLIB 1 1) *NE '*') THEN(DO)
+                 CHKOBJ    OBJ(&JRNLIB)   OBJTYPE(*LIB)  +
+                           MBR(*NONE) AUT(*NONE)
+               ENDDO
+               CHKOBJ     OBJ(&JRNLIB/&JRN) OBJTYPE(*JRN)
+               RTVOBJD    OBJ(&JRNLIB/&JRN) OBJTYPE('*JRN') RTNLIB(&JRNLIB)
+             ENDDO
+
+  /* ------------------------------------------------------------------------ */
+  /* Prepare the outfile.                                                     */
+  /* ------------------------------------------------------------------------ */
+
+             RTVJOBA    USER(&USER) CURLIB(&CURLIB)
+             IF         COND(&CURLIB *EQ '*NONE') THEN(DO)
+               CHGVAR     VAR(&CURLIB) VALUE('QGPL')
+             ENDDO
+
+             IF         COND(&OUTFILE *EQ '*DFT') THEN(DO)
+               CHGVAR     VAR(&OUTFILE) VALUE(&OBJ *TCAT '_Q')
+             ENDDO
+
+             IF         COND(&OUTLIB *EQ '*LIBL') THEN(DO)
+               CHKOBJ     OBJ(&OUTLIB/&OUTFILE) OBJTYPE(*FILE)
+               MONMSG     MSGID(CPF9801) EXEC(DO)
+                 RCVMSG     PGMQ(*SAME (*)) MSGTYPE(*EXCP) RMV(*YES)
+                 CHGVAR     VAR(&OUTLIB) VALUE(&CURLIB)
+                 GOTO       CMDLBL(CHK_CURLIB)
+               ENDDO
+               RTVOBJD    OBJ(&OUTLIB/&OUTFILE) OBJTYPE(*FILE) +
+                            RTNLIB(&OUTLIB)
+             ENDDO
+
+CHK_CURLIB:
+             IF         COND(&OUTLIB *EQ '*CURLIB') THEN(DO)
+               CHGVAR     VAR(&OUTLIB) VALUE(&CURLIB)
+             ENDDO
+
+             IF         COND(&OUTLIB *EQ '*USER') THEN(DO)
+               CHGVAR     VAR(&OUTLIB) VALUE(&USER)
+             ENDDO
+
+             IF         COND(&OBJ     *EQ &OUTFILE +
+                        *AND &LIB     *EQ &OUTLIB  +
+                        *AND &OBJTYPE *EQ '*FILE') THEN(DO)
+               /* Output file must be different from the input file. */
+               SNDPGMMSG  MSGID(USR0029) MSGF(&PRDLIB/&APP_MSG_F) +
+                          TOPGMQ(*PRV (*PGMBDY)) +
+                          MSGTYPE(*ESCAPE)
+             ENDDO
+
+             IF         COND(&CRTFILE *NE 'N') THEN(DO)
+               CHKOBJ     OBJ(&OUTLIB/&OUTFILE) OBJTYPE(*FILE)
+               MONMSG     MSGID(CPF9801) EXEC(DO)
+                 RCVMSG     PGMQ(*SAME (*)) MSGTYPE(*EXCP) RMV(*YES)
+                 GOTO       CMDLBL(ISNOTFOUND)
+               ENDDO
+               RTVOBJD    OBJ(&OUTLIB/&OUTFILE) OBJTYPE(*FILE) +
+                            RTNLIB(&OUTLIB)
+               DLTF       FILE(&OUTLIB/&OUTFILE)
+ISNOTFOUND:
+             ENDDO
+
+             CHKOBJ     OBJ(&OUTLIB/&OUTFILE) OBJTYPE(*FILE)
+             MONMSG     MSGID(CPF9801) EXEC(DO)
+               RCVMSG     PGMQ(*SAME (*)) MSGTYPE(*EXCP) RMV(*YES)
+               CRTDUPOBJ  OBJ(&QADSPJRN) FROMLIB(QSYS) OBJTYPE(*FILE) +
+                          TOLIB(QTEMP) NEWOBJ(&QADSPJRN) DATA(*NO)
+               MONMSG     MSGID(CPF0000) EXEC(DO)
+                 RCVMSG     PGMQ(*SAME (*)) MSGTYPE(*EXCP) RMV(*YES)
+                 GOTO       CMDLBL(CRTOUTFILE)
+               ENDDO
+               ADDPFM     FILE(QTEMP/&QADSPJRN) MBR(&QADSPJRN)
+CRTOUTFILE:
+               CHGVAR     VAR(&LVLCHK) VALUE('N')
+
+               IF         COND(&CRTFILE *EQ 'D') THEN(DO)
+                 CALLPRC    PRC('EXPJRNER5_f_crtOutfile_DDS') +
+                            PARM(&TPLFILE    +
+                                 &TPLLIB     +
+                                 &OUTFILE    +
+                                 &OUTLIB     +
+                                 &OUTFILFM)  +
+                            RTNVAL(&RC2)
+               ENDDO
+               ELSE       CMD(DO)
+                 CALLPRC    PRC('EXPJRNER4_f_crtOutfile_SQL') +
+                            PARM(&TPLFILE    +
+                                 &TPLLIB     +
+                                 &OUTFILE    +
+                                 &OUTLIB     +
+                                 &OUTFILFM)  +
+                            RTNVAL(&RC2)
+               ENDDO
+
+               CHGVAR     VAR(&RC) VALUE(%SST(&RC2 1 1))
+               IF         COND(&RC *EQ '0') THEN(DO)
+                 /* Outfile could not be created. */
+                 SNDPGMMSG  MSGID(USR0010) MSGF(&PRDLIB/&APP_MSG_F) +
+                            TOPGMQ(*PRV (*PGMBDY)) +
+                            MSGTYPE(*ESCAPE)
+               ENDDO
+               DLTF       FILE(QTEMP/&QADSPJRN)
+             ENDDO
+
+             RTVOBJD    OBJ(&OUTLIB/&OUTFILE) OBJTYPE(*FILE) +
+                          RTNLIB(&OUTLIB)
+
+CHGOUTFILE:
+             CHGVAR     VAR(&CMD) VALUE('+
+                          CHGPF FILE(' *CAT &OUTLIB *TCAT '/' *CAT +
+                                            &OUTFILE *TCAT ')')
+
+             CHGVAR     VAR(&CMD) VALUE(&CMD *BCAT 'SIZE(')
+
+             /*  Initial number of records  */
+             IF         COND(&SIZE_INIT *EQ &NOMAX) THEN(DO)
+               CHGVAR     VAR(&CMD) VALUE(&CMD *TCAT '*NOMAX')
+             ENDDO
+             ELSE       CMD(DO)
+               IF         COND(&SIZE_MAX *EQ &SAME) THEN(DO)
+                 CHGVAR     VAR(&CMD) VALUE(&CMD *TCAT '*SAME')
+               ENDDO
+               ELSE       CMD(DO)
+                 CHGVAR     VAR(&TMPCHAR) VALUE(&SIZE_INIT)
+                 CHGVAR     VAR(&CMD) VALUE(&CMD *TCAT &TMPCHAR)
+               ENDDO
+
+               /*  Increment number of recordsIncrement number of records  */
+               IF         COND(&SIZE_INCR *EQ &SAME) THEN(DO)
+                 CHGVAR     VAR(&CMD) VALUE(&CMD *BCAT '*SAME')
+               ENDDO
+               ELSE       CMD(DO)
+                 CHGVAR     VAR(&TMPCHAR) VALUE(&SIZE_INCR)
+                 CHGVAR     VAR(&CMD) VALUE(&CMD *BCAT &TMPCHAR)
+               ENDDO
+
+               /*  Maximum increments  */
+               IF         COND(&SIZE_MAX *EQ &SAME) THEN(DO)
+                 CHGVAR     VAR(&CMD) VALUE(&CMD *BCAT '*SAME')
+               ENDDO
+               ELSE       CMD(DO)
+                 CHGVAR     VAR(&TMPCHAR) VALUE(&SIZE_MAX)
+                 CHGVAR     VAR(&CMD) VALUE(&CMD *BCAT &TMPCHAR)
+               ENDDO
+             ENDDO
+
+             CHGVAR     VAR(&CMD) VALUE(&CMD *TCAT ')')
+
+             CALL       PGM(QCMDEXC) PARM(&CMD 512)
+
+             IF         COND(&OUTMBR *EQ '*FIRST') THEN(DO)
+               RTVMBRD    FILE(&OUTLIB/&OUTFILE) MBR(&OUTMBR) +
+                          RTNMBR(&OUTMBR)
+               MONMSG     MSGID(CPF3019 CPF9815) EXEC(DO)
+                 RCVMSG     PGMQ(*SAME (*)) MSGTYPE(*EXCP) RMV(*YES)
+                 CHGVAR     VAR(&OUTMBR) VALUE(&OUTFILE)
+               ENDDO
+             ENDDO
+
+             CHKOBJ     OBJ(&OUTLIB/&OUTFILE) OBJTYPE(*FILE) +
+                          MBR(&OUTMBR)
+             MONMSG     MSGID(CPF9815) EXEC(DO)
+               RCVMSG     PGMQ(*SAME (*)) MSGTYPE(*EXCP) RMV(*YES)
+               ADDPFM     FILE(&OUTLIB/&OUTFILE) MBR(&OUTMBR)
+             ENDDO
+
+             IF         COND(&MBROPT *EQ '*REPLACE') THEN(DO)
+               CLRPFM     FILE(&OUTLIB/&OUTFILE) MBR(&OUTMBR)
+             ENDDO
+
+  /* ------------------------------------------------------------------------ */
+  /* Export journal entries to temporary file.                                */
+  /* ------------------------------------------------------------------------ */
+
+             /* Exporting journal entries ... */
+             SNDPGMMSG  MSGID(USR0011) MSGF(&PRDLIB/&APP_MSG_F) +
+                          TOPGMQ(*EXT) MSGTYPE(*STATUS)
+
+             RMVMSG     PGMQ(*SAME (*)) CLEAR(*ALL)
+
+             CALLPRC    PRC('EXPJRNER7_Error_resetCounter')
+
+             CALLPRC    PRC('EXPJRNER7_OutputFile_setName') +
+                          PARM((&OUTFILE  *BYREF))
+             CALLPRC    PRC('EXPJRNER7_OutputFile_setLibrary') +
+                          PARM((&OUTLIB   *BYREF))
+             CALLPRC    PRC('EXPJRNER7_OutputFile_setMember') +
+                          PARM((&OUTMBR   *BYREF))
+             CALLPRC    PRC('EXPJRNER7_OutputFile_setOutputFileFormat') +
+                          PARM((&OUTFILFM *BYREF))
+             CALLPRC    PRC('EXPJRNER7_TemplateFile_setName') +
+                          PARM((&TPLFILE  *BYREF))
+             CALLPRC    PRC('EXPJRNER7_TemplateFile_setLibrary') +
+                          PARM((&TPLLIB   *BYREF))
+
+             RTVMBRD    FILE(&OUTLIB/&OUTFILE) MBR(&OUTMBR *SAME) +
+                          NBRCURRCD(&NUMRCD_B)
+
+  /* ------------------------------------------------------------------------ */
+  /* Check format level identifier of output file.                            */
+  /* ------------------------------------------------------------------------ */
+             IF         COND(&LVLCHK  *EQ 'Y') THEN(DO)
+               CRTDUPOBJ  OBJ(&QADSPJRN) FROMLIB(QSYS) OBJTYPE(*FILE) +
+                          TOLIB(QTEMP) NEWOBJ(&QADSPJRN) DATA(*NO)
+               MONMSG     MSGID(CPF0000) EXEC(DO)
+                 RCVMSG     PGMQ(*SAME (*)) MSGTYPE(*EXCP) RMV(*YES)
+                 GOTO       CMDLBL(LVLCHK)
+               ENDDO
+               ADDPFM     FILE(QTEMP/&QADSPJRN) MBR(&QADSPJRN)
+LVLCHK:
+               CALLPRC    PRC('EXPJRNER7_OutputFile_isLevelCheck') +
+                            RTNVAL(&RC2)
+               CHGVAR     VAR(&RC) VALUE(%SST(&RC2 1 1))
+               DLTF       FILE(QTEMP/&QADSPJRN)
+               IF         COND(&RC *EQ '1') THEN(DO)
+                 /* Command ended in error - See joblog. */
+                 SNDPGMMSG  MSGID(USR0016) MSGF(&PRDLIB/&APP_MSG_F) +
+                            TOPGMQ(*PRV (*PGMBDY)) +
+                            MSGTYPE(*ESCAPE)
+               ENDDO
+             ENDDO
+
+         /* -------------------------------------------- */
+         /*  Produce basic RCVJRNE command ...           */
+         /* -------------------------------------------- */
+             CHGVAR     VAR(&CMD) +
+                        VALUE('RCVJRNE    JRN('      *CAT  &JRNLIB     +
+                                                     *TCAT '/'         +
+                                                     *CAT  &JRN        +
+                                                     *TCAT ')')
+
+             IF         COND(&RELEASE *GE 'V5R4M0') THEN(DO)
+                CHGVAR     VAR(&CMD) VALUE(&CMD +
+                               *BCAT     'OBJ(('     *CAT  &LIB        +
+                                                     *TCAT '/'         +
+                                                     *CAT  &OBJ        +
+                                                     *BCAT &OBJTYPE    +
+                                                     *BCAT &MBR        +
+                                                     *TCAT '))')
+             ENDDO
+             ELSE       CMD(DO)
+                CHGVAR     VAR(&CMD) VALUE(&CMD +
+                               *BCAT     'FILE(('    *CAT  &LIB        +
+                                                     *TCAT '/'         +
+                                                     *CAT  &OBJ        +
+                                                     *BCAT &MBR        +
+                                                     *TCAT '))')
+             ENDDO
+
+             CHGVAR     VAR(&CMD) VALUE(&CMD +
+                               *BCAT     'FROMTIME(' *CAT  &QUOTE      +
+                                                     *CAT  &FROMDATE   +
+                                                     *TCAT &QUOTE      +
+                                                     *BCAT &QUOTE      +
+                                                     *CAT  &FROMTIME   +
+                                                     *TCAT &QUOTE      +
+                                                     *CAT  ')'         +
+                               *BCAT     'TOTIME('   *CAT  &QUOTE      +
+                                                     *CAT  &TODATE     +
+                                                     *TCAT &QUOTE      +
+                                                     *BCAT &QUOTE      +
+                                                     *CAT  &TOTIME     +
+                                                     *TCAT &QUOTE      +
+                                                     *CAT  ')'         +
+                               *BCAT     'JRNCDE('   *TCAT &JRNCDE     +
+                                                     *TCAT ')'         +
+                               *BCAT     'ENTTYP('   *TCAT &ENTTYP     +
+                                                     *TCAT ')'         +
+                               *BCAT     'EXITPGM(' *CAT &PRDLIB *TCAT '/EXPJRNECR)')
+
+         /* -------------------------------------------- */
+         /*  ... add parameter JRNENTFMT ...             */
+         /* -------------------------------------------- */
+             IF         COND((&OUTFILFM *EQ '*TYPE1') *OR +
+                             (&OUTFILFM *EQ '*TYPE2')) THEN(DO)
+               CHGVAR   VAR(&CMD) VALUE(&CMD *BCAT +
+                                        'ENTFMT('    *CAT  &OUTFILFM   +
+                                                     *TCAT ')')
+             ENDDO
+             ELSE       CMD(DO)
+               CHGVAR   VAR(&CMD) VALUE(&CMD *BCAT +
+                                        'ENTFMT(*JRNENTFMT)')
+               CHGVAR   VAR(&CMD) VALUE(&CMD *BCAT 'JRNENTFMT(RJNE0200)')
+             ENDDO
+
+         /* -------------------------------------------- */
+         /*  ... add parameter RCVRNG.                   */
+         /* -------------------------------------------- */
+             /*  Single values              */
+             IF         COND(&FRM_RCV *EQ '*CURCHAIN'  +
+                        *OR  &FRM_RCV *EQ '*CURRENT' ) THEN(DO)
+               CHGVAR   VAR(&CMD) VALUE(&CMD *BCAT 'RCVRNG('    +
+                                             *CAT   &FRM_RCV    +
+                                             *TCAT ')')
+             ENDDO
+             ELSE       CMD(DO)
+               /*  Starting journal receiver  */
+               CHGVAR   VAR(&CMD) VALUE(&CMD *BCAT 'RCVRNG('    +
+                                             *TCAT  &FRM_RCVLIB +
+                                             *TCAT  '/'         +
+                                             *CAT   &FRM_RCV    )
+
+               /*  Ending journal receiver    */
+               IF         COND(&TO_RCV *EQ '*CURRENT') THEN(DO)
+                  /*  Single value               */
+                  CHGVAR   VAR(&CMD) VALUE(&CMD *BCAT &TO_RCV)
+               ENDDO
+               ELSE       CMD(DO)
+                  /*  Qualified receiver name    */
+                 CHGVAR   VAR(&CMD) VALUE(&CMD *BCAT  &TO_RCVLIB  +
+                                               *TCAT  '/'         +
+                                               *CAT   &TO_RCV     )
+               ENDDO
+
+               CHGVAR   VAR(&CMD) VALUE(&CMD *TCAT ')')
+             ENDDO
+
+         /* -------------------------------------------- */
+         /*  ... add parameter FMTMINDTA.                */
+         /* -------------------------------------------- */
+             CHGVAR   VAR(&CMD) VALUE(&CMD *BCAT +
+                                      'FMTMINDTA(*YES)')
+
+         /* -------------------------------------------- */
+         /*  Execute RCVJRNE command                     */
+         /* -------------------------------------------- */
+             CALL       PGM(QCMDEXC) PARM(&CMD 512)
+             MONMSG     MSGID(CPF7062) /*  No entries converted or     */
+                                       /*  received from journal JRN.  */
+
+             RTVMBRD    FILE(&OUTLIB/&OUTFILE) MBR(&OUTMBR *SAME) +
+                          NBRCURRCD(&NUMRCD_A)
+
+             CALLPRC    PRC('EXPJRNER7_Error_getCounterAsString') +
+                          RTNVAL(&NUM_ERRORS)
+
+  /* ------------------------------------------------------------------------ */
+  /* Send error information message.                                          */
+  /* ------------------------------------------------------------------------ */
+             IF         COND(&NUM_ERRORS *NE '0') THEN(DO)
+               /* Skipped &1 journal entries due to errors. */
+               SNDPGMMSG  MSGID(USR0018) MSGF(&PRDLIB/&APP_MSG_F) +
+                          MSGDTA(&NUM_ERRORS) +
+                          TOPGMQ(*PRV (*PGMBDY)) +
+                          MSGTYPE(*DIAG)
+             ENDDO
+
+  /* ------------------------------------------------------------------------ */
+  /* Send completion message.                                                 */
+  /* ------------------------------------------------------------------------ */
+
+             CHGVAR     VAR(&NUMRCD_T) VALUE(&NUMRCD_A - &NUMRCD_B)
+
+             IF         COND(&NUMRCD_T *NE 0) THEN(DO)
+               CHGVAR     VAR(&NUMRCD) VALUE(&NUMRCD_T)
+
+RMV_0:
+               IF         COND(%SST(&NUMRCD 1 1) *EQ '0') THEN(DO)
+                 CHGVAR     VAR(&NUMRCD) VALUE(%SST(&NUMRCD 2 9))
+                 GOTO       CMDLBL(RMV_0)
+               ENDDO
+
+               /* &3 Journal entries exported to outfile &2/&1. */
+               SNDPGMMSG  MSGID(USR0014) MSGF(&PRDLIB/&APP_MSG_F) +
+                          MSGDTA(&OUTFILE *CAT &OUTLIB *CAT &NUMRCD) +
+                          TOPGMQ(*PRV (*PGMBDY)) +
+                          MSGTYPE(*INFO)
+             ENDDO
+             ELSE       CMD(DO)
+               /* No journal entries available for file &2/&1. */
+               SNDPGMMSG  MSGID(USR0015) MSGF(&PRDLIB/&APP_MSG_F) +
+                          MSGDTA(&OBJ *CAT &LIB) +
+                          TOPGMQ(*PRV (*PGMBDY)) +
+                          MSGTYPE(*INFO)
+             ENDDO
+
+ /* -------------------------------------------------------------- */
+ /*  End program                                                   */
+ /* -------------------------------------------------------------- */
+
+ENDE:
+
+/* -------------------------------------------------------------- */
+/*    Fehler aufgetreten ?                                        */
+/* -------------------------------------------------------------- */
+
+             IF         COND(&ERROR) THEN(DO)
+               /* Command ended in error - See joblog. */
+               SNDPGMMSG  MSGID(USR0016) MSGF(&PRDLIB/&APP_MSG_F) +
+                          TOPGMQ(*PRV (*PGMBDY)) +
+                          MSGTYPE(*ESCAPE)
+               MONMSG     MSGID(CPF0000)
+             ENDDO
+
+             RETURN
+
+ ERROR:
+             IF         COND(&ERROR) THEN(GOTO CMDLBL(ENDE))
+             ELSE       CHGVAR     VAR(&ERROR) VALUE(&TRUE)
+
+             CALL       PGM(QMHMOVPM) PARM(&ERRMSGKEY &ERRMSGTYP +
+                          &ERRNBRTYP &ERRPGMMSGQ &ERRSTKCTR &ERRCODE)
+
+             GOTO       CMDLBL(ENDE)
+
+             ENDPGM

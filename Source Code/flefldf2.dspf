@@ -1,0 +1,129 @@
+     A*%%TS  SD  20240509  085937  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*  File Field Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20240509  085937  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+COPY A            FRMKEYS@       1A  P
+COPY A            FLDNMECPY@     1A  P
+KEY  A            FLDNME@        1A  P
+     A            FLDSEQ@        1A  P
+     A            PRIKEYD@       1A  P
+     A            ENCFLDD@       1A  P
+     A            STRIDN@        1A  P
+     A            IDNICM@        1A  P
+     A            AUDFLD@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MODE          10A  O  2  2
+     A                                  2 30'File Field Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3  2'Library'
+     A            FLELIB    R        O  3 18
+     A            LIBDES    R        O  3 29
+     A                                  4  2'File'
+     A            FLENME    R        O  4 18REFFLD(FLENME)
+     A            FLEDES    R        O  4 29REFFLD(DES)
+     A                                  5  2'Dictionary'
+     A            DCTNME    R        O  5 18
+     A            DCTDES    R        O  5 29REFFLD(DES)
+     A                                      ALIAS(DICTIONARY_DESCRIPTION)
+     A                                  6  2'Copy Field'
+     A                                      DSPATR(&FRMKEYS@)
+     A            FLDNMECPY R        B  6 18REFFLD(FLDNME)
+     A                                      ALIAS(FLDE_NAME_COPY)
+     A                                      DSPATR(&FLDNMECPY@)
+     A                                  7  2'Field'
+     A            FLDNME    R        B  7 18DSPATR(&FLDNME@)
+     A                                  7 29'?'
+     A                                  7 33'Status:'
+     A            FLDSTSD       20A  O  7 41
+     A                                  9  2'Field Sequence'
+     A            FLDSEQ    R        B  9 18DSPATR(&FLDSEQ@)
+     A                                 10  2'Primary Key'
+     A            PRIKEYD   R    3   B 10 18REFFLD(PRIKEY)
+     A                                      DSPATR(&PRIKEYD@)
+     A                                 10 22'?'
+     A                                 11  2'Audit Field'
+     A            AUDFLD    R    3   B 11 18DSPATR(&AUDFLD@)
+     A                                 11 22'?'
+     A                                 13  2'Column Name'
+     A            FLDNMESQL     40A  O 13 18
+     A                                 14  2'Column Text'
+     A            COLTXT    R        O 14 18
+     A                                 15  2'Type'
+     A            FLDTYPD       50A  O 15 18TEXT('Field')
+     A                                      ALIAS(FIELD_)
+     A                                 16  2'Allow Null'
+     A            ALWNULD        3A  O 16 18
+     A                                 17  2'Default Value'
+     A            DFTVAL    R        O 17 18
+     A                                 18  2'Enumerated'
+     A            ENMDES         3A  O 18 18
+     A                                 20  2'Starting ID'
+     A            STRIDN    R        B 20 18DSPATR(&STRIDN@)
+     A                                 21  2'Id Increment'
+     A            IDNICM    R        B 21 18DSPATR(&IDNICM@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                 12  2'Field Encrypted'
+     A            ENCFLDD   R    3   B 12 18REFFLD(ENCFLD) DSPATR(&ENCFLDD@)
+     A                                 12 22'?'
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

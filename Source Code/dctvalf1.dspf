@@ -1,0 +1,124 @@
+     A*%%TS  SD  20210920  124028  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A* Dictionary Value List
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R SFL                       SFL
+     A  58                                  SFLNXTCHG
+     A            SEL@           1A  P
+     A            KEY           10   H
+     A            SEL       R        B 11  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL@)
+     A            ENMVAL    R        O 11  5
+     A            ENMDES    R        O 11 16
+     A            ACVDES        10A  O 11 57
+     A          R SFLCTL                    SFLCTL(SFL)
+     A                                      SFLPAG(0012)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A  98                                  SFLEND
+     A                                      SFLSIZ(&SFLSIZ)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SFLMODE        1A  H
+     A            SEL1@          1A  P
+     A            ENMVAL1@       1A  P
+     A            ENMDES1@       1A  P
+     A            ACVDES1@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            MODE          10A  O  2  2
+     A                                  2 30'Enumerated Value List'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  4  2'Dictionary'
+     A            DCTNME    R        O  4 13
+     A            DCTDES    R        O  4 24REFFLD(DES)
+     A                                  5  2'Field'
+     A            FLDNME    R        O  5 13
+     A            COLTXT    R        O  5 24
+     A            OPTIONS       79A  O  7  1COLOR(BLU)
+     A                                  8  1'Search:'
+     A            SCHVAL    R        B  8  9
+     A                                  9  1'Sel'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  9  5'Value     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  9 16'Description                       -
+     A                                            '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  9 57'Active    '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A            SEL1      R        B 10  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            ENMVAL1   R        B 10  5REFFLD(ENMVAL)
+     A                                      DSPATR(&ENMVAL1@)
+     A            ENMDES1   R        B 10 16REFFLD(ENMDES)
+     A                                      DSPATR(&ENMDES1@)
+     A                                      CHECK(LC)
+     A            ACVDES1       10A  B 10 57DSPATR(&ACVDES1@)
+     A                                      CHECK(LC)
+     A          R FOOTER
+     A                                      OVERLAY
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

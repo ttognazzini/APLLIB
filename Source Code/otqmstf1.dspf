@@ -1,0 +1,141 @@
+     A*%%TS  SD  20231208  163027  BYOUNGER    REL-V7R4M0  5770-WDS
+     A* Output Queue Master
+     A*
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A          R SFL                       SFL
+     A*%%TS  SD  20231208  163027  BYOUNGER    REL-V7R4M0  5770-WDS
+     A            SEL@           1A  P
+     A            KEY       R        H      REFFLD(OTQMSTIDN)
+     A            OTQLIB    R        H
+     A            SEL       R        B  9  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL@)
+     A            OTQNME    R        O  9  5
+     A            DES       R        O  9 16
+     A            WTRSTS        10A  O  9 57
+     A            FRMTYP        10A  O  9 68
+     A                                 10  2'Policy Number:'
+     A            PCYNBR    R        O 10 17
+     A                                 10 20'Printer Type:'
+     A            PRTTYP    R        O 10 34
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20231208  163027  BYOUNGER    REL-V7R4M0  5770-WDS
+     A                                      SFLPAG(0007)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A                                      SFLMODE(&SFLMODE)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A N11                                  SFLDROP(CF22)
+     A  11                                  SFLFOLD(CF22)
+     A                                      SFLSIZ(&SFLSIZ)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SFLMODE        1A  H
+     A            FLTEFF         1A  H
+     A            SEL1@          1A  P
+     A            OTQNME1@       1A  P
+     A**          WTRSTS1@       1A  P
+     A**          FRMTYP1@       1A  P
+     A            DES1@          1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 31'Output Queue Master'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  4  1'Search:'
+     A            SCHVAL    R        B  4  9
+     A            OPTIONS       79A  O  6  1COLOR(BLU)
+     A                                  7  1'Sel'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  7  5'Outq      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 16'Description                       -
+     A                                            '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 57'Writer STS'
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  7 68'Form Type '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A            SEL1      R        B  8  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            OTQNME1   R        B  8  5REFFLD(OTQNME)
+     A                                      DSPATR(&OTQNME1@)
+     A            DES1      R        B  8 16REFFLD(DES)
+     A                                      DSPATR(&DES1@)
+     A                                      CHECK(LC)
+     A            WTRSTS1       10A  B  8 57DSPATR(ND PR)
+     A            FRMTYP1       10A  B  8 68DSPATR(ND PR)
+     A*
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A                                      OVERLAY
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

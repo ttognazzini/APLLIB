@@ -1,0 +1,58 @@
+/* Move source member with search capabilities */
+Pgm Parm(&srcMbr &srcFle &srcLib &server)
+  /* Input parameters */
+  Dcl &srcmbr   *Char Len(10)
+  Dcl &srcFle   *Char Len(10)
+  Dcl &srcLib   *Char Len(10)
+  Dcl &server   *Char Len(50)
+  Dcl &srcTyp   *Char Len(10)
+  Dcl &srcTxt   *Char Len(50)
+
+  /* If a library or file is not passed try to find them */
+  Call FSMCMDC1 (&srcMbr &srcFle &srcLib)
+
+  If (&srcLib *eq ' ') (Do)
+    SndPgmMsg  Msg('Error source library not provided or found, +
+                    source code not moved.')
+    Return
+  EndDo
+
+  If (&srcFle *eq ' ') (Do)
+    SndPgmMsg  Msg('Error source file not provided or found, +
+                    source code not moved.')
+    Return
+  EndDo
+
+  /* get the source type and text */
+  RTVMBRD FILE(&SRCLIB/&SRCFLE) MBR(&SRCMBR) SRCTYPE(&SRCTYP) TEXT(&SRCTXT)
+
+  /* Create the FTP script file in QTEMP, and add commands to it */
+  DltF QTEMP/MSMCMDC1IN
+  MonMSg CPF0000
+  RUNSQL 'Create Table QTEMP/MSMCMDC1IN ( script char(200) )' +
+          COMMIT(*NONE)
+  RUNSQL ('Insert into QTEMP/MSMCMDC1IN (SCRIPT) +
+            values(''''''ROOT400'''' ''''green2012''''''), +
+                  (''lcd ' *cat &srcLib *tcat '''), +
+                  (''cd ' *cat &srcLib *tcat '''), +
+                  (''put ' *cat &srcFle *tcat '.' *cat &srcMbr *tcat '''), +
+                  (''quote rcmd +
+                           CHGPFM FILE(' *cat &srcLib *tcat '/' *cat &srcFle *tcat ') +
+                                  MBR(' *cat &srcMbr *tcat ') SRCTYPE(' *cat &srcTyp *tcat ') +
+                                  TEXT(''''' *cat &srcTxt *tcat ''''')''), +
+                  (''quit'')') COMMIT(*NONE)
+
+  /* Create a log file in QTEMP in case it doesn't exist */
+  ChkObJ OBJ(QTEMP/MSMCMDC1LG) OBJTYPE(*FILE)
+  MonMsg CPF0000 EXEC( +
+    RUNSQL 'Create Table QTEMP/MSMCMDC1LG ( log char(120) )' +
+    COMMIT(*NONE))
+
+  /* FTP file member */
+  OvrDbf INPUT  tofile(QTEMP/MSMCMDC1IN)
+  OvrDbf OUTPUT tofile(QTEMP/MSMCMDC1LG)
+  FTP &server
+  DltOvr INPUT
+  DltOvr OUTPUT
+
+EndPgm

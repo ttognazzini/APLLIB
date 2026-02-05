@@ -1,0 +1,34 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=CHGMSD.Change Message Description
+:P.This command was created to allow changing of a message description
+with all the previous values defautled in. It works like the IBM supplied
+CHGMSGD command except the existing values are defaulted.
+:P.The command does not allow all the values to be passed, instead it is
+meant to be called and the have the values modified.
+:H2.Examples:
+:P.CHGMSD MSGID(APL0000) MSGF(APLLIB/APLMSGF) <ENTER>
+:P.CHGMSD MSGID(XLS6001) MSGF(#$XLSX1.0/#$XLSX) <ENTER>
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CHGMSD/MSGID'.Message ID (MSGID)
+:XH3.MSGID - Message ID - HELP
+:P.This field allows entry of the messasge ID to be changed.  It is
+required.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CHGMSD/MSGF'.Message File (MSGF)
+:XH3.MSGF - Message File - Help
+:P.Specifies name of a message file that the message id exists in.
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Enter the name of the message file. CHAR(10)
+:EPARML.
+:H3.Element 2: Library
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Enter the library name the message file exists in. CHAR(10)
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

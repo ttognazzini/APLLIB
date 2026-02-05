@@ -1,0 +1,18 @@
+DTAMNUQQ,1
+0001 call dctmstd1
+0002 call dctsegd1
+0003 call flemstd1
+0009 call pgmmstd1
+0012 call apllibd1
+0013 call syslibd1
+0014 call sysfled1
+0015 call sysvewd1
+0016 call sysidxd1
+0017 call syscstd1
+0018 call sysprcd1
+0019 call sysfncd1
+0020 call sysvard1
+0021 call systrgd1
+0024 go nets
+0090 signoff
+0099 signoff

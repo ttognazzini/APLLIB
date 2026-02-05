@@ -1,0 +1,22 @@
+/* Build the GO NETS menu and associated commands */
+
+/* See this article for more information:  +
+   https://www.ibm.com/support/pages/manage-ibm-i-netserver-without-navigator-go-nets */
+
+Pgm
+
+  /* Build the menu and commands in the NETSRVCMD library */
+  CRTLIB LIB(NETSRVCMD) TEXT('i5/OS NetServer menu and commands')
+  CALL QUSRTOOL/UNPACKAGE PARM('*ALL ' 1)
+  CRTCLPGM NETSRVCMD/TZLSINST QUSRTOOL/QATTCL
+  CALL NETSRVCMD/TZLSINST NETSRVCMD
+
+  /* original functionality */
+  /* ADDLIBLE NETSRVCMD     */
+  /* GO NETS                */
+
+  /* copy all objects into APLLIB so you do not have to add NETSRVCMD to your library list */
+  CRTDUPOBJ  OBJ(*ALL) FROMLIB(NETSRVCMD) OBJTYPE(*ALL) TOLIB(APLLIB) DATA(*YES)
+
+
+Endpgm

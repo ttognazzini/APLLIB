@@ -1,0 +1,24 @@
+Create or Replace Function APLLIB/DATED (DateDate Date )
+  Returns Decimal(8, 0)
+  Language SQL
+  Deterministic
+  Contains SQL
+  Returns Null on Null Input
+  No External Action
+  Set Option DATFMT=*ISO
+Begin
+  Declare ResultDate Decimal(8, 0);
+  Declare InvalidDate Condition For '22007';
+  Declare Exit Handler For InvalidDate
+
+    Begin
+      Return cast(0 as Decimal(8, 0));
+      Signal SQLState '01HDI' Set Message_Text='Invalid date';
+    End;
+
+  Set ResultDate =
+    Case When dateDate = '0001-01-01' then 0
+         Else Dec(VarChar_Format(dateDate, 'YYYYMMDD')) end;
+  Return ResultDate;
+End;
+Label on function APLLIB/DATED is 'Convert Date Data Type to YYYYMMDD';

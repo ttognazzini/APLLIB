@@ -1,0 +1,115 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=SQL2JSON.Create a JSON file from an SQL Statement
+:P.This command was created to allow use of SQL to create a JSON file.
+:P.The SQL statement must output a table to work. The command only works
+with tables of up to 500 columns.
+:H2.Example 1:
+:P.The following example creates an JSON file with all fields from the
+customer file for the test customer.
+:P.SQL2JSON 'SELECT * FROM CUST WHERE CNUM=9624' FILE('/TOG/TEST')
+:H2.Example 2:
+:P.The following example creates a JSON file with select fields from the
+customer file for the test customer.
+:P.SQL2JSON SQL('Select CNUM, CNAM, CDOPEN2K, CLOPR, CLMODS2K from cust where
+cnum=9624') FILE('/TOG/TEST')
+:H2.Example 3:
+:P.The following example creates a JSON file with select fields from the
+customer file. It also overrides the headers for each field and converts
+the date fields to a date type in Excel.
+:P.SQL2JSON SQL('Select CNUM Customer, CNAM "Customer Name",
+FDATE(CDOPEN2K) "Open Date", CLOPR "Last Changed By",
+FDATE(CLMODS2K) "Last Changed Date" from cust where
+cnum=9624')
+:P.To override a column name just use an alias in the SQL statement. To
+format a date field use the FDATE function. For JSON files it is
+normally better to just include date fields as a number because it is
+easier for web type programs to convert.
+:P.The command will automatically convert key values to lowercase and
+replace spaces with underscores. So in this example key for the second
+field will be "customer_name" not "Customer Name". This was done
+because that is how most web developers want it.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL2JSON/SQL'.SQL Select Statement - HELP
+:XH3.SQL - SQL Select Statement
+:P.Enter a valid SQL select statement. It must return at least
+one row with at least one column or nothing will be included in the file.
+:P.Example: Select * from cust where cnum=9624
+:P.This is a required parameter. The max length is 5000 characters.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL2JSON/FILE'.File (FILE) - Help
+:XH3.FILE - File
+:P.Specifies the name and path of the file to create. CHAR(128)
+:NT.If the file extension is not added the program will
+add it for you. If the file extension is wrong, the wrong
+extension will be left on, then the correct extension will
+be added after it.:ENT.
+:NT.Valid extensions are .xlsx for an Excel file, .xml for an
+XML file and .csv for a comma separated text file.:ENT.
+:P.:HP2.Example:EHP2. '/tog/test.xlsx'
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL2JSON/TYPE'.File Type (TYPE) - Help
+:XH3.TYPE - File Type
+:P.Specifies the type of file to create. The valid types are:
+:UL.
+:LI.:HP2.*XLS:EHP2. - Creates an Excel file.
+:LI.:HP2.*XML:EHP2. - Creates an Excel formatted XML file.
+:LI.:HP2.*CSV:EHP2. - Creates a Comma Separated Variable text file.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL2JSON/EMPTY'.Create Empty File (EMPTY) - Help
+:XH3.EMPTY - Create Empty File
+:P.This option allows the program to either create an empty file
+or not create an empty file if the SQL statement produces an
+empty result set.
+:PARML.
+:PT.:PK def.*YES:EPK.
+:PD.If the SQL statement returns an empty result set, a file with
+just a header line will be created.
+:EPARML.
+:PARML.
+:PT.:PK.*NO:EPK.
+:PD.If the SQL statement returns an empty result set, no file
+will be created.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL2JSON/READBLE'.Readable JSON Format (READBLE) - Help
+:XH3.READBLE - Readable JSON Format
+:P.This option allows changing the format of the JSON file to a readable
+format. The readable format inserts line breaks and spacing to make the
+file easier to read by a human. This also makes the file larger. This
+option should be used when testing, but in production it should be set
+to *NO.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL2JSON/USETEXT'.Use Field Text (USETEXT) - Help
+:XH3.USETEXT - Use Field Text
+:P.This option allows using the field text for the field keyes. By
+default the program will field names or aliases if entered in the SQL
+statement. Entering *YES here changes the program to use the text defined
+in the file.
+:P.If using this option any aliases are replaced with the text from the
+file. So the aliases for fields become useless.
+:P.This option does not work for calculated fields or functions. This
+is because there is no field associated with the calculated column. For
+instance if you selected a column calculating the unit price in PLISTD
+times the quantity like this PDQTY*PDUPRI, then there would not be a
+direct field referenced for the column so the program cannot figure
+out what text to use. In this case you will need to supply a column
+alias for the column.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL2JSON/TITLE1'.Report Title (TITLEx) - Help
+:XH3.TITLEx - Report Title
+:P.These options allow adding up to five title lines to the file. For
+Excel, CSV and XML the titles will be included at the top of the file.
+For JSON files the titles will be included as keyed pairs before the
+data array.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

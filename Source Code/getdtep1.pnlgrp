@@ -1,0 +1,276 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=GETDATE.Retrieve Current Date
+:P.This command was created to retrieve the current job or system
+date. Unqualified it returns the job date as a decimal field that is
+declared as LEN(8,0).
+:P.The command also has options to retrieve the date in different formats
+and to receive parts of the date like the year or month.
+:P.The command can also be used to get previous and future dates. There
+are options to add and subtract days, works days, months and years.
+:P.The command be used to do date math on a passed date as well. The
+STRDATE parameter allows passing in a different start date. Enter *PASS
+as the option and a field for INDATE will be allowed. The INDATE field
+tells the program to use the date passed as the start date. Then the
+addition and subtraction options will be based on the passed date. The
+passed date must be a character value in YYYYMMDD format.
+:P.This is used in CL programs so you do not have
+to declare multiple fields to retrieve the date and then do date
+conversion.
+:H2.Example 1:
+:P.The following example pulls the job date in YYYYMMDD format as
+a decimal value.
+:P.GETDATE &#DATE
+:H2.Example 2:
+:P.The following example pulls the year, month and day as seperate
+character fields.
+:P.GETDATE CHRYYYY(&YYYY) CHRMM(&MM) CHRDD(&DD)
+:H2.Example 3:
+:P.The following example gets the system date in YYYYMMDD format as
+a decimal value.
+:P.GETDATE &#DATE STRDATE(*SYS)
+:H2.Example 4:
+:P.The following example pulls the previous work day in YYYYMMDD
+format.
+:P.GETDATE &PRIDATE SUBWRKDAY(1)
+:H2.Example 5:
+:P.The following example shows how to do date math using the
+command. This example add 5 work days to date 20210101. This is
+done by passing a date in and using the ADDWRKDAYS option.
+:P.GETDATE &TODATE ADDWRKDAY(5) STRDATE(*PASS) INDATE(20210101)
+:P.Since 2021-01-01 is a Friday the command will return 20210108
+in the variable &TODATE.
+:P.The remainder of this help text lists each format available.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/DEC8'.Decimal 8 Digit Date - YYYYMMDD
+:XH3.DEC8 Decimal 8 Digit Date - YYYYMMDD
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *DEC LEN(8 0). The date will be returned in
+YYYYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHR8'.Character 8 Digit Date - YYYYMMDD
+:XH3.CHR8 Character 8 Digit Date - YYYYMMDD
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(8). The date will be returned in
+YYYYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/DEC6'.Decimal 6 Digit Date - YYMMDD
+:XH3.DEC6 Decimal 6 Digit Date - YYMMDD
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *DEC LEN(6 0). The date will be returned in
+YYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHR6'.Character 6 Digit Date - YYMMDD
+:XH3.CHR6 Character 6 Digit Date - YYMMDD
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(6). The date will be returned in
+YYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/DECMDY8'.Decimal 8 Digit Date - MMDDYYYY
+:XH3.DECMDY8 Decimal 8 Digit Date - MMDDYYYY
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *DEC LEN(8 0). The date will be returned in
+YYYYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRMDY8'.Character 8 Digit Date - MMDDYYYY
+:XH3.CHRMDY8 Character 8 Digit Date - MMDDYYYY
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(8). The date will be returned in
+YYYYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/DECMDY6'.Decimal 6 Digit Date - MMDDYY
+:XH3.DECMDY6 Decimal 6 Digit Date - MMDDYY
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *DEC LEN(6 0). The date will be returned in
+YYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRMDY6'.Character 6 Digit Date - MMDDYY
+:XH3.CHRMDY6 Character 6 Digit Date - MMDDYY
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(6). The date will be returned in
+YYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/DECYYYY'.Decimal 4 Digit Year - YYYY
+:XH3.DECYYYY Decimal 4 Digit Year - YYYY
+:P.Specifies the CL variable to return the two digit year to. The variable
+must be defined as *DEC LEN(4 0).
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRYYYY'.Character 4 Digit Year - YYYY
+:XH3.CHRYYYY Character 4 Digit Year - YYYY
+:P.Specifies the CL variable to return the two digit year to. The variable
+must be defined as *CHAR LEN(4).
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/DECYY'.Decimal 2 Digit Year - YY
+:XH3.DECYY Decimal 2 Digit Year - YY
+:P.Specifies the CL variable to return the two digit year to. The variable
+must be defined as *DEC LEN(2 0).
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRYY'.Character 2 Digit Year - YY
+:XH3.CHRYY Character 2 Digit Year - YY
+:P.Specifies the CL variable to return the two digit year to. The variable
+must be defined as *CHAR LEN(2).
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/DECMM'.Decimal Month - MM
+:XH3.DECMM Decimal Month - MM
+:P.Specifies the CL variable to return the two digit month to. The variable
+must be defined as *DEC LEN(2 0).
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRMM'.Character Month - MM
+:XH3.CHRMM Character Month - MM
+:P.Specifies the CL variable to return the two digit month to. The variable
+must be defined as *CHAR LEN(2).
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/DECDD'.Decimal Day - DD
+:XH3.DECDD Decimal Day - DD
+:P.Specifies the CL variable to return the two digit day to. The variable
+must be defined as *DEC LEN(2 0).
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRDD'.Character Day - DD
+:XH3.CHRDD Character Day - DD
+:P.Specifies the CL variable to return the two digit day to. The variable
+must be defined as *CHAR LEN(2).
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRF8'.Character 8 Digit Formatted Date - YYYY-MM-DD
+:XH3.CHRF8 Character 8 Digit Formatted Date - YYYY-MM-DD
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(10). The date will be returned in
+YYYY-MM-DD format and it will include the dashes.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRF6'.Character 6 Digit Formatted Date - YY-MM-DD
+:XH3.CHRF6 Character 6 Digit Formatted Date - YY-MM-DD
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(8). The date will be returned in
+YY-MM-DD format and it will include the dashes.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRFMDY8'.Character 8 Digit Formatted Date - MM-DD-YYYY
+:XH3.CHRFMDY8 Character 8 Digit Formatted Date - MM-DD-YYYY
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(10). The date will be returned in
+MM-DD-YYYY format and it will include the dashes.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRFMDY6'.Character 6 Digit Formatted Date - MM-DD-YY
+:XH3.CHRFMDY6 Character 6 Digit Formatted Date - MM-DD-YY
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(8). The date will be returned in
+MM-DD-YY format and it will include the dashes.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRS8'.Character 8 Digit Slashed Date - YYYY/MM/DD
+:XH3.CHRS8 Character 8 Digit Slashed Date - YYYY/MM/DD
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(10). The date will be returned in
+YYYY/MM/DD format and it will include the slashes.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRS6'.Character 6 Digit Slashed Date - YY/MM/DD
+:XH3.CHRS6 Character 6 Digit Slashed Date - YY/MM/DD
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(8). The date will be returned in
+YY/MM/DD format and it will include the slashes.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRSMDY8'.Character 8 Digit Slashed Date - MM/DD/YYYY
+:XH3.CHRSMDY8 Character 8 Digit Slashed Date - MM/DD/YYYY
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(10). The date will be returned in
+MM/DD/YYYY format and it will include the slashes.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/CHRSMDY6'.Character 6 Digit Slashed Date - MM/DD/YY
+:XH3.CHRSMDY6 Character 6 Digit Slashed Date - MM/DD/YY
+:P.Specifies the CL variable to return the date value to. The variable
+must be defined as *CHAR LEN(8). The date will be returned in
+MM/DD/YY format and it will include the slashes.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/ADDDAY'.Adds a Number of Days
+:XH3.ADDDAY Adds a Number of Days
+:P.Specifies the number of days to add to the current date. This could
+be used to get tomorrows date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/SUBDAY'.Subtracts a Number of Days
+:XH3.SUBDAY Subtracts a Number of Days
+:P.Specifies the number of days to subtract from the current date. This could
+be used to get yesterdays date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/ADDWRKDAY'.Adds a Number of Work Days
+:XH3.ADDWRKDAY Adds a Number Work of Days
+:P.Specifies the number of work days to add to the current date. This
+works like ADDDAY but it skips weekends and holidays. For instance if
+it is Friday and you add 1 work day it will return Mondays date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/SUBWRKDAY'.Subtracts a Number of Work Days
+:XH3.SUBWRKDAY Subtracts a Number of Work Days
+:P.Specifies the number of days to subtract from the current date. This
+works like SUBDAY but it skips weekends and holidays. For instance if
+it is Monday and you subtract 1 work day it will return the previous
+Fridays date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/ADDMTH'.Adds a Number of Months
+:XH3.ADDMTH Adds a Number of Months
+:P.Specifies the number of months to add to the current date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/SUBMTH'.Subtracts a Number of Months
+:XH3.SUBMTH Subtracts a Number of Month
+:P.Specifies the number of months to subtract from the current date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/ADDYEAR'.Adds a Number of Years
+:XH3.ADDYEAR Adds a Number of Years
+:P.Specifies the number of years to add to the current date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/SUBYEAR'.Subtracts a Number of Years
+:XH3.SUBYEAR Subtracts a Number of Years
+:P.Specifies the number of years to subtract from the current date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/STRDATE'.Starting Date
+:XH3.STRDATE Starting Date
+:P.Specifies the date to start with. This defaults to the job
+date, the system date or a passed date can be used as well.
+:UL.
+:LI.:HP2.*JOB - Default:EHP2. - The program will use the job date, any
+date math preformed will start with this date.
+:LI.:HP2.*SYS:EHP2. - The program will use the system date, any date math
+preformed will start with this date.
+:LI.:HP2.*PASS:EHP2. - The program will use a date passed to it. Use this
+option to preform date math on any specific date. If this option is used
+the INDATE parameter must be specified as well.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETDATE/INDATE'.Input Date
+:XH3.INDATE Input Date
+:P.This parameter is only valid if the STRDATE parameter is set to
+*PASS. This option allows a specific date to be passed in so that
+formatting and date math can be performed on it.
+:P.The date passed in must be character data in YYYYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

@@ -1,0 +1,167 @@
+     A*%%TS  SD  20250926  111015  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A* DICTIONARY SEGEMENTS
+     A*
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A                                      HLPTITLE('Dictionary Segments - Li-
+     A                                      st')
+     A          R SFL                       SFL
+     A*%%TS  SD  20250926  111015  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A            SEL@           1A  P
+     A            ROWCLR@        1A  P
+     A            KEY            3A  H
+     A            SEL       R        B  7  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL@)
+     A            DTASEG    R        O  7  5DSPATR(&ROWCLR@)
+     A            DES       R        O  7  9DSPATR(&ROWCLR@)
+     A            ACVDES        10A  O  7 50DSPATR(&ROWCLR@)
+     A            CNFEXSD        5A  O  7 62DSPATR(&ROWCLR@)
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20250926  111015  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A                                      SFLMODE(&SFLMODE)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      SFLPAG(0016)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(DCTSEGD1 DCTSEGP1)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' DCTSEGP1)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' DCTSEGP1)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' DCTSEGP1)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('OPTIONS' DCTSEGP1)
+     A                                      HLPARA(*FLD OPTIONS)
+     A          H                           HLPPNLGRP('SCHVAL' DCTSEGP1)
+     A                                      HLPARA(*FLD SCHVAL)
+     A          H                           HLPPNLGRP('OPTIONS' DCTSEGP1)
+     A                                      HLPARA(06 002 22 003)
+     A          H                           HLPPNLGRP('DTASEG' DCTSEGP1)
+     A                                      HLPARA(06 005 22 007)
+     A          H                           HLPPNLGRP('DES' DCTSEGP1)
+     A                                      HLPARA(06 009 22 048)
+     A          H                           HLPPNLGRP('ACVDES' DCTSEGP1)
+     A                                      HLPARA(06 050 22 059)
+     A          H                           HLPPNLGRP('CNFEXSD' DCTSEGP1)
+     A                                      HLPARA(06 062 22 066)
+     A*                                     End Automated help text information
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SFLMODE        1A  H
+     A            DTASEG1@       1A  P
+     A            DES1@          1A  P
+     A            CNFEXSD1@      1A  P
+     A            ACVDES1@       1A  P
+     A            SCHVAL@        1A  P
+     A            SEL1@          1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD('0  :  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 28'Dictionary Segement Master'
+     A                                      DSPATR(HI)
+     A                                  2 70USER
+     A            OPTIONS       79A  O  3  1COLOR(BLU)
+     A                                  4  1'Search:'
+     A            SCHVAL        40A  B  4  9DSPATR(&SCHVAL@)
+     A                                  5  1'Sel'
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  5  5'Seg'
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  5  9'Description                       -
+     A                                            '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  5 50'Status    '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  5 62'Conflict'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SEL1      R        B  6  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            DTASEG1   R        B  6  5REFFLD(DTASEG)
+     A                                      DSPATR(&DTASEG1@)
+     A            DES1      R        B  6  9REFFLD(DES)
+     A                                      DSPATR(&DES1@)
+     A                                      CHECK(LC)
+     A            ACVDES1       10A  B  6 50DSPATR(&ACVDES1@)
+     A            CNFEXSD1       5A  B  6 62DSPATR(&CNFEXSD1@)
+      *
+      *------------------------------------------------------------------------
+     A          R FOOTER
+     A                                      OVERLAY
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(DCTSEGD1 DCTSEGP1)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('FNCKEYS' DCTSEGP1)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

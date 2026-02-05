@@ -1,0 +1,185 @@
+     A*%%TS  SD  20250814  082326  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A*  File Master Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A                                      HLPTITLE('File Master - Create Sou-
+     A                                      rce Code')
+     A          R SCREEN
+     A*%%TS  SD  20250814  082326  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A          H                           HLPPNLGRP(FLEMSTD4 FLEMSTP4)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP(ENVIRONMNT FLEMSTP4)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP(PGMNME FLEMSTP4)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP(MDE FLEMSTP4)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP(FLENME FLEMSTP4)
+     A                                      HLPARA(*FLD FLENME)
+     A          H                           HLPPNLGRP(FLEDES FLEMSTP4)
+     A                                      HLPARA(*FLD FLEDES)
+     A          H                           HLPPNLGRP(FLELIB FLEMSTP4)
+     A                                      HLPARA(*FLD FLELIB)
+     A          H                           HLPPNLGRP(OBJLIB FLEMSTP4)
+     A                                      HLPARA(*FLD OBJLIB)
+     A          H                           HLPPNLGRP(FNCKEYS FLEMSTP4)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A          H                           HLPPNLGRP(FLEMSTD4 FLEMSTP4)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP(ENVIRONMNT FLEMSTP4)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP(PGMNME FLEMSTP4)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP(MDE FLEMSTP4)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP(FLELIB FLEMSTP4)
+     A                                      HLPARA(*FLD FLELIB)
+     A          H                           HLPPNLGRP(FLENME FLEMSTP4)
+     A                                      HLPARA(*FLD FLENME)
+     A          H                           HLPPNLGRP(FLEDES FLEMSTP4)
+     A                                      HLPARA(*FLD FLEDES)
+     A          H                           HLPPNLGRP(SRCLIB FLEMSTP4)
+     A                                      HLPARA(*FLD SRCLIB)
+     A          H                           HLPPNLGRP(SRCFLE FLEMSTP4)
+     A                                      HLPARA(*FLD SRCFLE)
+     A          H                           HLPPNLGRP(OBJLIB FLEMSTP4)
+     A                                      HLPARA(*FLD OBJLIB)
+     A          H                           HLPPNLGRP(FNCKEYS FLEMSTP4)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A          H                           HLPPNLGRP(FLEMSTD4 FLEMSTP4)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP(ENVIRONMNT FLEMSTP4)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP(PGMNME FLEMSTP4)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP(MDE FLEMSTP4)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP(FLELIB FLEMSTP4)
+     A                                      HLPARA(*FLD FLELIB)
+     A          H                           HLPPNLGRP(LIBDES FLEMSTP4)
+     A                                      HLPARA(*FLD LIBDES)
+     A          H                           HLPPNLGRP(FLENME FLEMSTP4)
+     A                                      HLPARA(*FLD FLENME)
+     A          H                           HLPPNLGRP(FLEDES FLEMSTP4)
+     A                                      HLPARA(*FLD FLEDES)
+     A          H                           HLPPNLGRP(SRCLIB FLEMSTP4)
+     A                                      HLPARA(*FLD SRCLIB)
+     A          H                           HLPPNLGRP(SRCFLE FLEMSTP4)
+     A                                      HLPARA(*FLD SRCFLE)
+     A          H                           HLPPNLGRP(OBJLIB FLEMSTP4)
+     A                                      HLPARA(*FLD OBJLIB)
+     A          H                           HLPPNLGRP(FNCKEYS FLEMSTP4)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(FLEMSTD4 FLEMSTP4)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' FLEMSTP4)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' FLEMSTP4)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' FLEMSTP4)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('FLELIB' FLEMSTP4)
+     A                                      HLPARA(*FLD FLELIB)
+     A          H                           HLPPNLGRP('LIBDES' FLEMSTP4)
+     A                                      HLPARA(*FLD LIBDES)
+     A          H                           HLPPNLGRP('FLENME' FLEMSTP4)
+     A                                      HLPARA(*FLD FLENME)
+     A          H                           HLPPNLGRP('FLEDES' FLEMSTP4)
+     A                                      HLPARA(*FLD FLEDES)
+     A          H                           HLPPNLGRP('SRCLIB' FLEMSTP4)
+     A                                      HLPARA(*FLD SRCLIB)
+     A          H                           HLPPNLGRP('SRCLIBDES' FLEMSTP4)
+     A                                      HLPARA(*FLD SRCLIBDES)
+     A          H                           HLPPNLGRP('SRCFLE' FLEMSTP4)
+     A                                      HLPARA(*FLD SRCFLE)
+     A          H                           HLPPNLGRP('OBJLIB' FLEMSTP4)
+     A                                      HLPARA(*FLD OBJLIB)
+     A          H                           HLPPNLGRP('FNCKEYS' FLEMSTP4)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SRCLIB@        1A  P
+     A            SRCFLE@        1A  P
+     A            OBJLIB@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 29'File Master Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3 32'Build Source Code'
+     A                                      DSPATR(HI)
+     A                                  6  2'File Library'
+     A            FLELIB    R        O  6 18
+     A            LIBDES    R        O  6 31
+     A                                  7  2'File'
+     A            FLENME    R        O  7 18
+     A            FLEDES    R        O  7 31
+     A                                 10  2'Source Library'
+     A            SRCLIB    R        B 10 18DSPATR(&SRCLIB@)
+     A                                 11  2'Source File'
+     A            SRCFLE    R        B 11 18DSPATR(&SRCFLE@)
+     A                                 13  2'Object Library'
+     A            OBJLIB    R        B 13 18DSPATR(&OBJLIB@)
+     A                                 13 31'(Blank for None)'
+     A                                      DSPATR(HI)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                 10 29'?'
+     A            SRCLIBDES     50   O 10 31
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

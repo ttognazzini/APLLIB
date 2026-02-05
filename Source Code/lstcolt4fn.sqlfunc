@@ -1,0 +1,14 @@
+         Create or Replace Function APLLIB/LSTCOLT1 (
+           Lib    VarChar(10),
+           Tbl    VarChar(10),
+           Len    Decimal(5,0),
+           Pfx    VarChar(10))
+         Returns Table (Fld       Char(120))
+          Modifies SQL Data
+          Fenced
+          External Name 'APLLIB/LSTCOLT1'
+          Returns null on null input
+          Language RPGLE
+          Allow Parallel
+          Parameter Style DB2SQL;
+

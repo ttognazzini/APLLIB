@@ -1,0 +1,120 @@
+     A*%%TS  SD  20240315  160211  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A                                      HLPTITLE('Output Options - Archive-
+     A                                       Options')
+     A          R SCREEN
+     A*%%TS  SD  20240315  160211  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(OTOPMTD4 OTOPMTP4)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' OTOPMTP4)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' OTOPMTP4)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' OTOPMTP4)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('ARCFLR' OTOPMTP4)
+     A                                      HLPARA(*FLD ARCFLR)
+     A          H                           HLPPNLGRP('ATANME' OTOPMTP4)
+     A                                      HLPARA(*FLD ATANME)
+     A          H                           HLPPNLGRP('ATATYP' OTOPMTP4)
+     A                                      HLPARA(*FLD ATATYP)
+     A          H                           HLPPNLGRP('VLDATY' OTOPMTP4)
+     A                                      HLPARA(*FLD VLDATY)
+     A          H                           HLPPNLGRP('CRTXMA' OTOPMTP4)
+     A                                      HLPARA(*FLD CRTXMA)
+     A          H                           HLPPNLGRP('ATAFMT' OTOPMTP4)
+     A                                      HLPARA(*FLD ATAFMT)
+     A          H                           HLPPNLGRP('FNCKEYS' OTOPMTP4)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            ARCFLR@        1A  P
+     A            ATANME@        1A  P
+     A            ATATYP@        1A  P
+     A            CRTXMA@        1A  P
+     A            ATAFMT@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 34'Output Options'
+     A                                      DSPATR(HI)
+     A                                  2 70USER
+     A                                  3 33'Archive Options'
+     A                                      COLOR(WHT)
+     A                                  6  2'Archive to Folder:'
+     A            ARCFLR    R        B  6 21CHECK(LC)
+     A                                      DSPATR(&ARCFLR@)
+     A                                  7 21'(example: /FileServer/Reports)'
+     A                                  9 10'File Name:'
+     A            ATANME    R        B  9 21CHECK(LC)
+     A                                      DSPATR(&ATANME@)
+     A                                 10 21'(blank will assign a unique number-
+     A                                      )'
+     A                                 12 10'File Type:'
+     A            ATATYP    R        B 12 21DSPATR(&ATATYP@)
+     A            VLDATY        50A  O 12 28
+     A                                 14  2'Create XML Attribute File:'
+     A            CRTXMA    R        B 14 29DSPATR(&CRTXMA@)
+     A                                 14 31'(Y/N)'
+     A                                 16 10'File Format:'
+     A            ATAFMT    R        B 16 23DSPATR(&ATAFMT@)
+     A                                 16 26'(1=Data,2=Report)'
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

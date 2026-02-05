@@ -1,0 +1,14 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=CHGOTQ.Changes an Output Queue
+:P.This command is used to change an output queue.
+It is intended to overcome the security restrictions on
+QUSRSYS.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CHGOTQ/OUTQ'.Output Queue
+:XH3.OUTQ - Output Queue
+:P.Enter the output queue to change.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

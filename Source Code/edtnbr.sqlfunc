@@ -1,0 +1,10 @@
+Create or Replace Function APLLIB/EDTNBR
+     ( decimal(30,10), varChar(50) )
+     returns char(30)
+     language rpgle
+     not deterministic
+     no sql
+     external name 'APLLIB/EDTNBRV1(EDTNBR)'
+     parameter style general
+     program type sub
+     NO EXTERNAL ACTION;

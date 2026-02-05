@@ -1,0 +1,237 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FLEIDXD1.File Indexes - List
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: FLEIDXF1 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,47)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: FLEIDXF1 Field: PGMNME
+Type: CHAR(10)
+Location: (1,118)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MDE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: FLEIDXF1 Field: MDE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DESLINE'.Error name not found (DESLINE)
+:XH3.Error name not found (DESLINE)
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: DESLINE
+Type: CHAR(20)
+Location: (3,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FLEDES'.File Description
+:XH3.File Description
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: FLEDES
+Type: CHAR(50)
+Location: (3,33)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRDFLE'.Production File
+:XH3.Production File
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: PRDFLE
+Type: CHAR(3)
+Location: (3,96)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FLESTS'.File Status
+:XH3.File Status
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: FLESTS
+Type: CHAR(20)
+Location: (3,108)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DCTNME'.Dictionary Name
+:XH3.Dictionary Name
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: DCTNME
+Type: CHAR(10)
+Location: (4,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DCTDES'.Description
+:XH3.Description
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: DCTDES
+Type: CHAR(40)
+Location: (4,33)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CHGSCD'.Change Scheduled
+:XH3.Change Scheduled
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: CHGSCD
+Type: CHAR(3)
+Location: (4,96)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='TBLNME'.Table Name
+:XH3.Table Name
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: TBLNME
+Type: CHAR(24)
+Location: (4,108)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SCHVAL'.Display Search Value
+:XH3.Display Search Value
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: SCHVAL
+Type: CHAR(40)
+Location: (5,12)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=OPTIONS.Program Options
+:XH3.Program Options
+:P.Program options are entered in front of any entry in the list or on the
+entry line at the top of the list.
+:P.This program includes the following options.
+:UL.
+:LI.:HP2.1=Select:EHP2.
+:P.Help text not entered.
+:LI.:HP2.1=Add:EHP2.
+:P.Help text not entered.
+:LI.:HP2.2=Update:EHP2.
+:P.Help text not entered.
+:LI.:HP2.3=Copy:EHP2.
+:P.Help text not entered.
+:LI.:HP2.4=Deactivate:EHP2.
+:P.Help text not entered.
+:LI.:HP2.5=View:EHP2.
+:P.Help text not entered.
+:LI.:HP2.13=Reactivate:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IDXLIB1'.Index Library
+:XH3.Index Library
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: IDXLIB1
+Type: CHAR(10)
+Location: (8,6)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IDXNME1'.Index Name
+:XH3.Index Name
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: IDXNME1
+Type: CHAR(10)
+Location: (8,17)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IDXTXT1'.Index Text
+:XH3.Index Text
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: IDXTXT1
+Type: CHAR(50)
+Location: (8,28)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IDXUNID1'.Index Unique
+:XH3.Index Unique
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: IDXUNID1
+Type: CHAR(15)
+Location: (8,79)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES1'.Active Description
+:XH3.Active Description
+:p.This field or column denotes that an entry is active or inactive.
+:P.Screen: FLEIDXF1 Field: ACVDES1
+Type: CHAR(8)
+Location: (8,95)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IDXLIB'.Index Library
+:XH3.Index Library
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: IDXLIB
+Type: CHAR(10)
+Location: (9,6)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IDXNME'.Index Name
+:XH3.Index Name
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: IDXNME
+Type: CHAR(10)
+Location: (9,17)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IDXTXT'.Index Text
+:XH3.Index Text
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: IDXTXT
+Type: CHAR(50)
+Location: (9,28)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IDXUNID'.Index Unique
+:XH3.Index Unique
+:P.Help text not entered.
+:P.Screen: FLEIDXF1 Field: IDXUNID
+Type: CHAR(15)
+Location: (9,79)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES'.Active Description
+:XH3.Active Description
+:p.This field or column denotes that an entry is active or inactive.
+:P.Screen: FLEIDXF1 Field: ACVDES
+Type: CHAR(8)
+Location: (9,95)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F6=Add:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F13=Filter:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

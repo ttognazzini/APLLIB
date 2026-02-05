@@ -1,0 +1,61 @@
+     A*%%TS  SD  20230502  072413  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master Filter
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R SCREEN
+     A*%%TS  SD  20230502  072413  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF12
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FLDTYP@        1A  P
+     A            DES@           1A  P
+     A            ACVDES@        1A  P
+     A            SRTCDE@        1A  P
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 71
+     A                                  2 32'Field Type Filter'
+     A                                      DSPATR(HI)
+     A                                  2 71USER
+     A                                  5  2'Field Type'
+     A            FLDTYP    R        B  5 23DSPATR(&FLDTYP@)
+     A                                  6  2'Description Contains'
+     A            DES       R        B  6 23DSPATR(&DES@)
+     A                                      CHECK(LC)
+     A                                  7  2'Active'
+     A            ACVDES    R        B  7 23DSPATR(&ACVDES@)
+     A                                  7 32'?'
+     A                                 12  2'Sort'
+     A            SRTCDE    R        B 12 23DSPATR(&SRTCDE@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  7 35'(Active, InActive, Blank for All)'
+     A                                      COLOR(WHT)
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

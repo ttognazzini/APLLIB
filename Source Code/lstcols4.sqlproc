@@ -1,0 +1,21 @@
+Create or Replace Procedure APLLIB/LSTCOLS1
+ (In pmrLib char(10),
+  In pmrTbl char(10),
+  In pmrLen Decimal(5,0),
+  In pmrPfx char(10)
+ )
+ Dynamic Result Sets 1
+ Language SQL
+ Program Type Main
+ Modifies SQL Data
+ Deterministic
+ Fenced
+ Set Option DatFmt=*ISO, Commit=*NC, DbgView=*Source
+Begin
+ Declare Result_Set Insensitive No Scroll Cursor
+  With Return To Client For
+  Select * From Table(APLLIB/LSTCOLT1(pmrLib, pmrTbl, pmrLen, pmrPfx)) as x
+  For Fetch Only;
+
+ Open Result_Set;
+  End;

@@ -1,0 +1,145 @@
+     A*%%TS  SD  20250520  131244  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A* Display File
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A                                      HELP
+     A                                      HLPPNLGRP(SQL SQL)
+     A                                      ALTHELP(CA01)
+     A                                      HLPTITLE('SQL QUERY MANAGER')
+     A*------------------------------------------------------------------------
+     A          R SFL                       SFL
+     A*%%TS  SD  20250520  130317  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A            ROWCLR@        1A  P
+     A            SEL@           1A  P
+     A            KEY           30A  H
+     A            SEL            2A  B  9  2DSPATR(&SEL@)
+     A            FLDSEQ         4Y 0O  9  5EDTCDE(Z)
+     A                                      DSPATR(&ROWCLR@)
+     A            FLDNME        10A  O  9 10DSPATR(&ROWCLR@)
+     A            FLDTYP        20A  O  9 21DSPATR(&ROWCLR@)
+     A            FLDTXT        39A  O  9 42DSPATR(&ROWCLR@)
+     A            NMESQL        40A  O  9 82DSPATR(&ROWCLR@)
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20250520  131244  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      SFLPAG(0016)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            FLDSEQ1@       1A  P
+     A            FLDNME1@       1A  P
+     A            FLDTYP1@       1A  P
+     A            FLDTXT1@       1A  P
+     A            NMESQL1@       1A  P
+     A            FLTEFF         1A  H
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1122
+     A            MDE           10A  O  2  2
+     A                                  2 55'Display File Information'
+     A                                      COLOR(WHT)
+     A                                  2122USER
+     A                                  3  2'File'
+     A            FLELIBHDR     21A  O  3 10
+     A                                  3 34'Keys:'
+     A            KEYFLD        40A  O  3 40
+     A                                  4  2'Type'
+     A            OBJTYP        10A  O  4 10
+     A                                  5  2'Search:'
+     A            SCHVAL    R     A  B  5 10
+     A            OPTIONS      131A  O  6  1COLOR(BLU)
+     A                                  7  1'Sel'
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  7  5' Seq'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 10'Field     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 21'Type                '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 42'Text or Column Headings           -
+     A                                           '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 82'Column Name/Alias                 -
+     A                                            '
+     A                                      DSPATR(HI)
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)
+     A            SEL1           2A  B  8  2DSPATR(&SEL1@)
+     A            FLDSEQ1        4Y 0B  8  5EDTCDE(Z)
+     A                                      DSPATR(&FLDSEQ1@)
+     A            FLDNME1       10A  B  8 10DSPATR(&FLDNME1@)
+     A            FLDTYP1       20A  B  8 21DSPATR(&FLDTYP1@)
+     A            FLDTXT1       39A  B  8 42DSPATR(&FLDTXT1@)
+     A            NMESQL1       40A  B  8 82DSPATR(&NMESQL1@)
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A*%%TS  SD  20250520  131244  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      OVERLAY
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

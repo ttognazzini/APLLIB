@@ -1,0 +1,14 @@
+Create or Replace Function APLLIB/KEYFLDT1 (
+  pmrFleLib Char(10),
+  pmrFleNme Char(10)
+  )
+Returns Table (
+  fldNme char(10)
+)
+Modifies SQL Data
+Fenced
+External Name 'APLLIB/KEYFLDT1'
+Returns null on null input
+Language RPGLE
+Allow Parallel
+Parameter Style DB2SQL;

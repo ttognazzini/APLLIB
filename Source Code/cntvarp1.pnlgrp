@@ -1,0 +1,35 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=CNTVAR.Center Error Message
+:P.This command was created to center error text in an error
+field.  It works like the CHGVAR command but it centers the
+the VALUE parameter to 50 characters before moving it into
+the variable passed in the VAR parameter. It always uses 50
+characters because it was just written for use with the
+standard error message field ERM.
+:P.You can get more information by looking at the help text for
+:LINK PERFORM='DSPHELP CHGVAR QHCLCMD'.
+   CHGVAR command:ELINK.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CNTVAR/VAR'.CL Variable Name (VAR) - Help
+:P.:HP2.VAR:EHP2.
+Specifies the CL variable whose value is to
+be changed.
+:P.In most instances this will be the variable &ERM.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CNTVAR/VALUE'.New Value (VALUE) - Help
+:P.:HP2.VALUE:EHP2. The Value to be centered in the variable.
+:P.Specifies the expression that is used to change the value
+of the variable. Variables, constants, or a built-in
+function can be used within the expression. For a
+description of expressions, see "Expressions in CL
+Commands" in the CL topic collection in the Programming
+category in the IBM i Information Center at
+http://www.ibm.com/systems/i/infocenter/.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

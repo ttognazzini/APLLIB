@@ -1,0 +1,56 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+/*   IFS Monitor Driver Table                              */
+
+Create or Replace Table APLLIB.IFMDRV (
+  active_row                     for Column ACVROW    CHAR(1) Not Null Default '1',
+  ifs_monitor_driver_id          for Column IFMDRVIDN BIGINT Not Null
+                                 Generated Always as Identity (Start With 1 Increment by 1),
+  from_path                      for Column FRMPTH    VARCHAR(132) ALLOCATE(30) Not Null With Default,
+  destination_path               for Column DSTPTH    VARCHAR(132) ALLOCATE(30) Not Null With Default,
+  create_time_stamp              for Column CRTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  create_user                    for Column CRTUSR    CHAR(18) Not Null Default USER,
+  create_job                     for Column CRTJOB    CHAR(28) Not Null With Default,
+  create_program                 for Column CRTPGM    CHAR(10) Not Null With Default,
+  maintenance_time_stamp         for Column MNTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  maintenance_user               for Column MNTUSR    CHAR(18) Not Null Default USER,
+  maintenance_job                for Column MNTJOB    CHAR(28) Not Null With Default,
+  maintenance_program            for Column MNTPGM    CHAR(10) Not Null With Default,
+  primary key (FRMPTH)
+);
+
+Label on Table IFMDRV is 'IFS Monitor Driver Table';
+Create or Replace Alias ifs_monitor_driver For APLLIB.IFMDRV;
+
+Label on Column APLLIB.IFMDRV (
+  ACVROW     is 'Active              Row',
+  IFMDRVIDN  is 'IFS Monitor         Driver              Id',
+  FRMPTH     is 'From                Path',
+  DSTPTH     is 'Destination         Path',
+  CRTDTM     is 'Create              Date',
+  CRTUSR     is 'Create              User',
+  CRTJOB     is 'Create              Job',
+  CRTPGM     is 'Create              Program',
+  MNTDTM     is 'Maintenance         Date',
+  MNTUSR     is 'Maintenance         User',
+  MNTJOB     is 'Maintenance         Job',
+  MNTPGM     is 'Maintenance         Program'
+);
+
+Label on Column APLLIB.IFMDRV (
+  ACVROW     text is 'Active Row',
+  IFMDRVIDN  text is 'IFS Monitor Driver Id',
+  FRMPTH     text is 'From Path',
+  DSTPTH     text is 'Destination Path',
+  CRTDTM     text is 'Create Date',
+  CRTUSR     text is 'Create User',
+  CRTJOB     text is 'Create Job',
+  CRTPGM     text is 'Create Program',
+  MNTDTM     text is 'Maintenance Date',
+  MNTUSR     text is 'Maintenance User',
+  MNTJOB     text is 'Maintenance Job',
+  MNTPGM     text is 'Maintenance Program'
+);

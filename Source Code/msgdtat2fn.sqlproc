@@ -1,0 +1,21 @@
+         Create or Replace Function APLLIB/MSGDTAT2 (
+           MsfLib  char(10),
+           MsfNme  char(10),
+           MsgIdn  char(7)
+           )
+         Returns Table (
+           MsfLib  char(10),
+           MsfNme  char(10),
+           MsgIdn  char(7),
+           MsdLne  Decimal(3),
+           MsdTyp  Char(8),
+           MsdLen  char(5),
+           MsdVry  Dec(5)
+           )
+          Modifies SQL Data
+          Fenced
+          External Name 'APLLIB/MSGDTAT2'
+          Returns null on null input
+          Language RPGLE
+          Allow Parallel
+          Parameter Style DB2SQL;

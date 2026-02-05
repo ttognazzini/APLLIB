@@ -1,0 +1,143 @@
+     A*%%TS  SD  20250813  140058  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A*  Dictionary Field Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20230602  104943  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+COPY A            FRMKEYS@       1A  P
+COPY A            FLDNMECPY@     1A  P
+KEY  A            FLDNME@        1A  P
+     A            DSPPMT@        1A  P
+     A            FLDNMESQL@     1A  P
+     A            COLTXT@        1A  P
+     A            COLHDG1@       1A  P
+     A            COLHDG2@       1A  P
+     A            COLHDG3@       1A  P
+     A            FLDTYP@        1A  P
+     A            FLDLEN@        1A  P
+     A            FLDSCL@        1A  P
+     A            FLDALC@        1A  P
+     A            PRJNBR@        1A  P
+     A            FLDPMP@        1A  P
+     A            ALWNUL@        1A  P
+     A            DFTVAL@        1A  P
+     A            FLDENM@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            MODE          10A  O  2  2
+     A                                  2 27'Dictionary Field Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3  2'Dictionary'
+     A            DCTNME    R        O  3 18
+     A            DCTDES    R        O  3 29REFFLD(DES)
+     A                                  4  2'Copy Field'
+     A                                      DSPATR(&FRMKEYS@)
+     A            FLDNMECPY R        B  4 18REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNMECPY@)
+     A                                  5  2'Field'
+     A            FLDNME        10A  B  5 18DSPATR(&FLDNME@)
+     A                                  6  2'Field-SQL'
+     A            FLDNMESQL     40A  B  6 18DSPATR(&FLDNMESQL@)
+     A                                      CHECK(LC)
+     A                                  7  2'Column Text'
+     A            COLTXT    R        B  7 18DSPATR(&COLTXT@)
+     A                                      CHECK(LC)
+     A                                  8  2'Column Headings'
+     A            COLHDG1       20A  B  8 18DSPATR(&COLHDG1@)
+     A                                      CHECK(LC)
+     A            COLHDG2       20A  B  9 18DSPATR(&COLHDG2@)
+     A                                      CHECK(LC)
+     A            COLHDG3       20A  B 10 18DSPATR(&COLHDG3@)
+     A                                      CHECK(LC)
+     A                                 11  2'Type'
+     A            FLDTYP    R        B 11 18DSPATR(&FLDTYP@)
+     A                                 11 33'?'
+     A                                      DSPATR(&DSPPMT@)
+     A                                 12  2'Length'
+     A            FLDLEN    R        B 12 18DSPATR(&FLDLEN@)
+     A                                      EDTCDE(Z)
+     A                                 13  2'Scale(Dec Pos)'
+     A            FLDSCL    R        B 13 18DSPATR(&FLDSCL@)
+     A                                      EDTCDE(Z)
+     A                                 14  2'Allocation'
+     A            FLDALC    R        B 14 18DSPATR(&FLDALC@)
+     A                                      EDTCDE(Z)
+     A                                 15  2'Project Number'
+     A            PRJNBR    R        B 15 18DSPATR(&PRJNBR@)
+     A                                 16  2'Prompt Text'
+     A            FLDPMP    R        B 16 18DSPATR(&FLDPMP@)
+     A                                      CHECK(LC)
+     A                                 17  2'Allow Null'
+     A            ALWNUL    R        B 17 18DSPATR(&ALWNUL@)
+     A                                 17 21'(Y/ )'
+     A                                      COLOR(WHT)
+     A                                 18  2'Default Value'
+     A            DFTVAL    R        B 18 18DSPATR(&DFTVAL@)
+     A                                 19  2'Enumerated'
+     A            FLDENM    R        B 19 18DSPATR(&FLDENM@)
+     A                                 19 21'(Y/ )'
+     A                                      COLOR(WHT)
+     A                                 21  2'Created'
+     A            CRTSTR    R        O 21 10
+     A                                 22  2'Last'
+     A            MNTSTR    R        O 22 10
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

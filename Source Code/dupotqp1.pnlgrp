@@ -1,0 +1,20 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=DUPOTQ.Duplicates an Output Queue
+:P.This command is used to duplicate an output queue and then
+change it. It is intended to overcome the security restrictions on
+QUSRSYS.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DUPOTQ/FRMOUTQ'.From Output Queue
+:XH3.FRMOUTQ - From Output Queue
+:P.Enter the from output queue to copy. This is a qualified parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DUPOTQ/TOOUTQ'.To Output Queue
+:XH3.TOOUTQ - To Output Queue
+:P.Enter the output queue to create. This is a qualified parameter, the
+library is required.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

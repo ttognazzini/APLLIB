@@ -1,0 +1,63 @@
+     A*%%TS  SD  20250730  091909  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A* Dictionary Master Filter
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A                                      HLPTITLE('Message File Detail - Fi-
+     A                                      lter')
+     A          R SCREEN
+     A*%%TS  SD  20250701  161809  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF12
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(MSGDTLDZ MSGDTLPZ)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' MSGDTLPZ)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' MSGDTLPZ)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('SRTCDE' MSGDTLPZ)
+     A                                      HLPARA(*FLD SRTCDE)
+     A          H                           HLPPNLGRP('FNCKEYS' MSGDTLPZ)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FLTEFF         1A  H
+     A            SRTCDE@        1A  P
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 71
+     A                                  2 27'Message Master Detail Filter'
+     A                                      DSPATR(HI)
+     A                                  2 71USER
+     A                                 12  2'Sort'
+     A            SRTCDE    R        B 12 21DSPATR(&SRTCDE@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

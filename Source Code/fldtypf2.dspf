@@ -1,0 +1,133 @@
+     A*%%TS  SD  20230502  074039  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20230502  074039  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+COPY A            FRMKEYS@       1A  P
+COPY A            FLDTYPCPY@     1A  P
+KEY  A            FLDTYP@        1A  P
+     A            DES@           1A  P
+     A            NMR@           1A  P
+     A            ALWDEC@        1A  P
+     A            ALWLEN@        1A  P
+     A            REQLEN@        1A  P
+     A            ALWALC@        1A  P
+     A            REQALC@        1A  P
+     A            MAXLEN@        1A  P
+     A            LRGVAL@        1A  P
+     A            SMLVAL@        1A  P
+     A            FRCLEN@        1A  P
+     A            FRCLEN1@       1A  P
+     A            FRCLEN2@       1A  P
+     A            FRCLEN3@       1A  P
+     A            FRCLEN4@       1A  P
+     A            FRCLEN5@       1A  P
+     A            DFTVAL@        1A  P
+     A            SYSTYP@        1A  P
+     A            SYSLEN@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MODE          10A  O  2  2
+     A                                  2 30'Field Type Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  4  2'Copy Type'
+     A                                      DSPATR(&FRMKEYS@)
+     A            FLDTYPCPY R        B  4 17REFFLD(FLDTYP)
+     A                                      ALIAS(FLD_TYPE_COPY)
+     A                                      DSPATR(&FLDTYPCPY@)
+     A                                  5  2'Field Type'
+     A            FLDTYP    R        B  5 17DSPATR(&FLDTYP@)
+     A                                  7  2'Description'
+     A            DES       R        B  7 17DSPATR(&DES@)
+     A                                  8  2'Is Numeric'
+     A            NMR       R        B  8 17DSPATR(&NMR@)
+     A                                  9  2'Allow Decimals'
+     A            ALWDEC    R        B  9 17DSPATR(&ALWDEC@)
+     A                                 10  2'Allow Length'
+     A            ALWLEN    R        B 10 17DSPATR(&ALWLEN@)
+     A                                 11  2'Require Length'
+     A            REQLEN    R        B 11 17DSPATR(&REQLEN@)
+     A                                 12  2'Allow Alloc.'
+     A            ALWALC    R        B 12 17DSPATR(&ALWALC@)
+     A                                 13  2'Require Alloc.'
+     A            REQALC    R        B 13 17DSPATR(&REQALC@)
+     A                                 14  2'Maximum Length'
+     A            MAXLEN    R        B 14 17DSPATR(&MAXLEN@)
+     A                                 15  2'Largest Value'
+     A            LRGVAL    R        B 15 17DSPATR(&LRGVAL@)
+     A                                 16  2'Smallest Value'
+     A            SMLVAL    R        B 16 17DSPATR(&SMLVAL@)
+     A                                 17  2'Force Length'
+     A            FRCLEN    R        B 17 17DSPATR(&FRCLEN@)
+     A                                 18  2'Force Len. Val'
+     A            FRCLEN1   R        B 18 17DSPATR(&FRCLEN1@)
+     A            FRCLEN2   R        B 18 28DSPATR(&FRCLEN2@)
+     A            FRCLEN3   R        B 18 39DSPATR(&FRCLEN3@)
+     A            FRCLEN4   R        B 18 50DSPATR(&FRCLEN4@)
+     A            FRCLEN5   R        B 18 61DSPATR(&FRCLEN5@)
+     A                                 19  2'Default Value'
+     A            DFTVAL    R        B 19 17DSPATR(&DFTVAL@)
+     A                                 20  2'System Type'
+     A            SYSTYP    R        B 20 17DSPATR(&SYSTYP@)
+     A                                 21  2'System Length'
+     A            SYSLEN    R        B 21 17DSPATR(&SYSLEN@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

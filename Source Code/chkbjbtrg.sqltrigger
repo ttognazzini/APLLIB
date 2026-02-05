@@ -1,0 +1,46 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Create or Replace Trigger APLLIB.CHKBJBTRG
+before Insert or Update on APLLIB.CHKBJB
+Referencing new row as n old row as o
+for each row mode db2row
+
+Begin
+  /* On create set the crtXXX values */
+  If Inserting Then
+    set n.create_time_stamp = current timestamp,
+        n.create_user = user,
+        n.create_job = QSYS2.job_name,
+        n.create_program = APLLIB.current_program();
+  End If ;
+
+
+  /* On create, or update and a field changes, set the mntXXX values */
+  If inserting or
+     (updating and (
+        n.active_row <> o.active_row
+       or n.check_batch_job_id <> o.check_batch_job_id
+       or n.job_name <> o.job_name
+       or n.sub_system_name <> o.sub_system_name
+       or n.sub_system_library <> o.sub_system_library
+       or n.job_title <> o.job_title
+       or n.start_command <> o.start_command
+       or n.long_comment <> o.long_comment
+  )) Then
+    set n.maintenance_time_stamp = current timestamp,
+        n.maintenance_user = user,
+        n.maintenance_job = QSYS2.job_name,
+        n.maintenance_program = APLLIB.current_program();
+  End If;
+
+  /* Add all audited columns */
+
+  /* Trim all varchar columns */
+  set n.job_title = trim(n.job_title);
+  set n.start_command = trim(n.start_command);
+  set n.long_comment = trim(n.long_comment);
+
+End

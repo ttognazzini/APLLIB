@@ -1,0 +1,62 @@
+/* Build APLLIB - Set Up APLMSGF */
+Pgm
+  DCL  &LIB *CHAR 10 'APLLIB'
+
+  /* Delete the message file if it exists */
+  DLTMSGF &LIB/APLMSGF
+  MONMSG  CPF0000
+
+  /* Setup the message file */
+  CRTMSGF MSGF(&LIB/APLMSGF) TEXT('Messages for Aplication Development (APLLIB)') CCSID(*MSGD)
+
+  /* Add Default message */
+  ADDMSGD MSGID(APL0000) +
+          MSGF(&LIB/APLMSGF) +
+          MSG('&1') +
+          SECLVL('Message . . . . :  &1 +
+            &N &N Cause . . . . . :  +
+                  No additional online help +
+                  information is available.') +
+          sev(30) +
+          FMT((*CHAR 1024))
+
+  /* FAB0001 -> APL0001  Invalid key pressed.    keyPressed */
+  ADDMSGD MSGID(APL0001) +
+          MSGF(&LIB/APLMSGF) +
+          MSG('Invalid key pressed, key = &1.') +
+          SECLVL('&N &N Cause . . . . . :   +
+                    This message is generated when an invalid +
+                    key has been pressed. This norllay happens +
+                    when a funciton key like F1 is pressed on a +
+                    screen that does not handle the function key.+
+                  &N &N Recovery  . . . :   +
+                    No recovery is necessary, just do not press the key. +
+                  &N &N Technical description . . . . . . . . :   +
+                    User training issue.') +
+          sev(30) +
+          FMT((*CHAR 10))
+
+  ADDMSGD MSGID(APL0002) +
+          MSGF(&LIB/APLMSGF) +
+          MSG('Field not promptable.') +
+          SECLVL('&N &N Cause . . . . . :   +
+                    The prompt key was pressed in a field that does not allow +
+                    promting. +
+                  &N &N Recovery  . . . :   +
+                    Move the cursor to a field that allows prompting and try +
+                    again. +
+                  &N &N Technical description . . . . . . . . :   +
+                    User error.') +
+          sev(30) +
+          FMT((*CHAR 10))
+
+  /* Some other common ones, need to be fluffed out later */
+  ADDMSGD MSGID(DCT1002) MSGF(&LIB/APLMSGF) MSG('Invalid Option.')
+  ADDMSGD MSGID(DCT1001) MSGF(&LIB/APLMSGF) MSG('Name must be provided.')
+  ADDMSGD MSGID(DCT1004) MSGF(&LIB/APLMSGF) MSG('Row is already inactive.')
+  ADDMSGD MSGID(DCT1013) MSGF(&LIB/APLMSGF) MSG('Row is already active.')
+  ADDMSGD MSGID(DCT1101) MSGF(&LIB/APLMSGF) MSG('Entry not found.')
+  ADDMSGD MSGID(DCT1102) MSGF(&LIB/APLMSGF) MSG('Entry not found.')
+
+
+EndPgm

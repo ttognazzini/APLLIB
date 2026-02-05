@@ -1,0 +1,12 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=DSPWIN.Display Text in a Window
+:P.This command is used to display text in a window. It is for use in
+CL programs. Use the #$DSPWIN procedure in RPG programs.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DSPWIN/WINTXT'.Window Text
+:XH3.WINTXT - Window Text
+:P.Enter the text to display in the window. Max length is 2000 characters.
+:EHELP.
+:EPNLGRP.

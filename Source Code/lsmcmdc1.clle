@@ -1,0 +1,54 @@
+/* Write Levels on an RPGLE source Member  */
+
+/* It is helpful to add these as PDM options as well.                   +
+   They can be added as LV to add nesting levels and RV to remove them. +
+   the commands to call should look like this -                         +
+   LV - LSM SRCMBR(&N) SRCFLE(&F) SRCLIB(&L)                            +
+   RV - LSM SRCMBR(&N) SRCFLE(&F) SRCLIB(&L) OPTION(*NEST)              */
+
+PGM        PARM(&SRCMBR &SRCFLE &SRCLIB &OPTION)
+  Dcl &srcMbr   *CHAR  len(10)
+  Dcl &srcFle   *CHAR  len(10)
+  Dcl &srcLib   *CHAR  len(10)
+  Dcl &option   *CHAR  len(06)
+  Dcl &type     *CHAR  len(10)
+
+  /* If a library or file is not passed try to find them */
+  Call FSMCMDC1 (&srcMbr &srcFle &srcLib)
+
+  /* If source member is not found give error and leave */
+  ChkObj obj(&srclib/&srcfle) objType(*FILE) mbr(&SRCMBR)
+  MonMsg msgId(CPF9810) exec(DO)
+    SndPgmMsg ('Library' *bcat &srcLib *bcat 'not found.')
+    Return
+  EndDo
+  MonMsg  msgId(CPF9801) exec(DO)
+    SndPgmMsg ('Source file' *bcat &srcFle *bcat 'not found')
+    Return
+  EndDo
+  MonMsg     msgId(CPF9815) exec(DO)
+    SndPgmMsg ('Member' *bcat &SRCMBR *bcat 'not found.')
+    Return
+  EndDo
+  MonMsg msgId(CPF0000) exec(Do)
+    SndPgmMsg 'Not able to find source member.'
+    Return
+  EndDo
+
+  RtvMbrD file(&srcLib/&srcFle) mbr(&srcMbr) srcType(&type)
+  IF (&type *ne 'RPGLE' *and &type *ne 'SQLRPGLE') Do
+    SndPgmMsg ('Member type ' *CAT &TYPE *bcat 'not valid.')
+    Return
+  EndDo
+
+  If (&option *eq '*NEST') (SndPgmMsg ('Nesting levels adde to member ' *cat &srcMbr *bcat '.'))
+  Else (SndPgmMsg ('Columns 1-5 cleared for source member' *cat &srcMbr *bcat '.'))
+
+  RmvMsg clear(*ALL)
+  MonMsg CPF0000
+
+  OvrDbf file(QRPGSRC) toFile(&srcLib/&srcFle) mbr(&srcMbr)
+  Call   LSMCMDB1 (&srcLib &srcFle &srcMbr &option)
+  DltOvr file(*ALL)
+
+EndPgm

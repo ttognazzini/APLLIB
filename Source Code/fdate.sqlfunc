@@ -1,0 +1,82 @@
+create or replace function APLLIB/fdate (date decimal(8,0))
+returns char(10)
+LANGUAGE SQL
+CONTAINS SQL
+DETERMINISTIC
+return
+Case when date=0 THEN ' '
+     Else (substr(char(date),1,4) concat '/' concat
+           substr(char(date),5,2) concat '/' concat
+           substr(char(date),7,2))
+end;
+
+create or replace function APLLIB/fdate
+        (date decimal(8,0),type varchar(5))
+returns char(10)
+LANGUAGE SQL
+CONTAINS SQL
+DETERMINISTIC
+return
+Case when date=0 THEN ' '
+     when upper(type)='*MDYY' THEN
+       (substr(char(date),5,2) concat '/' concat
+        substr(char(date),7,2) concat '/' concat
+        substr(char(date),1,4))
+     when upper(type)='*MDY' THEN
+       (substr(char(date),5,2) concat '/' concat
+        substr(char(date),7,2) concat '/' concat
+        substr(char(date),3,2))
+     when upper(type)='*YMD' THEN
+       (substr(char(date),3,2) concat '/' concat
+        substr(char(date),5,2) concat '/' concat
+        substr(char(date),7,2))
+     else
+       (substr(char(date),1,4) concat '/' concat
+        substr(char(date),5,2) concat '/' concat
+        substr(char(date),7,2))
+end;
+
+create or replace function APLLIB/fdateYYYYMM (date decimal(6,0))
+returns char(10)
+LANGUAGE SQL
+CONTAINS SQL
+DETERMINISTIC
+return
+Case when date=0 THEN ' '
+     Else (substr(char(date),1,4) concat '/' concat
+           substr(char(date),5,2))
+end;
+
+create or replace function APLLIB/fdtm (date decimal(14,0))
+returns char(19)
+LANGUAGE SQL
+CONTAINS SQL
+DETERMINISTIC
+return
+Case when date=0 THEN ' '
+     Else (substr(char(date),1,4) concat '/' concat
+           substr(char(date),5,2) concat '/' concat
+           substr(char(date),7,2) concat ' ' concat
+           substr(char(date),9,2) concat ':' concat
+           substr(char(date),11,2) concat ':' concat
+           substr(char(date),13,2))
+end;
+
+create or replace function APLLIB/fdateM8 (date decimal(8,0))
+returns char(10)
+LANGUAGE SQL
+CONTAINS SQL
+DETERMINISTIC
+return
+Case when date=0 THEN ' '
+     when date<10000000
+     then (' ' ||
+           substr(char(date),1,1) || '/' ||
+           substr(char(date),2,2) || '/' ||
+           substr(char(date),4,4))
+     Else (substr(char(date),1,2) || '/' ||
+           substr(char(date),3,2) || '/' ||
+           substr(char(date),5,4))
+end;
+
+

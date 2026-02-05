@@ -1,0 +1,21 @@
+         Create or Replace Function APLLIB/LSTPRTT1 ()
+         Returns Table (
+           Type  Char(10),
+           Lib   char(10),
+           Name  char(10),
+           Desc  char(50),
+           htpMfg char(10),
+           wsCstLib char(10),
+           wsCstNme char(10),
+           rmtSysNme char(256),
+           rmtPrtQ char(100),
+           devPort decimal(5)
+           )
+          Modifies SQL Data
+          Fenced
+          External Name 'APLLIB/LSTPRTT1'
+          Returns null on null input
+          Language RPGLE
+          Allow Parallel
+          Parameter Style DB2SQL;
+

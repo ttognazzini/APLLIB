@@ -1,0 +1,36 @@
+Create or Replace Procedure APLLIB.DCTFLDS1
+ (In pmrDct char(10) Default '',
+     pmrLib char(10) Default '',
+     pmrTbl char(10) Default '')
+ Result Sets 0
+ Language SQL
+ Modifies SQL Data
+ Not Deterministic
+ Set Option DatFmt=*ISO, Commit=*NC, DbgView=*Source
+Begin
+  Insert Into DCTFLD
+   (AcvRow, DctNme, FldNme, FldTyp, FldLen,
+    FldScl, FldAlc,
+    ColTxt, ColHdg, PcdFlg, FldPmp,
+    AlwNul,
+    DftVal,
+    CrtDtm, CrtUsr, CrtJob, CrtPgm,
+    MntDtm, MntUsr, MntJob, MntPgm)
+  (Select Distinct  '1', pmrDct, Column_Name, Data_Type, Length,
+    coalesce(Numeric_Scale,0), 0,
+    coalesce(LabelText,''), char(COLUMN_HEADING), '0', '',
+    case When Is_Nullable = 'N' then '' else  'Y' end,
+    case When Has_Default = 'Y' Then char(Column_Default)
+         Else '' end,
+    Current TimeStamp, User, 'DCTFLDS1', 'DCTFLDS1',
+    Current TimeStamp, User, 'DCTFLDS1', 'DCTFLDS1'
+  From SYSCOLUMNS
+  Where pmrTbl in ('', TABLE_NAME)
+    and pmrLib = TABLE_SCHEMA
+    and (pmrDct, Column_Name) not in
+      (Select DctNme, FldNme From DCTFLD));
+end;
+-- add label and long comment
+Label on Procedure APLLIB.DCTFLDS1 is 'Build DCTFLD From existing Database';
+Comment on Procedure APLLIB.DCTFLDS1
+  is 'Build DCTFLD from an existing file. Parameters are dictionary name, file library, file name.';

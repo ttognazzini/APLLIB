@@ -1,0 +1,247 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF'.Compare Spool File - Help
+:P.
+The Compare Spoolf File (CMPSPLF) command copies 2 spool files
+to physical files and then compares those physical file member.
+:P.
+The comparison is done using the CMPPFM command.
+:P.
+It is best to provide the full job, file name and spool file number to the command,
+as this prevents errors trying to find the correct spooled file.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/SPLFILE1'.Spool File Name 1 (SPLFILE1) - Help
+:XH3.Spool File Name 1 (SPLFILE1)
+:P.
+Specifies the spooled file that is to be copared.
+:P.
+This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/JOB1'.Job Name 1 (JOB1) - Help
+:XH3.Job Name 1 (JOB1)
+:P.
+Specifies the job that created the spooled file whose data
+records are to be compared.
+:H3.Single values
+:PARML.
+:PT.:PK def.*:EPK.
+:PD.The job that issued this command is the job that
+created the spooled file.
+:EPARML.
+:H2.Qualifier 1: Job name
+:PARML.
+:PT.:PV.name:EPV.
+:PD.Specify the name of the job that created the spooled
+file.
+:EPARML.
+:H2.Qualifier 2: User
+:PARML.
+:PT.:PV.name:EPV.
+:PD.Specify the user name that identifies the user profile
+under which the job is run.
+:EPARML.
+:H2.Qualifier 3: Number
+:PARML.
+:PT.:pv.000000-999999:EPV.
+:PD.Specify the system-assigned job number.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/SPLNBR1'.Spooled file number 1 (SPLNBR1) - Help
+:XH3.Spooled file number 1 (SPLNBR1) - Help
+:P.
+Specifies the number of the spooled file, from the job
+whose data records are to be compared.
+:PARML.
+:PT.:PK def.*ONLY:EPK.
+:PD.Only one spooled file in the job has the specified
+file name; therefore, the number of the spooled file
+is not necessary.
+:PT.:PV.*LAST:EPV.
+:PD.The spooled file with the highest number and the
+specified file name is used.
+:PT.:PV.*ANY:EPV.
+:PD.The spooled file number is not used to determine which spooled file
+is used. Use this value when the job system name parameter or the
+spooled file create date and time parameter is to take precedence
+over the spooled file number when selecting a spooled file.
+:PT.:pv.1-999999:EPV.
+:PD.Specify the number of the spooled file whose data records are to be
+compared.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/SPLFILE2'.Spool File Name 2 (SPLFILE2) - Help
+:XH3.Spool File Name 2 (SPLFILE2)
+:P.
+Specifies the spooled file that is to be copared.
+:P.
+This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/JOB2'.Job Name 2 (JOB2) - Help
+:XH3.Job Name 2 (JOB2)
+:P.
+Specifies the job that created the spooled file whose data
+records are to be compared.
+:H3.Single values
+:PARML.
+:PT.:PK def.*:EPK.
+:PD.The job that issued this command is the job that
+created the spooled file.
+:EPARML.
+:H2.Qualifier 1: Job name
+:PARML.
+:PT.:PV.name:EPV.
+:PD.Specify the name of the job that created the spooled
+file.
+:EPARML.
+:H2.Qualifier 2: User
+:PARML.
+:PT.:PV.name:EPV.
+:PD.Specify the user name that identifies the user profile
+under which the job is run.
+:EPARML.
+:H2.Qualifier 3: Number
+:PARML.
+:PT.:pv.000000-999999:EPV.
+:PD.Specify the system-assigned job number.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/SPLNBR2'.Spooled file number 2 (SPLNBR2) - Help
+:XH3.Spooled file number 2 (SPLNBR2) - Help
+:P.
+Specifies the number of the spooled file, from the job
+whose data records are to be compared.
+:PARML.
+:PT.:PK def.*ONLY:EPK.
+:PD.Only one spooled file in the job has the specified
+file name; therefore, the number of the spooled file
+is not necessary.
+:PT.:PV.*LAST:EPV.
+:PD.The spooled file with the highest number and the
+specified file name is used.
+:PT.:PV.*ANY:EPV.
+:PD.The spooled file number is not used to determine which spooled file
+is used. Use this value when the job system name parameter or the
+spooled file create date and time parameter is to take precedence
+over the spooled file number when selecting a spooled file.
+:PT.:pv.1-999999:EPV.
+:PD.Specify the number of the spooled file whose data records are to be
+compared.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/CMPTYPE'.Compare Type (CMPTYPE) - Help
+:XH3.Compare Type (CMPTYPE) - Help
+:P.
+Specifies the type of comparison to be performed.
+:PARML.
+:PT.:PK def.*LINE:EPK.
+:PD.Compare for differences on a line level, identifying inserted and
+deleted lines.
+:PT.:PV.*FILE:EPV.
+:PD.Compare for differences on a file level, without reporting where the
+differences are.  The results of this type of comparison indicate
+whether the members compared are different or the same, and provide
+the names of any nonpaired members.  This method produces only
+summary information, but is the fastest type of comparison.
+:PT.:PV.*WORD:EPV.
+:PD.Compare for differences on a word level.  This comparison is similar
+to the *LINE comparison, except words on adjacent lines can be
+matched.  Words are delimited by blanks or the end of a line.  The
+members are processed as long sequences of words without line
+boundaries or record lengths.  The output of this comparison does
+not necessarily maintain the original spacing between words.  Blanks
+may be added in the output listing so that you can clearly see the
+differences.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/RPTTYPE'.Report type (RPTTYPE) - Help
+:XH3.Report type (RPTTYPE) - Help
+:P.
+Specifies the listing type for the result report.
+:PARML.
+:PT.:PK def.*DIFF:EPK.
+:PD.List only the differences between the members being compared,
+followed by a summary.  The differences are flagged in the listing.
+:PT.:PV.*SUMMARY:EPV.
+:PD.List a summary of the results of the comparison, without showing the
+detailed differences.  A group comparison generates an individual
+summary line for each member in the group, as well as the list of
+processing options.
+:PT.:PV.*CHANGE:EPV.
+:PD.Provide the same information as the *DIFF report type, with 10 lines
+before and after the differences.  The extra lines allow you to see
+the differences within the context of the surrounding data.
+:PT.:PV.*DETAIL:EPV.
+:PD.List the entire new file member (and deletions from the old file
+member), indicate the differences, and provide a summary of the
+results.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/OUTPUT'.Output (OUTPUT) - Help
+:XH3.Output (OUTPUT) - Help
+:P.
+Specifies whether the result of the comparison is displayed, printed, or
+stored to a physical file.
+:PARML.
+:PT.:PK def.*:EPK.
+:PD.Display the result.
+:PT.:PV.*PRINT:EPV.
+:PD.Print the result to the spooled file.
+:PT.:PV.*OUTFILE:EPV.
+:PD.Store the result to a physical file.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/OUTFILE'.File to receive output (OUTFILE) - Help
+:XH3.File to receive output (OUTFILE) - Help
+:P.
+Specifies the file to which the output results are
+directed.
+:PARML.
+:PT.:PK def.*LIBL:EPK.
+:PD.Use the library list of the job.
+:PT.:PV.*CURLIB:EPV.
+:PD.Use the current library of the job.
+:PT.:PV.library-name:EPV.
+:PD.Use the specified library.
+:PT.:PV.output-physical-file-name:EPV.
+:PD.Use the specified physical file.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/OUTMBR'.Output member options (OUTMBR) - Help
+:XH3.Output member options (OUTMBR) - Help
+:P.
+Specifies the member to which the output is directed.
+This is only used if the OUTPUT option is *OUTFILE.
+:PARML.
+:PT.:PK def.*FIRST:EPK.
+:PD.Use the first member of the file.
+:PT.:PV.output-file-member-name:EPV.
+:PD.Use the specified member.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CMPSPLF/ADDRPL'.Add Replace Option (ADDRPL) - Help
+:XH3.Add Replace Option (ADDRPL) - Help
+:P.
+Specifies weath to add to the output file or replace the records
+that already exist in it.
+This is only used if the OUTPUT option is *OUTFILE.
+:PARML.
+:PT.:PK def.*REPLACE:EPK.
+:PD.If the member exists, replace it.
+:PT.:PV.*ADD:EPV.
+:PD.Add this member to the file.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

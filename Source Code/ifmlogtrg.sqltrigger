@@ -1,0 +1,44 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Create or Replace Trigger APLLIB.IFMLOGTRG
+before Insert or Update on APLLIB.IFMLOG
+Referencing new row as n old row as o
+for each row mode db2row
+
+Begin
+  /* On create set the crtXXX values */
+  If Inserting Then
+    set n.create_time_stamp = current timestamp,
+        n.create_user = user,
+        n.create_job = job_name,
+        n.create_program = APLLIB.current_program();
+  End If ;
+
+
+  /* On create, or update and a field changes, set the mntXXX values */
+  If inserting or
+     (updating and (
+        n.active_row <> o.active_row
+       or n.ifs_monitor_log_id <> o.ifs_monitor_log_id
+       or n.from_path <> o.from_path
+       or n.destination_path <> o.destination_path
+       or n.ifs_monitor_status <> o.ifs_monitor_status
+       or n.long_comment <> o.long_comment
+  )) Then
+    set n.maintenance_time_stamp = current timestamp,
+        n.maintenance_user = user,
+        n.maintenance_job = job_name,
+        n.maintenance_program = APLLIB.current_program();
+  End If;
+
+  /* Add all audited columns */
+
+  /* Trim all varchar columns */
+  set n.from_path = trim(n.from_path);
+  set n.destination_path = trim(n.destination_path);
+  set n.long_comment = trim(n.long_comment);
+
+End

@@ -1,0 +1,49 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=IFSLST.List IFS Objects
+:P.This command is used to create a list of objects in an
+IFS folder. It allows printing the list or creating an output
+file with the information.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFSLST/FOLDER'.Folder to List the Items Of
+:P.:HP2.FOLDER:EHP2.
+:p.Specifies the path to the folder that the list will be generated for.
+Enter the path to the folder in the following format:
+:P.'/folder'
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFSLST/OUTPUTTYPE'.Output Type
+:P.:HP2.OUTPUTTYPE:EHP2.
+:P.Specifies whether to print the output or create a file containing
+the output.
+:p.The options are *PRINT to print the output or *OUTFILE to create
+a file containing the data. If the output is requested in a file the
+output file parameters must also be entered.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFSLST/OUTFILE'.Output File
+:P.:HP2.OUTFILE:EHP2.
+:P.Specifies the file to be created to contain the output.
+:P.The file is a qualified parameter so it must include the file name
+and the library name. The library name defaults to QTEMP so if it is
+omitted the file will be created in QTEMP.
+:P.This is a required parameter if the output type is set to *OUTFILE.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFSLST/FILETYPE'.Output File Type
+:P.:HP2.FILETYPE:EHP2.
+:P.Specifies the type of file to be created. The options are *BASIC
+and *FULL. The *FULL option has a lot more information in it.
+:P.This parameter is only dispalyed if the output type is set to *OUTFILE.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='IFSLST/INDIR'.Include Directories
+:P.:HP2.INDIR:EHP2.
+:P.Specifies whether to include directories in the list or not.
+:p.The options are *YES and *NO. It defaults to *NO.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

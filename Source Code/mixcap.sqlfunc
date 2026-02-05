@@ -1,0 +1,258 @@
+Create or Replace Function APLLIB.MIXCAP(INPUT_STRING VARCHAR(255))
+    Returns VARCHAR(255)
+    Language SQL
+    Not Deterministic
+    Contains SQL
+    SET OPTION DBGVIEW = *SOURCE
+
+Begin
+    Declare output_string varchar(255) default '';
+    Declare temp_string varchar(255) default '';
+    Declare current_char varchar(1);
+    Declare next_char varchar(1);
+    Declare i int default 1;
+    Declare str_length int;
+    Declare cnt int;
+    Declare x int;
+    Declare last_break int;
+    Declare test varchar(255) default '';
+    Declare test2 varchar(255) default '';
+    Declare has_numbers char(1);
+
+    -- uppercase the first letter of each word, lowercase the rest
+    set temp_string = ' '|| input_string || ' ';
+    set str_length = length(temp_string);
+    set current_char = substring(temp_string, I, 1);
+    set output_string = ' ' || UPPER(current_char);
+    while i < str_length do
+        set I = I + 1;
+        set next_char = substring(temp_string, I, 1);
+
+        if substr(right(output_string,3),1,1) in (' ','-','/',',') and
+           right(output_string,2) in ('Mc','D''','L''','O''')then
+          set output_string = output_string || upper(next_char);
+        elseif current_char in (' ', '-', '/', ',','&') then
+          set output_string = output_string || upper(next_char);
+        else
+          set output_string = output_string || lower(next_char);
+        end if;
+
+        -- if ending on a break character, do all the last word testing
+        if right(output_string,1) in (' ','-','/',',') then
+          -- fix a list of 2 character codes that are between 2 boundarys to be uppercased
+          if substr(right(output_string,4),1,1) in (' ','-','/',',') and
+             substr(right(output_string,4),2,2) in ('Af','Ch','Df','Fd','Fr','Gl','Hw','Id',
+                    'Mf','Mv','Rf','Rl','Sy','Uv','Wc','Ww','Sw','Wp','Uk','Od','Nh','Kb',
+                    'CN','SH') and
+             substr(right(output_string,4),4,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-3) ||
+                upper(right(output_string,3));
+          end if;
+
+          -- fix a list of 3 character codes that are between 2 boundarys to be uppercased
+          if substr(right(output_string,5),1,1) in (' ','-','/',',') and
+             substr(right(output_string,5),2,3) in ('C/O','Dba','Dna','Mvs','N/A','Pvc','Ups',
+                'USA','Uae','Lol','Odl','FLH') and
+             substr(right(output_string,5),5,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-4) ||
+              upper(right(output_string,4));
+          end if;
+
+          -- fix a list of 4 character codes that are between 2 boundarys to be uppercased
+          if substr(right(output_string,6),1,1) in (' ','-','/',',') and
+             substr(right(output_string,6),2,4) in ('260a','Astm','Nfpa','Ufac','Usps',
+                    'Sh**','Fl**','Kw**','Vc**','Jn**') and
+             substr(right(output_string,6),6,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-5) ||
+              upper(right(output_string,5));
+          end if;
+
+          -- fix a list of 5 character codes that are between 2 boundarys to be uppercased
+          if substr(right(output_string,7),1,1) in (' ','-','/',',') and
+             substr(right(output_string,7),2,5) in ('Imo A') and
+             substr(right(output_string,7),7,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-6) ||
+              upper(right(output_string,6));
+          end if;
+
+          -- fix a list of 6 character codes that are between 2 boundarys to be uppercased
+          if substr(right(output_string,8),1,1) in (' ','-','/',',') and
+             substr(right(output_string,8),2,6) in ('C.o.m.','D.b.a.') and
+             substr(right(output_string,8),8,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-7) ||
+              upper(right(output_string,8));
+          end if;
+
+          -- fix \bFedex\b -> FedEx
+          if substr(right(output_string,7),1,1) in (' ','-','/',',') and
+             substr(right(output_string,7),2,5) in ('Fedex') and
+             substr(right(output_string,7),7,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-6) || 'FedEx' ||
+               right(output_string,1);
+          end if;
+
+          -- fix \bFr-One\b -> FR-One
+          if substr(right(output_string,8),1,1) in (' ','-','/',',') and
+             substr(right(output_string,8),2,6) in ('Fr-One') and
+             substr(right(output_string,8),8,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-7) || 'FR-One' ||
+              right(output_string,1);
+          end if;
+
+          -- fix \bJc Pennys\b -> JC Pennys
+          if substr(right(output_string,11),1,1) in (' ','-','/',',') and
+             substr(right(output_string,11),2,9) in ('Jc Penney') and
+             substr(right(output_string,11),11,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-10) ||
+              'JC Penney' || right(output_string,1);
+          end if;
+
+          -- fix \bLa Toile\b -> LA Toile
+          if substr(right(output_string,10),1,1) in (' ','-','/',',') and
+             substr(right(output_string,10),2,8) in ('La Toile') and
+             substr(right(output_string,10),10,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-9) ||
+              'LA Toile' || right(output_string,1);
+          end if;
+
+          -- fix \bU.P.S.\b -> UPS
+          if substr(right(output_string,8),1,1) in (' ','-','/',',') and
+             substr(right(output_string,8),2,6) in ('U.p.s.') and
+             substr(right(output_string,8),8,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-7) ||
+              'UPS' || right(output_string,1);
+          end if;
+
+          -- fix \bU.S.P.S.\b -> USPS
+          if substr(right(output_string,10),1,1) in (' ','-','/',',') and
+             substr(right(output_string,10),2,8) in ('U.s.p.s.') and
+             substr(right(output_string,10),10,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-9) ||
+              'USPS' || right(output_string,1);
+          end if;
+
+          -- fix \bLt.\b -> Light
+          if substr(right(output_string,4),1,1) in (' ','-','/',',') and
+             substr(right(output_string,4),2,2) in ('Lt') and
+             substr(right(output_string,4),4,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-3) ||
+              'Light' || right(output_string,1);
+          end if;
+
+          -- fix \bwallcove\b -> Wallcovering
+          if substr(right(output_string,10),1,1) in (' ','-','/',',') and
+             substr(right(output_string,10),2,8) in ('Wallcove') and
+             substr(right(output_string,10),10,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-9) ||
+              'Wallcovering' || right(output_string,1);
+          end if;
+          -- fix \bwallcving\b -> Wallcovering
+          if substr(right(output_string,11),1,1) in (' ','-','/',',') and
+             substr(right(output_string,11),2,9) in ('Wallcving') and
+             substr(right(output_string,11),11,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-10) ||
+              'Wallcovering' || right(output_string,1);
+          end if;
+          -- fix \bwlcvg\b -> Wallcovering
+          if substr(right(output_string,7),1,1) in (' ','-','/',',') and
+             substr(right(output_string,7),2,5) in ('Wlcvg') and
+             substr(right(output_string,7),7,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-6) ||
+            'Wallcovering' || right(output_string,1);
+          end if;
+
+          -- fix \bU.S.A.\b -> USA
+          if substr(right(output_string,8),1,1) in (' ','-','/',',') and
+             substr(right(output_string,8),2,6) in ('U.s.a.') and
+             substr(right(output_string,8),8,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-7) ||
+              'USA' || right(output_string,1);
+          end if;
+
+          -- fix \bU.S.\b -> US
+          if substr(right(output_string,6),1,1) in (' ','-','/',',') and
+             substr(right(output_string,6),2,4) in ('U.s.') and
+             substr(right(output_string,6),6,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-5) ||
+              'US' || right(output_string,1);
+          end if;
+
+          -- fix \bU.K.\b -> UK
+          if substr(right(output_string,6),1,1) in (' ','-','/',',') and
+             substr(right(output_string,6),2,4) in ('U.k.') and
+             substr(right(output_string,6),6,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-5) ||
+              'UK' || right(output_string,1);
+          end if;
+
+          -- fix \bU.A.E.\b -> UAE
+          if substr(right(output_string,8),1,1) in (' ','-','/',',') and
+             substr(right(output_string,8),2,6) in ('U.a.e.') and
+             substr(right(output_string,8),8,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-7) ||
+              'UAE' || right(output_string,1);
+          end if;
+
+          -- fix -El\b -> -EL
+          if substr(right(output_string,4),1,3) in ('-El') and
+             substr(right(output_string,4),4,1) in (' ','-','/',',') Then
+            set output_string = substring(output_string,1,length(output_string)-4) ||
+              '-EL' || right(output_string,1);
+          end if;
+
+          -- uppercase roman numerals, selected as anyword where all characters are in IVXLC
+          -- also upper case any word that has a number in it
+          -- find the last break from the end
+          set last_break = 0;
+          set x = 1;
+          while x < length(output_string) - 1 do
+            if substring(output_string,x,1) in (' ','-','/',',') then
+              set last_break = x;
+            end if;
+            set x = x + 1;
+          end while;
+          if last_break > 1 then
+            -- substring out the last word
+            set test = substring(output_string, last_break + 1,
+               length(output_string)-last_break - 1);
+            -- replace characters IVXLC with nothing
+            set test = replace(test,'I','');
+            set test = replace(test,'i','');
+            set test = replace(test,'V','');
+            set test = replace(test,'v','');
+            set test = replace(test,'X','');
+            set test = replace(test,'x','');
+            set test = replace(test,'L','');
+            set test = replace(test,'l','');
+            set test = replace(test,'C','');
+            set test = replace(test,'c','');
+            -- see if the word has any numbers if it, if it does,it needs to be upper cased
+            set test2 = substring(output_string, last_break + 1,
+              length(output_string)-last_break - 1);
+            set has_numbers = 'N';
+            set x = 0;
+            while x < length(test2) and has_numbers = 'N' do
+              set x = x + 1;
+              if substring(test2,x,1) in ('1','2','3','4','5','6','7','8','9','0') then
+                set has_numbers = 'Y';
+              end if;
+            end while;
+            -- ordinals should be lower cased, so if the word ends in st, nd, rd, th,
+            -- ignore the has numbers logic
+            if right(test2,2) in ('st','nd','rd','th') then
+              set has_numbers = 'N';
+            end if;
+            -- if it is blank, or if there is a number anywhere in it, uppercase the section
+            if test = '' or has_numbers = 'Y' then
+              set output_string = substring(output_string,1,last_break)
+                    || upper(substring(output_string, last_break + 1,length(output_string)
+                    -last_break - 1)) || right(output_string,1);
+            end if;
+          end if;
+        end if;
+
+        set current_char = next_char;
+    end while;
+
+    Return trim(output_string);
+End;

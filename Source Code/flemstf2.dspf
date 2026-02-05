@@ -1,0 +1,116 @@
+     A*%%TS  SD  20230406  153805  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*  File Master Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20230406  153805  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+COPY A            FRMKEYS@       1A  P
+COPY A            FLELIBCPY@     1A  P
+COPY A            FLENMECPY@     1A  P
+KEY  A            FLELIB@        1A  P
+KEY  A            FLENME@        1A  P
+     A            FLEDES@        1A  P
+     A            TBLNME@        1A  P
+     A            PRDFLED@       1A  P
+     A            CHGSCDD@       1A  P
+     A            DCTNME@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 70
+     A            MDE       R        O  2  2
+     A                                  2 29'File Master Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  5  2'Copy File'
+     A                                      DSPATR(&FRMKEYS@)
+     A            FLENMECPY R        O  5 20REFFLD(FLENME)
+     A                                      DSPATR(&FLENMECPY@)
+     A                                      ALIAS(FILE_NAME_COPY)
+     A                                  7  2'File'
+     A            FLENME    R        B  7 20DSPATR(&FLENME@)
+     A                                  9  2'Description'
+     A            FLEDES    R        B  9 20REFFLD(FLEDES)
+     A                                      DSPATR(&FLEDES@)
+     A                                      CHECK(LC)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  4  2'Copy Library'
+     A                                      DSPATR(&FRMKEYS@)
+     A                                  6  2'Library'
+     A            FLELIBCPY R        O  4 20REFFLD(FLELIB)
+     A                                      DSPATR(&FLELIBCPY@)
+     A                                      ALIAS(FILE_LIBRARY_COPY)
+     A            FLELIB    R        B  6 20REFFLD(FLELIB)
+     A                                      DSPATR(&FLELIB@)
+     A                                 10  2'Table Name(Alias)'
+     A            TBLNME    R        B 10 20REFFLD(TBLNME)
+     A                                      DSPATR(&TBLNME@)
+     A                                      CHECK(LC)
+     A                                 14  2'Production'
+     A                                 15  2'Change Scheduled'
+     A            PRDFLED   R    3   B 14 20REFFLD(PRDFLE)
+     A                                      DSPATR(&PRDFLED@)
+     A            CHGSCDD   R    3   B 15 20REFFLD(CHGSCD)
+     A                                      DSPATR(&CHGSCDD@)
+     A                                 14 24'?'
+     A                                 15 24'?'
+     A                                 12  2'Dictionary'
+     A            DCTNME    R        B 12 20REFFLD(DCTNME)
+     A                                      DSPATR(&DCTNME@)
+     A                                 12 31'?'
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

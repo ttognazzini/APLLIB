@@ -1,0 +1,20 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=DBGBCH.Debug a Batch Program
+:P.This command was created to allow a batch job to be esaily held and
+debugged. The program works in conjunction with the #$DBGBCH function in
+the BASFNCV1 service program.
+:P.In an RPG program you can use the #$DBGBCH('USERNAME') function to
+hold the job and add an entry to the DBGBCH work file. Then this command
+can be used to automatically start a service job and start debug for
+the submitted job.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DBGBCH/USRPRF'.User Profile - HELP
+:XH3.USRPRF - User Profile
+:P.This field allows the user profile name to entered for the user
+issued to the #$DBGBCH function in the RPG program. The default
+is the current user. In most cases this parameter can be ommitted.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

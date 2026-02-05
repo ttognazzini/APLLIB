@@ -1,0 +1,118 @@
+     A*%%TS  SD  20230420  153058  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A          R SFL                       SFL
+     A*%%TS  SD  20230420  153058  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A            DETAIL       131A  O  9  2
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20230420  153058  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A  51                                  SFLEND(*MORE)
+     A                                      SFLSIZ(&SFLSIZ)
+     A                                      SFLPAG(0016)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SFLMODE        1A  H
+     A            FLTEFF         1A  H
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1122
+     A            MDE       R        O  2  2
+     A                                  2 59'File Log Detail'
+     A                                      COLOR(WHT)
+     A                                  2122USER
+     A                                  4  2'File'
+     A                                  5  2'Field'
+     A                                  8  2'                                  -
+     A                                                                 Details -
+     A                                                                         -
+     A                                                                 '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A            FLELIBCMB R   21   O  4 14REFFLD(FLENME)
+     A            FLDNME    R        O  5 14
+     A            FLEDES    R        O  4 36
+     A            COLTXT    R        O  5 36
+     A                                  6  2'Log Type'
+     A                                  7  2'Description'
+     A            LOGTYP    R        O  6 14
+     A            LOGDES    R        O  7 14
+     A                                  4 93'Time'
+     A                                  5 93'User'
+     A                                  6 93'Device'
+     A                                  7 93'Program'
+     A            CRTDTMTXT     20A  O  4101
+     A            CRTUSR    R        O  5101
+     A            CRTJOB    R        O  6101
+     A            CRTPGM    R        O  7101
+     A                                  3  2'Log Id'
+     A            IDNTXT        20A  O  3 14
+     A*
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A                                      OVERLAY
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

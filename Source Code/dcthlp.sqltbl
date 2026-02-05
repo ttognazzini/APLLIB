@@ -1,0 +1,21 @@
+Create or Replace Table TIMOLD/DCTHLP AS (
+Select
+  AcvRow,
+  DctNme,
+  FldNme,
+  DspFle,
+  RcdFmt,
+  SeqNbr,
+  HlpTxt
+From APLDCT)
+Definition Only
+Including Identity
+Including Column Defaults
+--On Replace Preserve All Rows
+RcdFmt DCTHLPR;
+
+Alter Table TIMOLD/DCTHLP
+Add Constraint DCTHLP
+Primary Key(DctNme, FldNme, DspFle, RcdFmt, SeqNbr);
+
+Label on Table TIMOLD/DCTHLP is 'Dictionary Field Help Text';

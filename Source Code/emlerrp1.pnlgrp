@@ -1,0 +1,56 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=EMLERR.Email Erro With JoLog and Call Stack (EMLERR)
+:P.This command provides an easy way to send an email message that
+includes the job log, call stack an optionally a program dump. The
+command is intented to be used to send program errors to developers
+with the information needed to resolve the issue.
+:P.The program can be used in an RPG program using the prototype in
+source memeber APLLIB/QSRC,ERMLERRC1PR.
+:p.Example program are included for reference, see program EMLERRC2
+for an example of it being used in a CL program or EMLERRB1 for
+an example of it being used in an RPG program.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLERR/EMLTO'.Email To Address - Help
+:XH3.EMLTO - Email To Address
+:P.This is the email address the email will be sent to.
+This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLERR/SUBJECT'.Email Subject - Help
+:XH3.SUBJECT - Email Subject
+:P.This is the subject that will be incldued on the email.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLERR/MESSAGE'.Email Message - Help
+:XH3.MESSAGE - Email Message
+:P.This is the message that willbe includd in the email body.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLERR/INCDMP'.Include Dump - Help
+:XH3.INCDMP - Include Dump
+:P.Enter a Y in the option to incldue a dump with the email. The
+dump must be produced in the calling program.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLERR/EMLFRM'.From Email Address - Help
+:XH3.EMLFRM - FRom Email Address
+:P.This parameter allows the from email address to entered. If not
+use the email wil coem from the default sender email address of the
+email software being used.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLERR/EMLTO2'.Email To Address 2 - Help
+:XH3.EMLTO2 - Email To Address 2
+:P.This parameter allows an addition email to address to be entered.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLERR/EMLTO3'.Email To Address 3 - Help
+:XH3.EMLTO3 - Email To Address 3
+:P.This parameter allows an addition email to address to be entered.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

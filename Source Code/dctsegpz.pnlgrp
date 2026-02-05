@@ -1,0 +1,114 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=DCTSEGDZ.Dictionary Segments - Filters
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: DCTSEGFZ Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: DCTSEGFZ Field: PGMNME
+Type: CHAR(10)
+Location: (1,71)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DTASEG'.Data Segment
+:XH3.Data Segment
+:P.Help text not entered.
+:P.Screen: DCTSEGFZ Field: DTASEG
+Type: CHAR(3)
+Location: (4,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='DES'.Description
+:XH3.Description
+:P.Help text not entered.
+:P.Screen: DCTSEGFZ Field: DES
+Type: CHAR(40)
+Location: (6,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='COLTXT'.Column Text
+:XH3.Column Text
+:P.Help text not entered.
+:P.Screen: DCTSEGFZ Field: COLTXT
+Type: CHAR(50)
+Location: (7,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='COLHDGSEG'.Column Heading for a Segment
+:XH3.Column Heading for a Segment
+:P.Help text not entered.
+:P.Screen: DCTSEGFZ Field: COLHDGSEG
+Type: CHAR(20)
+Location: (8,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ACVDES'.Active Description
+:XH3.Active Description
+:p.This field or column denotes that an entry is active or inactive.
+:P.Screen: DCTSEGFZ Field: ACVDES
+Type: CHAR(8)
+Location: (9,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='CNFEXSD'.Error name not found (CNFEXSD)
+:XH3.Error name not found (CNFEXSD)
+:P.Help text not entered.
+:P.Screen: DCTSEGFZ Field: CNFEXSD
+Type: CHAR(3)
+Location: (10,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRTCDE'.Sort Code
+:XH3.Sort Code
+:p.The sort code field is used on list screens and reports.
+:p.For list screens, it designates the column of the screen to sort
+by. However, changing the sort on a list screen is normally done by
+entering a value into one of the position to fields at the top of the
+screen. For list screens, the sort code field is on the filter screen,
+usually access via F13=Filter.
+:p.For reports the sort code is on the report prompt screen, normally
+towards the top of the screen. To the right of the field should be the valid
+options. It is often labeled Sort Option.
+:P.Screen: DCTSEGFZ Field: SRTCDE
+Type: DECIMAL(2,0)
+Location: (11,23)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+F1 displays this help text. If used on a field, it includes the help text
+for that field. Otherwise, it shows the help text for the entire screen.
+:LI.:HP2.F3=Exit:EHP2.
+F3 exits a program. Any changes made on the screen will
+not be saved, unless the enter key is pressed first.
+:LI.:HP2.F4=Prompt:EHP2.
+F4 is used to prompt for a value in a field. If a field is followed by a
+question mark (?), it can be prompted. Prompting displays a list of the
+possible values for the field and allows the user to select an entry
+on the list.
+:LI.:HP2.F5=Refresh:EHP2.
+F5 refreshes the screen. It will load the screen back to the state is would be
+in if it was just entered. This can be useful if a value is changed on
+another screen, or to just clear any changes made on the screen.
+:LI.:HP2.F12=Cancel:EHP2.
+F12 cancels out of the current screen. Any changes made on the screen will
+not be saved, unless the enter key is pressed first.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

@@ -1,0 +1,34 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=MOVTBL.Move File to Tableau Database
+:P.This command is used move files or views to the Tableau
+database.  It deletes the table in the Tableau database and
+recreates it to match the file being moved. It then inserts
+all the data into the new table in the Tableau database.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MOVTBL/FLENME'.File Name
+:XH3.FLENME - File Name
+:p.Specifies the IBM i file to move to the Tableau database. The file
+name must be the system file name. The file can be of any type usable
+in SQL. For example, it could be a PF, LF, SQL table or view.
+:p.The library must be included for the file. The default has been set
+to the production library so it does not always have to changed.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MOVTBL/NEWTBLNME'.New Table Name
+:XH3.NEWFLENME - New Table Name
+:P.Specifies The name of the table to create in the Tableau
+database. For example, an IBM i file may be VNDMST but in the
+remote database it might called vendors. This parameter allows
+the remote name to overridden.
+:p.The special value of *TABLE causes the program to pull the table
+name from the table name in the system metadata. This allows SQL tables
+or views to be created as one IBM i file name, but named something else
+for SQL. If using an SQL table or view, setting this up allows the remote
+name on the Tableau database to match the local SQL name of the object.
+:p.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.IFMDRVIDN;
+Create Unique Index APLLIB.IFMDRVIDN on APLLIB.IFMDRV (
+  IFMDRVIDN
+);
+
+Label on Index APLLIB.IFMDRVIDN is 'IFS Monitor Driver Table - Id';

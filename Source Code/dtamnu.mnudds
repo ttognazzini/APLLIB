@@ -1,0 +1,75 @@
+     A* Free Form Menu: DTAMNU
+     A*%%TS  SD  20250519  100002  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3                  -
+     A                                             27 132 *DS4)
+     A                                      CHGINPDFT
+     A                                      INDARA
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R DTAMNU
+     A*%%TS  SD  20250519  100002  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                      LOCK
+     A                                      SLNO(01)
+     A                                      CLRL(*ALL)
+     A                                      ALWROL
+     A                                      CF03
+     A                                      HELP
+     A                                      HOME
+     A                                      HLPRTN
+     A                                  1  2'DTAMNU'
+     A                                  1 66'Date:'
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  2  2USER
+     A                                  2 36'Data Menu'
+     A                                      COLOR(WHT)
+     A                                  2 66'Time:'
+     A                                  2 72TIME
+     A                                  4  2'Select one of the following:'
+     A                                      COLOR(BLU)
+     A                                  5  3'1.'
+     A                                  6  3'2.'
+     A                                  7  3'3.'
+     A                                  8  3'4.'
+     A                                  9  3'5.'
+     A                                 10  3'6.'
+     A                                 11  3'7.'
+     A                                 12  3'8.'
+     A                                 13  3'9.'
+     A                                 14  2'10.'
+     A* CMDPROMPT  Do not delete this DDS spec.
+     A                                019  2'Selection or command              -
+     A                                          '
+     A                                 15  2'11.'
+     A                                 16  2'12.'
+     A                                 19 42'90.'
+     A                                 19 46'Signoff'
+     A                                  5  6'Data Dictionary'
+     A                                  7  6'Data Files'
+     A                                  6  6'Data Segments'
+     A                                  1 20MSGCON(040 AAA0000 *LIBL/ENVIRONMNT)
+     A                                 16  6'Application Libraries'
+     A                                  5 39'13.'
+     A                                  6 39'14.'
+     A                                  7 39'15.'
+     A                                  8 39'16.'
+     A                                  9 39'17.'
+     A                                 10 39'18.'
+     A                                 11 39'19.'
+     A                                 12 39'20.'
+     A                                 13 39'21.'
+     A                                 14 39'22.'
+     A                                 15 39'23.'
+     A                                 16 39'24.'
+     A                                  6 43'System Table Inquiry'
+     A                                  7 43'System View Inquiry'
+     A                                  8 43'System Index Inquiry'
+     A                                  5 43'System Schema Inquiry'
+     A                                  9 43'System Constraints Inquiry'
+     A                                 10 43'System Procedures Inquiry'
+     A                                 11 43'System Functions Inquiry'
+     A                                 12 43'System SQL Variables Inquiry'
+     A                                 13 43'System Trigger Inquiry'
+     A                                 13  6'Program Maintenance'
+     A                                 16 43'Netserver Commands'

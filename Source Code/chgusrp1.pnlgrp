@@ -1,0 +1,34 @@
+.*-----------------------------------------------------------------------**
+.*
+.*  Compile options:
+.*
+.*-----------------------------------------------------------------------**
+:PNLGRP.
+
+:HELP NAME='CHGUSR'.
+Change Jobs User - Help
+:P.
+The Change Jobs User (CHGUSR) command changes the user of the currrent
+job. This is generally used to change the user to a user that has permission
+to access network file shares. This is required because the IBM i
+authentication usually does not match the networks authentication.
+:p.Calling the command and not passing a user will set the jobs user back
+to the user that initially signed on.
+:P.:HP2.Example 1:EHP2. Change the user to another user.
+:XMP.
+CHGUSR MEGAUSER
+:EXMP.
+:P.:HP2.Example 2:EHP2. Change the user back to the user that signed on.
+:XMP.
+CHGUSR
+:EXMP.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='CHGUSR/USER'.User - Help
+:XH3.USER - User
+:P.This parameter is the user that the job will be changed to. If left
+blank or not passed, the job will be changed back to the user that
+initially signed on.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

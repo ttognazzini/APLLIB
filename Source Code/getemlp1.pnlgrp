@@ -1,0 +1,23 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=GETEMAIL.Get Users Email Address
+:P.This command was created to retrieve a user email address.
+:P. The command retruns the email address in the form of a 50 character
+field. The intent is to show the email address a report is going to
+on a CL prompt screen and allow the user to change it if needed.
+:P.If no address is found the returned value will just be blank.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETEMAIL/EMAIL'.CL Variable Name for the Address - Help
+:P.:HP2.EMAIL:EHP2. Variable to receive the email address.
+Specifies the CL variable to retrun the email address to.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GETEMAIL/USER'.User ID to find the Address For - Help
+:P.:HP2.USER:EHP2. Passed User ID to find the address for.
+Specifies the user ID to find the email address of.
+:p.This is an optional parameter. If not passed the jobs user ID will be used.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.
