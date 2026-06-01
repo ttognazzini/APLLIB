@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) BndDir('APLLIB') actgrp(*new) Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) BndDir('APLLIB') actgrp(*new) Main(Main);
 
 // Email the results of an sql table as an excel file
 

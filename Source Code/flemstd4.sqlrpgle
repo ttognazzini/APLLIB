@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
 
 // File Master Copy Options
 
@@ -126,7 +126,7 @@ Dcl-Proc ValidateScreen;
 
   // Validate/Auto Prompt source library
   pmLibNme = srcLib;
-  Callp APLLIBBP(pmLibNme:pmDes:pmKeyPressed);
+  APLLIBBP(pmLibNme:pmDes:pmKeyPressed);
   If pmlibNme <> '';
     If srcLib <> pmLibNme; // redisplay if the value changes
       error=*on;

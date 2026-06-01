@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) BndDir('APLLIB')
+Ctl-Opt Option(*SrcStmt:*nounref) BndDir('APLLIB')
         DftActGrp(*No) Main(Main) ActGrp(*new);
 
 // CRTDSPF Pre-processor work

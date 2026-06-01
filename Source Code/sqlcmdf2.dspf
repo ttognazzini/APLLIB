@@ -1,0 +1,975 @@
+     A*%%TS  SD  20211108  115529  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4                 -
+     A                                             24 80 *DS3)
+     A                                      PRINT
+     A                                      HELP
+     A                                      HLPPNLGRP(F1 SQLDSP)
+     A                                      ALTHELP(CA01)
+     A                                      HLPTITLE('SQL QUERY MANAGER')
+     A          R F0
+     A                                      INVITE
+     A                                 12 25'Loading Query Data, Please Wait.'
+     A                                      COLOR(RED)
+     A                                      DSPATR(BL)
+     A          R F1S                       SFL
+     A*%%TS  SD  20191206  100821  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      CHANGE(26)
+     A            SF1LINE       72A  O  6  9
+     A            SF1SEQ         6  0O  6  2DSPATR(HI)
+     A N86                                  DSPATR(ND)
+     A          R F1C                       SFLCTL(F1S)
+     A*%%TS  SD  20211104  142021  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A  *DS4                                SFLSIZ(0100)
+     A  *DS3                                SFLSIZ(0100)
+     A  *DS4                                SFLPAG(0013)
+     A  *DS3                                SFLPAG(0014)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(04 'SHIFT TO COLUMN')
+     A                                      CF05(05)
+     A                                      CF06(06 'VIEW SQL')
+     A                                      CF07(19 'LEFT')
+     A                                      CF08(20 'RIGHT')
+     A                                      CF09(21 'TOGGLE SPLIT')
+     A                                      CF10(10 'WIDTH 132')
+     A                                      CF11(11 'DISPLAY HEX')
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(13)
+     A                                      CF14(14)
+     A                                      CF15(15)
+     A                                      CF16(16 'Shift to row')
+     A                                      CF17(17)
+     A                                      CF18(27)
+     A                                      CF19(19)
+     A                                      CF20(20)
+     A                                      CF21(21)
+     A                                      CF22(10)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      DSPMOD(*DS3)
+     A                                      CSRLOC(ROW        COL)
+     A                                      OVERLAY
+     A                                      HLPCLR
+     A                                      SFLCSRRRN(&CSRF1)
+     A N44 45                               SFLDSP
+     A N44                                  SFLDSPCTL
+     A  44                                  SFLCLR
+     A  81                                  SFLEND(*MORE)
+     A          H                           HLPPNLGRP(F1 SQLDSP)
+     A  *DS4                                HLPARA(01 001 01 001)
+     A  *DS3                                HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('F1/NUMROWS' SQLDSP)
+     A  *DS4                                HLPARA(*FLD NUMROWS)
+     A  *DS3                                HLPARA(*FLD NUMROWS)
+     A          H                           HLPPNLGRP('F1/F1WIDTH' SQLDSP)
+     A  *DS4                                HLPARA(*FLD F1WIDTH)
+     A  *DS3                                HLPARA(*FLD F1WIDTH)
+     A          H                           HLPPNLGRP('F1/F1PSTOL' SQLDSP)
+     A  *DS4                                HLPARA(*FLD F1PSTOL)
+     A  *DS3                                HLPARA(*FLD F1PSTOL)
+     A          H                           HLPPNLGRP('F1/F1SRCH' SQLDSP)
+     A  *DS4                                HLPARA(*FLD F1SRCH2)
+     A  *DS3                                HLPARA(*FLD F1SRCH2)
+     A          H                           HLPPNLGRP('F1/F1PSTOC' SQLDSP)
+     A  *DS4                                HLPARA(*FLD F1PSTOC)
+     A  *DS3                                HLPARA(*FLD F1PSTOC)
+     A          H                           HLPPNLGRP('F1/LINE' SQLDSP)
+     A  *DS4                                HLPARA(04 002 24 007)
+     A  *DS3                                HLPARA(04 002 20 007)
+     A          H                           HLPPNLGRP('F1/DATA' SQLDSP)
+     A  *DS4                                HLPARA(04 009 24 132)
+     A  *DS3                                HLPARA(04 009 20 080)
+     A          H                           HLPPNLGRP(F1F SQLDSP)
+     A  *DS4                                HLPARA(27 132 27 132)
+     A  *DS3                                HLPARA(24 080 24 080)
+     A            ROW            3S 0H
+     A            COL            3S 0H
+     A            CRNF1          4S 0H      SFLRCDNBR(CURSOR)
+     A            CSRF1          5S 0H
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 32'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1 58USER
+     A                                  1 70'SYS274D-F1'
+     A                                  2 34'Display Query'
+     A                                      DSPATR(HI)
+     A                                  2 57'Data Width . . . :'
+     A                                  3 57'Shift to Column. .'
+     A                                  3  2'Position to line .'
+     A            F1PSTOL        9A  B  3 21
+     A            F1PSTOC        5A  B  3 76
+     A            F1WIDTH        5Y 0O  2 76EDTCDE(Z)
+     A                                  4  2'Line'
+     A                                      DSPATR(HI)
+     A            F1HDR2        72A  O  5  9DSPATR(HI)
+     A            F1HDR1        72A  O  4  9DSPATR(HI)
+     A                                  2  2'Number of Rows . :'
+     A            NUMROWS        9Y 0O  2 21EDTCDE(Z)
+     A N95                              3 31'Srch:'
+     A N95        F1SRCH2       19A  B  3 37CHECK(LC)
+     A          R F1F
+     A*%%TS  SD  20191209  141748  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A            ERM           50A  O 21 16
+     A  50                                  DSPATR(RI)
+     A                                      DSPATR(HI)
+     A                                 22  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 22 11'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 67'F12=Cancel'
+     A                                      COLOR(BLU)
+     A                                 23  2'F7=Left'
+     A                                      COLOR(BLU)
+     A                                 23 11'F8=Right'
+     A                                      COLOR(BLU)
+     A                                 22 48'F5=Column Details'
+     A                                      COLOR(BLU)
+     A                                 22 21'F4=Shift to Column'
+     A                                      COLOR(BLU)
+     A                                 23 33'F10=Width 132'
+     A                                      COLOR(BLU)
+     A            F9CMDK        11A  O 23 21COLOR(BLU)
+     A                                 22 67'F6=View SQL'
+     A                                      COLOR(BLU)
+     A                                 24 48'F16=Shift Row'
+     A                                      COLOR(BLU)
+     A                                 23 48'F11=Hex'
+     A                                      COLOR(BLU)
+     A                                 24  2'F13=Email'
+     A                                      COLOR(BLU)
+     A                                 24 21'F14=Print'
+     A                                      COLOR(BLU)
+     A                                 24 33'F15=Save'
+     A                                      COLOR(BLU)
+     A                                 24 67'F17=Create PF'
+     A                                      COLOR(BLU)
+     A          R F11S                      SFL
+     A*%%TS  SD  20191206  100821  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      CHANGE(26)
+     A            SF11LINE     124A  O  7  9
+     A            SF1SEQ         6  0O  7  2DSPATR(HI)
+     A N86                                  DSPATR(ND)
+     A          R F11C                      SFLCTL(F11S)
+     A*%%TS  SD  20211104  142021  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A  *DS4                                SFLSIZ(0100)
+     A  *DS3                                SFLSIZ(0001)
+     A  *DS4                                SFLPAG(0017)
+     A  *DS3                                SFLPAG(0001)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(04 'SHIFT TO COLUMN')
+     A                                      CF05(05)
+     A                                      CF06(06 'VIEW SQL')
+     A                                      CF07(19 'LEFT')
+     A                                      CF08(20 'RIGHT')
+     A                                      CF09(21 'TOGGLE SPLIT')
+     A                                      CF10(10 'WIDTH 132')
+     A                                      CF11(11 'DISPLAY HEX')
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(13 'email')
+     A                                      CF14(14 'print')
+     A                                      CF15(15 'save')
+     A                                      CF16(16 'Shift to row')
+     A                                      CF17(17 'create pf')
+     A                                      CF18(27)
+     A                                      CF19(19)
+     A                                      CF20(20)
+     A                                      CF21(21)
+     A                                      CF22(10)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      DSPMOD(*DS4)
+     A                                      CSRLOC(ROW        COL)
+     A                                      OVERLAY
+     A                                      HLPCLR
+     A                                      SFLCSRRRN(&CSRF1)
+     A N44 45                               SFLDSP
+     A N44                                  SFLDSPCTL
+     A  44                                  SFLCLR
+     A  81                                  SFLEND(*MORE)
+     A          H                           HLPPNLGRP(F1 SQLDSP)
+     A  *DS4                                HLPARA(01 001 01 001)
+     A  *DS3                                HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('F1/NUMROWS' SQLDSP)
+     A  *DS4                                HLPARA(*FLD NUMROWS)
+     A  *DS3                                HLPARA(*FLD NUMROWS)
+     A          H                           HLPPNLGRP('F1/SVROWS' SQLDSP)
+     A  *DS4                                HLPARA(*FLD SVROWS)
+     A  *DS3                                HLPARA(*FLD SVROWS)
+     A          H                           HLPPNLGRP('F1/F1WIDTH' SQLDSP)
+     A  *DS4                                HLPARA(02 120 02 124)
+     A  *DS3                                HLPARA(*NONE)
+     A          H                           HLPPNLGRP('F1/F1PSTOC' SQLDSP)
+     A  *DS4                                HLPARA(*FLD F1PSTOL)
+     A  *DS3                                HLPARA(*FLD F1PSTOL)
+     A          H                           HLPPNLGRP('F1/F1SRCH' SQLDSP)
+     A  *DS4                                HLPARA(*FLD F1SRCH)
+     A  *DS3                                HLPARA(*FLD F1SRCH)
+     A          H                           HLPPNLGRP('F1/F1PSTOC' SQLDSP)
+     A  *DS4                                HLPARA(03 120 03 124)
+     A  *DS3                                HLPARA(*NONE)
+     A          H                           HLPPNLGRP('F1/LINE' SQLDSP)
+     A  *DS4                                HLPARA(04 002 24 007)
+     A  *DS3                                HLPARA(04 002 20 007)
+     A          H                           HLPPNLGRP('F1/DATA' SQLDSP)
+     A  *DS4                                HLPARA(04 009 24 132)
+     A  *DS3                                HLPARA(04 009 20 080)
+     A          H                           HLPPNLGRP(F1F SQLDSP)
+     A  *DS4                                HLPARA(27 132 27 132)
+     A  *DS3                                HLPARA(24 080 24 080)
+     A            ROW            3S 0H
+     A            COL            3S 0H
+     A            CRNF1          4S 0H      SFLRCDNBR(CURSOR)
+     A            CSRF1          5S 0H
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 58'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1110USER
+     A                                  1122'SYS274D-F11'
+     A                                  2 60'Display Query'
+     A                                      DSPATR(HI)
+     A                                  2101'Data Width . . . :'
+     A                                  3101'Shift to Column. .'
+     A                                  3  2'Position to line .'
+     A            F1PSTOL        9A  B  3 21
+     A            F1PSTOC        5A  B  3120
+     A            F1WIDTH        5Y 0O  2120EDTCDE(Z)
+     A                                  4  2'Line'
+     A                                      DSPATR(HI)
+     A            F11HDR2      124A  O  5  9DSPATR(HI)
+     A            F11HDR1      124A  O  4  9DSPATR(HI)
+     A                                  2  2'Number of Rows . :'
+     A            NUMROWS        9Y 0O  2 21EDTCDE(Z)
+     A N95                              3 36'Search:'
+     A N95        F1SRCH        50A  B  3 44CHECK(LC)
+     A  94                              2 31'of'
+     A  94        SVROWS         9Y 0O  2 34EDTCDE(Z)
+     A          R F11F
+     A*%%TS  SD  20191209  141748  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      DSPMOD(*DS4)
+     A            ERM           50A  O 25 42
+     A  50                                  DSPATR(RI)
+     A                                      DSPATR(HI)
+     A                                 26  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 26 12'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 27 12'F12=Cancel'
+     A                                      COLOR(BLU)
+     A                                 26 80'F7=Left'
+     A                                      COLOR(BLU)
+     A                                 26 91'F8=Right'
+     A                                      COLOR(BLU)
+     A                                 26 46'F5=Column Details'
+     A                                      COLOR(BLU)
+     A                                 26 25'F4=Shift to Column'
+     A                                      COLOR(BLU)
+     A                                 26118'F10=Width 80'
+     A                                      COLOR(BLU)
+     A            F9CMDK        11A  O 26103COLOR(BLU)
+     A                                 26 66'F6=View SQL'
+     A                                      COLOR(BLU)
+     A                                 27 25'F16=Shift to Row'
+     A                                      COLOR(BLU)
+     A                                 27  2'F11=Hex'
+     A                                      COLOR(BLU)
+     A                                 27 46'F13=Email'
+     A                                      COLOR(BLU)
+     A                                 27 66'F14=Print'
+     A                                      COLOR(BLU)
+     A                                 27 80'F15=Save'
+     A                                      COLOR(BLU)
+     A                                 27 91'F17=Create PF'
+     A                                      COLOR(BLU)
+     A          R F2S                       SFL
+     A*%%TS  SD  20190522  122642  TTOGNAZZIN  REL-V7R1M0  5770-WDS
+     A                                      CHANGE(26)
+     A            SF2SEQ         3Y 0O  5  2EDTCDE(Z)
+     A            SF2CLMNM      35A  O  5  6
+     A            SF2TYPE       10A  O  5 43
+     A            SF2LEN         5Y 0O  5 55EDTCDE(Z)
+     A            SF2WID         5Y 0O  5 67EDTCDE(Z)
+     A            SF2OFFSET      5Y 0O  5 75EDTCDE(Z)
+     A            SF2DECA        3A  O  5 62
+     A          R F2C                       SFLCTL(F2S)
+     A*%%TS  SD  20211108  115529  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A  *DS4                                SFLSIZ(0100)
+     A  *DS3                                SFLSIZ(0100)
+     A  *DS4                                SFLPAG(0017)
+     A  *DS3                                SFLPAG(0017)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(06 'ADD')
+     A                                      CF07(27)
+     A                                      CF08(08 'TOGGLE SORT')
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(11 'DSP DELETED')
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      OVERLAY
+     A                                      DSPMOD(*DS3)
+     A                                      SFLCSRRRN(&CSRF2)
+     A N44 45                               SFLDSP
+     A N44                                  SFLDSPCTL
+     A  44                                  SFLCLR
+     A N44                                  SFLEND(*MORE)
+     A          H                           HLPPNLGRP(F2 SQLDSP)
+     A  *DS4                                HLPARA(01 001 01 001)
+     A  *DS3                                HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('F2/SF2SEQ' SQLDSP)
+     A  *DS4                                HLPARA(04 002 21 004)
+     A  *DS3                                HLPARA(04 002 21 004)
+     A          H                           HLPPNLGRP('F2/SF2CLMNM' SQLDSP)
+     A  *DS4                                HLPARA(04 006 21 040)
+     A  *DS3                                HLPARA(04 006 21 040)
+     A          H                           HLPPNLGRP('F2/SF2TYPE' SQLDSP)
+     A  *DS4                                HLPARA(04 043 21 052)
+     A  *DS3                                HLPARA(04 043 21 052)
+     A          H                           HLPPNLGRP('F2/SF2LEN' SQLDSP)
+     A  *DS4                                HLPARA(04 055 21 059)
+     A  *DS3                                HLPARA(04 055 21 059)
+     A          H                           HLPPNLGRP('F2/SF2DECA' SQLDSP)
+     A  *DS4                                HLPARA(04 062 21 064)
+     A  *DS3                                HLPARA(04 062 21 064)
+     A          H                           HLPPNLGRP('F2/SF2WID' SQLDSP)
+     A  *DS4                                HLPARA(04 067 21 071)
+     A  *DS3                                HLPARA(04 067 21 071)
+     A          H                           HLPPNLGRP('F2/SF2OFF' SQLDSP)
+     A  *DS4                                HLPARA(04 074 21 079)
+     A  *DS3                                HLPARA(04 074 21 079)
+     A          H                           HLPPNLGRP(F2F SQLDSP)
+     A  *DS4                                HLPARA(24 080 24 080)
+     A  *DS3                                HLPARA(24 080 24 080)
+     A            CRNF2          4S 0H      SFLRCDNBR(CURSOR)
+     A            CSRF2          5S 0H
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 32'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1 58USER
+     A                                  1 70'SYS274D-F2'
+     A                                  2 34'Column Details'
+     A                                      DSPATR(HI)
+     A                                  4  2'Seq'
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  4  6'Name                              -
+     A                                       '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4 43'Type      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4 55' Len '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4 62'Dec'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4 67'Width'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4 74'Offset'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  3  2'Columns:'
+     A            F2COLUMNS      5Y 0O  3 11EDTCDE(J)
+     A          R F2F
+     A*%%TS  SD  20190515  091213  TTOGNAZZIN  REL-V7R1M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A            ERM           50A  O 24 16
+     A  50                                  DSPATR(RI)
+     A                                      DSPATR(HI)
+     A                                 23  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 23 12'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 22'F12=Cancel'
+     A                                      COLOR(BLU)
+     A          R F3S                       SFL
+     A*%%TS  SD  20190522  111710  TTOGNAZZIN  REL-V7R1M0  5770-WDS
+     A                                      CHANGE(26)
+     A            SF3LINE       78   O  5  2
+     A          R F3C                       SFLCTL(F3S)
+     A*%%TS  SD  20200917  151756  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A  *DS4                                SFLSIZ(0100)
+     A  *DS3                                SFLSIZ(0100)
+     A  *DS4                                SFLPAG(0017)
+     A  *DS3                                SFLPAG(0017)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(27)
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      DSPMOD(*DS3)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRF3)
+     A N44 45                               SFLDSP
+     A N44                                  SFLDSPCTL
+     A  44                                  SFLCLR
+     A N44                                  SFLEND(*MORE)
+     A          H                           HLPPNLGRP(F3 SQLDSP)
+     A  *DS4                                HLPARA(01 001 24 080)
+     A  *DS3                                HLPARA(01 001 24 080)
+     A            CRNF3          4S 0H      SFLRCDNBR(CURSOR)
+     A            CSRF3          5S 0H
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 32'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1 58USER
+     A                                  1 70'SYS274D-F3'
+     A                                  2 34'SQL Statement'
+     A                                      DSPATR(HI)
+     A                                  4  2'Statement                         -
+     A                                                                         -
+     A                                               '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A          R F3F
+     A*%%TS  SD  20190522  111710  TTOGNAZZIN  REL-V7R1M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A            ERM           50A  O 24 16
+     A  50                                  DSPATR(RI)
+     A                                      DSPATR(HI)
+     A                                 23  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 23 12'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 22'F12=Cancel'
+     A                                      COLOR(BLU)
+     A          R F8
+     A*%%TS  SD  20210702  140902  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(27)
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(27)
+     A                                      PAGEDOWN(27)
+     A                                      HOME(27)
+     A          H                           HLPPNLGRP(SQLF8 SQL)
+     A  *DS4                                HLPARA(01 001 01 001)
+     A  *DS3                                HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('SQLF8/F8EM01' SQL)
+     A  *DS4                                HLPARA(*FLD F8EM01)
+     A  *DS3                                HLPARA(*FLD F8EM01)
+     A          H                           HLPPNLGRP('SQLF8/F8EM01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8EM02)
+     A  *DS3                                HLPARA(*FLD F8EM02)
+     A          H                           HLPPNLGRP('SQLF8/F8EM01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8EM03)
+     A  *DS3                                HLPARA(*FLD F8EM03)
+     A          H                           HLPPNLGRP('SQLF8/F8EM01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8EM04)
+     A  *DS3                                HLPARA(*FLD F8EM04)
+     A          H                           HLPPNLGRP('SQLF8/F8SUBJ' SQL)
+     A  *DS4                                HLPARA(*FLD F8SUBJ)
+     A  *DS3                                HLPARA(*FLD F8SUBJ)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A  *DS4                                HLPARA(*FLD F8MS01)
+     A  *DS3                                HLPARA(*FLD F8MS01)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS02)
+     A  *DS3                                HLPARA(*FLD F8MS02)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS03)
+     A  *DS3                                HLPARA(*FLD F8MS03)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS04)
+     A  *DS3                                HLPARA(*FLD F8MS04)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS05)
+     A  *DS3                                HLPARA(*FLD F8MS05)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS06)
+     A  *DS3                                HLPARA(*FLD F8MS06)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS07)
+     A  *DS3                                HLPARA(*FLD F8MS07)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS08)
+     A  *DS3                                HLPARA(*FLD F8MS08)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS09)
+     A  *DS3                                HLPARA(*FLD F8MS09)
+     A          H                           HLPPNLGRP('SQLF8/F8MS01' SQL)
+     A                                      HLPEXCLD
+     A  *DS4                                HLPARA(*FLD F8MS10)
+     A  *DS3                                HLPARA(*FLD F8MS10)
+     A          H                           HLPPNLGRP(SQLF8F SQL)
+     A  *DS4                                HLPARA(24 080 24 080)
+     A  *DS3                                HLPARA(24 080 24 080)
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 32'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1 58USER
+     A                                  1 70'SYS274D-F8'
+     A                                  2 34'Email Options'
+     A                                      DSPATR(HI)
+     A                                  4  2'To. . . . . . .'
+     A            F8EM01    R        B  4 18REFFLD(SQLLSTR/SQLEM01 *LIBL/SQLLST-
+     A                                      PF)
+     A  51 50                               DSPATR(RI)
+     A  51                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A                                  4 69'(*CURRENT)'
+     A            F8EM02    R        B  5 18REFFLD(SQLLSTR/SQLEM02 *LIBL/SQLLST-
+     A                                      PF)
+     A  52 50                               DSPATR(RI)
+     A  52                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A            F8EM03    R        B  6 18REFFLD(SQLLSTR/SQLEM03 *LIBL/SQLLST-
+     A                                      PF)
+     A  53 50                               DSPATR(RI)
+     A  53                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A            F8EM04    R        B  7 18REFFLD(SQLLSTR/SQLEM04 *LIBL/SQLLST-
+     A                                      PF)
+     A  54 50                               DSPATR(RI)
+     A  54                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A                                  8  2'Subject . . . .'
+     A            F8SUBJ        60A  B  8 18CHECK(LC)
+     A                                 11  2'Message                           -
+     A                                                                         -
+     A                                               '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A            F8MS01        76A  B 12  2CHECK(LC)
+     A            F8MS02        76A  B 13  2CHECK(LC)
+     A            F8MS03        76A  B 14  2CHECK(LC)
+     A            F8MS04        76A  B 15  2CHECK(LC)
+     A            F8MS05        76A  B 16  2CHECK(LC)
+     A            F8MS06        76A  B 17  2CHECK(LC)
+     A            F8MS07        76A  B 18  2CHECK(LC)
+     A            F8MS08        76A  B 19  2CHECK(LC)
+     A            F8MS09        76A  B 20  2CHECK(LC)
+     A            F8MS10        76A  B 21  2CHECK(LC)
+     A            ERM           50A  O 24 16DSPATR(HI)
+     A  50                                  DSPATR(RI)
+     A                                 23  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 23 12'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 22'F12=Cancel'
+     A                                      COLOR(BLU)
+     A                                  9  2'File Type . . .'
+     A            F8ATTY         5A  B  9 18
+     A  56 50                               DSPATR(RI)
+     A  56                                  DSPATR(PC)
+     A                                  9 24'(*XLS,*CSV,*XML,*PDF,*JSON)'
+     A                                 10  2'File Name . . .'
+     A            F8FILE        60   B 10 18
+     A          R F9
+     A*%%TS  SD  20200917  151756  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(27)
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(27)
+     A                                      PAGEDOWN(27)
+     A                                      HOME(27)
+     A          H                           HLPPNLGRP(SQLF9 SQL)
+     A  *DS4                                HLPARA(01 001 01 001)
+     A  *DS3                                HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('SQLF9/F9OUTQ' SQL)
+     A  *DS4                                HLPARA(*FLD F9OUTQ)
+     A  *DS3                                HLPARA(*FLD F9OUTQ)
+     A          H                           HLPPNLGRP('SQLF9/F9OQLB' SQL)
+     A  *DS4                                HLPARA(*FLD F9OQLB)
+     A  *DS3                                HLPARA(*FLD F9OQLB)
+     A          H                           HLPPNLGRP('SQLF9/F9COPY' SQL)
+     A  *DS4                                HLPARA(*FLD F9COPY)
+     A  *DS3                                HLPARA(*FLD F9COPY)
+     A          H                           HLPPNLGRP('SQLF9/F9HOLD' SQL)
+     A  *DS4                                HLPARA(*FLD F9HOLD)
+     A  *DS3                                HLPARA(*FLD F9HOLD)
+     A          H                           HLPPNLGRP('SQLF9/F9SAVE' SQL)
+     A  *DS4                                HLPARA(*FLD F9SAVE)
+     A  *DS3                                HLPARA(*FLD F9SAVE)
+     A          H                           HLPPNLGRP('SQLF9/F9USDT' SQL)
+     A  *DS4                                HLPARA(*FLD F9USDT)
+     A  *DS3                                HLPARA(*FLD F9USDT)
+     A          H                           HLPPNLGRP('SQLF9/F9FRLN' SQL)
+     A  *DS4                                HLPARA(*FLD F9FRLN)
+     A  *DS3                                HLPARA(*FLD F9FRLN)
+     A          H                           HLPPNLGRP('SQLF9/F9FRWD' SQL)
+     A  *DS4                                HLPARA(*FLD F9FRWD)
+     A  *DS3                                HLPARA(*FLD F9FRWD)
+     A          H                           HLPPNLGRP(SQLF9F SQL)
+     A  *DS4                                HLPARA(24 080 24 080)
+     A  *DS3                                HLPARA(24 080 24 080)
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 32'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1 58USER
+     A                                  1 70'SYS274D-F9'
+     A                                  2 34'Print Options'
+     A                                      DSPATR(HI)
+     A                                  4  2'Report Titles                     -
+     A                                                                         -
+     A                                                '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            F9TITLE1      79A  B  5  2
+     A  51 50                               DSPATR(RI)
+     A  51                                  DSPATR(PC)
+     A            F9TITLE2      79A  B  6  2
+     A            F9TITLE3      79A  B  7  2
+     A            F9TITLE4      79A  B  8  2
+     A            F9TITLE5      79A  B  9  2
+     A                                 11 18'To Output Queue . .'
+     A            F9OUTQ        10A  B 11 39
+     A  52 50                               DSPATR(RI)
+     A  52                                  DSPATR(PC)
+     A            F9OQLB        10A  B 12 41
+     A                                 13 18'Copies. . . . . . .'
+     A            F9COPY         3S 0B 13 39
+     A  53 50                               DSPATR(RI)
+     A  53                                  DSPATR(PC)
+     A                                 13 53'(1-255)'
+     A                                 14 18'Hold. . . . . . . .'
+     A            F9HOLD         5A  B 14 39
+     A  54 50                               DSPATR(RI)
+     A  54                                  DSPATR(PC)
+     A                                 14 53'(*YES, *NO)'
+     A                                 15 18'Save. . . . . . . .'
+     A            F9SAVE         5A  B 15 39
+     A  55 50                               DSPATR(RI)
+     A  55                                  DSPATR(PC)
+     A                                 15 53'(*YES, *NO)'
+     A                                 16 18'User Data . . . . .'
+     A            F9USDT        10A  B 16 39
+     A                                 17 18'Form Size:'
+     A                                 18 20'Form Length . . .'
+     A            F9FRLN         3S 0B 18 39
+     A                                 18 53'(Default=66)'
+     A                                 19 20'Form Width. . . .'
+     A            F9FRWD         3S 0B 19 39
+     A                                 19 53'(Default=132)'
+     A                                 20 18'Include Query . . .'
+     A            F9PINQY        4A  B 20 39
+     A                                 20 53'(*YES, *NO)'
+     A            ERM           50A  O 24 16DSPATR(HI)
+     A  50                                  DSPATR(RI)
+     A                                 23  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 23 12'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 22'F12=Cancel'
+     A                                      COLOR(BLU)
+     A          R F21
+     A*%%TS  SD  20200917  151756  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(27)
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(27)
+     A                                      PAGEDOWN(27)
+     A                                      HOME(27)
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 32'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1 58USER
+     A                                  1 70'SYS274D-F21'
+     A                                  2 28'Save as Stream File in IFS'
+     A                                      DSPATR(HI)
+     A                                  6  2'Folder . . . . . .'
+     A            F21FOLD       60A  B  6 21
+     A  51 50                               DSPATR(RI)
+     A  51                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A                                      TEXT('DEFAULT TO EMAIL')
+     A                                  8  2'File . . . . . . .'
+     A            F21FILE       60A  B  8 21
+     A  52 50                               DSPATR(RI)
+     A  52                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A                                      TEXT('DEFAULT TO EMAIL')
+     A                                 10  2'File Type. . . . .'
+     A            F21ATTY        5A  B 10 21
+     A  53 50                               DSPATR(RI)
+     A  53                                  DSPATR(PC)
+     A                                 10 27'(*XLS,*CSV,*XML,*PDF,*JSON)'
+     A            ERM           50A  O 24 16DSPATR(HI)
+     A  50                                  DSPATR(RI)
+     A                                 23  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 23 12'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 22'F12=Cancel'
+     A                                      COLOR(BLU)
+     A                                 12  2'Create Empty File.'
+     A                                 13  2'Use Field Text . .'
+     A                                 14  2'Sheet Name . . . .'
+     A                                 15  2'Title Line 1 . . .'
+     A                                 16  2'Title Line 2 . . .'
+     A                                 17  2'Title Line 3 . . .'
+     A                                 18  2'Title Line 4 . . .'
+     A                                 19  2'Title Line 5 . . .'
+     A            F21EMPTY       4A  B 12 21
+     A  54 50                               DSPATR(RI)
+     A  50                                  DSPATR(PC)
+     A            F21USETEXT     4A  B 13 21
+     A  55 50                               DSPATR(RI)
+     A  55                                  DSPATR(PC)
+     A            F21SHEET      32A  B 14 21
+     A            F21TITL1      60A  B 15 21
+     A            F21TITL2      60A  B 16 21
+     A            F21TITL3      60A  B 17 21
+     A            F21TITL4      60A  B 18 21
+     A            F21TITL5      60A  B 19 21
+     A                                 12 27'(*YES, *NO)'
+     A                                 13 27'(*YES, *NO)'
+     A          R F22
+     A*%%TS  SD  20200917  151756  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(27)
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(27)
+     A                                      PAGEDOWN(27)
+     A                                      HOME(27)
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 32'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1 58USER
+     A                                  1 70'SYS274D-F22'
+     A                                  2 28'Save as Stream File in IFS'
+     A                                      DSPATR(HI)
+     A            ERM           50A  O 24 16DSPATR(HI)
+     A  50                                  DSPATR(RI)
+     A                                 23  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 23 12'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 22'F12=Cancel'
+     A                                      COLOR(BLU)
+     A            F22TEXT      600A  O  6  1
+     A                                 16  1'Replace File . . . .'
+     A            F22REPL        1A  B 16 22
+     A  51 50                               DSPATR(RI)
+     A  51                                  DSPATR(PC)
+     A                                 16 28'(Y=Yes, Replace the File'
+     A                                  3 31'File Already Exists'
+     A                                      DSPATR(HI)
+     A                                 17 29'N=No, Cancel Save'
+     A                                 18 29'B=Both, Keep Both Files)'
+     A          R F23
+     A*%%TS  SD  20200917  151756  TTOGNAZZIN  REL-V7R3M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(27)
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(27)
+     A                                      PAGEDOWN(27)
+     A                                      HOME(27)
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 13TIME
+     A                                  1 32'SQL Query Manager'
+     A                                      DSPATR(HI)
+     A                                  1 58USER
+     A                                  1 70'SYS274D-F23'
+     A                                  2 30'Save as Physical File'
+     A                                      DSPATR(HI)
+     A                                 10  2'File . . . . . . .'
+     A            F23FILE       10A  B 10 21
+     A  51 50                               DSPATR(RI)
+     A  51                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A                                      TEXT('DEFAULT TO EMAIL')
+     A                                 12  2'Library. . . . . .'
+     A            F23LIB        10A  B 12 21
+     A  52 50                               DSPATR(RI)
+     A  52                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A                                      TEXT('DEFAULT TO EMAIL')
+     A            ERM           50A  O 24 16DSPATR(HI)
+     A  50                                  DSPATR(RI)
+     A                                 23  2'F1=Help'
+     A                                      COLOR(BLU)
+     A                                 23 12'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 22'F12=Cancel'
+     A                                      COLOR(BLU)

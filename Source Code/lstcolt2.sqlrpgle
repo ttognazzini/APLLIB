@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No);
+Ctl-Opt debug option(*srcstmt:*nodebugio:*nounref) DftActGrp(*No);
 // ----------------------------------------------------------------------*
 //                                                                      *
 // Program Name:        LSTCOLT2                                        *

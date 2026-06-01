@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
 
 // Data Segment Filter
 

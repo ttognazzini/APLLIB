@@ -1,5 +1,6 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
+Ctl-Opt ActGrp(*New);
+/copy APLLIB/QSRC,$ctlopt  // Default Ctl-Opt's, does not include activation group
 
 // Validate an email address, processes command valemail
 

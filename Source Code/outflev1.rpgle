@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt indent('| ') debug Option(*SrcStmt:*NoDebugIO:*NoShowCpy) nomain;
+Ctl-Opt indent('| ') debug Option(*SrcStmt:*NoDebugIO:*NoShowCpy:*nounref) nomain;
 
 // Create a PC file
 

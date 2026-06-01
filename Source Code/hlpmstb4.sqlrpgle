@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(main);
 
 // Display Help text for a HLPMST record
 

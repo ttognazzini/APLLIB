@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.FLEIDXIDN;
+Create Index APLLIB.FLEIDXIDN on APLLIB.FLEIDX (
+  FLEIDXIDN
+);
+
+Label on Index APLLIB.FLEIDXIDN is 'File Indexes - Id';

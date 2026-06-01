@@ -1,0 +1,192 @@
+     A*%%TS  SD  20220812  071102  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master List
+     A*
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A          R SFL                       SFL
+     A*%%TS  SD  20220810  153549  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A  58                                  SFLNXTCHG
+     A            SEL@           1A  P
+     A            TXT@           1A  P
+     A            KEY           40A  H
+     A            SEL       R        B 10  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL@)
+     A            FLDNME    R        O 10 13
+     A            VAL       R        O 10 24
+     A            HLPTYPD       20A  O 10 35
+     A            LNECNT    R        O 10 56EDTCDE(M)
+     A            TXT           25A  O 10 63DSPATR(&TXT@)
+     A            FLDROW    R        O 10  5EDTCDE(Z)
+     A            FLDCOL    R        O 10  9EDTCDE(Z)
+     A            REFFLE    R   10   O 10 89
+     A            REFFLD    R   10   O 10100
+     A            FLDDES        22   O 10111
+     A*
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20220812  071102  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      SFLPAG(0015)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A  98                                  SFLEND
+     A                                      SFLSIZ(&SFLSIZ)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            FLDNME1@       1A  P
+     A            VAL1@          1A  P
+     A            HLPTYPD1@      1A  P
+     A            LNECNT1@       1A  P
+     A            FLDROW1@       1A  P
+     A            FLDCOL1@       1A  P
+     A            TXT1@          1A  P
+     A            REFFLE1@       1A  P
+     A            REFFLD1@       1A  P
+     A            FLDDES1@       1A  P
+     A            NOTXT@         1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME1       10A  O  1122
+     A            MODE          10A  O  2  2
+     A                                  2 52'Program Help Text Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2122USER
+     A                                  3 54'Not all help text entered.'
+     A                                      DSPATR(&NOTXT@)
+     A                                  4  2'Program'
+     A            PGMNME        10A  O  4 10
+     A            DES           40A  O  4 22
+     A            OPTIONS      131A  O  7  1COLOR(BLU)
+     A                                  6  2'Search:'
+     A            SCHVAL        60A  B  6 10
+     A                                  8  1'Sel'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  8  5'Row'
+     A                                      COLOR(WHT)
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  8  9'Col'
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)
+     A                                  8 13'Field     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  8 24'Value     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  8 35'Help Type           '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  8 56'Lines'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  8 63'Comment                  '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  8 89'Ref File  '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SEL1      R        B  9  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            FLDNME1   R        B  9 13REFFLD(FLDNME)
+     A                                      DSPATR(&FLDNME1@)
+     A            VAL1      R        B  9 24REFFLD(VAL)
+     A                                      DSPATR(&VAL1@)
+     A            HLPTYPD1      20A  B  9 35DSPATR(&HLPTYPD1@)
+     A            LNECNT1   R        B  9 56REFFLD(LNECNT)
+     A                                      DSPATR(&LNECNT1@)
+     A            FLDROW1   R        B  9  5REFFLD(FLDROW)
+     A                                      EDTCDE(Z)
+     A                                      DSPATR(&FLDROW1@)
+     A            FLDCOL1   R        B  9  9REFFLD(FLDCOL)
+     A                                      EDTCDE(Z)
+     A                                      DSPATR(&FLDCOL1@)
+     A            TXT1          25A  B  9 63DSPATR(&TXT1@)
+     A            REFFLE1   R        B  9 89REFFLD(REFFLE)
+     A                                      DSPATR(&REFFLE1@)
+     A                                  4 64'Library:'
+     A            LIB           10A  B  4 73
+     A                                  8100'Ref Field '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            REFFLD1   R   10   B  9100REFFLD(REFFLD)
+     A                                      DSPATR(&REFFLD1@)
+     A            FLDDES1       22A  B  9111DSPATR(&FLDDES1@)
+     A                                  8111'Field Description     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  3100'Total Entries:'
+     A                                  4 97'Entries W/O Help:'
+     A                                  5 96'Entries with Help:'
+     A            TOTCNT         6Y 0O  3115EDTCDE(L)
+     A            MISCNT         6Y 0O  4115EDTCDE(L)
+     A            HLPCNT         6Y 0O  5115EDTCDE(L)
+     A*
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A*%%TS  SD  20220808  143139  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      OVERLAY
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

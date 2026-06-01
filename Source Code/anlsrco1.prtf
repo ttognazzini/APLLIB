@@ -1,0 +1,95 @@
+      *****************************************************************
+      * W-File  : ANLSRCO1                                            *
+      * Function: ANALYSE SOURCE FILES                                *
+      * FORM    :                                                     *
+    ‚ * Author  : Werner Noll                                         *
+    ‚ * Modified:                                                     *
+    ‚ * Remarks : This is free software.                              *
+    ‚ *           You can redistribute it and/or modify it.           *
+    ‚ *           The only restriction is that you may not distribute *
+    ‚ *           it for the purposes of monetary gain.               *
+    ‚ *           We do not garantee for the expected functionalties. *
+    ‚ *           The use of this software is always at your own risk.*
+    ‚ *           All comments or reuqests for enhancements are       *
+    ‚ *           welcome. My email: werner.noll@gefis.com.           *
+    ‚ *           You have to create this Printerfile with            *
+    ‚ *           PAGESIZE    50                                      *
+    ‚ *                      170                                      *
+    ‚ *           OVRFLW      46                                      *
+    ‚ *           FONT       252                                      *
+    ‚ *****************************************************************
+      * Head Record
+     A          R ANLSRC01
+     A                                  1  1'**********************************'
+     A                                  1 35'**********************************'
+     A                                  1 69'**********************************'
+     A                                  1103'**********************************'
+     A                                  1137'**********************************'
+     A                                  2  1'*'
+     A                                  2  3'ANLSRCO1'
+     A                                  2 14'Analyse Source Files'
+     A                                  2 90'Job:'
+     A            W$JOB         48A     2 95
+     A                                  2160'Page'
+     A                                  2165PAGNBR
+     A                                      EDTCDE(Z)
+     A                                  2170'*'
+      *
+     A                                  3  1'*'
+     A                                  3  5'Source File:'
+     A            W$SRCF        10A     3 18
+     A                                  3 35'Search Strings:'
+     A            W$STG10      118A     3 51
+     A                                  3170'*'
+      *
+     A                                  4  1'*'
+     A                                  4  5'  Library  :'
+     A            W$LIB         10A     4 20
+     A                                  4170'*'
+      *
+     A                                  5  1'**********************************'
+     A                                  5 35'**********************************'
+     A                                  5 69'**********************************'
+     A                                  5103'**********************************'
+     A                                  5137'**********************************'
+      *
+     A                                  6  1' '
+      *
+      * Column Headings Record
+     A          R ANLSRC05
+     A                                     1'Library'
+     A                                    12'File'
+     A                                    23'Member'
+     A                                    34'Srch Stg'
+     A                                    48'Line'
+     A                                    56'S o u r c e   T e x t'
+     A                                      SPACEA(1)
+      *
+      * Underline Record
+     A          R ANLSRC06
+     A                                     1'----------------------------------'
+     A                                    35'----------------------------------'
+     A                                    69'----------------------------------'
+     A                                   103'----------------------------------'
+     A                                   137'----------------------------------'
+     A                                      SPACEA(1)
+      *
+      * Detail Record for Data Fields
+     A          R ANLSRC07
+     A            WLIB          10A        1
+     A            WFILE         10A       12
+     A            WMBR          10A       23
+     A            WSTG          10A       34
+     A            WSEQ           6A       46
+     A            WDTA         110A       56
+     A                                      SPACEA(1)
+      *
+      * End of Report
+     A          R ANLSRC97
+     A                                     1'* * * * * END OF REPORT * * * * *'
+     A                                      SPACEA(1)
+      *
+      * Record for Blank Line
+     A          R ANLSRC99
+     A                                     1' '
+     A                                      SPACEA(1)

@@ -1,0 +1,16 @@
+Create or Replace Function APLLIB/YMD2MDY (inDate Decimal(8, 0) )
+  Returns Decimal(8, 0)
+  Language SQL
+  Deterministic
+  Contains SQL
+  Returns Null on Null Input
+  No External Action
+  Set Option DATFMT=*ISO
+Begin
+  If inDate > 1000000 Then
+    Return mod(inDate,10000) * 10000 + int(inDate/10000);
+  End If;
+  Return mod(inDate,10000) * 100 + int(inDate/10000);
+End;
+Label on function APLLIB/YMD2MDY is 'Convert YMD numeric date to MDY numeric date';
+Comment on function APLLIB/YMD2MDY is 'Convert YYYYMMDD tp MMDDYYYY date or YYMMDD to MMDDYY';

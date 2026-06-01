@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt);
+Ctl-Opt Option(*SrcStmt:*nounref);
 
 // Disply Panel Group CPP (DSPPNLGRP)
 

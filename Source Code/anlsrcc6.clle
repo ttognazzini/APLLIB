@@ -1,0 +1,50 @@
+/*********************************************************************/
+/* Program : ANLSRCC6                                                */
+/* Function: Create ANLSRCF Tool                                     */
+/*           This program creates the command ANLSRCF and all        */
+/*           associated program objects.                             */
+/*                                                                   */
+/*           Create this program object manually in a library of     */
+/*           your choice and call it afterwards with the parameters  */
+/*           below.                                                  */
+/*                                                                   */
+/* Author  : Werner Noll                                             */
+/*                                                                   */
+/*                                                                   */
+/* Remarks : This is free software.                                  */
+/*           You can redistribute it and/or modify it.               */
+/*           The only restriction is that you may not distribute     */
+/*           it for the purposes of monetary gain.                   */
+/*           We do not garantee for the expected functionalties.     */
+/*           The use of this software is always at your own risk.    */
+/*           All comments or reuqests for enhancements are           */
+/*           welcome. My email: werner.noll@gefis.com.               */
+/*********************************************************************/
+PGM
+
+  /* Make sure APLLIB is in the library list */
+  ADDLIBLE   APLLIB *LAST
+  MONMSG     CPF0000
+
+  /* Create file objects */
+  CRTPRTF    FILE(APLLIB/ANLSRCO1) SRCFILE(APLLIB/QSRC) PAGESIZE(50 170) +
+             OVRFLW(46) FONT(252) HOLD(*YES) REPLACE(*YES)
+
+  /* Create RPGLE program objects */
+  CRTSQLRPGI OBJ(APLLIB/ANLSRCB1) SRCFILE(APLLIB/QSRC) OBJTYPE(*PGM) REPLACE(*YES)
+  CRTSQLRPGI OBJ(APLLIB/ANLSRCB2) SRCFILE(APLLIB/QSRC) OBJTYPE(*PGM) REPLACE(*YES)
+
+  /* Create CLLE program objects */
+  CRTBNDCL   PGM(APLLIB/ANLSRCC2) SRCFILE(APLLIB/QSRC) REPLACE(*YES)
+  CRTBNDCL   PGM(APLLIB/ANLSRCC3) SRCFILE(APLLIB/QSRC) REPLACE(*YES)
+  CRTBNDCL   PGM(APLLIB/ANLSRCC4) SRCFILE(APLLIB/QSRC) REPLACE(*YES)
+  CRTBNDCL   PGM(APLLIB/ANLSRCC1) SRCFILE(APLLIB/QSRC) REPLACE(*YES)
+  CRTBNDCL   PGM(APLLIB/ANLSRCC5) SRCFILE(APLLIB/QSRC) REPLACE(*YES)
+
+  /* Create PNLGRP object                                            */
+  CRTPNLGRP  PNLGRP(APLLIB/ANLSRCP1) SRCFILE(APLLIB/QSRC) REPLACE(*YES)
+
+  /* Create CMD object */
+  CRTCMD APLLIB/ANLSRCF PGM(ANLSRCC1) SRCFILE(APLLIB/QSRC) SRCMBR(ANLSRCM1) REPLACE(*YES)
+
+ EOP:        ENDPGM

@@ -1,0 +1,73 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+/*   Application Libraries                                 */
+
+Create or Replace Table application_libraries For System Name APLLIB.AUDLOG (
+  active_row                     for Column ACVROW    CHAR(1) Not Null Default '1',
+  file_audit_log_id              for Column AUDLOGIDN BIGINT Not Null
+                                 Generated Always as Identity (Start With 1 Increment by 1),
+  file_library                   for Column FLELIB    CHAR(10) Not Null With Default,
+  record_id                      for Column RCDIDN    BIGINT Not Null With Default,
+  file_name                      for Column FLENME    CHAR(10) Not Null With Default,
+  field_name                     for Column FLDNME    CHAR(10) Not Null With Default,
+  file_id                        for Column FLEMSTIDN BIGINT Not Null With Default,
+  file_field_id                  for Column FLEFLDIDN BIGINT Not Null With Default,
+  before_value                   for Column BFRVAL    VARCHAR(100) ALLOCATE(50) Not Null With Default,
+  after_value                    for Column AFTVAL    VARCHAR(100) ALLOCATE(50) Not Null With Default,
+  create_time_stamp              for Column CRTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  create_user                    for Column CRTUSR    CHAR(18) Not Null Default USER,
+  create_job                     for Column CRTJOB    CHAR(28) Not Null With Default,
+  create_program                 for Column CRTPGM    CHAR(10) Not Null With Default,
+  maintenance_time_stamp         for Column MNTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  maintenance_user               for Column MNTUSR    CHAR(18) Not Null Default USER,
+  maintenance_job                for Column MNTJOB    CHAR(28) Not Null With Default,
+  maintenance_program            for Column MNTPGM    CHAR(10) Not Null With Default,
+  primary key (FLELIB,RCDIDN,AUDLOGIDN)
+);
+
+Label on Table AUDLOG is 'Application Libraries';
+
+Label on Column APLLIB.AUDLOG (
+  ACVROW     is 'Active              Row',
+  AUDLOGIDN  is 'File                Audit               Log Id',
+  FLELIB     is 'File                Library',
+  RCDIDN     is 'Record              Id',
+  FLENME     is 'File                Name',
+  FLDNME     is 'Field               Name',
+  FLEMSTIDN  is 'File                Master              Id',
+  FLEFLDIDN  is 'File                Field               Id',
+  BFRVAL     is 'Before              Value',
+  AFTVAL     is 'After               Value',
+  CRTDTM     is 'Create              Date',
+  CRTUSR     is 'Create              User',
+  CRTJOB     is 'Create              Job',
+  CRTPGM     is 'Create              Program',
+  MNTDTM     is 'Maintenance         Date',
+  MNTUSR     is 'Maintenance         User',
+  MNTJOB     is 'Maintenance         Job',
+  MNTPGM     is 'Maintenance         Program'
+);
+
+Label on Column APLLIB.AUDLOG (
+  ACVROW     text is 'Active Row',
+  AUDLOGIDN  text is 'File Audit Log Id',
+  FLELIB     text is 'File Library',
+  RCDIDN     text is 'Record Id',
+  FLENME     text is 'File Name',
+  FLDNME     text is 'Field Name',
+  FLEMSTIDN  text is 'File Master ID',
+  FLEFLDIDN  text is 'File Field ID',
+  BFRVAL     text is 'Before Value',
+  AFTVAL     text is 'After Value',
+  CRTDTM     text is 'Create Date/Time (Time stamp)',
+  CRTUSR     text is 'Create User',
+  CRTJOB     text is 'Create Job',
+  CRTPGM     text is 'Create Program',
+  MNTDTM     text is 'Maintenance Date',
+  MNTUSR     text is 'Maintenance User',
+  MNTJOB     text is 'Maintenance Job',
+  MNTPGM     text is 'Maintenance Program'
+);

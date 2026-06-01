@@ -1,0 +1,71 @@
+  -- Build WRKFLE
+  Create or Replace Table APLLIB/WRKFLE (
+      active_row             for Column AcvRow    Char(1) not null with default '1',
+      work_files_id          for Column wrkFleIdn bigInt
+          not null generated always as identity (start with 1 increment by 1),
+      file_library           for Column fleLib    char(10) not null with default,
+      file_name              for Column fleNme    char(10) not null with default,
+      file_prefix            for Column flePfx    char(4) not null with default,
+      description            for Column fleDes    char(50) not null with default,
+      record_format_name     for Column rcdFmt    char(10) not null with default,
+      file_type              for Column fleTyp    char(10) not null with default,
+      source_library         for Column srcLib    char(10) not null with default,
+      source_file            for Column srcFle    char(10) not null with default,
+      source_member          for Column srcMbr    char(10) not null with default,
+      creation_time_stamp    for Column crtDtm    timestamp not null with default current timestamp,
+      creation_user          for Column crtUsr    char(18) not null with default user,
+      creation_job           for Column crtJob    char(28) not null with default,
+      creation_program       for Column crtPgm    char(10) not null with default,
+      maintenance_time_stamp for Column mntDtm    timeStamp not null with default current timestamp,
+      maintenance_user       for Column mntUsr    char(18) not null with default user,
+      maintenance_job        for Column mntJob    char(28) not null with default,
+      maintenance_program    for Column MntPgm    char(10) not null with default
+      )
+    RcdFmt WRKFLER;
+
+  Alter Table APLLIB.WRKFLE add Constraint APLLIB.WRKFLE Primary Key( fleLib,fleNme);
+
+  Label on Table APLLIB/WRKFLE is 'Work With files List File';
+
+  Label on Column APLLIB.WRKFLE
+  (ACTIVE_ROW             is 'Active              Row' ,
+   work_files_id          is 'Work                Files               Id' ,
+   file_library           is 'File                Library',
+   file_name              is 'File                Name',
+   file_prefix            is 'File                Prefix',
+   description            is 'Description',
+   record_format_name     is 'Record              Format              Name',
+   file_type              is 'File                Type',
+   source_library         is 'Source              Library',
+   source_file            is 'Source              File',
+   source_member          is 'Source              Member',
+   CREATIon_TIME_STAMP    is 'Creation            Date' ,
+   CREATIon_USER          is 'Creation            User' ,
+   CREATIon_JOB           is 'Creation            Job' ,
+   CREATIon_PROGRAM       is 'Creation            Program' ,
+   MAINTENANCE_TIME_STAMP is 'Maintenance         Date' ,
+   MAINTENANCE_USER       is 'Maintenance         User' ,
+   MAINTENANCE_JOB        is 'Maintenance         Job' ,
+   MAINTENANCE_PROGRAM    is 'Maintenance         Program' ) ;
+
+  Label on Column APLLIB.WRKFLE
+  (ACTIVE_ROW             TEXT is 'Active Row' ,
+   work_files_id          TEXT is 'Dictionary Master ID' ,
+   file_library           Text is 'File Library',
+   file_name              Text is 'File Name',
+   file_prefix            Text is 'File Prefix',
+   description            Text is 'Description',
+   record_format_name     Text is 'Record Format Name',
+   file_type              Text is 'File Type',
+   source_library         Text is 'Source Library',
+   source_file            Text is 'Source File',
+   source_member          Text is 'Source Member',
+   CREATION_TIME_STAMP    TEXT is 'Creation Date' ,
+   CREATION_USER          TEXT is 'Creation User' ,
+   CREATION_JOB           TEXT is 'Creation Job' ,
+   CREATION_PROGRAM       TEXT is 'Creation Program' ,
+   MAINTENANCE_TIME_STAMP TEXT is 'Maintenance Date' ,
+   MAINTENANCE_USER       TEXT is 'Maintenance User' ,
+   MAINTENANCE_JOB        TEXT is 'Maintenance Job' ,
+   MAINTENANCE_PROGRAM    TEXT is 'Maintenance Program' ) ;
+

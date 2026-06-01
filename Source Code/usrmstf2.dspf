@@ -1,0 +1,198 @@
+     A*%%TS  SD  20250730  134439  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A*  Dictionary Master Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A                                      HLPTITLE('User Master Maintenance --
+     A                                       Detail Screen')
+     A          R SCREEN
+     A*%%TS  SD  20250730  133927  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A          H                           HLPPNLGRP(USRMSTD2 USRMSTP2)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP(ENVIRONMNT USRMSTP2)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP(PGMNME USRMSTP2)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP(MDE USRMSTP2)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP(CPYUSR USRMSTP2)
+     A                                      HLPARA(*FLD CPYUSR)
+     A          H                           HLPPNLGRP(USRTXT USRMSTP2)
+     A                                      HLPARA(*FLD USRTXT)
+     A          H                           HLPPNLGRP(FSTNME USRMSTP2)
+     A                                      HLPARA(*FLD FSTNME)
+     A          H                           HLPPNLGRP(LSTNME USRMSTP2)
+     A                                      HLPARA(*FLD LSTNME)
+     A          H                           HLPPNLGRP(USRPRF USRMSTP2)
+     A                                      HLPARA(*FLD USRPRF)
+     A          H                           HLPPNLGRP(GRPPRF USRMSTP2)
+     A                                      HLPARA(*FLD GRPPRF)
+     A          H                           HLPPNLGRP(EMPNBR USRMSTP2)
+     A                                      HLPARA(*FLD EMPNBR)
+     A          H                           HLPPNLGRP(USRDPT USRMSTP2)
+     A                                      HLPARA(*FLD USRDPT)
+     A          H                           HLPPNLGRP(PHNEXT USRMSTP2)
+     A                                      HLPARA(*FLD PHNEXT)
+     A          H                           HLPPNLGRP(USRTTL USRMSTP2)
+     A                                      HLPARA(*FLD USRTTL)
+     A          H                           HLPPNLGRP(USRINT USRMSTP2)
+     A                                      HLPARA(*FLD USRINT)
+     A          H                           HLPPNLGRP(ACGCDE USRMSTP2)
+     A                                      HLPARA(*FLD ACGCDE)
+     A          H                           HLPPNLGRP(USREML USRMSTP2)
+     A                                      HLPARA(*FLD USREML)
+     A          H                           HLPPNLGRP(FNCKEYS USRMSTP2)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(USRMSTD2 USRMSTP2)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' USRMSTP2)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' USRMSTP2)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' USRMSTP2)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('CPYUSR' USRMSTP2)
+     A                                      HLPARA(*FLD CPYUSR)
+     A          H                           HLPPNLGRP('USRPRF' USRMSTP2)
+     A                                      HLPARA(*FLD USRPRF)
+     A          H                           HLPPNLGRP('USRTXT' USRMSTP2)
+     A                                      HLPARA(*FLD USRTXT)
+     A          H                           HLPPNLGRP('FSTNME' USRMSTP2)
+     A                                      HLPARA(*FLD FSTNME)
+     A          H                           HLPPNLGRP('LSTNME' USRMSTP2)
+     A                                      HLPARA(*FLD LSTNME)
+     A          H                           HLPPNLGRP('GRPPRF' USRMSTP2)
+     A                                      HLPARA(*FLD GRPPRF)
+     A          H                           HLPPNLGRP('ACGCDE' USRMSTP2)
+     A                                      HLPARA(*FLD ACGCDE)
+     A          H                           HLPPNLGRP('USREML' USRMSTP2)
+     A                                      HLPARA(*FLD USREML)
+     A          H                           HLPPNLGRP('PHNNBR' USRMSTP2)
+     A                                      HLPARA(*FLD PHNNBR)
+     A          H                           HLPPNLGRP('PHNEXT' USRMSTP2)
+     A                                      HLPARA(*FLD PHNEXT)
+     A          H                           HLPPNLGRP('USRDPT' USRMSTP2)
+     A                                      HLPARA(*FLD USRDPT)
+     A          H                           HLPPNLGRP('USRTTL' USRMSTP2)
+     A                                      HLPARA(*FLD USRTTL)
+     A          H                           HLPPNLGRP('USRINT' USRMSTP2)
+     A                                      HLPARA(*FLD USRINT)
+     A          H                           HLPPNLGRP('EMPNBR' USRMSTP2)
+     A                                      HLPARA(*FLD EMPNBR)
+     A          H                           HLPPNLGRP('FNCKEYS' USRMSTP2)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+CPY  A            FRMKEYS@       1A  P
+CPY  A            CPYUSR@        1A  P
+KEY  A            USRPRF@        1A  P
+     A            FSTNME@        1A  P
+     A            LSTNME@        1A  P
+     A            USRDPT@        1A  P
+     A            USRTTL@        1A  P
+     A            USRINT@        1A  P
+     A            PHNNBR@        1A  P
+     A            PHNEXT@        1A  P
+     A            USREML@        1A  P
+     A            EMPNBR@        1A  P
+     A            USRTXT@        1A  P
+     A            GRPPRF@        1A  P
+     A            ACGCDE@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            MDE           10A  O  2  2
+     A                                  2 35'User Details'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3  2'Copy User'
+     A                                      DSPATR(&FRMKEYS@)
+     A            CPYUSR        10A  O  3 18DSPATR(&CPYUSR@)
+     A                                  4  2'User Profile'
+     A            USRPRF    R        B  4 18DSPATR(&USRPRF@)
+     A                                  6  2'User Text'
+     A            USRTXT    R        B  6 18REFFLD(USRTXT APLDCT)
+     A                                      DSPATR(&USRTXT@)
+     A                                      CHECK(LC)
+     A                                  8  2'First Name'
+     A            FSTNME    R        B  8 18DSPATR(&FSTNME@)
+     A                                  9  2'Last Name'
+     A            LSTNME    R        B  9 18DSPATR(&LSTNME@)
+     A                                 10  2'Group Profile'
+     A            GRPPRF    R        B 10 18REFFLD(GRPPRF APLDCT)
+     A                                      DSPATR(&GRPPRF@)
+     A                                 11  2'Accounting Code'
+     A            ACGCDE    R        B 11 18REFFLD(ACGCDE APLDCT)
+     A                                      DSPATR(&ACGCDE@)
+     A                                 13  2'Users Email'
+     A            USREML    R        B 13 18DSPATR(&USREML@)
+     A                                      CHECK(LC)
+     A                                 14  2'Phone Number'
+     A            PHNNBR    R        B 14 18DSPATR(&PHNNBR@)
+     A                                 15  2'Phone Extension'
+     A            PHNEXT    R        B 15 18DSPATR(&PHNEXT@)
+     A                                 17  2'Department'
+     A            USRDPT    R        B 17 18DSPATR(&USRDPT@)
+     A                                 18  2'Job Title'
+     A            USRTTL    R        B 18 18DSPATR(&USRTTL@)
+     A                                 19  2'Initials'
+     A            USRINT    R        B 19 18DSPATR(&USRINT@)
+     A                                 20  2'Employee Number'
+     A            EMPNBR    R        B 20 18REFFLD(EMPNBR)
+     A                                      DSPATR(&EMPNBR@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

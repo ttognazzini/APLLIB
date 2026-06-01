@@ -1,0 +1,69 @@
+**free
+// ************************************************************************************
+// *                              *** Warning ***                                     *
+// ************************************************************************************
+// * Do not manually build or change this, it is rebuilt from the screen, any changes *
+// * will be overridden. It can be rebuilt manually using custom PDM option SC in     *
+// * front of the display file. If SC is not setup add it with the following command  *
+// *    call scrlocb1 (&l &f &n)                                                      *
+// ************************************************************************************
+
+
+// Sets the sort code based on which position to field is entered
+Dcl-Proc SetSrtCde;
+
+  If PGMNME <> '';
+    filterDs.SrtCde = 1;
+  ElseIf PGMDES <> '';
+    filterDs.SrtCde = 2;
+  ElseIf DSPFLE <> '';
+    filterDs.SrtCde = 3;
+  ElseIf ACVDES <> '';
+    filterDs.SrtCde = 4;
+  ElseIf TYPDES <> '';
+    filterDs.SrtCde = 5;
+  ElseIf TOTCNT <> 0;
+    filterDs.SrtCde = 6;
+  EndIf;
+
+End-Proc;
+
+
+// Find the record number of the entered position to data
+Dcl-Proc PositionSFL;
+  Dcl-S SQLStmPos Varchar(10000);
+
+  SQLStmPos = sqlStm;
+
+  If pos.PGMNME <> '';
+    SQLStmPos += ' ' + Where + ' ucase(PGMNME) < uCase(''' + %trim(pos.PGMNME) + ''')';
+    Where = 'and';
+  ElseIf pos.PGMDES <> '';
+    SQLStmPos += ' ' + Where + ' ucase(PGMDES) < uCase(''' + %trim(pos.PGMDES) + ''')';
+    Where = 'and';
+  ElseIf pos.DSPFLE <> '';
+    SQLStmPos += ' ' + Where + ' ucase(DSPFLE) < uCase(''' + %trim(pos.DSPFLE) + ''')';
+    Where = 'and';
+  ElseIf pos.ACVDES <> '';
+    SQLStmPos += ' ' + Where + ' ucase(ACVDES) < uCase(''' + %trim(pos.ACVDES) + ''')';
+    Where = 'and';
+  ElseIf pos.TYPDES <> '';
+    SQLStmPos += ' ' + Where + ' ucase(TYPDES) < uCase(''' + %trim(pos.TYPDES) + ''')';
+    Where = 'and';
+  ElseIf pos.TOTCNT <> 0;
+    SQLStmPos += ' ' + Where + ' TOTCNT < ' + %char(pos.TOTCNT);
+    Where = 'and';
+  EndIf;
+
+  // Add order by
+  SQLStmPos += ' ' + OrderBy;
+
+  Exec SQL Prepare SQLStmPos From :SQLStmPos;
+  Exec SQL Declare SQLCrsPos insensitive Cursor For SQLStmPos;
+  Exec SQL Open SQLCrsPos;
+  Exec SQL Get DIAGNOSTICS :currentRow = DB2_NUMBER_ROWS;
+  Exec SQL Close SQLCrsPos;
+
+  Clear Pos;
+
+End-Proc;

@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.DCTSEGIDN;
+Create Index APLLIB.DCTSEGIDN on APLLIB.DCTSEG (
+  DCTSEGIDN
+);
+
+Label on Index APLLIB.DCTSEGIDN is 'Dictionary Segments   - Id';

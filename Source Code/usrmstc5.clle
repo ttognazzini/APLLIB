@@ -1,0 +1,22 @@
+/* User Master Maintenance - Disable User Profile  */
+
+/****** COMPILE AS QSECOFR OR CHANGE THE OWNER ******/
+/* CHGPGM PGM(USRMSTC5) USRPRF(*OWNER) USEADPAUT(*YES)     */
+/* CHGOBJOWN OBJ(USRMSTC5) OBJTYPE(*PGM)  NEWOWN(QSECOFR)  */
+
+PGM (&USRPRF &MESSAGE)
+
+  DCL &USRPRF *CHAR 10
+  DCL &MESSAGE *CHAR 100
+
+  /* disable the profile */
+  CHGUSRPRF  USRPRF(&USRPRF) STATUS(*DISABLED)
+  MONMSG CPF0000 EXEC(DO)
+    CHGVAR &MESSAGE ('Error occurred, check the job log.')
+    RETURN
+  ENDDO
+
+  CHGVAR &MESSAGE ('User disabled.')
+  RETURN
+
+ENDPGM

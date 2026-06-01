@@ -1,0 +1,10 @@
+strpgmexp signature('XLPARSER4V010000')
+  export symbol(xlparse_workbook)
+  export symbol('Java_com/iseriesnetwork/clubtech/xlparse/+
+                  ParseSheetCallback_callbackStringCell')
+  export symbol('Java_com/iseriesnetwork/clubtech/xlparse/+
+                  ParseSheetCallback_callbackNumericCell')
+  export symbol('Java_com/iseriesnetwork/clubtech/xlparse/+
+                  ParseSheetCallback_callbackFormulaCell')
+  export symbol(xlparse_notify)
+endpgmexp

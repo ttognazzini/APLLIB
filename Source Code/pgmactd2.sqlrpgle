@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
 
 // Program Actions Maintenance
 //

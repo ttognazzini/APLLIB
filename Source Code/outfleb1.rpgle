@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) Actgrp(*new) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) Actgrp(*new) BndDir('APLLIB') Main(Main);
 
 //  This program tests the procedures in OUTFLEV1 Service program
 

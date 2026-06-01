@@ -1,0 +1,109 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+/*   Field Types                                           */
+
+Create or Replace Table field_types For System Name APLLIB.FLDTYP (
+  active_row                     for Column ACVROW    CHAR(1) Not Null Default '1',
+  field_type_id                  for Column FLDTYPIDN BIGINT Not Null
+                                 Generated Always as Identity (Start With 1 Increment by 1),
+  field_                         for Column FLDTYP    CHAR(14) Not Null With Default,
+  description                    for Column DES       CHAR(40) Not Null With Default,
+  is_numeric                     for Column NMR       CHAR(2) Not Null With Default,
+  allow_decimal_positions        for Column ALWDEC    CHAR(1) Not Null With Default,
+  allow_length                   for Column ALWLEN    CHAR(1) Not Null With Default,
+  require_length                 for Column REQLEN    CHAR(1) Not Null With Default,
+  allow_allocation               for Column ALWALC    CHAR(1) Not Null With Default,
+  require_allocation             for Column REQALC    CHAR(1) Not Null With Default,
+  maximum_lenght                 for Column MAXLEN    BIGINT Not Null With Default,
+  largest_value                  for Column LRGVAL    DECIMAL(63,0) Not Null With Default,
+  smallest_value                 for Column SMLVAL    DECIMAL(63,0) Not Null With Default,
+  force_length                   for Column FRCLEN    CHAR(1) Not Null With Default,
+  force_length_1                 for Column FRCLEN1   INTEGER Not Null With Default,
+  force_length_2                 for Column FRCLEN2   INTEGER Not Null With Default,
+  force_length_3                 for Column FRCLEN3   INTEGER Not Null With Default,
+  force_length_4                 for Column FRCLEN4   INTEGER Not Null With Default,
+  force_length_5                 for Column FRCLEN5   INTEGER Not Null With Default,
+  default_value                  for Column DFTVAL    CHAR(60) Not Null With Default,
+  system_type                    for Column SYSTYP    CHAR(10) Not Null With Default,
+  system_length                  for Column SYSLEN    DECIMAL(20,0) Not Null With Default,
+  create_time_stamp              for Column CRTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  create_user                    for Column CRTUSR    CHAR(18) Not Null Default USER,
+  create_job                     for Column CRTJOB    CHAR(28) Not Null With Default,
+  create_program                 for Column CRTPGM    CHAR(10) Not Null With Default,
+  maintenance_time_stamp         for Column MNTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  maintenance_user               for Column MNTUSR    CHAR(18) Not Null Default USER,
+  maintenance_job                for Column MNTJOB    CHAR(28) Not Null With Default,
+  maintenance_program            for Column MNTPGM    CHAR(10) Not Null With Default,
+  primary key (FLDTYP)
+);
+
+Label on Table FLDTYP is 'Field Types';
+
+Label on Column APLLIB.FLDTYP (
+  ACVROW     is 'Active              Row',
+  FLDTYPIDN  is 'Field               Type                Id',
+  FLDTYP     is 'Field               Type',
+  DES        is 'Description',
+  NMR        is 'Numeric',
+  ALWDEC     is 'Allow1              Decimal             Positions',
+  ALWLEN     is 'Allow               Length',
+  REQLEN     is 'Require Length',
+  ALWALC     is 'Allow               Allocation',
+  REQALC     is 'Require             Allocation',
+  MAXLEN     is 'Maximum             Length',
+  LRGVAL     is 'Largest             Value',
+  SMLVAL     is 'Smallest            Value',
+  FRCLEN     is 'Force               Length',
+  FRCLEN1    is 'Force               Length 1',
+  FRCLEN2    is 'Force               Length 2',
+  FRCLEN3    is 'Force               Length 3',
+  FRCLEN4    is 'Force               Length 4',
+  FRCLEN5    is 'Force               Length 5',
+  DFTVAL     is 'Default             Value',
+  SYSTYP     is 'System              Type',
+  SYSLEN     is 'System              Length',
+  CRTDTM     is 'Create              Date',
+  CRTUSR     is 'Create              User',
+  CRTJOB     is 'Create              Job',
+  CRTPGM     is 'Create              Program',
+  MNTDTM     is 'Maintenance         Date',
+  MNTUSR     is 'Maintenance         User',
+  MNTJOB     is 'Maintenance         Job',
+  MNTPGM     is 'Maintenance         Program'
+);
+
+Label on Column APLLIB.FLDTYP (
+  ACVROW     text is 'Active Row',
+  FLDTYPIDN  text is 'Field Type ID',
+  FLDTYP     text is 'Field',
+  DES        text is 'Description',
+  NMR        text is 'is Numeric',
+  ALWDEC     text is 'Allow Decimal Positions',
+  ALWLEN     text is 'Allow Length',
+  REQLEN     text is 'Require Length',
+  ALWALC     text is 'Allow Allocation',
+  REQALC     text is 'Require Allocation',
+  MAXLEN     text is 'Maximum Length',
+  LRGVAL     text is 'Largest Value',
+  SMLVAL     text is 'Smallest Value',
+  FRCLEN     text is 'Force Length',
+  FRCLEN1    text is 'Force Length 1',
+  FRCLEN2    text is 'Force Length 2',
+  FRCLEN3    text is 'Force Length 3',
+  FRCLEN4    text is 'Force Length 4',
+  FRCLEN5    text is 'Force Length 5',
+  DFTVAL     text is 'Default Value',
+  SYSTYP     text is 'System Type',
+  SYSLEN     text is 'System Length',
+  CRTDTM     text is 'Create Date/Time (Time stamp)',
+  CRTUSR     text is 'Create User',
+  CRTJOB     text is 'Create Job',
+  CRTPGM     text is 'Create Program',
+  MNTDTM     text is 'Maintenance Date',
+  MNTUSR     text is 'Maintenance User',
+  MNTJOB     text is 'Maintenance Job',
+  MNTPGM     text is 'Maintenance Program'
+);

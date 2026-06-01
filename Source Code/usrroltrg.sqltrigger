@@ -1,0 +1,81 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Create or Replace Trigger APLLIB.USRROLTRG
+before Insert or Update on APLLIB.USRROL
+Referencing new row as n old row as o
+for each row mode db2row
+
+Begin
+  /* On create set the crtXXX values */
+  If Inserting Then
+    set n.create_time_stamp = current timestamp,
+        n.create_user = user,
+        n.create_job = job_name,
+        n.create_program = APLLIB.current_program();
+  End If ;
+
+
+  /* On create, or update and a field changes, set the mntXXX values */
+  If inserting or
+     (updating and (
+        n.active_row <> o.active_row
+       or n.user_role_id <> o.user_role_id
+       or n.user_master_id <> o.user_master_id
+       or n.role_master_id <> o.role_master_id
+       or n.role_approved <> o.role_approved
+       or n.role_approval_id <> o.role_approval_id
+  )) Then
+    set n.maintenance_time_stamp = current timestamp,
+        n.maintenance_user = user,
+        n.maintenance_job = job_name,
+        n.maintenance_program = APLLIB.current_program();
+  End If;
+
+  /* Add all audited columns */
+
+  If o.user_master_id <>  n.user_master_id Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRROL', 22,
+           n.user_role_id,'USRMSTIDN',386,
+           o.user_master_id, n.user_master_id);
+  End If;
+
+  If o.role_master_id <>  n.role_master_id Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRROL', 22,
+           n.user_role_id,'ROLMSTIDN',387,
+           o.role_master_id, n.role_master_id);
+  End If;
+
+  If o.role_approved <>  n.role_approved Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRROL', 22,
+           n.user_role_id,'ROLAPR',388,
+           o.role_approved, n.role_approved);
+  End If;
+
+  If o.role_approval_id <>  n.role_approval_id Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRROL', 22,
+           n.user_role_id,'ROLAPRIDN',389,
+           o.role_approval_id, n.role_approval_id);
+  End If;
+
+  /* Trim all varchar columns */
+
+End

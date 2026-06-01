@@ -1,0 +1,37 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=SRC2IFS.Copy Source Member to IFS File
+:P.This command copies one source member to a file in the ifs. It
+can be used to convert member source file to IFS source files just
+to back up sources or move them form one machine to another.
+:P.The comand IFS2SRC does the oposite, it copies an IFS file to
+a source member.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRC2IFS/SRCFILE'.Source File Name - HELP
+:XH3.SRCFILE - Source File Name
+:P.Enter the file and library of the source file you want
+to copy from.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRC2IFS/MBR'.Member - HELP
+:XH3.MBR - Member
+:P.Enter the name of the member you want to copy.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRC2IFS/RTEPATH'.Root Path - HELP
+:XH3.RTEPATH - Root Path
+:P.Enter the root path you want the file copied to. The command
+will copy the member to a file named for the source file in this
+path. It will create the folder if does not already exists.
+:H2.Example: SRC2IFS MYLIB/QRPGLESR TESTMBR RTEPATH('/HOME/USERID')
+:P.The full path of the file will be '/HOME/USERID/QRPGLESRC/TESTMBR.RPGLE'
+assuming the source member type is RPGLE.
+:P.:HP2.*DFT:EHP2. will generate the path of /HOME/USERID where USERID is
+is the current user signed on.
+:P.:HP2.*DFTLIB:EHP2. will generate the path of /HOME/USERID/LIBRARY where
+USERID is the current user signed on and LIBRARY is the library of the
+source member.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

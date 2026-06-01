@@ -1,5 +1,5 @@
 **FREE
-ctl-opt option(*srcstmt) dftactgrp(*no) bnddir('APLLIB') decedit('0.');
+ctl-opt option(*srcstmt:*nounref) dftactgrp(*no) bnddir('APLLIB') decedit('0.');
 
 // List key fields for a file, table, logical, index or view
 

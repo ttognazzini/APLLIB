@@ -1,12 +1,12 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB/APLLIB') main(Main);
 
 // Dictionary Master List
 
 Dcl-F DCTMSTF1 WorkStn SFile(SFL:RRN1) InfDS(dspDs) UsrOpn;
 
-/Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures
-/Copy QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
+/Copy APLLIB/QSRC,BASFNCV1PR // prototypes for all #$ procedures
+/Copy APLLIB/QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
 /Copy QSRC,DCTMSTD1_@ // auto generated data structures for field attribute fields
 /Copy QSRC,DCTMSTD1PR // Always include the prototype for the current program
 /Copy QSRC,DCTMSTDZPR // Dictionary master - filters
@@ -32,7 +32,6 @@ Dcl-S Where Char(5); // used to change the first where to an and after the first
 Dcl-S dctMstIdn like(APLDCT.DCTMSTIDN);
 
 Dcl-S dataEntered Ind; // set on if anything is entered on the screen
-Dcl-S Changed     Ind; // set on if any of the SFL entries are changed, forces a reload of the SFL
 Dcl-S Display     Ind; // set on if the program is in inquiry mode, option parameter=5
 Dcl-S Selects     Ind; // set on if the program is in select mode, option parameter=1
 Dcl-S Maintenance Ind; // set on if the program is in update mode, option parameter=2
@@ -65,7 +64,7 @@ Dcl-Proc Main;
     pmrDctNme Like(APLDCT.DCTNME);
     pmrOption Like(APLDCT.OPTION);
     pmrKeyPressed Like(keyPressed);
-    pmrSchVal like(APLDCT.SCHVAL) options(*nopass);
+    pmrSchVal Like(APLDCT.SCHVAL) options(*nopass);
   End-Pi;
 
   // Sets the Option if passed
@@ -88,7 +87,7 @@ Dcl-Proc Main;
 
   ProgramInitialization();
 
-  DoU 1=2;
+  DoU %shtdn();
     DisplayScreen();
 
     If not $ValidKeyPressed(keyPressed:fncDs);
@@ -212,7 +211,7 @@ End-Proc;
 Dcl-Proc Filter;
 
   filterDsSave = filterDs;
-  Callp DCTMSTDZ(filterDs:keyPressed);
+  DCTMSTDZ(filterDs:keyPressed);
 
   If keyPressed = 'F3';
   ElseIf keyPressed = 'F12';
@@ -319,10 +318,6 @@ Dcl-Proc ProcessLine;
     // If adding a new entry, possition to it
     If Sel = '1' and Maintenance;
       pos=sflFields;
-    EndIf;
-    // Flag the SFL to reload if not inquiry only and they didn't press F3
-    If Sel <> '5' and keyPressed <> 'F3';
-      Changed = *on;
     EndIf;
   EndIf;
 
@@ -431,8 +426,6 @@ Dcl-Proc LoadSFL;
   Dcl-S i packed(2);
 
   BuildSQLStatement();
-
-  Changed = *Off;
 
   // Clear SFL
   SflClr = *on;
@@ -633,4 +626,4 @@ End-Proc;
 
 // Copies in procedures SaveOptions, PopOptions, SoprtOptions and Get Options
 // These never change so no point in duplicating the code in each program
-/Copy QSRC,$options
+/Copy APLLIB/QSRC,$options

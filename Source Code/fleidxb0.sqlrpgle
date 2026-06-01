@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt debug Option(*SrcStmt:*NoDebugIO) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug Option(*SrcStmt:*NoDebugIO:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 //  File Indexes Driver
 
@@ -32,7 +32,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP IDXFLDD1(pmrFleLib:pmrFleNme:pmrIdxLib:pmrIdxNme:Option:keyPressed);
+      IDXFLDD1(pmrFleLib:pmrFleNme:pmrIdxLib:pmrIdxNme:Option:keyPressed);
     Else;
       Return;
     EndIf;

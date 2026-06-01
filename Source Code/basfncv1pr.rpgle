@@ -1005,6 +1005,24 @@ Dcl-Pr #$RtvMbrD char(50) ExtProc;
   mbr char(10) const;
 End-Pr;
 
+Dcl-Pr #$RtvMbrTyp char(10) ExtProc;
+  lib char(10) const;
+  fle char(10) const;
+  mbr char(10) const;
+End-Pr;
+
+Dcl-Pr #$Mdy2Ymd packed(8) ExtProc;
+  dateIn packed(8) const;
+End-Pr;
+
+Dcl-Pr #$Ymd2Mdy packed(8) ExtProc;
+  dateIn packed(8) const;
+End-Pr;
+
+Dcl-Pr #$ClrMsgq ExtProc;
+  msgq char(10) const;
+End-Pr;
+
 
 // *************************************************************************
 // š                           IFS Prototypes
@@ -1131,7 +1149,7 @@ Dcl-S O_INHERITMODE Int(10)    INZ(134217728); //inherit mode flag
 // š                       Program Status Data Structure
 // *************************************************************************
 // € The following is the full program status data structure. Most fields st
-// € with psds, except for the common ones that Fabricut uses.
+// € with psds, except for the common ones that APLLIB uses.
 // *************************************************************************
 /if not defined(PSD_DEFINED)
 Dcl-Ds psds  psds; //Pgm status DS

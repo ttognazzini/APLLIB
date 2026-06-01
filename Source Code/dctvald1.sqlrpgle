@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Dictionary Value List
 
@@ -203,7 +203,7 @@ End-Proc;
 Dcl-Proc Filter;
 
   filterDsSave = filterDs;
-  Callp DCTVALDZ(filterDs:keyPressed);
+  DCTVALDZ(filterDs:keyPressed);
 
   Select;
     When keyPressed = 'F3';

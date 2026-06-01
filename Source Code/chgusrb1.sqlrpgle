@@ -5,7 +5,7 @@
 //     initally signed on.
 //     A password is not needed, but will be used if passed.
 
-Ctl-Opt option(*srcstmt) DftActGrp(*NO) Main(Main);
+/copy APLLIB/QSRC,$ctlopt  // Default Ctl-Opt's, does not include activation group
 
 Dcl-S Handle char(12);
 Dcl-S RC int(10);
@@ -79,7 +79,7 @@ Dcl-Proc RtvProfile;
   userid = %upper(userid);
   password = %upper(password);
 
-  callp     GetProfile(userid: password: Handle: ErrDs);
+  GetProfile(userid: password: Handle: ErrDs);
   If  BytesAvl > 0;
     Return 0;
   Else;
@@ -95,7 +95,7 @@ Dcl-Proc SetUProf;
     HandleIn char(12) value;
   End-Pi;
 
-  Callp SetProfile(HandleIn: ErrDs);
+  SetProfile(HandleIn: ErrDs);
   If BytesAvl > 0;
     Return 0;
   Else;

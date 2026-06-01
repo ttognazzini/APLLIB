@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) BndDir('APLLIB') Main(Main) ActGrp(*caller);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) BndDir('APLLIB') Main(Main) ActGrp(*caller);
 
 // Create a PC (Excel,CSV,XML) file from an SQL Statement
 

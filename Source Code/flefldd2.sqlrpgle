@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
 
 // File Field Detail
 
@@ -207,7 +207,7 @@ Dcl-Proc ValidateScreen;
   // make sure the primary key value is correct, Auto prompt first if not valid, handles ?
   pmEnmVal = '';
   pmEnmDes = priKeyD;
-  Callp(e) DCTVALBP('APLDCT':'PRIKEY':pmEnmVal:pmEnmDes:pmKeyPressed);
+  DCTVALBP('APLDCT':'PRIKEY':pmEnmVal:pmEnmDes:pmKeyPressed);
   If priKeyD <> pmEnmDes;
     priKeyD = pmEnmDes;
     error=*on;
@@ -230,7 +230,7 @@ Dcl-Proc ValidateScreen;
   // make sure the audit field value is correct, Auto prompt first if not valid, handles ?
   pmEnmVal = '';
   pmEnmDes = audFld;
-  Callp(e) DCTVALBP('APLDCT':'AUDFLD':pmEnmVal:pmEnmDes:pmKeyPressed);
+  DCTVALBP('APLDCT':'AUDFLD':pmEnmVal:pmEnmDes:pmKeyPressed);
   If audFld <> pmEnmDes;
     audFld = pmEnmDes;
     error=*on;
@@ -242,7 +242,7 @@ Dcl-Proc ValidateScreen;
   // make sure the field encrypted value is correct, Auto prompt first if not valid, handles ?
   pmEnmVal = '';
   pmEnmDes = encFldD;
-  Callp(e) DCTVALBP('APLDCT':'ENCFLD':pmEnmVal:pmEnmDes:pmKeyPressed);
+  DCTVALBP('APLDCT':'ENCFLD':pmEnmVal:pmEnmDes:pmKeyPressed);
   If encFldD <> pmEnmDes;
     encFldD = pmEnmDes;
     error=*on;
@@ -362,7 +362,7 @@ Dcl-Proc Prompt;
 
   // Prompt status description
   If CsrFld = 'PRIKEYD';
-    Callp DCTVALDP('APLDCT':'PRIKEY':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'PRIKEY':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       priKeyD = pmEnmDes;
     EndIf;
@@ -370,7 +370,7 @@ Dcl-Proc Prompt;
     // Prompt Field Name
   ElseIf CsrFld = 'FLDNME';
     pmOption = '1';
-    Callp(e) DCTFLDD1(dctNme:pmFldNme:pmOption:pmKeyPressed);
+    DCTFLDD1(dctNme:pmFldNme:pmOption:pmKeyPressed);
     If pmKeyPressed = 'ENTER' and not ProtectDta;
       fldNme = pmFldNme;
       GetDctDta();
@@ -379,14 +379,14 @@ Dcl-Proc Prompt;
     // Prompt Audit Field
   ElseIf CsrFld = 'AUDFLD';
     pmOption = '1';
-    Callp DCTVALDP('APLDCT':'AUDFLD':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'AUDFLD':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       audFld = pmEnmDes;
     EndIf;
 
     // Prompt field incrypted
   ElseIf CsrFld = 'ENCFLDD';
-    Callp DCTVALDP('APLDCT':'ENCFLD':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'ENCFLD':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       encFldD = pmEnmDes;
     EndIf;

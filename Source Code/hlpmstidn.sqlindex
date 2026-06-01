@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.HLPMSTIDN;
+Create Index APLLIB.HLPMSTIDN on APLLIB.HLPMST (
+  HLPMSTIDN
+);
+
+Label on Index APLLIB.HLPMSTIDN is 'Help Master - Id';

@@ -1,0 +1,64 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+/*   File Notes                                            */
+
+Create or Replace Table file_notes For System Name APLLIB.FLENTE (
+  active_row                     for Column ACVROW    CHAR(1) Not Null Default '1',
+  file_note_id                   for Column FLENTEIDN BIGINT Not Null
+                                 Generated Always as Identity (Start With 1 Increment by 1),
+  file_library                   for Column FLELIB    CHAR(10) Not Null With Default,
+  file_name                      for Column FLENME    CHAR(10) Not Null With Default,
+  note_sequence                  for Column NTESEQ    DECIMAL(7,0) Not Null With Default,
+  file_id                        for Column FLEMSTIDN BIGINT Not Null With Default,
+  note_                          for Column NTE       CHAR(60) Not Null With Default,
+  create_time_stamp              for Column CRTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  create_user                    for Column CRTUSR    CHAR(18) Not Null Default USER,
+  create_job                     for Column CRTJOB    CHAR(28) Not Null With Default,
+  create_program                 for Column CRTPGM    CHAR(10) Not Null With Default,
+  maintenance_time_stamp         for Column MNTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  maintenance_user               for Column MNTUSR    CHAR(18) Not Null Default USER,
+  maintenance_job                for Column MNTJOB    CHAR(28) Not Null With Default,
+  maintenance_program            for Column MNTPGM    CHAR(10) Not Null With Default,
+  primary key (FLELIB,FLENME,NTESEQ,FLENTEIDN)
+);
+
+Label on Table FLENTE is 'File Notes';
+
+Label on Column APLLIB.FLENTE (
+  ACVROW     is 'Active              Row',
+  FLENTEIDN  is 'File Note           Note                Id',
+  FLELIB     is 'File                Library',
+  FLENME     is 'File                Name',
+  NTESEQ     is 'Note                Sequence',
+  FLEMSTIDN  is 'File                Master              Id',
+  NTE        is 'Note',
+  CRTDTM     is 'Create              Date',
+  CRTUSR     is 'Create              User',
+  CRTJOB     is 'Create              Job',
+  CRTPGM     is 'Create              Program',
+  MNTDTM     is 'Maintenance         Date',
+  MNTUSR     is 'Maintenance         User',
+  MNTJOB     is 'Maintenance         Job',
+  MNTPGM     is 'Maintenance         Program'
+);
+
+Label on Column APLLIB.FLENTE (
+  ACVROW     text is 'Active Row',
+  FLENTEIDN  text is 'File Note ID Number',
+  FLELIB     text is 'File Library',
+  FLENME     text is 'File Name',
+  NTESEQ     text is 'Note Sequence',
+  FLEMSTIDN  text is 'File Master ID',
+  NTE        text is 'Note',
+  CRTDTM     text is 'Create Date/Time (Time stamp)',
+  CRTUSR     text is 'Create User',
+  CRTJOB     text is 'Create Job',
+  CRTPGM     text is 'Create Program',
+  MNTDTM     text is 'Maintenance Date',
+  MNTUSR     text is 'Maintenance User',
+  MNTJOB     text is 'Maintenance Job',
+  MNTPGM     text is 'Maintenance Program'
+);

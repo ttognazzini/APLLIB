@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp('DCTFLDB9') BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp('DCTFLDB9') BndDir('APLLIB') Main(Main);
 
 // Build Dictionary From DCTFLD
 

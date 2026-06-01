@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Output Queue Master Filter
 
@@ -101,7 +101,7 @@ Dcl-Proc Prompt;
 
   // Prompt Active Description
   If CsrFld = 'ACVDES';
-    // Callp DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
+    // DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
     // If keyPressed = 'ENTER';
     //   AcvDes = pmEnmDes;
     // EndIf;

@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SRCSTMT) DftActGrp(*no) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SRCSTMT:*nounref) DftActGrp(*no) BndDir('APLLIB') Main(Main);
 
 // DSPDTAQD - Display Data Queue
 

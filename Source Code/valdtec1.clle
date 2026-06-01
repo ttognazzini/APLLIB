@@ -1,0 +1,11 @@
+             PGM (&#DATE &PASS)
+             DCL        &#DATE  *DEC   LEN(8 0)
+             DCL        &PASS   *CHAR  LEN(1)
+             DCL        &DATECH *CHAR  LEN(8)
+
+             CHGVAR     &PASS ' '
+             CHGVAR     &DATECH &#DATE
+             CVTDAT     &DATECH &DATECH  *YYMD *MDYY *NONE
+             MONMSG     CPF0000 EXEC(CHGVAR &PASS 'F')
+
+ENDPGM

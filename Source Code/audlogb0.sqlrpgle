@@ -1,5 +1,6 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt ActGrp(*Caller);
+/copy APLLIB/QSRC,$ctlopt  // Default Ctl-Opt's, does not include activation group
 
 // Audit Log Driver
 
@@ -31,7 +32,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP AUDLOGD2(pmrFleLib:pmrFleNme:pmrFldNme:pmrAudLogIdn:Option:keyPressed);
+      AUDLOGD2(pmrFleLib:pmrFleNme:pmrFldNme:pmrAudLogIdn:Option:keyPressed);
     Else;
       Leave;
     EndIf;

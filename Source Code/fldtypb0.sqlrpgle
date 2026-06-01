@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt debug Option(*SrcStmt:*NoDebugIO) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug Option(*SrcStmt:*NoDebugIO:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 //  Field Type Driver
 
@@ -28,7 +28,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP FLDTYPD2(pmrFldTyp:Option:keyPressed);
+      FLDTYPD2(pmrFldTyp:Option:keyPressed);
     Else;
       Return;
     EndIf;

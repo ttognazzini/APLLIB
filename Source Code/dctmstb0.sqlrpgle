@@ -1,14 +1,14 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug option(*srcstmt:*nodebugio:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 // Dictionary Master Driver
 
-/Copy QSRC,BASFNCV1PR   // Prototypes for all #$ procedures
-/Copy QSRC,APLSRVV1PR   // prototypes for $ procedures used for template programs
+/Copy APLLIB/QSRC,BASFNCV1PR   // Prototypes for all #$ procedures
+/Copy APLLIB/QSRC,APLSRVV1PR   // prototypes for $ procedures used for template programs
 /Copy QSRC,DCTMSTD2PR
 /Copy QSRC,DCTFLDD1PR
 /Copy QSRC,DCTFLDB8PR
-/Copy QSRC,AUDLOGD1PR
+/Copy APLLIB/QSRC,AUDLOGD1PR
 
 Dcl-S Option like(APLDCT.Option);
 Dcl-S DctNme like(APLDCT.DctNme);
@@ -33,7 +33,7 @@ Dcl-Proc Main;
   If Option = '6'; // dictionary fields
     pmOption='2';
     Exec SQL Select dctNme into :DctNme from DCTMST where dctMstIdn = :pmrDctMstIdn;
-    CallP DCTFLDD1(DctNme:fldNme:pmOption:keyPressed);
+    DCTFLDD1(DctNme:fldNme:pmOption:keyPressed);
     If keyPressed <> 'F3';
       keyPressed='';
     EndIf;
@@ -41,11 +41,11 @@ Dcl-Proc Main;
     Return;
   ElseIf Option='9';  // rebuild full dictionary file
     Exec SQL Select dctNme into :DctNme from DCTMST where dctMstIdn = :pmrDctMstIdn;
-    CallP DCTFLDB8(DctNme);
+    DCTFLDB8(DctNme);
     Return;
   ElseIf Option = '11'; // View Log
     pmOption='5';
-    CallP AUDLOGD1('APLLIB':'DCTMST':'':pmrDctMstIdn:pmOption:keyPressed);
+    AUDLOGD1('APLLIB':'DCTMST':'':pmrDctMstIdn:pmOption:keyPressed);
     If keyPressed <> 'F3';
       keyPressed='';
     EndIf;
@@ -58,7 +58,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP DCTMSTD2(pmrDctMstIdn:Option:keyPressed);
+      DCTMSTD2(pmrDctMstIdn:Option:keyPressed);
     Else;
       Leave;
     EndIf;

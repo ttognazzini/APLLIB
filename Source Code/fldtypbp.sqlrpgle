@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt option(*srcstmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt option(*srcstmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Field Type Prompt
 
@@ -54,6 +54,6 @@ Dcl-Proc Main;
 
   // if no value is already returned, call the prompt program
   schVal = pmrFldTyp;
-  Callp FLDTYPD1(pmrFldTyp:Option:pmrKeyPressed:schVal);
+  FLDTYPD1(pmrFldTyp:Option:pmrKeyPressed:schVal);
 
 End-Proc;

@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt nomain BndDir('APLLIB') Option(*SrcStmt) decedit('0.');
+Ctl-Opt nomain BndDir('APLLIB') Option(*SrcStmt:*nounref) decedit('0.');
 
 // SQL Function, Edit a Numeric Field
 

@@ -37,7 +37,7 @@ customer file. It overrides the subject and the message of the email.
 It also goes out to multiple addresses and includes a second
 attachment from the IFS.
 :P.EMLSQL 'SELECT * FROM CUST WHERE CNUM=9624' EMAIL(*CURRENT
-'TIM.TOGNAZZINI@FABRICUT.COM') MESSAGE('SOME MESSAGE HERE' *TEXTPLAIN)
+'TOGNAZZINI@HOTMAIL.COM') MESSAGE('SOME MESSAGE HERE' *TEXTPLAIN)
 OBJ(('/TOG/#$outfts.xlsx'))
 :EHELP.
 .*---------------------------------------------------------------------

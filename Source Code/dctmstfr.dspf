@@ -2,7 +2,7 @@
      A*  Dictionary Master Detail
      A*%%EC
      A                                      DSPSIZ(27 132 *DS4)
-     A                                      REF(*LIBL/APLDCT)
+     A                                      REF(APLLIB/APLDCT)
      A                                      CHGINPDFT(CS UL)
      A                                      ALTHELP(CA01)
      A                                      HELP

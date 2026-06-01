@@ -65,7 +65,7 @@
       *
       *    ADDBNDDIRE BNDDIR(APLLIB/APLLIB) OBJ((APLLIB/JDBSRVV1 *SRVPGM))
 
-     H NOMAIN option(*srcstmt)
+     H NOMAIN option(*srcstmt:*nounref)
 
       /define OS400_JVM_12
       /define JNI_COPY_CALL_METHOD_FUNCTIONS

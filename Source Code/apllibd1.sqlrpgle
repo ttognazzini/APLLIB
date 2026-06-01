@@ -1,7 +1,8 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt ActGrp(*New);
+/copy APLLIB/QSRC,$ctlopt
 
-// Fabricut Libraries List
+// Application Libraries List
 
 Dcl-F APLLIBF1 WorkStn SFile(SFL:RRN1) InfDS(dspDs) UsrOpn;
 
@@ -206,7 +207,7 @@ End-Proc;
 Dcl-Proc Filter;
 
   filterDsSave = filterDs;
-  Callp APLLIBDZ(filterDs:keyPressed);
+  APLLIBDZ(filterDs:keyPressed);
 
   If keyPressed = 'F3';
   ElseIf keyPressed = 'F12';

@@ -1,0 +1,53 @@
+     A* TEMPORARY UPS HEADER FILE
+     A*
+     A                                      UNIQUE
+     A          R SQLLSTR                   PFILE(SQLLSTPF)
+     A            SQLDLT
+     A            SQLNAME
+     A            SQLDESC
+     A            SQLTYPE
+     A            SQLOUTP
+     A            SQLLD01
+     A            SQLLD02
+     A            SQLLD03
+     A            SQLLD04
+     A            SQLLD05
+     A            SQLCCNT
+     A            SQLENDT
+     A            SQLENTM
+     A            SQLENUS
+     A            SQLENWS
+     A            SQLLRDT
+     A            SQLLRTM
+     A            SQLLRUS
+     A            SQLLRWS
+     A            SQLEM01
+     A            SQLEM02
+     A            SQLEM03
+     A            SQLEM04
+     A            SQLRPID
+     A            SQLATTY
+     A            SQLINVR
+     A            SQLMS01
+     A            SQLMS02
+     A            SQLMS03
+     A            SQLMS04
+     A            SQLMS05
+     A            SQLMS06
+     A            SQLMS07
+     A            SQLMS08
+     A            SQLMS09
+     A            SQLMS10
+     A            SQLMSAS
+     A            SQLOUTQ
+     A            SQLOQLB
+     A            SQLCOPY
+     A            SQLHOLD
+     A            SQLSAVE
+     A            SQLUSDT
+     A            SQLFRLN
+     A            SQLFRWD
+     A            SQLPINVR
+     A            SQLPINQY
+     A          K SQLENUS
+     A          K SQLNAME

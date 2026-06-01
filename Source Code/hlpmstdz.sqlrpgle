@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Help Master Filter
 
@@ -99,7 +99,7 @@ Dcl-Proc Prompt;
 
   // Prompt Active Description
   If CsrFld = 'HLPTYPD';
-    Callp DCTVALDP('APLDCT':'HLPTYP':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'HLPTYP':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       hlpTypD = pmEnmDes;
     EndIf;
@@ -139,7 +139,7 @@ Dcl-Proc ValidateScreen;
   If hlpTypD<>'';
     pmEnmVal='';
     pmEnmDes=hlpTypD;
-    Callp(e) DCTVALBP('APLDCT':'HLPTYP':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'HLPTYP':pmEnmVal:pmEnmDes:pmKeyPressed);
     If hlpTypD <> pmEnmDes;
       hlpTypD = pmEnmDes;
       error=*on;

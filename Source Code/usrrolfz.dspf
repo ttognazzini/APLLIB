@@ -1,0 +1,97 @@
+     A*%%TS  SD  20240514  053051  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master Filter
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT
+     A          R SCREEN
+     A*%%TS  SD  20240514  053051  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A                                      OVERLAY
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            USRNME@        1A  P
+     A            ROLNME@        1A  P
+     A            CMPUSR@        1A  P
+     A            ACVDES@        1A  P
+     A            SRTCDE@        1A  P
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME    R        O  1 71
+     A                                  2 33'User Role Filter'
+     A                                      DSPATR(HI)
+     A                                  2 71USER
+     A                                  5  2'User'
+     A            USRNME    R        B  5 18REFFLD(USRNME)
+     A                                      DSPATR(&USRNME@)
+     A                                  5 69'?'
+     A                                  6  2'Role'
+     A            ROLNME    R        B  6 18DSPATR(&ROLNME@)
+     A                                      CHECK(LC)
+     A                                  6 49'?'
+     A                                  7  2'Comparison User'
+     A            CMPUSR    R        B  7 18REFFLD(USRNME)
+     A                                      DSPATR(&CMPUSR@)
+     A                                      ALIAS(COMPARISON_USER)
+     A                                  7 69'?'
+     A                                  8  2'Active'
+     A            ACVDES    R        B  8 18DSPATR(&ACVDES@)
+     A                                  8 29'?'
+     A                                  8 31'(Active, InActive, Blank for All)'
+     A                                      COLOR(WHT)
+     A                                  9  2'Sort By'
+     A            SRTCDE    R        B  9 18DSPATR(&SRTCDE@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A            USRMSTIDN     20  0B 11 18DSPATR(ND)
+     A                                      DSPATR(PR)
+     A            ROLMSTIDN     20  0B 12 18DSPATR(ND)
+     A                                      DSPATR(PR)
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99 99                               SFLEND
+     A            CALLSTK                   SFLPGMQ

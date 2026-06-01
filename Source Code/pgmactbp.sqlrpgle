@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Program Actions
 // Validate or Prompt Program Actions
@@ -44,6 +44,6 @@ Dcl-Proc Main;
   EndIf;
 
   // if no value is already returned, call the prompt program
-  Callp(e) PGMACTDP(pmrPgmNme:pmrActCde:pmrKeyPressed);
+  PGMACTDP(pmrPgmNme:pmrActCde:pmrKeyPressed);
 
 End-Proc;

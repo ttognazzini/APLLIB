@@ -1,0 +1,136 @@
+/*********************************************************************/
+/* Program : ANLSRCC3                                                */
+/* Function: Sub-Program for ANLSRCF command                         */
+/* Author  : Werner Noll                                             */
+/* Remarks : This is free software.                                  */
+/*           You can redistribute it and/or modify it.               */
+/*           The only restriction is that you may not distribute     */
+/*           it for the purposes of monetary gain.                   */
+/*           We do not garantee for the expected functionalties.     */
+/*           The use of this software is always at your own risk.    */
+/*           All comments or reuqests for enhancements are           */
+/*           welcome. My email: werner.noll@gefis.com.               */
+/*********************************************************************/
+             PGM        PARM(&SRCFLIB &STR01 &STR02 &STR03 &STR04 +
+                          &STR05 &STR06 &STR07 &STR08 &STR09 &STR10 +
+                          &CMATCH &SRCF &SRCLIB)
+             DCLPRCOPT  ALWRTVSRC(*YES) DFTACTGRP(*NO) ACTGRP(*CALLER)
+             DCL        VAR(&SRCFLIB) TYPE(*CHAR) LEN(20)
+             DCL        VAR(&SRCF) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SRCLIB) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR01) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR02) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR03) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR04) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR05) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR06) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR07) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR08) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR09) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR10) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR10) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&CMATCH) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&OBJATR) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&MSGID) TYPE(*CHAR) LEN(7)
+             DCL        VAR(&MSGDTA) TYPE(*CHAR) LEN(132)
+             DCL        VAR(&MSGF)   TYPE(*CHAR) LEN(10)
+             DCL        VAR(&RCVVAR) TYPE(*CHAR) LEN(96)
+
+             DCL        VAR(&USRSPC) TYPE(*CHAR) LEN(20) +
+                          VALUE('ANLSRCF2  QTEMP     ')
+             DCL        VAR(&EXTATTR) TYPE(*CHAR) LEN(10)
+             DCL        &USSIZE *CHAR 4  X'00000500'
+             DCL        VAR(&USINIT) TYPE(*CHAR) LEN(1) VALUE(X'00')
+             DCL        VAR(&USAUTH) TYPE(*CHAR) LEN(10) +
+                          VALUE('*EXCLUDE')
+             DCL        VAR(&USTEXT) TYPE(*CHAR) LEN(50) VALUE('For +
+                          ANLSRCF command')
+             DCL        VAR(&USREPL) TYPE(*CHAR) LEN(10) VALUE('*YES')
+             DCL        VAR(&ERROR) TYPE(*CHAR) LEN(128) +
+                          VALUE(X'0000008000000000')
+             DCL        VAR(&FORMAT) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&OBJ) TYPE(*CHAR) LEN(20)
+             DCL        VAR(&OBJTYP) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STRPOS) TYPE(*CHAR) LEN(4) +
+                          VALUE(X'00000001')
+             DCL        VAR(&LEN) TYPE(*CHAR) LEN(4) VALUE(X'0000008C')
+             DCL        VAR(&RCVV1) TYPE(*CHAR) LEN(140)
+             DCL        VAR(&RCVV2) TYPE(*CHAR) LEN(1024)
+             DCL        VAR(&COUNT) TYPE(*DEC) LEN(9 0) VALUE(0)
+             DCL        VAR(&A4) TYPE(*CHAR) LEN(4)
+/*------------------------------------------------------------------*/
+
+/* If SRCF is a not a real file name                           */
+/* Retrieve files                                              */
+             IF         COND(%SST(&SRCFLIB 1 1) *EQ '*') THEN(DO)
+
+/* Ceate UsrSpc  */
+        CALL       PGM(QUSCRTUS) PARM(&USRSPC &EXTATTR &USSIZE +
+                     &USINIT &USAUTH &USTEXT &USREPL &ERROR)
+
+/* Fill UsrSpc */
+             CHGVAR     VAR(&FORMAT) VALUE('OBJL0100')
+             CHGVAR     VAR(&OBJ)    VALUE('*ALL      ' *CAT &SRCLIB)
+             CHGVAR     VAR(&OBJTYP) VALUE('*FILE')
+             CALL       PGM(QUSLOBJ) PARM(&USRSPC &FORMAT &OBJ +
+                          &OBJTYP &ERROR)
+
+/* Read head */
+             CALL       PGM(QUSRTVUS) PARM(&USRSPC &STRPOS &LEN +
+                          &RCVV1 &ERROR)
+
+/* Retrieve start position */
+             CHGVAR     VAR(&STRPOS) VALUE(%SST(&RCVV1 125 4))
+             CHGVAR     VAR(%BIN(&STRPOS)) VALUE(%BIN(&STRPOS) + 1)
+
+             CHGVAR     VAR(&LEN) VALUE(%SST(&RCVV1 137 4))
+             CHGVAR     VAR(&A4) VALUE(%SST(&RCVV1 133 4))
+             CHGVAR     VAR(&COUNT) VALUE(%BIN(&A4))
+             CHGVAR     VAR(&A4) VALUE(%SST(&RCVV1 137 4))
+             CHGVAR     VAR(&RCVV2) VALUE(*BLANKS)
+
+ LOOP:       IF         COND(&COUNT *LT 1) THEN(GOTO CMDLBL(ENDE))
+/* Read positions */
+             CALL       PGM(QUSRTVUS) PARM(&USRSPC &STRPOS &LEN +
+                          &RCVV2 &ERROR)
+             CHGVAR     VAR(&SRCF) VALUE(%SST(&RCVV2 1 10))
+/* Check if PF    */
+             RTVOBJD    OBJ(&SRCLIB/&SRCF) OBJTYPE(*FILE) +
+                          OBJATR(&OBJATR)
+             MONMSG     MSGID(CPF9822) EXEC(GOTO CMDLBL(NEXT)) /* +
+                          Not authorized for object */
+             IF         COND(&OBJATR *EQ 'PF' *OR &OBJATR *EQ +
+                          'PF38') THEN(DO)
+/* Check if SRCF  */
+             CALL       PGM(ANLSRCB2) PARM(&SRCF &SRCLIB &RCVVAR)
+             IF         COND(%SST(&RCVVAR 13 3) *EQ 'SRC') THEN(DO)
+             CALL       PGM(ANLSRCC4) PARM(&SRCFLIB &STR01 &STR02 +
+                          &STR03 &STR04 &STR05 &STR06 &STR07 &STR08 +
+                          &STR09 &STR10 &CMATCH &SRCF &SRCLIB)
+             ENDDO
+             ENDDO
+
+/* Calculate next start position */
+ NEXT:       CHGVAR     VAR(%BIN(&STRPOS)) VALUE(%BIN(&STRPOS) + +
+                          %BIN(&A4))
+             CHGVAR     VAR(&COUNT) VALUE(&COUNT - 1)
+             GOTO       CMDLBL(LOOP)
+
+/* Delete UsrSpc  */
+ ENDE:       CALL       PGM(QUSDLTUS) PARM(&USRSPC &ERROR)
+             GOTO       CMDLBL(EOP)
+             ENDDO
+
+/* If SRCF is a real file name                           */
+             ELSE       CMD(DO)
+             CALL       PGM(ANLSRCC4) PARM(&SRCFLIB &STR01 &STR02 +
+                          &STR03 &STR04 &STR05 &STR06 &STR07 &STR08 +
+                          &STR09 &STR10 &CMATCH &SRCF &SRCLIB)
+             GOTO       CMDLBL(EOP)
+             ENDDO
+/*------------------------------------------------------------------*/
+/* Error handling                                                   */
+ ERROR:      RCVMSG     MSGDTA(&MSGDTA) MSGID(&MSGID) MSGF(&MSGF)
+             SNDPGMMSG  MSGID(&MSGID) MSGF(&MSGF) MSGTYPE(*ESCAPE)
+/*------------------------------------------------------------------*/
+ EOP:        ENDPGM

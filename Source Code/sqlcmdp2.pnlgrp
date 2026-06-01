@@ -1,0 +1,222 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=F1.SQL Query Manager - Display Query
+:P.This program was created to display the output from an SQL statement. The
+program is called by the SQL Query Manager driver program. The design was
+setup to be similar in appearance and function the STRSQL and STRQRY output
+screens.
+:P.To assist in rapid learning the program was designed to use the standard
+function keys. However most of the keys above F12 have been reasigned to
+keys below F12. The higher key value still works as well though. For instance
+in both STRSQL and STRQRY the shift right is F20, in this program it is F8.
+F20 is Shift F8 and either F8 or F20 can be used to shift to the right.
+:P.A few new command keys have been added to assist in working with the
+data. These are discussed at the bottom of this document.
+:P.The number of rows and a search field has also been added to make working
+with the data easier. Both these fields are documented below.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1/NUMROWS'.Number of Rows - HELP
+:XH3.NUMROWS - Number of Rows
+:P.Displays the total number of rows included in the output. This
+number is reduced if the search field is used. So it is not always
+the number of rows from the original SQL statement. See the help text
+for Total Number of Rows for a more detailed explanation.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1/SVROWS'.Total Number of Rows - HELP
+:XH3.SVROWS - Total Number of Rows
+:P.Displays the total number of rows. This number is the count of the
+rows from the original SQL passed to the program. This is only displayed
+if the search string is used and if the display size 27X132.
+:P.If the search string is used the number of rows in displayed will be
+reduced to only rows that match the search string. when this happens the
+total number of rows is displayed next to the Number of Rows field.
+:P.If using an 80X24 display screen this field is not shown because
+there is not enough room on the screen. To figure out the original number
+of orws on the smaller screen you will need to ensure the search field is
+empty and then use the regulare number of rows field.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1/F1WIDTH'.Data Width - HELP
+:XH3.F1WIDTH - Data Width
+:P.This field displays the formatted data width. This is the width of
+the data as it is displayed on the screen. If this query is to be printed
+via the SQL Query Manager's print routines, then this width is the same
+as the output width required to print the full data.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1/F1PSTOL'.Position to Line - HELP
+:XH3.F1PSTOL - Position to Line
+:P.This Field allows for vertical possitioning of the data. The field
+accepts a varity of poisitioning options. They are detailed below.
+:P.Type a number preceded by a + or - sign (+n or -n for relative
+positioning), or type a value (1,T, *TOP, 999999, B or *BOT) that
+identifies the record you want to appear on top of the display.  (No
+record numbers are shown on the report.)  For example, to use relative
+positioning:
+:UL.
+:LI.If you type +50 and press Enter, the report is moved 50 records
+toward its end.
+:LI.If you type -50 and press Enter, the report is moved 50 records
+toward its beginning.
+:EUL.
+:P.You are returned to the top of the report if you type 1, T, or *TOP in
+this prompt, or you are taken to the end of the report if you type
+999999, B, or *BOT.  If the report has more than 999 999 records, all
+records that follow the record numbered 999999 are also numbered 999999.
+:P.You can also use the Page or Roll keys to move forward or backward
+through any of the records.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1/F1SRCH'.Search - HELP
+:XH3.F1SRHC - Search
+:P.The search field allows filtering the data displayed. The filter
+works on all fields in the data. The search string also allows multiple
+words to be entered at once. This means that you can search using more
+than one selection criteria.
+:P.For example if a query displays a list of customers and their addresses,
+you can search for both a city and a state by entering both on the search
+line seperated by a space.
+:P.Since the search field works on all columns more data may displayed than
+is desired. For instance continuing the above example, if you wanted to
+only include customers in Miani Florida, you can enter 'MIAMI FL' in the search
+field. However if a customer exists in Miami Oklahoma and their name is
+PAMS FLOWER SHOP, they will still show up. This is because the city will
+contain MIAMI and the customers name contains the FL so it meets the entered
+search criteria.
+:P.If the query contains any columns that have a space in the column
+header, the search field will not be displayed. This is because the
+query select will not work on a column with a aspace in the name. The
+WHERE clause would look something like this: WHERE ORDER NUMBER=1234,
+the space in the name makes the statement contain invalid SQL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1/F1PSTOC'.Position to Column - HELP
+:XH3.F1PSTOC - Position to Column
+:P.This field allows for possitioning to sepcific column in the data.
+:P.Type a number 1 through 99999 that identifies the number
+of the column position you want to appear as the first
+column on the left side of the report display.  Type a
+number preceded by a plus or minus sign (+n or -n) for
+relative positioning to the right or left on the display.
+:P.For example, if you:
+:UL.
+:LI.Type 50 and press Enter, column 50 will become the
+first column on the left side of the display.
+:LI.Type +50 and press Enter, the report is moved 50
+columns toward the right.
+:LI.Type -50 and press Enter, the report is moved 50
+columns toward the left.
+:EUL.
+:P.The column indicators in the scale line at the top of the
+display provide column position information.  Pluses (+)
+indicate the fives position, and the number (for example,
+1, 2, 3, and so on) identifies the tens position.
+:P.You can display a maximum of 99,999 column positions of
+information.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1/LINE'.Line Number - HELP
+:XH3.LINE - Line Number
+:P.This field displays the line number for the record ro columns
+included on the screen. This line number is of the filtered data, so if
+a search string is used it will be the number of the filtered result set.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1/DATA'.Data - HELP
+:XH3.DATA - Data
+:P.This seciton of the screen displays the data returned by the query. This
+data is split into rows and columns based on the query that is passed to
+the program.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F1F'.
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Shift To Column:EHP2. Shifts the screen so that the first column
+becomes the column the cursor is on.
+:P.:HP2.F5=Column Details:EHP2. Displays a list of columns and their
+attributes.
+:P.:HP2.F6=View SQL:EHP2. Dsiplays the current SQL statment being displayed.
+:P.:HP2.F7=Left:EHP2. Shifts the data one screen to the left. For
+compatability with STRSQL and STRSQRY F19 performs the same action.
+:P.:HP2.F8=Right:EHP2. Shifts the data one screen to the right. For
+compatability with STRSQL and STRSQRY F20 performs the same action.
+:P.:HP2.F10=Toggle Width:EHP2. Toggles between 27X132 and 24X80 display
+sizes. A message will be displayed if the device does not support 27X132/
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=F2.SQL Query Manager - Display Query - Column Details
+:P.This screen shows the details for the columns selected in the SQL
+statement. Thsi screen is displayed when F5 is pressed from the data
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F2/SF2SEQ'.Sequence Number - HELP
+:XH3.SF2SEQ - Sequence Number
+:P.List the sequence number for the columns. The columns are listed
+in the order they apear across the screen. The sequence number just
+starts at 1 and is increment by 1 for each new column.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F2/SF2CLMNM'.Column Name - HELP
+:XH3.SF2CLMNM - Column Name
+:P.This colun contains the name of each column in the query.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F2/SF2TYPE'.Column Type - HELP
+:XH3.SF2TYPE - Column Type
+:P.This column shows the type of data selected for each coulmn in
+the select statement.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F2/SF2LEN'.Length - HELP
+:XH3.SF2LEN - Length
+:P.Displays the length of the data selected for each coulmn.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F2/SF2DECA'.Decimal Positions - HELP
+:XH3.SF2DECA - Decimal Positions
+:P.Shows the number of decimal position for each column. This
+will be blank for non-numeric fields.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F2/SF2WID'.Width - HELP
+:XH3.SF2WID - Width
+:P.Shows the calculated width of the column. This data is used to
+display the output on the previous screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F2/SF2OFF'.Offset - HELP
+:XH3.SF2OFF - Offset
+:P.Displays the offset of the column used for displaying the data
+on the previous screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='F2F'.
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=F3.SQL Query Manager - Display SQL Statement
+:P.This screen displays the SQL statement passed to the program. The
+statement is formatted using some basic logic which may not handle all
+formats of SQL statements.
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

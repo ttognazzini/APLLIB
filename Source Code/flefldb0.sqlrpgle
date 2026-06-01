@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt debug Option(*SrcStmt:*NoDebugIO) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug Option(*SrcStmt:*NoDebugIO:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 //  File Field Navigator
 
@@ -39,7 +39,7 @@ Dcl-Proc Main;
   // View Notes
   If Option='6';
     pmOption = '2';
-    CallP FLDNTED1(pmrFleLib:pmrFleNme:pmrFldNme:pmOption:keyPressed);
+    FLDNTED1(pmrFleLib:pmrFleNme:pmrFldNme:pmOption:keyPressed);
     Return;
 
     // Enum Values
@@ -47,7 +47,7 @@ Dcl-Proc Main;
     // get dictionary name from the file
     Exec SQL Select DctNme into :dctNme from FLEMST where (fleLib,fleNme) = (:pmrFleLib,:pmrFleNme);
     pmOption = '5';
-    CallP DCTVALD1(dctNme:pmrFldNme:pmEnmVal:pmOption:keyPressed);
+    DCTVALD1(dctNme:pmrFldNme:pmEnmVal:pmOption:keyPressed);
     Return;
 
     // View Log
@@ -55,7 +55,7 @@ Dcl-Proc Main;
     pmOption='5';
     Exec SQL Select fleFldIdn into :fleFldIdn from FLEFLD
       where (fleLib,fleNme,FldNme) = (:pmrFleLib,:pmrFleNme,:pmrFldNme);
-    CallP AUDLOGD1('APLLIB':'FLEFLD':'':fleFldIdn:pmOption:keyPressed);
+    AUDLOGD1('APLLIB':'FLEFLD':'':fleFldIdn:pmOption:keyPressed);
     If keyPressed <> 'F3';
       keyPressed='';
     EndIf;
@@ -85,7 +85,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP FLEFLDD2(pmrFleLib:pmrFleNme:pmrFldNme:Option:keyPressed);
+      FLEFLDD2(pmrFleLib:pmrFleNme:pmrFldNme:Option:keyPressed);
     Else;
       Return;
     EndIf;

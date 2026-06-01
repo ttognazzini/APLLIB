@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
 
 // File Master Maintenance
 
@@ -236,7 +236,7 @@ Dcl-Proc ValidateScreen;
   If Option = '2';
     pmEnmVal = '';
     pmEnmDes = prdFleD;
-    Callp(e) DCTVALBP('APLDCT':'PRDFLE':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'PRDFLE':pmEnmVal:pmEnmDes:pmKeyPressed);
     If prdFleD <> pmEnmDes;
       prdFleD = pmEnmDes;
       Error=*on;
@@ -251,7 +251,7 @@ Dcl-Proc ValidateScreen;
   If Option = '2';
     pmEnmVal = '';
     pmEnmDes = chgScdD;
-    Callp(e) DCTVALBP('APLDCT':'CHGSCD':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'CHGSCD':pmEnmVal:pmEnmDes:pmKeyPressed);
     If chgScdD <> pmEnmDes;
       chgScdD = pmEnmDes;
       Error=*on;
@@ -265,7 +265,7 @@ Dcl-Proc ValidateScreen;
   // make sure the dictionary name is correct, Auto prompt first if not valid, handles ?
   If Option = '2';
     pmDctNme = dctNme;
-    Callp(e) DCTMSTBP(pmDctNme:pmDctDes:pmKeyPressed);
+    DCTMSTBP(pmDctNme:pmDctDes:pmKeyPressed);
     If dctNme <> pmDctNme;
       dctNme = pmDctNme;
       Error=*on;
@@ -530,14 +530,14 @@ Dcl-Proc Prompt;
 
   // Prompt status description
   If CsrFld = 'PRDFLED' and Option = '2';
-    Callp DCTVALDP('APLDCT':'PRDFLE':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'PRDFLE':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       prdFleD = pmEnmDes;
     EndIf;
 
     // Prompt change scheduled option
   ElseIf CsrFld = 'CHGSCDD' and Option = '2';
-    Callp DCTVALDP('APLDCT':'CHGSCD':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'CHGSCD':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       chgScdD = pmEnmDes;
     EndIf;
@@ -545,7 +545,7 @@ Dcl-Proc Prompt;
     // Prompt dictionary name
   ElseIf CsrFld = 'DCTNME' and Option = '2';
     pmOption = '1';
-    Callp DCTMSTD1(pmDctNme:pmOption:keyPressed);
+    DCTMSTD1(pmDctNme:pmOption:keyPressed);
     If keyPressed = 'ENTER';
       dctNme = pmDctNme;
     EndIf;

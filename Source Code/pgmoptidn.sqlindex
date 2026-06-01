@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.PGMOPTIDN;
+Create Index APLLIB.PGMOPTIDN on APLLIB.PGMOPT (
+  PGMOPTIDN
+);
+
+Label on Index APLLIB.PGMOPTIDN is 'Program Options - Id';

@@ -1,4 +1,4 @@
-     H DFTACTGRP(*NO) OPTION(*NODEBUGIO)
+     H DFTACTGRP(*NO) OPTION(*NODEBUGIO:*nounref:*srcStmt)
      FQRPGSRC   UP   F  112        DISK
       *
       * WRITE RPG NESTING LEVELS

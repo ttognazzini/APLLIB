@@ -1,0 +1,14 @@
+     A          R #PAGE
+     A                                      SKIPB(001)
+     A          R #DTL
+     A            RPTLINE     1000A  O     1
+     A                                      SPACEB(001)
+     A          R #OVR
+     A            RPTLINE     1000A  O     1
+     A          R #VARHDR                   SPACEB(2)
+     A                                     1'VARIABLE'
+     A                                    11'VALUE'
+     A          R #VARDTL                   SPACEB(2)
+     A            RPNAME        10         1
+     A            RPDFT         30        11
+     A          R #SPC                      SPACEB(1)

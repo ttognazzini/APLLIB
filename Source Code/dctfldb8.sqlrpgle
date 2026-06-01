@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp('DCTFLDB9') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp('DCTFLDB9') Main(Main);
 
 // Re-Build Dictionary From DCTFLD
 

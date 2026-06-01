@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Dictionary Value
 // Validate or Prompt Enumerated Value
@@ -75,6 +75,6 @@ Dcl-Proc Main;
   EndIf;
 
   // if no value is already returned, call the prompt program
-  Callp(e) DCTVALDP(pmrDctNme:pmrFldNme:pmrEnmVal:pmrEnmDes:pmrKeyPressed);
+  DCTVALDP(pmrDctNme:pmrFldNme:pmrEnmVal:pmrEnmDes:pmrKeyPressed);
 
 End-Proc;

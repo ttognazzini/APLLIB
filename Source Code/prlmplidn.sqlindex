@@ -1,0 +1,9 @@
+/* Performace Logger - Memory Pool Log by Identity */
+/* Used to force a unique identity colum in the table */
+
+Drop Index If Exists APLLIB.PRLMPLIDN;
+Create Unique Index APLLIB.PRLMPLIDN on APLLIB.PRLMPL (
+  PRLMPLIDN
+);
+
+Label on Index APLLIB.PRLMPLIDN is 'Performace Logger - Memory Pool Log by Identity';

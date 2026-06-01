@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) actgrp(*new) Main(Main) Debug;
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) actgrp(*new) Main(Main) Debug;
 
 // Test EMLERRC1 from RPG
 

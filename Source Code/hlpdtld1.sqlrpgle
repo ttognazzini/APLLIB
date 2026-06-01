@@ -199,7 +199,7 @@ End-Proc;
 // Display Help Text
 Dcl-Proc DisplayHelpText;
 
-  CallP HLPMSTB4(dctNme:fldNme:dspFle:val);
+  HLPMSTB4(dctNme:fldNme:dspFle:val);
 
 End-Proc;
 
@@ -270,7 +270,7 @@ Dcl-Proc UpdateSFL;
   Dcl-S sflRcd packed(5);
 
   // Process saved SFL options
-  For sflRcd = 1 To RRN1SV;
+  For sflRcd = 1 To SFLPAGE;
     Chain(e) sflRcd SFL;
     If %found;
       Exec SQL Update QTEMP/WORK

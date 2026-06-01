@@ -1,0 +1,57 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Create or Replace Trigger APLLIB.FLDTYPTRG
+before Insert or Update on APLLIB.FLDTYP
+Referencing new row as n old row as o
+for each row mode db2row
+
+Begin
+  /* On create set the crtXXX values */
+  If Inserting Then
+    set n.create_time_stamp = current timestamp,
+        n.create_user = user,
+        n.create_job = job_name,
+        n.create_program = APLLIB.current_program();
+  End If ;
+
+
+  /* On create, or update and a field changes, set the mntXXX values */
+  If inserting or
+     (updating and (
+        n.active_row <> o.active_row
+       or n.field_type_id <> o.field_type_id
+       or n.field_ <> o.field_
+       or n.description <> o.description
+       or n.is_numeric <> o.is_numeric
+       or n.allow_decimal_positions <> o.allow_decimal_positions
+       or n.allow_length <> o.allow_length
+       or n.require_length <> o.require_length
+       or n.allow_allocation <> o.allow_allocation
+       or n.require_allocation <> o.require_allocation
+       or n.maximum_lenght <> o.maximum_lenght
+       or n.largest_value <> o.largest_value
+       or n.smallest_value <> o.smallest_value
+       or n.force_length <> o.force_length
+       or n.force_length_1 <> o.force_length_1
+       or n.force_length_2 <> o.force_length_2
+       or n.force_length_3 <> o.force_length_3
+       or n.force_length_4 <> o.force_length_4
+       or n.force_length_5 <> o.force_length_5
+       or n.default_value <> o.default_value
+       or n.system_type <> o.system_type
+       or n.system_length <> o.system_length
+  )) Then
+    set n.maintenance_time_stamp = current timestamp,
+        n.maintenance_user = user,
+        n.maintenance_job = job_name,
+        n.maintenance_program = APLLIB.current_program();
+  End If;
+
+  /* Add all audited columns */
+
+  /* Trim all varchar columns */
+
+End

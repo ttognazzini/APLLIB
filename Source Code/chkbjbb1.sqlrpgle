@@ -1,5 +1,6 @@
 **free
-Ctl-Opt Option(*srcStmt) DftActGrp(*NO) BndDir('APLLIB/APLLIB') Main(Main) ActGrp(*new);
+Ctl-Opt ActGrp(*new);
+/copy APLLIB/QSRC,$ctlopt  // Default Ctl-Opt's, does not include activation group
 
 // Check Status of Batch Jobs
 

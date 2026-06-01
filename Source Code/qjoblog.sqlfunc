@@ -1,0 +1,79 @@
+create or replace function APLLIB.QJOBLOG(
+                  job varchar(28) default '*'
+                                      )
+      RETURNS TABLE (
+        JOB          VARCHAR(28),
+        MSGID        VARCHAR(7),
+        MSGTYPE      VARCHAR(13),
+        SEVERITY     SMALLINT,
+        POSTED       TIMESTAMP,
+        MSGTEXT      VARGRAPHIC(1024) CCSID 1200,
+        FROM_USER    VARCHAR(10),
+        SENDER       VARCHAR(48),
+        TO_PGM       VARCHAR(48),
+        SECLVL       VARGRAPHIC(4096) CCSID 1200,
+        ordinal_position int
+                    )
+  LANGUAGE SQL
+  READS SQL DATA
+  DISALLOW PARALLEL
+  NO EXTERNAL ACTION
+  NOT DETERMINISTIC
+  NOT FENCED
+  SPECIFIC APLLIB.Z_JOBLOG
+
+  set option datfmt = *ISO, commit=*NONE
+
+R: BEGIN
+    DECLARE JOB_ID varchar(28) not null default '';
+
+    if (JOB is NULL or JOB = '' or JOB = '*' or
+        upper(rTrim(JOB)) in ('*CURRENT','CURRENT')) THEN
+    set JOB_ID = qsys2.job_name;
+    else
+    set JOB_ID = upper(JOB);
+    end if;
+
+  RETURN  SELECT
+      R.JOB_ID,
+      MESSAGE_ID,
+      CASE message_type
+        WHEN 'COMMAND'       THEN '*CMD'
+        WHEN 'INFORMATIONAL' THEN '*INFO'
+        WHEN 'INQUIRY'       THEN '*INQ'
+        WHEN 'REQUEST'       THEN '*RQS'
+        WHEN 'COMPLETION'    THEN '*COMP'
+        WHEN 'DIAGNOSTIC'    THEN '*DIAG'
+        WHEN 'NOTIFY'        THEN '*NOTIFY'
+        WHEN 'ESCAPE'        THEN '*ESCAPE'
+        ELSE '*' CONCAT TRIM(MESSAGE_TYPE)
+      END,
+      severity,
+      message_timestamp AS POSTED,
+      TRIM(message_text),
+
+      FROM_USER,
+      TRIM(from_library) CONCAT '/' CONCAT
+      TRIM(left(from_program,10)) CONCAT '.' CONCAT
+      TRIM(from_instruction) AS SENDER,
+
+      TRIM(to_library) CONCAT '/' CONCAT
+      TRIM(to_program) CONCAT '.' CONCAT
+      TRIM(to_instruction) AS TO_PGM,
+      message_second_level_text,
+      ORDINAL_POSITION
+  FROM TABLE ( qsys2.joblog_info( upper(JOB) ) ) JL;
+
+end;
+
+Label on Specific Routine APLLIB.Z_JOBLOG  is 'Cleaner Joblog message queue listing';
+
+Comment on Specific Function APLLIB.Z_JOBLOG  is
+  'List messages in the joblog for the given job in a cleaner format
+  than other interfaces';
+
+Comment on Parameter Specific Function APLLIB.Z_JOBLOG
+( JOB is 'The fully qualified (3-part) JOB name or ''*'' for the
+job running this function. The default is ''*'' '
+);
+

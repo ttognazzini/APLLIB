@@ -1,13 +1,13 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) actgrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) actgrp(*Caller) BndDir('APLLIB/APLLIB') Main(Main);
 
 // Dictionary Master - Print List
 
-/Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures
-/Copy QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
-/COPY QSRC,OTOSRVV1PR // Output Options DS and prototypes
-/Copy QSRC,OUTFLEV1PR // creates output files in the IFS in Excel, csv, or xml format
-/COPY QSRC,DCTMSTBRPR // Terms code listing - driver
+/Copy APLLIB/QSRC,BASFNCV1PR // prototypes for all #$ procedures
+/Copy APLLIB/QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
+/COPY APLLIB/QSRC,OTOSRVV1PR // Output Options DS and prototypes
+/Copy APLLIB/QSRC,OUTFLEV1PR // creates output files in the IFS in Excel, csv, or xml format
+/COPY QSRC,DCTMSTBRPR // Dictionary Master - Report Driver
 
 Dcl-F DCTMSTO1 printer usropn OFLIND(overflow) ;
 Dcl-S overflow ind;

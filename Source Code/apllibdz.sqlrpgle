@@ -1,7 +1,8 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt ActGrp(*New);
+/copy APLLIB/QSRC,$ctlopt
 
-// Fabricut Lbiraries Filter
+// Aplication Libraries Filter
 
 Dcl-F APLLIBFZ workstn infds(dspDs) UsrOpn;
 
@@ -103,14 +104,14 @@ Dcl-Proc Prompt;
 
   // Prompt Library Type Description
   If CsrFld = 'LIBTYPD';
-    Callp DCTVALDP('APLDCT':'LIBTYP':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'LIBTYP':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       libTypD = pmEnmDes;
     EndIf;
 
     // Prompt Active Description
   ElseIf CsrFld = 'ACVDES';
-    Callp DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       AcvDes = pmEnmDes;
     EndIf;

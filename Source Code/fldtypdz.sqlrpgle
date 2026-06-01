@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Field Type Filter
 
@@ -97,7 +97,7 @@ Dcl-Proc Prompt;
 
   // Prompt status description
   If CsrFld = 'ACVDES';
-    Callp DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       ACVDES = pmEnmDes;
     EndIf;
@@ -135,7 +135,7 @@ Dcl-Proc ValidateScreen;
   If ACVDES<>'';
     pmEnmVal='';
     pmEnmDes=ACVDES;
-    Callp(e) DCTVALBP('APLDCT':'FLDSTS':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'FLDSTS':pmEnmVal:pmEnmDes:pmKeyPressed);
     If ACVDES <> pmEnmDes;
       ACVDES = pmEnmDes;
       error=*on;

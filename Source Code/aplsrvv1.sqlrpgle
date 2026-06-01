@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt NoMain Option(*NoDebugIO:*NoShowCpy:*SrcStmt) STGMDL(*INHERIT);
+Ctl-Opt NoMain Option(*NoDebugIO:*NoShowCpy:*SrcStmt:*nounref) STGMDL(*INHERIT);
 
 // Service program used in template programs
 //   All exported procedures start with $

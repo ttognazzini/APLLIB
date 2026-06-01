@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) BndDir('APLLIB') Main(Main);
 
 // Create a JSON file from an SQL Statement
 // Command processing program for command SQL2JSON

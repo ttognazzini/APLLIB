@@ -2,7 +2,7 @@
      A* Dictionary Master Filter
      A*%%EC
      A                                      DSPSIZ(24 80 *DS3)
-     A                                      REF(*LIBL/APLDCT)
+     A                                      REF(APLLIB/APLDCT)
      A                                      CHGINPDFT(CS UL)
      A                                      ALTHELP(CA01)
      A                                      HELP

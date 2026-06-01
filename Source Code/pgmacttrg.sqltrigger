@@ -1,0 +1,43 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Create or Replace Trigger APLLIB.PGMACTTRG
+before Insert or Update on APLLIB.PGMACT
+Referencing new row as n old row as o
+for each row mode db2row
+
+Begin
+  /* On create set the crtXXX values */
+  If Inserting Then
+    set n.create_time_stamp = current timestamp,
+        n.create_user = user,
+        n.create_job = job_name,
+        n.create_program = APLLIB.current_program();
+  End If ;
+
+
+  /* On create, or update and a field changes, set the mntXXX values */
+  If inserting or
+     (updating and (
+        n.active_row <> o.active_row
+       or n.program_action_id <> o.program_action_id
+       or n.program_name <> o.program_name
+       or n.action_code <> o.action_code
+       or n.option_ <> o.option_
+       or n.description <> o.description
+       or n.function_key <> o.function_key
+       or n.sequence_number <> o.sequence_number
+  )) Then
+    set n.maintenance_time_stamp = current timestamp,
+        n.maintenance_user = user,
+        n.maintenance_job = job_name,
+        n.maintenance_program = APLLIB.current_program();
+  End If;
+
+  /* Add all audited columns */
+
+  /* Trim all varchar columns */
+
+End

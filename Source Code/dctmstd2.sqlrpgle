@@ -1,12 +1,12 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB/APLLIB') Main(Main);
 
-// Dictionary Master Maintenance
+// Dictionary Master - Detail
 
 Dcl-F DCTMSTF2 WORKSTN InfDS(dspDs) UsrOpn;
 
-/Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures
-/Copy QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
+/Copy APLLIB/QSRC,BASFNCV1PR // prototypes for all #$ procedures
+/Copy APLLIB/QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
 /Copy QSRC,DCTMSTD2_@ // auto generatde data structures for field attribute fields
 /Copy QSRC,DCTMSTD2PR // Always include the prototype for the current program
 
@@ -167,16 +167,15 @@ Dcl-Proc ValidateScreen;
     Select '1' Into :found
     From DCTMST
     Where DctNme = :DctNme;
-  EOF = sqlState > '02';
 
   // Make sure record doesn't exists if create, copy or rename
-  If (option = '1' or option = '3' or option = '7') and not EOF;
-    $ErrorMessage('DCT1101':'':Error);
+  If (option = '1' or option = '3' or option = '7') and found;
+    $ErrorMessage('':'Error - record already exists.':Error);
   EndIf;
 
   // Make sure record exists if not create, copy or rename
-  If option <> '1' and option <> '3' and option <> '7' and EOF;
-    $ErrorMessage('DCT1102':'':Error);
+  If option <> '1' and option <> '3' and option <> '7' and not found;
+    $ErrorMessage('':'Error - record not found.':Error);
   EndIf;
 
   // Validate Rename
@@ -192,12 +191,12 @@ Dcl-Proc ValidateScreen;
   // Check Required Data
 
   // Valid Dictionary Name
-  If DctNme = *blanks;
+  If DctNme = '';
     $ErrorMessage('DCT1001':'':Error:dctNme@:'dctNme':outRow:outCol:psDsPgmNam);
   EndIf;
 
   // Valid Dictionary Description
-  If Des = *Blanks and not protectDta;
+  If Des = '' and not protectDta;
     $ErrorMessage('DCT1003':'':Error:des@:'des':outRow:outCol:psDsPgmNam);
   EndIf;
 
@@ -213,7 +212,6 @@ Dcl-Proc UpdateScreen;
   End-Pi;
   Dcl-S error Ind;
 
-  Eval-Corr dta = dspVal;
   error = *off;
 
   // Perform updates if no error
@@ -277,14 +275,14 @@ Dcl-Proc Prompt;
 
   // Prompt State
   If CsrFld = 'DES';
-    // Callp(e) FLDDTLD1('STE':PmFldVal:1:keyPressed);
+    // FLDDTLD1('STE':PmFldVal:1:keyPressed);
     // If keyPressed = 'Enter' and not ProtectDta;
     //    Des = PmFldVal;
     // EndIf;
 
     // Prompt Country
   ElseIf CsrFld = 'NTE';
-    // Callp(e) FLDDTLD1('COU':PmFldVal:1:keyPressed);
+    // FLDDTLD1('COU':PmFldVal:1:keyPressed);
     // If keyPressed = 'Enter' and not ProtectDta;
     //    Nte = PmFldVal;
     // EndIf;

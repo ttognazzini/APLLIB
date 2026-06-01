@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt option(*srcstmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt option(*srcstmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Dictionary Segment
 // Validate or Prompt Segment Name
@@ -39,6 +39,6 @@ Dcl-Proc Main;
   EndIf;
 
   // if no value is already returned, call the prompt program
-  Callp(e) DCTSEGD1(pmrDtaSeg:'1':pmrKeyPressed);
+  DCTSEGD1(pmrDtaSeg:'1':pmrKeyPressed);
 
 End-Proc;

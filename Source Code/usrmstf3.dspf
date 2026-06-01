@@ -1,0 +1,157 @@
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLLIB)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A                                      HLPTITLE('')
+     A          R SCREEN
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(USRMSTD3 USRMSTP3)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' USRMSTP3)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' USRMSTP3)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' USRMSTP3)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('USRPRF' USRMSTP3)
+     A                                      HLPARA(*FLD USRPRF)
+     A          H                           HLPPNLGRP('USRNME' USRMSTP3)
+     A                                      HLPARA(*FLD USRNME)
+     A          H                           HLPPNLGRP('JDJOBQ' USRMSTP3)
+     A                                      HLPARA(*FLD JDJOBQ)
+     A          H                           HLPPNLGRP('JDOUTQ' USRMSTP3)
+     A                                      HLPARA(*FLD JDOUTQ)
+     A          H                           HLPPNLGRP('JDOQLB' USRMSTP3)
+     A                                      HLPARA(*FLD JDOQLB)
+     A          H                           HLPPNLGRP('SPOQNM' USRMSTP3)
+     A                                      HLPARA(*FLD SPOQNM)
+     A          H                           HLPPNLGRP('SPOQLB' USRMSTP3)
+     A                                      HLPARA(*FLD SPOQLB)
+     A          H                           HLPPNLGRP('JDJPTY' USRMSTP3)
+     A                                      HLPARA(*FLD JDJPTY)
+     A          H                           HLPPNLGRP('JDOPTY' USRMSTP3)
+     A                                      HLPARA(*FLD JDOPTY)
+     A          H                           HLPPNLGRP('JDLOG1' USRMSTP3)
+     A                                      HLPARA(*FLD JDLOG1)
+     A          H                           HLPPNLGRP('JDLOG2' USRMSTP3)
+     A                                      HLPARA(*FLD JDLOG2)
+     A          H                           HLPPNLGRP('JDLOG3' USRMSTP3)
+     A                                      HLPARA(*FLD JDLOG3)
+     A          H                           HLPPNLGRP('JDAREM' USRMSTP3)
+     A                                      HLPARA(*FLD JDAREM)
+     A          H                           HLPPNLGRP('JDEXCP' USRMSTP3)
+     A                                      HLPARA(*FLD JDEXCP)
+     A          H                           HLPPNLGRP('JDVLOC' USRMSTP3)
+     A                                      HLPARA(*FLD JDVLOC)
+     A          H                           HLPPNLGRP('FNCKEYS' USRMSTP3)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            JDMENU@        1A  P
+     A            JDJPTY@        1A  P
+     A            JDOPTY@        1A  P
+     A            JDLOG1@        1A  P
+     A            JDLOG2@        1A  P
+     A            JDLOG3@        1A  P
+     A            JDOUTQ@        1A  P
+     A            JDOQLB@        1A  P
+     A            JDAREM@        1A  P
+     A            JDEXCP@        1A  P
+     A            JDVLOC@        1A  P
+     A            SPOQNM@        1A  P
+     A            SPOQLB@        1A  P
+     A            JDJOBQ@        1A  P
+     A            JDJQLB@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            MDE           10A  O  2  2
+     A                                  2 24'User Master Maintenance Details 2'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  5  2'User Profile'
+     A            USRPRF    R        O  5 18
+     A            USRNME    R        O  5 28REFFLD(USRNME APLDCT)
+     A                                  7 36'Job Queue'
+     A            JDJOBQ        10A  B  7 59DSPATR(&JDJOBQ@)
+     A                                  9 59'Out Queue '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  9 70' Library  '
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)
+     A                                 10 36'User Profile/GPPJOBD'
+     A            JDOUTQ        10A  B 10 59DSPATR(&JDOUTQ@)
+     A            JDOQLB        10A  B 10 70DSPATR(&JDOQLB@)
+     A            SPOQNM        10A  B 11 59DSPATR(&SPOQNM@)
+     A            SPOQLB        10A  B 11 70DSPATR(&SPOQLB@)
+     A                                 14 36'Job Priority'
+     A            JDJPTY         1A  B 14 59DSPATR(&JDJPTY@)
+     A                                 15 36'Output Priority'
+     A            JDOPTY         1A  B 15 59DSPATR(&JDOPTY@)
+     A                                 16 36'Log Level Parm 1'
+     A            JDLOG1         1A  B 16 59DSPATR(&JDLOG1@)
+     A                                 17 36'Log Level Parm 2'
+     A            JDLOG2         2A  B 17 59DSPATR(&JDLOG2@)
+     A                                 18 36'Log Level Parm 3'
+     A            JDLOG3         7A  B 18 59DSPATR(&JDLOG3@)
+     A                                 20 36'Allow Remote Dial'
+     A            JDAREM         1A  B 20 59DSPATR(&JDAREM@)
+     A                                 21 36'Execution Priority'
+     A            JDEXCP         2S 0B 21 59DSPATR(&JDEXCP@)
+     A                                 22 36'Valid Device Location'
+     A            JDVLOC         2S 0B 22 59DSPATR(&JDVLOC@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

@@ -1,0 +1,68 @@
+     A* Page header record
+     A          R #HEADER
+     A                                      SKIPB(1)
+     A            PGMNME        10A        1
+     A            USRNME        10A       12
+     A                                    55'Purge Journal Receivers'
+     A                                    89DATE
+     A                                    98TIME
+     A            SYSNME        10A      110
+     A                                   123'Page'
+     A                                   128PAGNBR
+     A                                      EDTCDE(Z)
+     A***
+     A            HDR2          40A       59
+     A                                      SPACEB(1)
+     A***
+     A            FLTTXT1      132A        1
+     A                                      SPACEB(1)
+     A*
+     A*** ADD EXCLUDED LIBRARIES
+     A          R #EXCLIBS
+     A            EXCLIBS      132A        1
+     A                                      SPACEB(1)
+     A*
+     A*** HEADER COLUMN
+     A          R #HEADERS
+     A                                     1'Rcv Lib'
+     A                                      SPACEB(2)
+     A                                    12'Rcv Name'
+     A                                    23'Jrn Lib'
+     A                                    34'Jrn Name'
+     A                                    44'Attached'
+     A                                    55'Detached'
+     A                                    67'Saved'
+     A                                    85'Size (MB)'
+     A                                    96'Message'
+     A*
+     A*** Detail record
+     A          R #DETAIL
+     A            RCVLIB        10A        1
+     A                                      SPACEB(1)
+     A            RCVNME        10A       +1
+     A            JRNLIB        10A       +1
+     A            JRNNME        10A       +1
+     A            ATCDTE        10A       +1
+     A            DTCDTE        10A       +1
+     A            SAVDTE        10A       +1
+     A            JRNSIZ        12  2     +1EDTCDE(J)
+     A            MESSAGE       25A       +1
+     A*
+     A*** LIBRARY TOTAL
+     A          R #LIBTOTAL
+     A                                     1'* Library Totals'
+     A                                      SPACEB(1)
+     A                                    30'Total Size (MB):'
+     A            LIBSIZ        14  2     43EDTCDE(J)
+     A                                    63'Purged Size(MB):'
+     A            LIBPRG        14  2     76EDTCDE(J)
+     A                                      SPACEA(1)
+     A*
+     A*** End of Report
+     A          R #TOTAL
+     A                                     1'** Report Totals'
+     A                                      SPACEB(2)
+     A                                    30'Total Size (MB):'
+     A            TOTSIZ        14  2     43EDTCDE(J)
+     A                                    63'Purged Size(MB):'
+     A            TOTPRG        14  2     76EDTCDE(J)

@@ -37,7 +37,7 @@
       *   >>EXECUTE<<                                                       *
       * >>END-PRE-COMPILER<<                                                *
       *=====================================================================*
-       Ctl-Opt option(*SRCSTMT : *NODEBUGIO) dftActGrp(*no);
+       Ctl-Opt option(*SRCSTMT:*NODEBUGIO:*nounref) dftActGrp(*no);
       *=====================================================================*
       *
      D PGM_ENTRY_POINT...

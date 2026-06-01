@@ -1,0 +1,9 @@
+STRPGMEXP PGMLVL(*CURRENT) SIGNATURE('XLP')
+/********************************************************************/
+/*   *SRVPGM      XLPXRVV1     TOGLIB       19/08/07  12:02:18      */
+/********************************************************************/
+  EXPORT SYMBOL("XLPCLOSE")
+  EXPORT SYMBOL("XLPNEXT")
+  EXPORT SYMBOL("XLPOPEN")
+  EXPORT SYMBOL("XLPREAD")
+ENDPGMEXP

@@ -1,0 +1,54 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Create or Replace Trigger APLLIB.PGMMSTTRG
+before Insert or Update on APLLIB.PGMMST
+Referencing new row as n old row as o
+for each row mode db2row
+
+Begin
+  /* On create set the crtXXX values */
+  If Inserting Then
+    set n.create_time_stamp = current timestamp,
+        n.create_user = user,
+        n.create_job = job_name,
+        n.create_program = APLLIB.current_program();
+  End If ;
+
+
+  /* On create, or update and a field changes, set the mntXXX values */
+  If inserting or
+     (updating and (
+        n.active_row <> o.active_row
+       or n.program_master_id <> o.program_master_id
+       or n.program_name <> o.program_name
+       or n.description <> o.description
+       or n.application <> o.application
+       or n.object_type <> o.object_type
+       or n.program_type <> o.program_type
+       or n.menu_object <> o.menu_object
+       or n.security_authorization <> o.security_authorization
+       or n.default_authorization <> o.default_authorization
+       or n.web_application <> o.web_application
+       or n.menu_name <> o.menu_name
+       or n.display_file <> o.display_file
+       or n.required_it_requester <> o.required_it_requester
+       or n.required_owner <> o.required_owner
+       or n.required_database_administrato <> o.required_database_administrato
+       or n.security_program <> o.security_program
+       or n.total_count <> o.total_count
+       or n.help_count <> o.help_count
+  )) Then
+    set n.maintenance_time_stamp = current timestamp,
+        n.maintenance_user = user,
+        n.maintenance_job = job_name,
+        n.maintenance_program = APLLIB.current_program();
+  End If;
+
+  /* Add all audited columns */
+
+  /* Trim all varchar columns */
+
+End

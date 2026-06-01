@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
 
 // Dictionary Field Copy Options
 
@@ -145,7 +145,7 @@ Dcl-Proc ValidateScreen;
   // validate data segment 1
   If DtaSeg1<>'';
     pmDtaSeg=DtaSeg1;
-    Callp(e) DCTSEGBP(pmDtaSeg:pmKeyPressed);
+    DCTSEGBP(pmDtaSeg:pmKeyPressed);
     If DtaSeg1 <> pmDtaSeg;
       DtaSeg1 = pmDtaSeg;
       error=*on;
@@ -160,7 +160,7 @@ Dcl-Proc ValidateScreen;
   // validate data segment 2
   If DtaSeg2<>'';
     pmDtaSeg=DtaSeg2;
-    Callp(e) DCTSEGBP(pmDtaSeg:pmKeyPressed);
+    DCTSEGBP(pmDtaSeg:pmKeyPressed);
     If DtaSeg2 <> pmDtaSeg;
       DtaSeg2 = pmDtaSeg;
       error=*on;
@@ -175,7 +175,7 @@ Dcl-Proc ValidateScreen;
   // validate data segment 3
   If DtaSeg3<>'';
     pmDtaSeg=DtaSeg3;
-    Callp(e) DCTSEGBP(pmDtaSeg:pmKeyPressed);
+    DCTSEGBP(pmDtaSeg:pmKeyPressed);
     If DtaSeg3 <> pmDtaSeg;
       DtaSeg3 = pmDtaSeg;
       error=*on;
@@ -207,19 +207,19 @@ Dcl-Proc Prompt;
 
   // Prompt DtaSeg1
   If CsrFld = 'DTASEG1';
-    Callp DCTSEGD1(pmDtaSeg:'1':keyPressed);
+    DCTSEGD1(pmDtaSeg:'1':keyPressed);
     If keyPressed = 'ENTER';
       DtaSeg1 = pmDtaSeg;
     EndIf;
 
   ElseIf CsrFld = 'DTASEG2';
-    Callp DCTSEGD1(pmDtaSeg:'1':keyPressed);
+    DCTSEGD1(pmDtaSeg:'1':keyPressed);
     If keyPressed = 'ENTER';
       DtaSeg2 = pmDtaSeg;
     EndIf;
 
   ElseIf CsrFld = 'DTASEG3';
-    Callp DCTSEGD1(pmDtaSeg:'1':keyPressed);
+    DCTSEGD1(pmDtaSeg:'1':keyPressed);
     If keyPressed = 'ENTER';
       DtaSeg3 = pmDtaSeg;
     EndIf;

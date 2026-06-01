@@ -1,4 +1,4 @@
-     H Dftactgrp(*No) Actgrp(*New) Option(*SrcStmt)  BndDir('APLLIB')
+     H Dftactgrp(*No) Actgrp(*New) Option(*SrcStmt:*nounref)  BndDir('APLLIB')
      FOUTPUT    O    F   92        DISK
       /COPY QSRC,BASFNCV1PR // prototypes for all #$ procedures
 

@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
 
 // Output Options - Parameter Maintenance
 
@@ -252,28 +252,28 @@ Dcl-Proc Prompt;
 
   // Prompt Allow Email
   If CsrFld = 'ALWEMLD';
-    Callp DCTVALDP('APLDCT':'ALWEML':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALDP('APLDCT':'ALWEML':pmEnmVal:pmEnmDes:pmKeyPressed);
     If pmKeyPressed = 'ENTER';
       alwEmlD = pmEnmDes;
     EndIf;
 
   ElseIf CsrFld = 'ALWARCD';
     // Prompt Allow Archive
-    Callp DCTVALDP('APLDCT':'ALWARC':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALDP('APLDCT':'ALWARC':pmEnmVal:pmEnmDes:pmKeyPressed);
     If pmKeyPressed = 'ENTER';
       alwArcD = pmEnmDes;
     EndIf;
 
   ElseIf CsrFld = 'ALWFAXD';
     // Prompt Allow Faxing
-    Callp DCTVALDP('APLDCT':'ALWFAX':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALDP('APLDCT':'ALWFAX':pmEnmVal:pmEnmDes:pmKeyPressed);
     If pmKeyPressed = 'ENTER';
       alwFaxD = pmEnmDes;
     EndIf;
 
   ElseIf CsrFld = 'AUTOPTD';
     // Prompt Auot Display Output Options
-    Callp DCTVALDP('APLDCT':'QUTOPT':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALDP('APLDCT':'QUTOPT':pmEnmVal:pmEnmDes:pmKeyPressed);
     If pmKeyPressed = 'ENTER';
       autOptD = pmEnmDes;
     EndIf;

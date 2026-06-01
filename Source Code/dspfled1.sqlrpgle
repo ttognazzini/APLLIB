@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) Main(Main) srtseq(*langidshr) DftActGrp(*No) BndDir('APLLIB') actgrp(*new);
+Ctl-Opt Option(*SrcStmt:*nounref) Main(Main) srtseq(*langidshr) DftActGrp(*No) BndDir('APLLIB') actgrp(*new);
 
 // SQL Query Manager
 
@@ -177,7 +177,7 @@ End-Proc;
 Dcl-Proc Filter;
 
   filterDsSave = filterDs;
-  // Callp DCTMSTDZ(filterDs:keyPressed);
+  // DCTMSTDZ(filterDs:keyPressed);
 
   If keyPressed = 'F3';
   ElseIf keyPressed = 'F12';

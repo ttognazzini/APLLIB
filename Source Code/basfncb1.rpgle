@@ -1,13 +1,10 @@
-     H DATEDIT(*YMD) OPTION(*SRCSTMT) Dftactgrp(*No) ACTGRP(*NEW)
+     H DATEDIT(*YMD) OPTION(*SRCSTMT:*nounref) Dftactgrp(*No) ACTGRP(*NEW)
      ‚*****************************************************************
-     ‚* Test Fabricut Functions and Explain                           *
+     ‚* Test #$ Functions and Explain                                 *
      ‚*****************************************************************
      ‚*€This program tests and explains how to use all functions     ‚*
-     ‚*€in the #$FAB service program                                 ‚*
+     ‚*€in the BASFNCV1 service program                              ‚*
      ‚*š                                                             ‚*
-     ‚*€for a list of the functions look in source member            ‚*
-     ‚*€  FABLIBR/#$FAB                                              ‚*
-     ‚*€                                                             ‚*
      ‚*****************************************************************
 
       **** this has to be included on an H spec, it can be on the same
@@ -2902,6 +2899,44 @@
      C                             %CHAR(#$CVTDAT( '01&01,19' : '*MDY' ))
      C                   EXCEPT    #DTL
      C*
+     C* #$MDY2YMD - Convert date from mmddyyyy to yyyymmdd or mmddyy to yymmdd
+     C                   EXCEPT    #SPC
+     C                   EVAL      OUTPUT='#$MDY2YMD - Convert MMDDYYYY +
+     C                                     to YYYYMMDD or MMDDYY to YYMMDD'
+     C                   EXCEPT    #DTL
+     C                   EXCEPT    #OVL
+     C                   EVAL      OUTPUT='PARAMETER 1 = Date in MMDDYYYY +
+     C                                     or MMDDYY format'
+     C                   EVAL      OUTPUT='RETURNS     = Date in YYYYMMDD +
+     C                                     or YYMMDD format'
+     C                   EXCEPT    #DTL
+     C*
+     C                   EVAL      OUTPUT='#$MDY2YMD(11252019)  = ' +
+     C                                     %CHAR(#$MDY2YMD(11252019))
+     C                   EVAL      %SUBST(OUTPUT:50:50) =
+     C                                    '#$MDY2YMD(112519)    = ' +
+     C                                     %CHAR(#$MDY2YMD(112519))
+     C                   EXCEPT    #DTL
+     C*
+     C* #$YMD2MDY - Convert date from yyyymmdd to mmddyyyy or yymmdd to mmddyy
+     C                   EXCEPT    #SPC
+     C                   EVAL      OUTPUT='#$YMD2YMDY- Convert YYYYMMDD +
+     C                                     to MMDDYYYY or YYMMDD to MMDDYY'
+     C                   EXCEPT    #DTL
+     C                   EXCEPT    #OVL
+     C                   EVAL      OUTPUT='PARAMETER 1 = Date in YYYYMMDD +
+     C                                     or YYMMDD format'
+     C                   EVAL      OUTPUT='RETURNS     = Date in MMDDYYYY +
+     C                                     or MMDDYY format'
+     C                   EXCEPT    #DTL
+     C*
+     C                   EVAL      OUTPUT='#$YMD2MDY(20191125)  = ' +
+     C                                     %CHAR(#$MDY2YMD(20191125))
+     C                   EVAL      %SUBST(OUTPUT:50:50) =
+     C                                    '#$YMD2MDY(191125)    = ' +
+     C                                     %CHAR(#$YMD2MDY(191125))
+     C                   EXCEPT    #DTL
+     C*
      C* #$VTIM - VALIDATE A TIME
      C                   EVAL      TITLE=#$CNTR('TIME FUNCTIONS':50)
      C                   EXCEPT    #HDR
@@ -3328,12 +3363,12 @@
      OQPRINT    E            #HDR             01
      O                                            5 'Date:'
      O                       *DATE               17 '    /  / 0'
-     O                                           75 'Fabricut Functions'
+     O                                           75 'APLLIB #$ Functions'
      O                                          116 'PAGE:'
      O                       PAGE          Z    120
      O                                          132 '#$BASETS'
      O          E            #HDR        0  0
-     O                                           75 'Fabricut Functions'
+     O                                           75 'APLLIB #$ Functions'
      O          E            #HDR        1  1
      O                       TITLE               91
      O          E            #SPC        1

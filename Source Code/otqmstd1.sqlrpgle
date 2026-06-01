@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
 
 // Output Queue Master
 
@@ -210,7 +210,7 @@ End-Proc;
 Dcl-Proc Filter;
 
   filterDsSave = filterDs;
-  Callp OTQMSTDZ(filterDs:keyPressed);
+  OTQMSTDZ(filterDs:keyPressed);
 
   If keyPressed = 'F3';
   ElseIf keyPressed = 'F12';

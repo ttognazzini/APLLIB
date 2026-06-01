@@ -1,5 +1,5 @@
 **FREE
-ctl-Opt DftActGrp(*no) option(*srcstmt:*nodebugio) ;
+ctl-Opt DftActGrp(*no) option(*srcstmt:*nodebugio:*nounref) ;
 //----------------------------------------------------------------------*
 //                                                                      *
 // Program Name:        MSGDTAT1                                        *

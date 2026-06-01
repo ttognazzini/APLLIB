@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug option(*srcstmt:*nodebugio:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 // Receiving Carrier Navigator
 
@@ -27,7 +27,7 @@ Dcl-Proc Main;
 
   // Handle special options
   //  if Option = 'X';
-  //    CallP DCTFLDB8(pmrCarIdn);
+  //    DCTFLDB8(pmrCarIdn);
   //    Return;
   //  EndIf;
 
@@ -36,7 +36,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP PGMACTD2(pmrPgmNme:pmrActCde:Option:keyPressed);
+      PGMACTD2(pmrPgmNme:pmrActCde:Option:keyPressed);
     Else;
       Leave;
     EndIf;

@@ -20,7 +20,7 @@ Pgm
           sev(30) +
           FMT((*CHAR 1024))
 
-  /* FAB0001 -> APL0001  Invalid key pressed.    keyPressed */
+  /* APL0001  Invalid key pressed.    keyPressed */
   ADDMSGD MSGID(APL0001) +
           MSGF(&LIB/APLMSGF) +
           MSG('Invalid key pressed, key = &1.') +

@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB/APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB/APLLIB') Main(Main);
 
 // Message Master Navigator
 
@@ -44,14 +44,14 @@ Dcl-Proc Main;
   // 5=View
   If Option = '5';
     pmOption='5';
-    CallP MSGDTLD1(pmrMsfLib:pmrMsfNme:MsgIdn:pmOption:keyPressed);
+    MSGDTLD1(pmrMsfLib:pmrMsfNme:MsgIdn:pmOption:keyPressed);
     Return;
   EndIf;
 
   // 6=Messages
   If Option = '6';
     pmOption='2';
-    CallP MSGDTLD1(pmrMsfLib:pmrMsfNme:MsgIdn:pmOption:keyPressed);
+    MSGDTLD1(pmrMsfLib:pmrMsfNme:MsgIdn:pmOption:keyPressed);
     Return;
   EndIf;
 

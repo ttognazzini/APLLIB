@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Index Field List
 
@@ -414,7 +414,7 @@ Dcl-Proc ValidateScreen;
   // make sure the primary key value is correct, Auto prompt first if not valid, handles ?
   pmEnmVal = '';
   pmEnmDes = idxUniD;
-  Callp(e) DCTVALBP('APLDCT':'IDXUNI':pmEnmVal:pmEnmDes:pmKeyPressed);
+  DCTVALBP('APLDCT':'IDXUNI':pmEnmVal:pmEnmDes:pmKeyPressed);
   If idxUniD <> pmEnmDes;
     idxUniD = pmEnmDes;
     error=*on;
@@ -564,7 +564,7 @@ Dcl-Proc Prompt;
 
   // Prompt status description
   If CsrFld = 'IDXUNID';
-    Callp DCTVALDP('APLDCT':'IDXUNI':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'IDXUNI':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       idxUniD = pmEnmDes;
     EndIf;

@@ -1,5 +1,5 @@
 **FREE
-// This program was set up to test automaing moving data into MS SQL
+// This program was set up to test automating moving data into MS SQL
 // The program is passed 2 parameter, the name of a table or view and the library it is in
 // It will then create a table in the MS SQL database with the same name and columns
 // Then it inserts all the data into that table from the passed table
@@ -22,7 +22,7 @@
 //   characters and spcaes in column names are replaced with an underscore. If the
 //   the column name stars with a number, then an underscore is added as the first character
 
-Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt) DatFmt(*ISO) Main(Main) debug actgrp(*new);
+Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt:*nounref) DatFmt(*ISO) Main(Main) debug actgrp(*new);
 
 /copy QSRC,JDBSRVV1PR // Scott Klements JDBCR4 service program headers
 /copy QSRC,JDBMSQB1PR // Set up Java environment for MS SQL, also contains MS SQL connection stuff
@@ -61,7 +61,7 @@ Dcl-S password varchar(127);
 
 // Escape message type, change to *INFO to keep going, otherwise *ESCAPE to blow up
 // Dcl-C msgTyp msgTyp;
-Dcl-C MSGTYP '*INFO';
+Dcl-C MSGTYP '*ESCAPE';
 
 Dcl-Proc Main;
   Dcl-Pi *n ExtPgm('JDBMSQB3');
@@ -113,7 +113,7 @@ Dcl-Proc Main;
 
   // Try to connect to MS SQL,
   If not connectDB();
-    #$SNDMSG('Error - Could not connect to MS SQL Database':'*ESCAPE');
+    #$SNDMSG('Error - Could not connect to MS SQL Database':msgTyp);
     Return;
   EndIf;
 
@@ -169,7 +169,7 @@ Dcl-Proc CreateTable;
   Clear columns;
   Clear colTyp;
 
-  // Get row and column infomration for the table,
+  // Get row and column information for the table,
   // add each column to the new create table statement
   Exec SQL Declare sqlCrs Cursor For
     With dta as (
@@ -201,6 +201,7 @@ Dcl-Proc CreateTable;
           /* if the colun type is TIMESTMP, change it to DATETIME2, this is MS SQL version
              of a data/time field */
           Case when data_type = 'TIMESTMP' then 'DATETIME2'
+               when data_type in ('VARG','CLOB','BLOB') then 'NVARCHAR'
               else data_type end data_type,
           coalesce(char(long_comment),'') long_comment
         from QSYS2.syscolumns2
@@ -218,9 +219,10 @@ Dcl-Proc CreateTable;
            Then trim(lower(data_type))
            When scale is not null and scale <> 0 -- if there is a scale, use it
            Then trim(lower(data_type)) || '(' || trim(char(length)) || ',' || trim(char(scale)) || ')'
+           When data_type in ('VARCHAR','NVARCHAR') and length < 8000
+           Then trim(lower(data_type)) || '(max)'
            Else trim(lower(data_type)) || '(' || trim(char(length)) || ')'
-      end
-      || ',',
+      end || ',',
       long_comment
     from dta
     Order by ordinal_position;
@@ -250,7 +252,7 @@ Dcl-Proc CreateTable;
 
   // Try to build the table in the MS SQL database
   If JDBC_ExecUpd( conn : sqlStm ) < 0;
-    #$SNDMSG('Error - Could not create table ' + newTblNme + '.':MSGTYP);
+    #$SNDMSG('Error - Could not create table ' + newTblNme + '.':msgTyp);
     dump;
     Return *off;
   Else;
@@ -299,7 +301,7 @@ Dcl-Proc WriteRows;
 
   // this adds rows to the table in batches. The batches are based on the size the
   // SQL variable. It is a lot quicker to add many rows at once then add each row
-  // individually. So the SQL statment is started here, and then each row ais appended
+  // individually. So the SQL statement is started here, and then each row is appended
   // till the length is over 30,000. Then it runs the statement and starts a new one.
   sqlStm = 'Insert into ' + newTblNme + ' ('+ columns + ')' + ' values';
   rowsExist = *off;
@@ -332,7 +334,7 @@ Dcl-Proc WriteRows;
     EndFor;
     sqlStm += '),';
     rowsExist = *on;
-    // if the length of the statment is over 9,000, remove the last comma, run the statmen and start a new one
+    // if the length of the statement is over 9,000, remove the last comma, run the statmen and start a new one
     If %len(sqlStm) > 30000;
       sqlStm = %subst(sqlStm:1:%len(sqlStm)-1); // remove the last comma
       If JDBC_ExecUpd( conn : sqlStm ) < 0;
@@ -376,7 +378,7 @@ Dcl-Proc CvtTimeStamp;
   //                               1234567890123456789012345689             1234567890123456789012345689
   // timestampformat in MS SQL is '2004-10-19 10:23:54.0000000', in DB2 is '2024-03-28-10.10.33.3358214',
   // so if timestamp we have to remove the third dash, and change the periods to colons
-  // Ruller  123456789012345678901234567890
+  // Ruler   123456789012345678901234567890
   // input  '2024-03-28-10.10.33.3358214'
   // output '2004-10-19 10:23:54.3358214'
   Return %subst(input:1:10) + ' '

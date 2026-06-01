@@ -1,0 +1,18 @@
+PGM (&QRY)
+  DCL &qry *CHAR 20
+  DCL   &QRYDFN  *CHAR 10 STG(*DEFINED) DEFVAR(&qry 1)
+  DCL   &QRYLIB  *CHAR 10 STG(*DEFINED) DEFVAR(&qry 11)
+  DCL &SQLsTM *CHAR 100
+
+  /* see if the query exists and override library in case it is *libl or *curlib */
+  RTVOBJD  OBJ(&QRYLIB/&QRYDFN) OBJTYPE(*QRYDFN) RTNLIB(&QRYLIB)
+  MONMSG CPF0000 EXEC(DO)
+    SNDPGMMSG 'Query not found.'
+    RETURN
+  ENDDO
+
+  /* Print query definition */
+  CHGVAR &SQLSTM ('call QSYS2.Print_Query_Definition (''' *CAT &QRYLIB *TCAT ''',''' *CAT &QRYDFN *TCAT ''', 0) ')
+  RUNSQL &SQLSTM
+
+ENDPGM

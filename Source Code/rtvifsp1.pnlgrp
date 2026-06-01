@@ -1,0 +1,146 @@
+:PNLGRP.
+:HELP NAME='RTVIFSA'.Retrieve IFS File Attribute - Help
+:P.The Retrieve IFS File Attribute (RTVIFSA) command returns information
+about a specified file in the IFS. It was designed to work with the
+root file system (/) but may be useful with other file systems.
+:P.The command returns data to variables, therefore it can only be run
+in a program. This works similar to other IBM RTVXXX commands. To use it
+pass in a file name and enter the variable in the attribute you want
+returned.
+:H2.Example:
+:P.Get the last used date of a file.
+:P.RTVIFSA IFSFILE('/home/ttognazzin') ADATE(&LASTUSED)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/IFSFILE'.IFS File - HELP
+:XH3.IFSFILE - IFS File
+:P.Enter the full path to the IFS file.
+:HP2.Example::EHP2. '/temp/temp.txt'
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/MODE'.File Mode - HELP
+:XH3.MODE - File Mode
+:P.This is returns a decimal number, to get anything meaningful
+from it you have to convert it binary and check individual bits.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/INODE'.File INODE - HELP
+:XH3.INODE - File INODE
+:P.
+The file ID for the object. This number uniquely identifies the object
+within a  file system. When INODE and DEVICE are used together, they
+uniquely identify the object on the system.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/NLINKS'.Number of Links - HELP
+:XH3.NLINKS - Number of Links
+:P.The number of links to the file.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/USERID'.Owner User ID - HELP
+:XH3.USERID - Owner User ID
+:P.The numeric user ID (uid) of the owner of the file.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/GROUPID'.Owner Group ID - HELP
+:XH3.GROUPID - Owner Group ID
+:P.The numeric group ID (gid) for the file.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/SIZE'.File Size - HELP
+:XH3.SIZE - File Size
+:P.Defined as follows for each file type:
+:UL.
+:LI.:HP2.Regular File:EHP2. - The number of data bytes in the file.
+:LI.:HP2.Directory:EHP2. - The number of bytes allocated to the directory.
+the program straight to the update screen for that query.
+:LI.:HP2.Symbolic Link:EHP2. - The number of bytes in the path name stored
+in the symbolic link.
+:LI.:HP2.Local Socket:EHP2. - Always zero.
+:LI.:HP2.Operating System Native Object:EHP2. -
+This value is dependent on the object type.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/ADATE'.Access Date - HELP
+:XH3.ADATE - Access Date
+:P.The most recent date the file was accessed. This is in CYYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/ATIME'.Access Time - HELP
+:XH3.ATIME - Access Time
+:P.The most recent time the file was accessed. In HHMMSS format
+with a 24 hour day.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/MDATE'.Modified Date - HELP
+:XH3.MDATE - Modified Date
+:P.The most recent date the contents of the file were changed. This
+is in CYYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/MTIME'.Modified Time - HELP
+:XH3.MTIME - Modified Time
+:P.The most recent time the contents of the file were changed. In HHMMSS format
+with a 24 hour day.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/CDATE'.Changed Date - HELP
+:XH3.CDATE - Changed Date
+:P.The most recent date the status of the file was changed. This
+is in CYYMMDD format.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/CTIME'.Changed Time - HELP
+:XH3.CTIME - Changed Time
+:P.The most recent time the status of the file was changed. In HHMMSS format
+with a 24 hour day.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/DEVICE'.File Device - HELP
+:XH3.DEVICE - File Device
+:P.The file system ID to which the object belongs. This number
+uniquely identifies the file system to which the object belongs. When
+INDOE and DEVICE are used together, they uniquely identify the object
+on the system. This field will be 4,294,967,295 if the value could not
+fit in the specified DEVICE field.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/BSIZE'.File Block Size - HELP
+:XH3.BSIZE - File Block Size
+:P.The block size of the file in bytes. This number
+is the number of bytes in a block of disk unit storage.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/ASIZE'.File Alloc Size - HELP
+:XH3.ASIZE - File Alloc Size
+:P.The number of bytes allocated to the file. The allocated size
+varies by object type and file system. For example, the allocated
+size includes the object data size as shown in SIZE as well
+as any logically sized extents to accommodate anticipated
+future requirements for the object data. It may or may
+not include additional bytes for attribute information.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/OBJTYPE'.AS400 Object Type - HELP
+:XH3.OBJTYPE - AS400 Object Type
+:P.The object type; for example, *STMF or *DIR.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/CODEPAGE'.Data Code Page - HELP
+:XH3.CODEPAGE - Data Code Page
+:P.The code page derived from the CCSID used for the data in the file
+or the extended attributes of the directory. If the returned value of
+this field is zero (0), there is more than one code page associated
+with the CCSID. If the CCSID is not a supported
+CCSID, the codepage is set equal to the CCSID.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVIFSA/TEXT'.File Text - HELP
+:XH3.TEXT - File Text
+:P.This returns the text attribute of the file. This is the
+text that is displayed in the WRKLNK command.
+:EHELP.
+.*---------------------------------------------------------------------
+.*---------------------------------------------------------------------
+:EPNLGRP.

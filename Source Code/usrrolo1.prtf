@@ -1,0 +1,39 @@
+     A          R #PAGEHDR
+     A            #DATE          8  0      1EDTWRD('    /  / 0')
+     A                                      SKIPB(1)
+     A            #TIME          6  0     12EDTWRD('  :  : 0')
+     A            ENVIRONMNT    50A  O    74
+     A            PGMNME        10A      189
+     A***
+     A            PRTUSER       10A        1
+     A                                      SPACEB(1)
+     A            PRTTITLE      50A  O    74 HIGHLIGHT
+     A                                   189'PAGE'
+     A                                   194PAGNBR
+     A                                      EDTCDE(Z)
+     A***
+     A                                     1'User Name'
+     A                                      SPACEB(2)
+     A                                       HIGHLIGHT
+     A                                    32'Role Name'
+     A                                       HIGHLIGHT
+     A                                    63'Approved'
+     A                                       HIGHLIGHT
+     A                                    72'Active'
+     A                                       HIGHLIGHT
+     A                                    81'Description'
+     A                                       HIGHLIGHT
+     A***
+     A          R #DETAIL                   SPACEB(1)
+     A            RPTUSRNME     30         1
+     A            RPTROLNME     30        32
+     A            RPTAPRDES      3        63
+     A            RPTACVDES      8        72
+     A            RPTLNGCMT    118        81
+     A***
+     A          R #TOT
+     A                                     1'* * * End of Report * * *'
+     A                                      SPACEB(1)
+     A                                       HIGHLIGHT
+
+      **************************************************************

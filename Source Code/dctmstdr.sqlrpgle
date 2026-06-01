@@ -1,17 +1,17 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB/APLLIB') Main(Main);
 
 // Dictionary Master List Prompt
 
 Dcl-F DCTMSTFR WORKSTN InfDS(dspDs) UsrOpn;
 
-/Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures
-/Copy QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
+/Copy APLLIB/QSRC,BASFNCV1PR // prototypes for all #$ procedures
+/Copy APLLIB/QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
 /Copy QSRC,DCTMSTDR_@ // auto generatde data structures for field attribute fields
 /Copy QSRC,DCTMSTDRPR // Always include the prototype for the current program
 /Copy QSRC,DCTMSTBRPR // Contact List
-/Copy QSRC,DCTVALBPPR // Enumerated value auto prompter
-/Copy QSRC,DCTVALDPPR // Enumerated value prompt
+/Copy APLLIB/QSRC,DCTVALBPPR // Enumerated value auto prompter
+/Copy APLLIB/QSRC,DCTVALDPPR // Enumerated value prompt
 
 
 Dcl-S Option like(APLDCT.Option);
@@ -169,7 +169,7 @@ Dcl-Proc Prompt;
 
   // Prompt active des
   If CsrFld = 'ACVDES';
-    Callp DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:pmKeyPressed);
     If pmKeyPressed = 'ENTER';
       acvDes = pmEnmDes;
     EndIf;

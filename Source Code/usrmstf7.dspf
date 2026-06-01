@@ -1,0 +1,178 @@
+     A*%%TS  SD  20250801  123158  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A*  Dictionary Master Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A                                      HLPTITLE('User Master Maintenance -
+     A                                      - Output Options')
+     A          R SCREEN
+     A*%%TS  SD  20250801  123158  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(USRMSTD7 USRMSTP7)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' USRMSTP7)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' USRMSTP7)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' USRMSTP7)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('USRPRF' USRMSTP7)
+     A                                      HLPARA(*FLD USRPRF)
+     A          H                           HLPPNLGRP('USRTXT' USRMSTP7)
+     A                                      HLPARA(*FLD USRTXT)
+     A          H                           HLPPNLGRP('PRTOUT' USRMSTP7)
+     A                                      HLPARA(*FLD PRTOUT)
+     A          H                           HLPPNLGRP('EMLOUT' USRMSTP7)
+     A                                      HLPARA(*FLD EMLOUT)
+     A          H                           HLPPNLGRP('ARCOUT' USRMSTP7)
+     A                                      HLPARA(*FLD ARCOUT)
+     A          H                           HLPPNLGRP('FAXOUT' USRMSTP7)
+     A                                      HLPARA(*FLD FAXOUT)
+     A          H                           HLPPNLGRP('PRTDEV' USRMSTP7)
+     A                                      HLPARA(*FLD PRTDEV)
+     A          H                           HLPPNLGRP('PRTOTQ' USRMSTP7)
+     A                                      HLPARA(*FLD PRTOTQ)
+     A          H                           HLPPNLGRP('HLDOUT' USRMSTP7)
+     A                                      HLPARA(*FLD HLDOUT)
+     A          H                           HLPPNLGRP('SAVOUT' USRMSTP7)
+     A                                      HLPARA(*FLD SAVOUT)
+     A          H                           HLPPNLGRP('OTOEML' USRMSTP7)
+     A                                      HLPARA(*FLD OTOEML)
+     A          H                           HLPPNLGRP('OTONME' USRMSTP7)
+     A                                      HLPARA(*FLD OTONME)
+     A          H                           HLPPNLGRP('ARCFLR' USRMSTP7)
+     A                                      HLPARA(*FLD ARCFLR)
+     A          H                           HLPPNLGRP('AARFLR' USRMSTP7)
+     A                                      HLPARA(*FLD AARFLR)
+     A          H                           HLPPNLGRP('ATATYP' USRMSTP7)
+     A                                      HLPARA(*FLD ATATYP)
+     A          H                           HLPPNLGRP('ATAFMT' USRMSTP7)
+     A                                      HLPARA(*FLD ATAFMT)
+     A          H                           HLPPNLGRP('FNCKEYS' USRMSTP7)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            PRTOUT@        1A  P
+     A            EMLOUT@        1A  P
+     A            ARCOUT@        1A  P
+     A            FAXOUT@        1A  P
+     A            PRTDEV@        1A  P
+     A            PRTOTQ@        1A  P
+     A            HLDOUT@        1A  P
+     A            SAVOUT@        1A  P
+     A            OTONME@        1A  P
+     A            OTOEML@        1A  P
+     A            ARCFLR@        1A  P
+     A            AARFLR@        1A  P
+     A            ATATYP@        1A  P
+     A            ATAFMT@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            MDE           10A  O  2  2
+     A                                  2 29'User Master Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3 29'Output Options Defaults'
+     A                                      DSPATR(HI)
+     A                                  5  2'User'
+     A            USRPRF    R        O  5 21
+     A            USRTXT    R        O  5 33
+     A                                  7  2'Print Output'
+     A            PRTOUT    R        B  7 21DSPATR(&PRTOUT@)
+     A                                  7 32'(Y/N)'
+     A                                  8  2'Email Output'
+     A            EMLOUT    R        B  8 21DSPATR(&EMLOUT@)
+     A                                  8 32'(Y/N)'
+     A                                  9  2'Archive Output'
+     A            ARCOUT    R        B  9 21DSPATR(&ARCOUT@)
+     A                                  9 32'(Y/N)'
+     A                                 10  2'Fax Output'
+     A            FAXOUT    R        B 10 21DSPATR(&FAXOUT@)
+     A                                 10 32'(Y/N)'
+     A                                 11  2'Print Device'
+     A            PRTDEV    R        B 11 21DSPATR(&PRTDEV@)
+     A                                 11 32'(*USRPRF, Device)'
+     A                                 12  2'Output Queue'
+     A            PRTOTQ    R        B 12 21DSPATR(&PRTOTQ@)
+     A                                 12 32'(*DEV, OUTQ)'
+     A                                 13  2'Hold Output'
+     A            HLDOUT    R        B 13 21DSPATR(&HLDOUT@)
+     A                                 13 32'(*YES/*NO)'
+     A                                 14  2'Save Output'
+     A            SAVOUT    R        B 14 21DSPATR(&SAVOUT@)
+     A                                 14 32'(*YES/*NO)'
+     A                                 15  2'Email To'
+     A            OTONME    R        B 16 21DSPATR(&OTONME@)
+     A                                      CHECK(LC)
+     A                                 16  2'Email To Name'
+     A            OTOEML    R        B 15 21DSPATR(&OTOEML@)
+     A                                      CHECK(LC)
+     A                                 17  2'Archive Folder'
+     A            ARCFLR    R        B 17 21DSPATR(&ARCFLR@)
+     A                                      CHECK(LC)
+     A                                 19  2'Auto Arch Folder'
+     A            AARFLR    R        B 19 21DSPATR(&AARFLR@)
+     A                                      CHECK(LC)
+     A                                 21  2'Attachment Type'
+     A            ATATYP    R        B 21 21DSPATR(&ATATYP@)
+     A                                 21 32'(*PDF, *TEXT, *CSV, *XML, *XLSX)'
+     A                                 22  2'Attachment Format'
+     A            ATAFMT    R        B 22 21DSPATR(&ATAFMT@)
+     A                                 22 32'(1=Data,2=Report)'
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

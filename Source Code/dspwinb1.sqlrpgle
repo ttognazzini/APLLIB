@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*srcStmt) DftActGrp(*NO) BndDir('APLLIB/APLLIB') Main(Main);
+Ctl-Opt Option(*srcStmt:*nounref) DftActGrp(*NO) BndDir('APLLIB/APLLIB') Main(Main);
 
 // Display text in a window, CPP for DSPWIN command
 

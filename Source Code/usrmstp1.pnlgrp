@@ -1,0 +1,253 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=USRMSTD1.User Master Maintenance - List
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: USRMSTF1 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,47)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: USRMSTF1 Field: PGMNME
+Type: CHAR(10)
+Location: (1,122)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MDE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: USRMSTF1 Field: MDE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SCHVAL'.Display Search Value
+:XH3.Display Search Value
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: SCHVAL
+Type: CHAR(40)
+Location: (4,9)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=OPTIONS.Program Options
+:XH3.Program Options
+:P.Program options are entered in front of any entry in the list or on the
+entry line at the top of the list.
+:P.This program includes the following options.
+:UL.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRPRF1'.User Profile
+:XH3.User Profile
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRPRF1
+Type: CHAR(10)
+Location: (9,5)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRTXT1'.User Profile Text
+:XH3.User Profile Text
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRTXT1
+Type: VARCHAR
+Location: (9,16)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRINT1'.User Initials
+:XH3.User Initials
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRINT1
+Type: CHAR(3)
+Location: (9,53)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRDPT1'.User Department
+:XH3.User Department
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRDPT1
+Type: VARCHAR
+Location: (9,57)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRTTL1'.User Title
+:XH3.User Title
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRTTL1
+Type: VARCHAR
+Location: (9,73)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRCLS1'.User Class
+:XH3.User Class
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRCLS1
+Type: CHAR(10)
+Location: (9,89)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USROQN1'.User Output Queue
+:XH3.User Output Queue
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USROQN1
+Type: CHAR(10)
+Location: (9,100)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRSTS1'.User Status
+:XH3.User Status
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRSTS1
+Type: CHAR(10)
+Location: (9,111)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GPRPRF1'.Error name not found (GPRPRF1)
+:XH3.Error name not found (GPRPRF1)
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: GPRPRF1
+Type: CHAR(10)
+Location: (9,122)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRPRF'.User Profile
+:XH3.User Profile
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRPRF
+Type: CHAR(10)
+Location: (10,5)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRTXT'.User Profile Text
+:XH3.User Profile Text
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRTXT
+Type: CHAR(36)
+Location: (10,16)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRINT'.User Initials
+:XH3.User Initials
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRINT
+Type: CHAR(3)
+Location: (10,53)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRDPT'.User Department
+:XH3.User Department
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRDPT
+Type: CHAR(15)
+Location: (10,57)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRTTL'.User Title
+:XH3.User Title
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRTTL
+Type: CHAR(15)
+Location: (10,73)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRCLS'.User Class
+:XH3.User Class
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRCLS
+Type: CHAR(10)
+Location: (10,89)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USROQN'.User Output Queue
+:XH3.User Output Queue
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USROQN
+Type: CHAR(10)
+Location: (10,100)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRSTS'.User Status
+:XH3.User Status
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USRSTS
+Type: CHAR(10)
+Location: (10,111)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='GRPPRF'.Group Profile
+:XH3.Group Profile
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: GRPPRF
+Type: CHAR(10)
+Location: (10,122)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FSTNME'.First Name
+:XH3.First Name
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: FSTNME
+Type: VARCHAR
+Location: (11,16)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSTNME'.Last Name
+:XH3.Last Name
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: LSTNME
+Type: VARCHAR
+Location: (11,37)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USREML'.User Email
+:XH3.User Email
+:P.Help text not entered.
+:P.Screen: USRMSTF1 Field: USREML
+Type: CHAR(60)
+Location: (11,59)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F8=Roles:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F9=Show Disabled:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F10=Refresh List:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F11=Show More:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F13=Filters:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

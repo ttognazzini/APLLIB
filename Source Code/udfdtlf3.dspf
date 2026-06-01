@@ -1,0 +1,149 @@
+     A*%%TS  SD  20220831  070555  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* User Default DetiIl Maintenance
+     A*
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A          R SFL                       SFL
+     A*%%TS  SD  20220826  090309  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A            UDFVAL@        1A  P
+     A            DPTCHG@        1A  P
+     A            USRCHG@        1A  P
+     A            UDFKEY    R        H      REFFLD(UDFKEY)
+     A            UDFOPT    R    9A  O  8  2
+     A            UDFDES    R   45   O  8 12REFFLD(UDFDES)
+     A            UDFVAL    R        B  8 58DSPATR(&UDFVAL@)
+     A            DPTDFT        19A  O  8 79
+     A            SYSDFT        19A  O  8 99
+     A            USRCHG    R        B  8120REFFLD(USRCNF) ALIAS(USR_CHG)
+     A                                      DSPATR(&USRCHG@)
+     A            DPTCHG    R        B  8125REFFLD(USRCNF) ALIAS(DPT_CHG)
+     A                                      DSPATR(&DPTCHG@)
+     A            SYSCHG    R        O  8130REFFLD(USRCNF) ALIAS(SYS_CHG)
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20220831  070555  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      SFLPAG(0018)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A N98                                  SFLEND
+     A                                      SFLSIZ(&SFLSIZ)
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SFLMODE        1A  H
+     A            FLTEFF         1A  H
+     A            TITLE3@        1A  P
+     A            TITLE3NU@      1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNMEH   R        O  1122REFFLD(PGMNME)
+     A                                      ALIAS(PROGRAM_NAME_H)
+     A            MDE       R        O  2  2
+     A                                  2 47'User Defaults User/Department Sele-
+     A                                      ction'
+     A                                      COLOR(WHT)
+     A                                  2122USER
+     A                                  4  2'Program'
+     A            PGMNME    R        O  4 10
+     A            PGMDES    R        O  4 21
+     A            TITLE1        10A  O  4 76
+     A            USR           10A  O  4 87
+     A            USRNME        30A  O  4 98
+     A                                  6  2'Enter Values and Press Enter.'
+     A                                      COLOR(BLU)
+     A                                  7  2'Type     '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 12'Description                       -
+     A                                                 '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7 58'User Override       '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A            TITLE2        19A  O  7 79COLOR(WHT)
+     A                                      DSPATR(UL)
+     A            TITLE3        19A  O  7 99DSPATR(&TITLE3@)
+     A                                  5  2'Search:'
+     A            SCHVAL        50A  B  5 10
+     A                                  6119'Usr'
+     A                                      DSPATR(&TITLE3NU@)
+     A                                  7119'Chg'
+     A                                      DSPATR(&TITLE3@)
+     A                                  6124'Dpt'
+     A                                      DSPATR(HI)
+     A                                  7124'Chg'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6129'Sys'
+     A                                      DSPATR(HI)
+     A                                  7129'Chg'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A*
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A*%%TS  SD  20220714  142616  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      OVERLAY
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

@@ -13,7 +13,7 @@ Begin
   If Inserting Then
     set n.create_time_stamp = current timestamp,
         n.create_user = user,
-        n.create_job = QSYS2.job_name,
+        n.create_job = job_name,
         n.create_program = APLLIB.current_program();
   End If ;
 
@@ -32,7 +32,7 @@ Begin
   )) Then
     set n.maintenance_time_stamp = current timestamp,
         n.maintenance_user = user,
-        n.maintenance_job = QSYS2.job_name,
+        n.maintenance_job = job_name,
         n.maintenance_program = APLLIB.current_program();
   End If;
 

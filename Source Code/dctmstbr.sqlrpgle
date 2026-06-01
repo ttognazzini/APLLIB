@@ -1,15 +1,15 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) actgrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) actgrp(*Caller) BndDir('APLLIB/APLLIB') Main(Main);
 
-// A/P Contact - Master List Driver
+// Dictionary Master - Report Driver
 
-/Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures
-/Copy QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
-/COPY QSRC,OTOSRVV1PR // Output Options DS and prototypes
+/Copy APLLIB/QSRC,BASFNCV1PR // prototypes for all #$ procedures
+/Copy APLLIB/QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
+/COPY APLLIB/QSRC,OTOSRVV1PR // Output Options DS and prototypes
 
-/COPY QSRC,DCTMSTBRPR // A/P contact list - driver
-/COPY QSRC,DCTMSTB1PR // A/P contact list
-/COPY QSRC,DCTMSTDRPR // A/P contact List - Prompt
+/COPY QSRC,DCTMSTBRPR // Dictionary Master - Report Driver
+/COPY QSRC,DCTMSTB1PR // Dictionary Master - Report
+/COPY QSRC,DCTMSTDRPR // Dictionary Master - Report Prompt
 /COPY QSRC,PRCSCRD1PR // Display processing screen
 
 

@@ -1,0 +1,16 @@
+.*-----------------------------------------------------------------------**
+.*
+.*  Compile options:
+.*
+.*-----------------------------------------------------------------------**
+:PNLGRP.
+
+:HELP NAME='RE'.
+Reclaim Eligible Activation Groups
+:P.
+This is just a shortcut command. It is the same as command
+RCLACTGRP *ELIGIBLE. It was jsut created so Tim Tognazzini can
+be effcient (lazy).
+:EHELP.
+
+:EPNLGRP.

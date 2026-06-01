@@ -1,5 +1,6 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt ActGrp(*New);
+/copy APLLIB/QSRC,$ctlopt
 
 // Application Library Master Prompt
 // Validate or Prompt Library Name
@@ -58,7 +59,7 @@ Dcl-Proc Main;
 
   // if no value is already returned, call the prompt program
   schVal = pmrDes;
-  Callp APLLIBD1(pmrLibNme:Option:pmrKeyPressed:schVal);
+  APLLIBD1(pmrLibNme:Option:pmrKeyPressed:schVal);
 
   // if an Id is passed, get the name to return
   If pmrLibNme <> '';

@@ -1,0 +1,31 @@
+     A*%%TS  SD  20221222  064735  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(APLDCT)
+     A                                      CHGINPDFT(CS)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT
+     A          R SCREEN
+     A                                      INVITE
+     A                                      KEEP
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            F1TITL        30A  O  2 26DSPATR(HI)
+     A                                  2 70USER
+     A            INPUT          1A  B  3  1DSPATR(PR ND)
+     A                                 12 28'Processing - Please Wait.'
+     A                                      COLOR(RED)
+     A                                      DSPATR(BL)
+     A            MESSAGE01     70A  O 14  6
+     A            MESSAGE02     70A  O 15  6
+     A            MESSAGE03     70A  O 16  6
+     A            MESSAGE04     70A  O 17  6
+     A            MESSAGE05     70A  O 18  6
+     A            MESSAGE06     70A  O 19  6
+     A            MESSAGE07     70A  O 20  6
+     A            MESSAGE08     70A  O 21  6

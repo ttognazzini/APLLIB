@@ -1,0 +1,10 @@
+ Create or Replace Function APLLIB/ZONCHRU1
+          (ChrIn varchar(30))
+          Returns decimal(29)
+          External Name 'APLLIB/NBRVALB1(ZONCHRU1)'
+          Called on Null Input
+          Deterministic
+          Language rpgle
+          Modifies SQL Data
+          Parameter Style General With Nulls
+          Program Type SUB;

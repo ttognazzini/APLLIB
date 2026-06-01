@@ -1,0 +1,57 @@
+/* REBUILD CSS FILES  */
+             PGM (&LIB &FILE &DESC &PRFX &RCFM &SRFL &SRLB &SRMB)
+             DCL &LIB    *CHAR 10
+             DCL &FILE   *CHAR 10
+             DCL &DESC   *CHAR 50
+             DCL &PRFX   *CHAR  4
+             DCL &RCFM   *CHAR 10
+             DCL &SRFL   *CHAR 10
+             DCL &SRLB   *CHAR 10
+             DCL &SRMB   *CHAR 10
+
+             CHGVAR &PRFX '*ERR'
+             CHGVAR &RCFM ' '
+
+/* SEE IF THE SOURCE FILE AND MEMBER EXISTS       */
+/* IF IT DOES LEAVE IT ALONE, IF NOT SEE IF THE   */
+/* MEMBER FOR THE FILE NAME EXISTS IN QDDSSRC IN  */
+/* FILES LIBRARY, IF IT DOES USE IT.              */
+/* OTHERWISE *ERROR                               */
+             CHKOBJ     OBJ(&SRLB/&SRFL) OBJTYPE(*FILE) MBR(&SRMB)
+             MONMSG CPF0000 EXEC(DO)
+               CHKOBJ     OBJ(&LIB/QDDSSRC) OBJTYPE(*FILE) MBR(&FILE)
+               MONMSG CPF0000 EXEC(DO)
+                 CHKOBJ     OBJ(MRPS383SRC/QDDSSRC) OBJTYPE(*FILE) MBR(&FILE)
+                 MONMSG CPF0000 EXEC(DO)
+                     CHGVAR &SRMB '*ERROR'
+                     CHGVAR &SRFL ' '
+                     CHGVAR &SRLB ' '
+                     GOTO SKIP
+                 ENDDO
+                 CHGVAR &SRLB 'MRPS38SRC'
+                 CHGVAR &SRFL 'QDDSSRC'
+                 CHGVAR &SRMB &FILE
+                 GOTO SKIP
+               ENDDO
+               CHGVAR &SRLB &LIB
+               CHGVAR &SRFL 'QDDSSRC'
+               CHGVAR &SRMB &FILE
+  SKIP:
+             ENDDO
+
+/* TRY TO UPDATE FROM QDDS MBR */
+             RTVMBRD FILE(&SRLB/&SRFL) MBR(&SRMB) TEXT(&DESC)
+             MONMSG  MSGID(CPF0000) EXEC(GOTO CMDLBL(GETOBJ))
+
+             OVRDBF  FILE(LIBRIN) TOFILE(&SRLB/&SRFL) MBR(&SRMB)
+             CALL    SYS240B PARM(&PRFX &RCFM)
+             DLTOVR  LIBRIN
+             GOTO    ENDPGM
+
+/* GET OBJD DESCRIPTION IF CAN'T GET MBR DESC */
+GETOBJ:      RTVOBJD    OBJ(&LIB/&FILE) OBJTYPE(*FILE) +
+                          TEXT(&DESC)
+             MONMSG CPF0000
+
+ ENDPGM:
+             ENDPGM

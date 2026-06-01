@@ -1,7 +1,8 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt ActGrp(*Caller);
+/copy APLLIB/QSRC,$ctlopt
 
-// Fabricut Libraries
+// Aplication Libraries
 
 /Copy QSRC,BASFNCV1PR   // prototypes for all #$ procedures
 /Copy QSRC,APLSRVV1PR   // prototypes for $ procedures used for template programs
@@ -28,7 +29,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP APLLIBD2(pmrLibNme:Option:keyPressed);
+      APLLIBD2(pmrLibNme:Option:keyPressed);
     Else;
       Leave;
     EndIf;

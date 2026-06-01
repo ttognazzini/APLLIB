@@ -10,7 +10,7 @@
 //   read the data back from the table
 //
 
-Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt) DatFmt(*ISO) Main(Main);
+Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt:*nounref) DatFmt(*ISO) Main(Main);
 
 /copy QSRC,JDBSRVV1PR // Scott Klements JDBCR4 service program headers
 /copy QSRC,JDBMSQB1PR // Set up Java environment for Postgress, also contains postgress connection stuff
@@ -196,13 +196,13 @@ Dcl-Proc ReadRows;
   // run query and return result set
   rs = JDBC_ExecQry( conn : sqlStm );
 
-  // If no result set is retutnred error out
+  // If no result set is returned error out
   If (rs = *null);
     #$SNDMSG('Error running SELECT statement: "' + sqlStm + '"':MSGTYP);
     Return;
   EndIf;
 
-  // retrieve the metat data for the resultset
+  // retrieve the meta data for the result set
   rsmd = JDBC_GetMetaData(rs);
   // output the number of columns in the result set
   #$SNDMSG('Number of columns in result set: ' + %char(JDBC_GetColCount(rsmd)));

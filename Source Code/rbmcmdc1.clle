@@ -1,0 +1,6 @@
+/* Goto robot menus     */
+PGM
+
+  ROBOTLIB/RBM
+
+ENDPGM

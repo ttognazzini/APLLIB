@@ -1,0 +1,129 @@
+     A*%%TS  SD  20220714  114615  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*  User Default Master Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20220714  114615  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FRMKEYS@       1A  P
+     A            PGMNMECPY@     1A  P
+     A            UDFKEYCPY@     1A  P
+     A            PGMNME@        1A  P
+     A            UDFKEY@        1A  P
+     A            UDFDES@        1A  P
+     A            USRCNF@        1A  P
+     A            UDFOPT@        1A  P
+     A            UDFDFT@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNMEH   R        O  1 70REFFLD(PGMNME)
+     A                                      ALIAS(PGM_NM_HDR)
+     A            MDE       R        O  2  2
+     A                                  2 25'User Default Master Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  4  2'Copy Program'
+     A                                      DSPATR(&FRMKEYS@)
+     A            PGMNMECPY R        O  4 20REFFLD(PGMNME)
+     A                                      DSPATR(&PGMNMECPY@)
+     A                                      ALIAS(PROGRAM_NAME_COPY)
+     A                                  5  2'Copy Key'
+     A                                      DSPATR(&FRMKEYS@)
+     A            UDFKEYCPY R        O  5 20REFFLD(UDFKEY)
+     A                                      DSPATR(&UDFKEYCPY@)
+     A                                      ALIAS(UDF_KEY_COPY)
+     A                                  6  2'Program'
+     A            PGMNME    R        B  6 20DSPATR(&PGMNME@)
+     A                                  7  2'Key'
+     A            UDFKEY    R        B  7 20DSPATR(&UDFKEY@)
+     A                                  8  2'Description'
+     A            UDFDES    R        B  8 20DSPATR(&UDFDES@)
+     A                                      CHECK(LC)
+     A                                  9  2'User Configurable'
+     A            USRCNF    R        B  9 20DSPATR(&USRCNF@)
+     A                                 10  2'Option Type'
+     A            UDFOPT    R        B 10 20DSPATR(&UDFOPT@)
+     A                                 11  2'Default Value'
+     A            UDFDFT    R        B 11 20DSPATR(&UDFDFT@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  9 41'(Y/N)'
+     A                                 10 41'(Y/N, ATTRIBUTE)'
+     A                                 14 10'Y/N Options'
+     A                                      COLOR(WHT)
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 15 10'Y=Yes'
+     A                                 16 10'N=No'
+     A                                 14 25'         Attribute Options        -
+     A                                        '
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)
+     A                                 15 25'GRN = Green'
+     A                                 16 25'WHT = White'
+     A                                 17 25'YLW = Yellow'
+     A                                 18 25'TRQ = Turquiose'
+     A                                 19 25'PNK = Pink'
+     A                                 20 25'RED = Red'
+     A                                 15 43'BLU = Blue'
+     A                                 16 43'RI = Reverse Image'
+     A                                 17 43'UL = UnderLine'
+     A                                 18 43'ND = Non-Display'
+     A                                 19 43'PR = Protect'
+     A                                 21 25'You can use multiple with a comma'
+     A                                 22 25'sepearted list, Ex ''WHT,UL''.'
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

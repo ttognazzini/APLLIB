@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.FLEERRIDN;
+Create Index APLLIB.FLEERRIDN on APLLIB.FLEERR (
+  FLEERRIDN
+);
+
+Label on Index APLLIB.FLEERRIDN is 'File Errors - Id';

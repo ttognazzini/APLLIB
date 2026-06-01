@@ -1,5 +1,6 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt ActGrp(*New);
+/copy APLLIB/QSRC,$ctlopt  // Default Ctl-Opt's, does not include activation group
 
 // File Audit Log Filter
 

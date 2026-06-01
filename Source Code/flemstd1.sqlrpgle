@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // File Master List
 
@@ -213,7 +213,7 @@ End-Proc;
 Dcl-Proc Filter;
 
   filterDsSave = filterDs;
-  Callp FLEMSTDZ(filterDs:keyPressed);
+  FLEMSTDZ(filterDs:keyPressed);
 
   If keyPressed = 'F3';
   ElseIf keyPressed = 'F12';

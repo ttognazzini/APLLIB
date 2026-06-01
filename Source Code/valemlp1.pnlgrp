@@ -1,0 +1,25 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=VALEML.Validate an Email Address
+:P.This command is used to validate an email address. It accepts
+an email address field and returns an F in the PASS field if it
+is not valid. The command is intended to be used in CL programs
+to make validating emails easier and require less coding.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='VALEML/EMAIL'.CL Email Address Variable
+:P.:HP2.EMAIL:EHP2.
+Specifies the CL variable that contains the email address to be validated.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='VALEML/PASS'.The Return Variable
+:P.:HP2.PASS:EHP2. The variable name to receive the email status.
+:P.The command will return an F in this variable if the email s
+address is not valid. The variable has to be defined a *CHAR Len(1).
+to promote programmer familiarity the variable name should be
+PASS.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

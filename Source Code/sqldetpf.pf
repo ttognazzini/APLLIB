@@ -1,0 +1,11 @@
+     A* TEMPORARY UPS HEADER FILE
+     A*
+     A                                      UNIQUE
+     A          R SQLDETR
+     A            SQDENUS       10A         TEXT('ENTERED USER')
+     A            SQDNAME       10          TEXT('STATEMENT NAME')
+     A            SQDSEQ         5P 0       TEXT('SEQUENCE NUMBER')
+     A            SQDLINE       78          TEXT('LINES')
+     A          K SQDENUS
+     A          K SQDNAME
+     A          K SQDSEQ

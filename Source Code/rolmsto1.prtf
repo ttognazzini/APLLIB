@@ -1,0 +1,33 @@
+     A          R #PAGEHDR
+     A            #DATE          8  0      1EDTWRD('    /  / 0')
+     A                                      SKIPB(1)
+     A            #TIME          6  0     12EDTWRD('  :  : 0')
+     A            ENVIRONMNT    50A  O    46
+     A            PGMNME        10A      125
+     A***
+     A            PRTUSER       10A        1
+     A                                      SPACEB(1)
+     A            PRTTITLE      50A  O    46 HIGHLIGHT
+     A                                   125'PAGE'
+     A                                   130PAGNBR
+     A                                      EDTCDE(Z)
+     A***
+     A                                     1'Role Name'
+     A                                      SPACEB(2)
+     A                                       HIGHLIGHT
+     A                                    32'Description'
+     A                                       HIGHLIGHT
+     A                                   123'Active'
+     A                                       HIGHLIGHT
+     A***
+     A          R #DETAIL                   SPACEB(1)
+     A            ROLNME        30         1
+     A            RPTLNGCMT     90        32
+     A            ACVDES         8       123
+     A***
+     A          R #TOT
+     A                                     1'* * * End of Report * * *'
+     A                                      SPACEB(1)
+     A                                       HIGHLIGHT
+
+      **************************************************************

@@ -1,0 +1,59 @@
+/*********************************************************************/
+/* Program : ANLSRCC1                                                */
+/* Function: CPP for ANLSRCF command                                 */
+/* Author  : Werner Noll                                             */
+/* Remarks : This is free software.                                  */
+/*           You can redistribute it and/or modify it.               */
+/*           The only restriction is that you may not distribute     */
+/*           it for the purposes of monetary gain.                   */
+/*           We do not garantee for the expected functionalties.     */
+/*           The use of this software is always at your own risk.    */
+/*           All comments or reuqests for enhancements are           */
+/*           welcome. My email: werner.noll@gefis.com.               */
+/*********************************************************************/
+             PGM        PARM(&SRCFLIB &STR01 &STR02 &STR03 +
+                          &STR04 &STR05 &STR06 &STR07 &STR08 &STR09 +
+                          &STR10 &CMATCH &SBMJOB)
+             DCLPRCOPT  ALWRTVSRC(*YES) DFTACTGRP(*NO) ACTGRP(*CALLER)
+             DCL        VAR(&SRCFLIB) TYPE(*CHAR) LEN(20)
+             DCL        VAR(&SRCF) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SRCLIB) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR01) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR02) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR03) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR04) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR05) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR06) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR07) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR08) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR09) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR10) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR10) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&CMATCH) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&SBMJOB) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&MSGID) TYPE(*CHAR) LEN(7)
+             DCL        VAR(&MSGDTA) TYPE(*CHAR) LEN(132)
+             DCL        VAR(&MSGF)   TYPE(*CHAR) LEN(10)
+
+/*------------------------------------------------------------------*/
+/* Global message monitor                                           */
+             MONMSG     MSGID(CPF0000) EXEC(GOTO CMDLBL(ERROR))
+/*------------------------------------------------------------------*/
+             IF         COND(&SBMJOB *EQ 'Y') THEN(DO)
+/* Submit analysis program                                          */
+             SBMJOB     CMD(CALL PGM(ANLSRCC2) PARM(&SRCFLIB &STR01 +
+                          &STR02 &STR03 &STR04 &STR05 &STR06 &STR07 +
+                          &STR08 &STR09 &STR10 &CMATCH)) JOB(ANLSRCF)
+             ENDDO
+             ELSE       CMD(DO)
+             CALL       PGM(ANLSRCC2) PARM(&SRCFLIB &STR01 &STR02 +
+                          &STR03 &STR04 &STR05 &STR06 &STR07 &STR08 +
+                          &STR09 &STR10 &CMATCH)
+             ENDDO
+             GOTO       CMDLBL(EOP)
+/*------------------------------------------------------------------*/
+/* Error handling                                                   */
+ ERROR:      RCVMSG     MSGDTA(&MSGDTA) MSGID(&MSGID) MSGF(&MSGF)
+             SNDPGMMSG  MSGID(&MSGID) MSGF(&MSGF) MSGTYPE(*ESCAPE)
+/*------------------------------------------------------------------*/
+ EOP:        ENDPGM

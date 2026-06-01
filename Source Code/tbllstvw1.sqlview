@@ -1,0 +1,42 @@
+Create or replace view APLLIB.TBLLST as
+
+With aliases as (
+  Select
+    base_table_schema,
+    base_table_name,
+    listagg(lcase(table_schema||'.'||table_name),', ') aliases
+  from QSYS2/SYSTABLES
+  where base_table_schema in ('APLLIB')
+    and table_type = 'A'
+  group by base_table_schema, base_table_name
+  )
+Select
+  ucase(trim(tables.system_table_schema)) schema,
+  ucase(trim(tables.system_table_name)) table,
+  case table_type when 'V' then 'view'
+                  when 'T' then 'table'
+                  when 'A' then 'alais'
+                  when 'P' then 'file'
+                  when 'L' then 'logical'
+                  when 'M' then 'MTQ'
+                  else table_type end type,
+  case tables.file_type when 'D' then 'Data'
+                        when 'S' then 'Source'
+                        Else '' end data_type,
+  cast(tables.table_text as varchar(50)) as table_text,
+  aliases.aliases,
+  tables.table_definer
+
+from QSYS2.SYSTABLES as tables
+left join aliases on (aliases.base_table_schema,aliases.base_table_name)
+                   = (tables.system_table_schema,tables.system_table_name)
+where tables.system_table_schema in ('APLLIB')
+  and tables.table_type in ('T','P','V')
+  and tables.table_type <> 'A'
+;
+
+-- Add long table name for the Web Developers
+Create or replace Alias table_list for APLLIB/TBLLST;
+
+-- Add Table Description
+Label on Table APLLIB/TBLLST is 'List of AS400-ERP Tables';

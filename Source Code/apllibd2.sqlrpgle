@@ -1,7 +1,8 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt ActGrp(*Caller);
+/copy APLLIB/QSRC,$ctlopt
 
-// Fabricut Libraries Maintenance
+// Aplication Libraries Maintenance
 
 Dcl-F APLLIBF2 WORKSTN InfDS(dspDs) UsrOpn;
 
@@ -211,7 +212,7 @@ Dcl-Proc ValidateScreen;
   If not ProtectDta;
     pmEnmVal='';
     pmEnmDes=libTypD;
-    Callp(e) DCTVALBP('APLDCT':'LIBTYP':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'LIBTYP':pmEnmVal:pmEnmDes:pmKeyPressed);
     libTyp = pmEnmVal;
     If libTypD <> pmEnmDes;
       libTypD = pmEnmDes;
@@ -329,7 +330,7 @@ Dcl-Proc Prompt;
 
   // Prompt State
   If CsrFld = 'LIBTYPD';
-    Callp DCTVALDP('APLDCT':'LIBTYP':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'LIBTYP':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       LibTypD = pmEnmDes;
     EndIf;

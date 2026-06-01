@@ -1,0 +1,46 @@
+/* User Master Maintenance - Delete User Profile  */
+
+/****** COMPILE AS QSECOFR OR CHANGE THE OWNER ******/
+/* CHGPGM PGM(USRMSTC7) USRPRF(*OWNER) USEADPAUT(*YES)     */
+/* CHGOBJOWN OBJ(USRMSTC7) OBJTYPE(*PGM)  NEWOWN(QSECOFR)  */
+
+PGM (&USRPRF &MESSAGE)
+
+  DCL &USRPRF *CHAR 10
+  DCL &MESSAGE *CHAR 100
+
+  /* WORK VARIABLES */
+  DCL &USRCLS  *CHAR 10
+
+  /* MAKE SURE THE USER IT CLASS *USER. THIS PROGRAM HAS TO RESTRICT PEOPLE FROM  +
+     CHANGING SECURITY ACCOUTNS AND SUCH. */
+  RTVUSRPRF USRPRF(&USRPRF) USRCLS(&USRCLS)
+  MONMSG CPF0000
+  IF (&USRCLS *NE '*USER' *AND &USRCLS *NE '*PGMR') (DO)
+    CHGVAR &MESSAGE ('Error - you cannot delete ' *BCAT &USRCLS *BCAT 'users.')
+    RETURN
+  ENDDO
+
+  /* DISABLE THE PROFILE */
+  DLTUSRPRF  USRPRF(&USRPRF) OWNOBJOPT(*DLT)
+  MONMSG CPF0000 EXEC(DO)
+    CHGVAR &MESSAGE ('Error occurred, check the job log.')
+    RETURN
+  ENDDO
+
+             /* DELETE USER ON PARTITIONS 2 AND 3 */
+   RBTHALIB/RUNCMDRSF CMD(CALL PGM(APLLIB/CLP285S2) +
+            PARM(('D') ('N') (&USRPRF) (' ') +
+            (' ') (' ') (' ') (' ') +
+            (' '))) SERVER(PROD2)
+               MONMSG (CPF0000 RSF0000)
+   RBTHALIB/RUNCMDRSF CMD(CALL PGM(APLLIB/CLP285S3) +
+            PARM(('D') ('N') (&USRPRF) (' ') +
+            (' ') (' ') (' ') (' ') +
+            (' '))) SERVER(PROD3)
+               MONMSG (CPF0000 RSF0000)
+
+  CHGVAR &MESSAGE ('Profile' *bcat %trim(&usrPrf) *BCAT 'deleted.')
+  RETURN
+
+ENDPGM

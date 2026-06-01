@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.PGMACTIDN;
+Create Index APLLIB.PGMACTIDN on APLLIB.PGMACT (
+  PGMACTIDN
+);
+
+Label on Index APLLIB.PGMACTIDN is 'Program Actions - Id';

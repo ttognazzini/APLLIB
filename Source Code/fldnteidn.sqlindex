@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.FLDNTEIDN;
+Create Index APLLIB.FLDNTEIDN on APLLIB.FLDNTE (
+  FLDNTEIDN
+);
+
+Label on Index APLLIB.FLDNTEIDN is 'Field Notes - Id';

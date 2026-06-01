@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug option(*srcstmt:*nodebugio:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 // File Master Driver
 
@@ -42,10 +42,10 @@ Dcl-Proc Main;
     Else;
       pmOption = '2';
     EndIf;
-    CallP FLEIDXD1(pmrFleLib:pmrFleNme:pmrIdxLib:pmrIdxNme:pmOption:pmrKeyPressed);
+    FLEIDXD1(pmrFleLib:pmrFleNme:pmrIdxLib:pmrIdxNme:pmOption:pmrKeyPressed);
     Return;
   ElseIf Option='7';
-    CallP FLEMSTD4(pmrFleLib:pmrFleNme:pmrKeyPressed);
+    FLEMSTD4(pmrFleLib:pmrFleNme:pmrKeyPressed);
     Return;
   ElseIf Option='9';
     If Option = '5';
@@ -53,18 +53,18 @@ Dcl-Proc Main;
     Else;
       pmOption = '2';
     EndIf;
-    CallP FLENTED1(pmrFleLib:pmrFleNme:pmOption:pmrKeyPressed);
+    FLENTED1(pmrFleLib:pmrFleNme:pmOption:pmrKeyPressed);
     Return;
   ElseIf Option='10';
     pmOption = '5';
-    CallP FLELOGD1(pmrFleLib:pmrFleNme);
+    FLELOGD1(pmrFleLib:pmrFleNme);
     Return;
   ElseIf Option='11';
     pmOption = '5';
-    CallP FLEERRD1(pmrFleLib:pmrFleNme);
+    FLEERRD1(pmrFleLib:pmrFleNme);
     Return;
   ElseIf Option='16';
-    CallP FLEMSTB1(pmrFleLib:pmrFleNme:pmrKeyPressed);
+    FLEMSTB1(pmrFleLib:pmrFleNme:pmrKeyPressed);
     Return;
   EndIf;
 

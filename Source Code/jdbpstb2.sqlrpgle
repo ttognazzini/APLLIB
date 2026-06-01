@@ -10,7 +10,7 @@
 //   read the data back from the table
 //
 
-Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt) DatFmt(*ISO) main(Main);
+Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt:*nounref) DatFmt(*ISO) main(Main);
 
 /copy QSRC,JDBSRVV1PR // Scott Klements JDBCR4 service program headers
 /copy QSRC,JDBPSTB1PR // Set up Java environment for Postgress, also contains postgress connection stuff

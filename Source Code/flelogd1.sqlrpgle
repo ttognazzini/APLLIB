@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // File Log List
 
@@ -205,7 +205,7 @@ Dcl-Proc Prompt;
   // Prompt status description
   If CsrFld = 'FLDNMEFLT';
     pmOption = '1';
-    Callp FLEFLDD1(fleLib:fleNme:pmFldNme:pmOption:keyPressed);
+    FLEFLDD1(fleLib:fleNme:pmFldNme:pmOption:keyPressed);
     If keyPressed = 'ENTER';
       fldNmeFlt = pmFldNme;
       LoadSFL();

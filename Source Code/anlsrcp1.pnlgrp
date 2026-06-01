@@ -1,0 +1,218 @@
+.********************************************************************
+.* GEFIS GESELLSCHAFT FÜR INDIVIDUAL-SOFTWARE MBH                   *
+.********************************************************************
+.* PNLGRP  : ANLSRCP1                                               *
+.* Function: PNLGRP for ANLSRCF command                             *
+.* Author  : Werner Noll                                            *
+.* Remarks : This is free software.                                 *
+.*           You can redistribute it and/or modify it.              *
+.*           The only restriction is that you may not distribute    *
+.*           it for the purposes of monetary gain.                  *
+.*           We do not garantee for the expected functionalties.    *
+.*           The use of this software is always at your own risk.   *
+.*           All comments or reuqests for enhancements are          *
+.*           welcome. My email: werner.noll@gefis.com.              *
+.********************************************************************
+:PNLGRP.
+.********************************************************************
+.* GENERAL COMMAND HELP TEXT
+.*
+:HELP NAME=ANLSRCF.
+Analyse source files - Help
+:P.
+The :CIT.ANLSRCF:ECIT. command is used to scan source
+files of all or selected types for specified character
+strings (max. 10) and to print them in a report.
+:P.
+It's always helpful if you have to search for certain
+source code in "unknown" locations.
+:P.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: SRCFILE
+.*
+:HELP NAME='ANLSRCF/SRCFILE'.
+Source file (SRCFILE) - Help
+:P.
+:XH3.SRCFILE (Source file)
+:P.
+Specifies name and library of the source file(s)
+to be used for search.
+:P.
+This is a required parameter.
+:P.
+:PARML.
+:PT.Name
+:PD.Source file name
+:PT.*RPG
+:PD.Selects all members from type RPG/RPGLE.
+:PT.*CL
+:PD.Selects all members from type CLP/CLLE.
+:PT.*CMD
+:PD.Selects all members from type CMD.
+:PT.*ALL
+:PD.Selects source file members of all types.
+:EPARML.
+:P.
+The possible library values are:
+:P.
+:PARML.
+:PT.library-name
+:PD.Specify the library where the file is located.
+:PT.*ALLUSR
+:PD.All user libraries are searched for the source file(s).
+:PT.generic* library  name
+:PD.Type a partial library name qualified by an asterisk (*) to
+select a specific subset of libraries.
+:EPARML.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_1
+.*
+:HELP NAME='ANLSRCF/STRING_1'.
+Search string 1 (STRING_1) - Help
+:P.
+:XH3.STRING_1 (Search string 1)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_2
+.*
+:HELP NAME='ANLSRCF/STRING_2'.
+Search string 2 (STRING_2) - Help
+:P.
+:XH3.STRING_2 (Search string 2)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_3
+.*
+:HELP NAME='ANLSRCF/STRING_3'.
+Search string 3 (STRING_3) - Help
+:P.
+:XH3.STRING_3 (Search string 3)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_4
+.*
+:HELP NAME='ANLSRCF/STRING_4'.
+Search string 4 (STRING_4) - Help
+:P.
+:XH3.STRING_4 (Search string 4)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_5
+.*
+:HELP NAME='ANLSRCF/STRING_5'.
+Search string 5 (STRING_5) - Help
+:P.
+:XH3.STRING_5 (Search string 5)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_6
+.*
+:HELP NAME='ANLSRCF/STRING_6'.
+Search string 6 (STRING_6) - Help
+:P.
+:XH3.STRING_6 (Search string 6)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_7
+.*
+:HELP NAME='ANLSRCF/STRING_7'.
+Search string 7 (STRING_7) - Help
+:P.
+:XH3.STRING_7 (Search string 7)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_8
+.*
+:HELP NAME='ANLSRCF/STRING_8'.
+Search string 8 (STRING_8) - Help
+:P.
+:XH3.STRING_8 (Search string 8)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_9
+.*
+:HELP NAME='ANLSRCF/STRING_9'.
+Search string 9 (STRING_9) - Help
+:P.
+:XH3.STRING_9 (Search string 9)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: STRING_10
+.*
+:HELP NAME='ANLSRCF/STRING_10'.
+Search string 10 (STRING_10) - Help
+:P.
+:XH3.STRING_10 (Search string 10)
+:P.
+Enter one of max. 10 character strings which are to be
+searched for.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: CASE
+.*
+:HELP NAME='ANLSRCF/CASE'.
+1=Same case, 2=Ignore case (CASE) - Hilfetext
+:P.
+:XH3.CASE (1=Same case, 2=Ignore case)
+:P.
+Choose if case of character strings is to be ignored or not.
+:P.
+:PARML.
+:PT.1
+:PD.Type 1 if case must be the identical.
+:PT.2
+:PD.Type 2 if case is to ignore.
+:EPARML.
+:EHELP.
+.********************************************************************
+.* HELP TEXT for Parameter: SBMJOB
+.*
+:HELP NAME='ANLSRCF/SBMJOB'.
+Submit to batch (SBMJOB) - Hilfetext
+:P.
+:XH3.SBMJOB (Submit to batch)
+:P.
+Choose whether to submit this job as batch job or run
+interactively.
+:P.
+:PARML.
+:PT.Y
+:PD.Type Y to submit a batch job. This is recommended if
+:CIT.*ALLUSR:ECIT.
+is specified for source library.
+:PT.N
+:PD.Type N if you want to run this job interactively.
+:EPARML.
+:EHELP.
+.********************************************************************
+:EPNLGRP.
+.********************************************************************

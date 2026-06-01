@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.AUDLOGIDN;
+Create Index APLLIB.AUDLOGIDN on APLLIB.AUDLOG (
+  AUDLOGIDN
+);
+
+Label on Index APLLIB.AUDLOGIDN is 'Audit Log - Id';

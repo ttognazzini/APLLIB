@@ -1,0 +1,58 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=SRJ.Submit Restore Journal
+:P.This command was created to allow quick restoring of journals in a
+batch program. It requires that EXPJRNE exists in library TK. EXPJRNE
+is an open source project you can google it needed.
+:P.This command just submits a call the EXPJRNE command to restore journal
+entries to a specified file.
+:P.To use, enter the command followed by the file name you want the journals
+for an press enter. Including the file first allows the program to populate
+a lot of the other parameters.
+:P.By default the the program will restore the last 5 days worth of journal
+entries to a file that is the same as the original file name with RJ appended
+to it. The file willbe created in a librarty that is the same as the user
+profiel running the command. All the defaults are overridable when the
+command is prompted.
+:H2.Example:
+:P.RJS FLPOHDR <f4>
+:P.This opens the command prompt with the defaults filled in to
+restore the journals for file FLPOHDR for the last 5 days to file
+FLPOHDRRJ in a library the same as the user prompting the command.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRJ/OBJ'.Object - File to Restore Journals For
+:XH3.Object - File to Restore Journals For
+:P.This field allows entry of the file name to restore journals for. It
+is qualified the a file and library name can be entered.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRJ/OBJTYPE'.OBJTYPE - Object Type
+:XH3.OBJTYPE - Object Type
+:P.This parameter allows the object type to be entered. It defaults
+to *FILE since the intent of this program is to restore journals for a
+file. It can be changed to any object type the EXPJRNE command supports.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRJ/FROMDATE'.FROMDATE - From Date
+:XH3.FROMDATE - From Date
+:P.This is the date to restore journals back to. It can be a date in the
+system date format or a number of days. If a number of days is used,
+it will calculate the date for that many days prior to the current date.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRJ/OUTFILE'.OUTFILE - Output File
+:XH3.OUTFILE - Output File
+:P.Specifies the name of the output file to restreo the journals
+to. This will overlay the file if it already exists. It is best
+to restore the journals to developement library where they will
+not get in the way.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRJ/JOBNAME'.JOBNAME - Job Name
+:XH3.JOBNAME - Job Name
+:P.Specifies the name of the job used on the SBMJOB command. This
+can be useful to see if the job is still running.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

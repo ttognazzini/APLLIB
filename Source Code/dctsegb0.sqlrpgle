@@ -1,5 +1,5 @@
 **free
-Ctl-Opt debug option(*srcstmt:*nodebugio:*noshowcpy) dftactgrp(*no) actgrp(*new) Main(Main);
+Ctl-Opt debug option(*srcstmt:*nodebugio:*noshowcpy:*nounref) dftactgrp(*no) actgrp(*new) Main(Main);
 
 // Dictionary Segment Driver
 
@@ -29,7 +29,7 @@ Dcl-Proc Main;
     Clear keyPressed;
 
     If NxtScr = 2;
-      CallP(e) DCTSEGD2(pmrDtaSeg:Option:keyPressed);
+      DCTSEGD2(pmrDtaSeg:Option:keyPressed);
     Else;
       Return;
     EndIf;

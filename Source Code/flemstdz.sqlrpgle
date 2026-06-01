@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // File Master Filter
 
@@ -103,7 +103,7 @@ Dcl-Proc Prompt;
 
   // Prompt Active Description
   If CsrFld = 'STSDES';
-    Callp DCTVALDP('APLDCT':'FLESTS':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'FLESTS':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       stsDes = pmEnmDes;
     EndIf;
@@ -152,7 +152,7 @@ Dcl-Proc ValidateScreen;
   If stsDes<>'';
     pmEnmVal='';
     pmEnmDes=stsDes;
-    Callp(e) DCTVALBP('APLDCT':'FELSTS':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'FELSTS':pmEnmVal:pmEnmDes:pmKeyPressed);
     If stsDes <> pmEnmDes;
       stsDes = pmEnmDes;
       error=*on;

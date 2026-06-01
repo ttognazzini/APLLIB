@@ -1,0 +1,519 @@
+     A*%%TS  SD  20250514  130114  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4                 -
+     A                                             24 80 *DS3)
+     A                                      CHGINPDFT(CS UL)
+     A                                      PRINT
+     A          R F1S                       SFL
+     A                                      CHANGE(26)
+     A            SF11SRC       33A  H
+     A            SELECT         1A  B  6  2CHECK(ER)
+     A  51 50                               DSPATR(RI)
+     A            FLELIB    R        O  6  4REFFLD(FLELIB WRKFLE)
+     A            FLENME    R        O  6 15REFFLD(FLENME WRKFLE)
+     A            FLEPFX    R        O  6 26REFFLD(FLEPFX WRKFLE)
+     A            RCDFMT    R        O  6 36REFFLD(RCDFMT WRKFLE)
+     A            SF1DESC       34A  O  6 47
+     A            SF1TYPE        4A  O  6 31
+     A          R F1C                       SFLCTL(F1S)
+     A*%%TS  SD  20250514  130114  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A  *DS4                                SFLSIZ(0030)
+     A  *DS3                                SFLSIZ(0030)
+     A  *DS4                                SFLPAG(0016)
+     A  *DS3                                SFLPAG(0016)
+     A                                      CF01(27)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(06 'VIEW 1')
+     A                                      CF07(27)
+     A                                      CF08(08 'TOGGLE SORT')
+     A                                      CF09(27)
+     A                                      CF10(10 'EMAIL LIST')
+     A                                      CF11(11 'INCLUDE WK FILES')
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(18 'REBUILD FILE')
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      DSPMOD(*DS3)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRF1)
+     A N44 45                               SFLDSP
+     A N44                                  SFLDSPCTL
+     A  44                                  SFLCLR
+     A N44                                  SFLEND(*MORE)
+     A            CRNF1          4S 0H      SFLRCDNBR(CURSOR)
+     A            CSRF1          5S 0H
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 30'  Work with all PF''s  '
+     A                                      DSPATR(RI)
+     A                                  1 70'WRKFLED1-F1'
+     A                                  5 15'File      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  5 31'Type'
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  5 47'Description                       '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  3  2'Search . .'
+     A            F1DESC        30A  B  3 13CHECK(ER)
+     A                                  3 44'(Multi Word)'
+     A                                  5  2'?'
+     A                                      COLOR(RED)
+     A                                      DSPATR(BL)
+     A                                  4 12'S=Source'
+     A                                      DSPATR(HI)
+     A                                  5 26'PFix'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  5  4'Library   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  5 36'Record FM '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4  2'X=Fields'
+     A                                      DSPATR(HI)
+     A                                  4 22'F=File Stats'
+     A                                      DSPATR(HI)
+     A                                  4 36'L=Logical Files'
+     A                                      DSPATR(HI)
+     A                                  3 60'Filter Prefix:'
+     A            F1PRFX         4A  B  3 75
+     A                                  4 53'D=Where Used'
+     A                                      DSPATR(HI)
+     A                                  4 67'R=Query'
+     A                                      DSPATR(HI)
+     A                                  4 76'Q=SQL'
+     A                                      DSPATR(HI)
+     A          R F1F
+     A*%%TS  SD  20250513  140103  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                 23  2'F3=Exit'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            ERM           50A  O 24 24
+     A  50                                  DSPATR(RI)
+     A                                      DSPATR(HI)
+     A                                 23 12'F6=View 2'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 24  2'F18=Rebuild File'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 23 44'F10=Email List'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            F1CMD8        17A  O 23 24DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            F1CMD11       20A  O 23 61DSPATR(HI)
+     A                                      COLOR(BLU)
+     A          R F2S                       SFL
+     A*%%TS  SD  20190521  110839  TTOGNAZZIN  REL-V7R1M0  5770-WDS
+     A                                      CHANGE(26)
+     A            SELECT         1A  B  6  2CHECK(ER)
+     A  51 50                               DSPATR(RI)
+     A            FLENME    R        O  6  4REFFLD(FLENME WRKFLE)
+     A            FLEDES    R        O  6 31REFFLD(FLEDES WRKFLE)
+     A            SF2SRC        15A  O  6 15
+     A          R F2C                       SFLCTL(F2S)
+     A*%%TS  SD  20250514  130114  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A  *DS4                                SFLSIZ(0030)
+     A  *DS3                                SFLSIZ(0030)
+     A  *DS4                                SFLPAG(0016)
+     A  *DS3                                SFLPAG(0016)
+     A                                      CF01(27)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(06 'VIEW 1')
+     A                                      CF07(27)
+     A                                      CF08(08 'TOGGLE SORT')
+     A                                      CF09(27)
+     A                                      CF10(10 'EMAIL LIST')
+     A                                      CF11(11 'INCLUDE WK FILES')
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(18 'REBUILD FILE')
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      DSPMOD(*DS3)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRF1)
+     A N44 45                               SFLDSP
+     A N44                                  SFLDSPCTL
+     A  44                                  SFLCLR
+     A N44                                  SFLEND(*MORE)
+     A            CRNF1          4S 0H      SFLRCDNBR(CURSOR)
+     A            CSRF1          5S 0H
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 30'  Work with all PF''s  '
+     A                                      DSPATR(RI)
+     A                                  1 70'WRKFLD1-F2'
+     A                                  5 15'Source File    '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  5 31'Description                       -
+     A                                                      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  3  2'Search . .'
+     A            F1DESC        30A  B  3 13CHECK(ER)
+     A                                  3 44'(Multi Word)'
+     A                                  5  2'?'
+     A                                      COLOR(RED)
+     A                                      DSPATR(BL)
+     A                                  4 12'S=Source'
+     A                                      DSPATR(HI)
+     A                                  4  2'X=Fields'
+     A                                      DSPATR(HI)
+     A                                  4 22'F=File Stats'
+     A                                      DSPATR(HI)
+     A                                  4 36'L=Logical Files'
+     A                                      DSPATR(HI)
+     A                                  5  4'File      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  3 60'Filter Prefix:'
+     A            F1FLEPFX       4A  B  3 75
+     A                                  4 53'D=Where Used'
+     A                                      DSPATR(HI)
+     A                                  4 67'R=Query'
+     A                                      DSPATR(HI)
+     A                                  4 76'Q=SQL'
+     A                                      DSPATR(HI)
+     A          R F2F
+     A*%%TS  SD  20250513  140103  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                 23  2'F3=Exit'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            ERM           50A  O 24 16
+     A  50                                  DSPATR(RI)
+     A                                      DSPATR(HI)
+     A                                 23 12'F6=View 1'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 23 61'F18=Rebuild File'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 23 44'F10=Email List'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            F1CMD8        17A  O 23 24DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 24  2'F12=Cancel'
+     A                                      COLOR(BLU)
+     A          R F11S                      SFL
+     A*%%TS  SD  20250502  150036  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      CHANGE(26)
+     A            SELECT         1A  B  6  2CHECK(ER)
+     A  51 50                               DSPATR(RI)
+     A            FLELIB    R        O  6  4REFFLD(FLELIB WRKFLE)
+     A            FLENME    R        O  6 15REFFLD(FLENME WRKFLE)
+     A            FLEPFX    R        O  6 26REFFLD(FLEPFX WRKFLE)
+     A            RCDFMT    R        O  6 36REFFLD(RCDFMT WRKFLE)
+     A            SF1FLETYP      4A  O  6 31
+     A            FLEDES    R        O  6 82REFFLD(FLEDES WRKFLE)
+     A            SF11SRC       33A  O  6 47
+     A          R F11C                      SFLCTL(F11S)
+     A*%%TS  SD  20250514  130114  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A  *DS4                                SFLSIZ(0030)
+     A  *DS3                                SFLSIZ(0030)
+     A  *DS4                                SFLPAG(0019)
+     A  *DS3                                SFLPAG(0014)
+     A                                      CF01(27)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(27)
+     A                                      CF07(27)
+     A                                      CF08(08 'TOGGLE SORT')
+     A                                      CF09(27)
+     A                                      CF10(10 'EMAIL LIST')
+     A                                      CF11(11 'INCLUDE WK FILES')
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(18 'REBUILD FILE')
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      DSPMOD(*DS4)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRF1)
+     A N44 45                               SFLDSP
+     A N44                                  SFLDSPCTL
+     A  44                                  SFLCLR
+     A N44                                  SFLEND(*MORE)
+     A            CRNF1          4S 0H      SFLRCDNBR(CURSOR)
+     A            CSRF1          5S 0H
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 56'  Work with all PF''s  '
+     A                                      DSPATR(RI)
+     A                                  1119'WRKFLED1-F11'
+     A                                  5 15'File      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  5 31'Type'
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  5 82'Description                       -
+     A                                                      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  3  2'Search . .'
+     A            F1DESC        30A  B  3 13CHECK(ER)
+     A                                  3 44'(Multi Word)'
+     A                                  5  2'?'
+     A                                      COLOR(RED)
+     A                                      DSPATR(BL)
+     A                                  4 18'S=View Source'
+     A                                      DSPATR(HI)
+     A                                  5 26'PFix'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  5  4'Library   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  5 36'Record FM '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4  2'X=View Fields'
+     A                                      DSPATR(HI)
+     A                                  4 34'F=View File Stats'
+     A                                      DSPATR(HI)
+     A                                  4 54'L=View Logical Files'
+     A                                      DSPATR(HI)
+     A                                  3 66'Filter Prefix:'
+     A            F1FLEPFX       4A  B  3 81
+     A                                  5 47'Source File                      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4 77'D=Where Used'
+     A                                      DSPATR(HI)
+     A                                  4 92'R=Query 400'
+     A                                      DSPATR(HI)
+     A                                  4106'Q=SQL'
+     A                                      DSPATR(HI)
+     A          R F11F
+     A*%%TS  SD  20250513  140103  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                 26  2'F3=Exit'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            ERM           50A  O 27 42
+     A  50                                  DSPATR(RI)
+     A                                      DSPATR(HI)
+     A                                 26 72'F18=Rebuild File'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 26 32'F10=Email List'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            F1CMD8        17A  O 26 12DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            F1CMD11       20A  O 26 49DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 26 91'F12=Cancel'
+     A                                      COLOR(BLU)
+     A          R F3
+     A                                      INVITE
+     A                                      DSPMOD(*DS3)
+     A                                 10 29'Processing, Please Wait.'
+     A                                      DSPATR(BL)
+     A                                      COLOR(RED)
+     A          R F4
+     A*%%TS  SD  20250514  130114  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      CF01(27)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(27)
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      BLINK
+     A                                      DSPMOD(*DS3)
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 30'  Work with all PF''s  '
+     A                                      DSPATR(RI)
+     A                                  1 69'WRKFLED1-F4'
+     A            ERM           50A  O 21 16DSPATR(HI)
+     A  50                                  DSPATR(RI)
+     A                                 23  2'F3=Exit'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 11 13'To Email:'
+     A            F4EMAIL       50A  B 11 23
+     A  51 50                               DSPATR(RI)
+     A  51                                  DSPATR(PC)
+     A                                 23 12'F12=Cancel'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                  8 13'An Excel file will be emailed to t-
+     A                                      he following address.'
+     A                                 13 13'The file will only include records-
+     A                                       for the filters entered'
+     A                                 14 13'on the previous screen. If you wan-
+     A                                      t all records you need'
+     A                                 15 13'make sure there are no filters ent-
+     A                                      ered on the previous'
+     A                                 16 13'screen.'
+     A          R F5S                       SFL
+     A*%%TS  SD  20190111  135334  TTOGNAZZIN  REL-V7R1M0  5770-WDS
+     A                                      CHANGE(26)
+     A            SELECT         1A  B  8  2CHECK(ER)
+     A  51 50                               DSPATR(RI)
+     A            SF5NME    R        O  8  4REFFLD(FLELIB WRKFLE)
+     A            SF5LIB    R        O  8 15REFFLD(FLENME WRKFLE)
+     A            SF5KEYS       55A  O  8 26
+     A          R F5C                       SFLCTL(F5S)
+     A*%%TS  SD  20250514  130114  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A  *DS4                                SFLSIZ(0030)
+     A  *DS3                                SFLSIZ(0030)
+     A  *DS4                                SFLPAG(0014)
+     A  *DS3                                SFLPAG(0014)
+     A                                      CF01(27)
+     A                                      CF02(27)
+     A                                      CF03(03 'EXIT')
+     A                                      CF04(27)
+     A                                      CF05(27)
+     A                                      CF06(06 'TOGGLE VIEW')
+     A                                      CF07(27)
+     A                                      CF08(27)
+     A                                      CF09(27)
+     A                                      CF10(27)
+     A                                      CF11(27)
+     A                                      CF12(12 'CANCEL')
+     A                                      CF13(27)
+     A                                      CF14(27)
+     A                                      CF15(27)
+     A                                      CF16(27)
+     A                                      CF17(27)
+     A                                      CF18(27)
+     A                                      CF19(27)
+     A                                      CF20(27)
+     A                                      CF21(27)
+     A                                      CF22(27)
+     A                                      CF23(27)
+     A                                      CF24(27)
+     A                                      CHANGE(25)
+     A                                      PAGEUP(47)
+     A                                      PAGEDOWN(46)
+     A                                      HOME(27)
+     A                                      DSPMOD(*DS3)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRF5)
+     A N44 45                               SFLDSP
+     A N44                                  SFLDSPCTL
+     A  44                                  SFLCLR
+     A N44                                  SFLEND(*MORE)
+     A            CRNF5          4S 0H      SFLRCDNBR(CURSOR)
+     A            CSRF5          5S 0H
+     A                                  1  2DATE(*SYS *YY)
+     A                                      EDTCDE(W)
+     A                                  1 30'  Work with all PF''s  '
+     A                                      DSPATR(RI)
+     A                                  1 70'WRKFLED1-F5'
+     A                                  7 15'Library   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  7  2'?'
+     A                                      COLOR(RED)
+     A                                      DSPATR(BL)
+     A                                  7  4'Logical   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  6  2'X=View Fields'
+     A                                      DSPATR(HI)
+     A                                  6 18'F=View File Stats'
+     A                                      DSPATR(HI)
+     A                                  3  2'Physical File . .'
+     A                                  4  4'Library . . . .'
+     A                                  5  2'Key Fields. . . .'
+     A            FLENME        10A  O  3 20
+     A            FLELIB        10A  O  4 20
+     A            F5KEYS        60A  O  5 20
+     A                                  2 33'Dependant Files'
+     A                                      DSPATR(HI)
+     A            F5HDR1        55A  O  7 26DSPATR(UL)
+     A                                      DSPATR(HI)
+     A            F5DESC        50A  O  3 31
+     A                                  6 38'S=View Source'
+     A                                      DSPATR(HI)
+     A                                  6 54'D=Where Used'
+     A                                      DSPATR(HI)
+     A          R F5F
+     A*%%TS  SD  20250513  140103  TTOGNAZZIN  REL-V7R5M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                 23  2'F3=Exit'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 23 12'F12=Cancel'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            ERM           50A  O 24 19
+     A  50                                  DSPATR(RI)
+     A                                      DSPATR(HI)
+     A            F5CMD6        20A  O 23 26DSPATR(HI)
+     A                                      COLOR(BLU)

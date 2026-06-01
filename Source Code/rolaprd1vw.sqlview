@@ -1,0 +1,23 @@
+Create or replace view APLLIB/ROLAPRD1VW as
+
+select
+  usrRolIdn key,
+  acDept,
+  case
+    when coalesce(acFNam, '') <> ''
+    and coalesce(acLNam, '') <> '' then trim(acFNam) || ' ' || trim(acLNam)
+    when coalesce(acFNam, '') <> '' then acFNam
+    when coalesce(acLNam, '') <> '' then acLNam
+    else usrPrf
+  end usrNme,
+  rolNme,
+  coalesce(acv.enmDes, 'Error') acvDes,
+  Case when length(lngCmt) > 57 then substr(lngCmt,1,54) || '...' else lngCmt end lngCmt
+from USRROL
+left join USRMST on USRMST.usrMstIdn = USRROL.usrMStIdn
+left join ROLMST on ROLMST.rolMstIdn = USRROL.rolMStIdn
+left join ACCESSPF on acNo = accNbr
+left join DCTVAL as acv on (acv.dctNme, acv.fldNme, acv.enmVal) = ('APLDCT', 'ACVROW', USRROL.AcvRow)
+where rolApr = '0';
+
+Label on Table APLLIB/ROLAPRD1VW is 'User Roles Approval - List View';

@@ -1,0 +1,1318 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=SQL.SQL Query Manager
+:P.This command was created to allow working with SQL queries. The program
+provides means of saving queries, adding variables, emailing the results
+and much more.
+:P.The primary function of the command is to work with SELECT queries.
+The initial command is SQL but there are several options to allow editing
+or running a specific query.
+:P.Enter the command SQL and press F4 to view the options. Press F1 for
+examples and help with the command.
+:H2.Example 1:
+:P.Entering the query maintenance program.
+:P.SQL <enter>
+:H2.Example 2:
+:P.Running an ad hoc query on a specific file.
+:P.SQL INVENPF <enter> where INVENPF is the name of a physical file
+:H2.Example 3:
+:P.Emailing a saved query.
+:P.SQL SAVEDQRY *EMAIL
+:P.Where SAVEDQRY is a query already setup in the maintenance program.
+:H2.Example 4:
+:P.Emailing a passed query.
+:P.SQL 'select * from custpf' *EMAIL
+:P.In a CL program the query can be passed in a variable. Make sure
+any quotation marks are doubled within the query string.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/FILE'.File/Query Name - HELP
+:XH3.FILE - File/Query Name
+:P.This field allows entry of either a file name or a query name.
+If the action option is left the default of *ADHOC the program
+expects this to be the name of a file. In this case the program
+will load to the ad hoc query screen with a default query statement
+of SELECT * FROM <FILENAME>.
+:P.If the action option is changed to any other value, the program
+will expect a query name to be entered here. The query name needs to
+already be setup in the SQL Query Manager program.
+:P.See the help text for the action field to learn more about how the
+file field is used with each type of action.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/ACTION'.Action - Help
+:XH3.ACTION - Action to take.
+:P.This parameter lists allows entry of the action to take
+when the program is run.  It defaults to *ADHOC which is a dual
+purpose action. *ADHOC is ignored if no file name is passed so
+so the program just loads to the main maintenance screen. The rest
+of the values are list below.
+be added after it.
+:UL.
+:LI.:HP2.*ADHOC:EHP2. - If a file name is passed opens the ad hoc query screen.
+:LI.:HP2.*EDIT:EHP2. - Requires a query name in the FILE parameter, opens
+the program straight to the update screen for that query.
+:LI.:HP2.*PRINT:EHP2. - Requires a query name in the FILE parameter, runs
+the query output to a spool file.
+:LI.:HP2.*EMAIL:EHP2. - Requires a query name in the FILE parameter, emails
+the query output as an attachment.
+:LI.:HP2.*DISPLAY:EHP2. - Requires a query name in the FILE parameter,
+displays the output from the query.
+:LI.:HP2.*OUTFILE:EHP2. - Requires a query name in the FILE parameter,
+creates a physical file containing the results of the query.
+:LI.:HP2.*IFSFILE:EHP2. - Requires a query name in the FILE parameter,
+creates a PC stream file with the result of the query.
+:LI.:HP2.*VIEW:EHP2. - Requires a query name in the FILE parameter, opens
+displays the queries definition.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/USER'.User that created the query (USER) - Help
+:XH3.USER - User that created the query.
+:P.Specifies the user that created the query. This is needed because
+the system allows the same query name under different users. This means
+to run a query that someone else created thier user profile name needs
+to be passed to the program.
+:NT.If the query is being run from a program that multiple people
+will be using, the user should always be hard coded so the same query
+is run regaurdless of who is signed on.:ENT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/EMAIL'.Email Address - Help
+:XH3.EMAIL - Email Addresses
+:P.Specifies the email address to send to Excel file to. This option
+is only displayed if the ACTION is *EMAIL.
+:P.The field allows email addresses up to 50 characters and allows up
+50 addresses to be included.
+:PARML.
+:PT.:PK def.*CURRENT:EPK.
+:PD.The email address stored in the ACCESSPF for the current
+user running the job is used.
+:PT.:PK.*RPTDSTID:EPK.
+:PD.The RPTDSTID field is displayed and a report distribution ID
+can be entered. The email addresses will be pulled from that ID.
+:PT.:Pk.*DFT:EPK.
+:PD.The default email address setup in the query deffinition will
+be used.
+:PT.:PV.email-address:EPV.
+:PD.Specify the email address of the recipient.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/RPTDSTID'.Report Distribution ID (RPTDSTID)- Help
+:XH3.RPTDSTID - Report Distribution ID
+:P.Specifies a report distribution ID to pull the email addresses from.
+:NT.This parameter will not be displayed unless a special value of
+*RPTDSTID is entered in the email field.:ENT.
+:P.The email addresses will be pulled from ACCESSPF for all users
+setup in the report distribution queue for the EMAIL/*ALL/*ALL
+entry.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/FILENAME'.File Name (FILENAME)- Help
+:XH3.FILENAME - File Name
+:P.Specifies the name of the file attached to the email. Do not include
+the file extension, it will be added automatically based on the file
+type parameter.
+:P.This option is only displayed if the ACTION is *EMAIL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/TYPE'.File Type (TYPE)- Help
+:XH3.TYPE - File Type
+:P.Specifies the type of file to contain the queries output.
+The valid type are:
+:UL.
+:LI.:HP2.*XLS:EHP2. - Creates an Excel file.
+:LI.:HP2.*XML:EHP2. - Creates an Excel formatted XML file.
+:LI.:HP2.*CSV:EHP2. - Creates a Comma Separated Variable text file.
+:EUL.
+:P.This option is only displayed if the ACTION is *EMAIL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/SUBJECT'.Subject (SUBJECT) - Help
+:XH3.SUBJECT - Subject
+:P.Specifies the subject for the email. CHAR(128)
+:NT.When prompting, the input field can be expanded
+by entering an ampersand (&) in the first position of
+the field, followed by a blank.:ENT.
+:P.This option is only displayed if the ACTION is *EMAIL.
+:PARML.
+:PT.:PK def.*NONE:EPK.
+:PD.No subject is included in the email.
+:PT.:PV.character-value:EPV.
+:PD.Specify the subject of the email.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/MESSAGE'.Message (MESSAGE) - Help
+:XH3.MESSAGE - Message
+:P.Specifies a message to include in the email, and its content type.
+:P.This option is only displayed if the ACTION is *EMAIL.
+:H3.Single values
+:PARML.
+:PT.:PK def.*NONE:EPK.
+:PD.This parameter does not place a message in the email.
+:EPARML.
+:H3.Element 1: Content
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Specify the content placed in the email. CHAR(5000)
+:EPARML.
+:H3.Element 2: Send as
+:PARML.
+:PT.:PV.*TEXTPLAIN:EPV.
+:PD.Copy the content into the body of the mail message
+specifying content type text/plain.
+:P.Line breaks can be added by placing hex value X'0D25'
+or &CR in the data.
+:PT.:PV.*TEXTHTML:EPV.
+:PD.Copy the content into the body of the mail message
+specifying content type text/html.
+:P.Line breaks can be added by placing &CR or '<br>' in the
+data.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/OBJ'.Objects (OBJ) - Help
+:XH3.OBJ - Objects
+:P.Specifies the path name of additional objects to send. A maximum
+of 64 path names can be specified. The object must already exist in
+the IFS.
+:P.This option is only displayed if the ACTION is *EMAIL.
+:H3.Single values
+:PARML.
+:PT.:PK def.*NONE:EPK.
+:PD.No objects are sent.
+:EPARML.
+:H3.Element 1: Name
+:PARML.
+:PT.:PV.path-name:EPV.
+:PD.Specify an object path name. CHAR(128)
+:EPARML.
+:H3.Element 2: Send as
+:PARML.
+:PT.:PK def.*ATTACH:EPK.
+:PD.Send the object as an attached file using MIME and
+specifying "application/octet-stream". This works for
+most PC type files.
+:PT.:PV.*TEXTPLAIN:EPV.
+:PD.Copy the object into the body of the mail message
+specifying content type text/plain. The CCSID of the
+file must match the value specified for CHRENC().
+:NT.Some servers disregard this request and
+form an attachment from the message in all cases.
+Some servers disregard this request for the second
+and subsequent body parts. If this is the case,
+try MSG(*NONE).:ENT.
+:PT.:PV.*TEXTHTML:EPV.
+:PD.Copy the object into the body of the mail message
+specifying content type text/html. The CCSID of the
+file must match the value specified for CHRENC().
+:NT.Some servers disregard this request and
+form an attachment from the message in all cases.
+Some servers disregard this request for the second
+and subsequent body parts. If this is the case,
+try MSG(*NONE).:ENT.
+:PT.:PV.*ATTACHPDF:EPV.
+:PD.Send the object as an attached file using MIME and
+specifying "application/pdf". Use this value if the
+attached file contains Adobe's Portable Document
+Format (pdf) data.
+:PT.:PV.*ATTACHPS:EPV.
+:PD.Send the object as an attached file using MIME and
+specifying "application/postscript". Use this value if
+the attached file contains postscript data.
+:PT.:PV.*NOTE:EPV.
+:PD.Same as *TEXTPLAIN which is preferred.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/INCVARS'.Include Variable Overrides (INCVARS) - Help
+:XH3.INCVARS - Incldue Varialbe Overrides
+:P.Specifies wether or not to include the values of the variable
+overrides in the body of the email.
+:P.This option is only displayed if the ACTION is *EMAIL.
+:PARML.
+:PT.:PK def.*NO:EPK.
+:PD.Variable Overrides are not included in the body of the email.
+:PT.:PV.*YES:EPV.
+:PD.Varaible overrides are included in the body of the email. The
+message text will be displayed first then a list of all variables
+and the values they are overridden to are appended to the end of
+the email body.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/PFILE'.Physical File (PFILE) - Help
+:XH3.PFILE - Physical File
+:P.Specifies name of a physical file to create and place the output
+into. The file cannot exist or the program will produce an error.
+:P.This option is only displayed if the ACTION is *OUTFILE.
+:H3.Element 1: Output File
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Enter the name of the file to be created. CHAR(10)
+:EPARML.
+:H3.Element 2: Library
+:PARML.
+:PT.:PK def.*CURLIB:EPK.
+:PD.The current library of the job is used.
+:PT.:PV.character-value:EPV.
+:PD.Enter the library name to create the file in. CHAR(10)
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/IFSFOLDER'.Folder Name (IFSFOLDER)- Help
+:XH3.IFSFOLDER - Folder Name
+:P.Specifies the name of the folder the output file will be placed in.
+The name is a path and should start with /.
+:P.This option is only displayed if the ACTION is *IFSFILE.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/IFSFILE'.File Name (IFSFILE)- Help
+:XH3.IFSFILE - File Name
+:P.Specifies the name of the file created. Do not include
+the file extension, it will be added automatically based on the file
+type parameter.
+:P.This option is only displayed if the ACTION is *IFSFILE.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/IFSTYPE'.File Type (IFSTYPE)- Help
+:XH3.IFSTYPE - File Type
+:P.Specifies the type of file to contain the queries output.
+The valid type are:
+:UL.
+:LI.:HP2.*XLS:EHP2. - Creates an Excel file.
+:LI.:HP2.*XML:EHP2. - Creates an Excel formatted XML file.
+:LI.:HP2.*CSV:EHP2. - Creates a Comma Separated Variable text file.
+:EUL.
+:P.This option is only displayed if the ACTION is *IFSFILE.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/OUTQ'.Output Queue (OUTQ)- Help
+:XH3.OUTQ - Output Queue
+:P.Specifies the output queue to place the printed output into.
+:H3.Single values
+:PARML.
+:PT.:PK def.*JOB:EPK.
+:PD.The output will be placed in the output queue from the
+current job definition.
+:EPARML.
+:H3.Element 1: Output Queue
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Specify the output queue to place the output in.
+:EPARML.
+:H3.Element 2: Library
+:PARML.
+:PT.:PV.Library:EPV.
+:PD.Enter the library name of the output queue, if
+left blank *LIBL will be used.
+:EPARML.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/TITLE'.Report Title (TITTLE)- Help
+:XH3.TITLE - Report Title
+:P.Specifies the title to use at the top of the report. The value of
+*DFT will use the name of a saved query definition. If the query is
+being passed to the command the there will not be a title unless it
+is entered here.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/COPIES'.Copies (COPIES)- Help
+:XH3.COPIES - Copies
+:P.Specifies the number of copies to print.  Defaults to 1, cannot
+be greater than 255.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/HOLD'.Hold Output (HOLD)- Help
+:XH3.HOLD - Hold Output
+:P.Specifies whether to hold the output in the output queue.
+:PARML.
+:PT.:PK def.*NO:EPK.
+:PD.The output is not put on hold.
+:PT.:PV.*YES:EPV.
+:PD.The output is put on hold.
+:EPARML.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/SAVE'.Save Output (SAVE)- Help
+:XH3.SAVE - Save Output
+:P.Specifies whether to save the output after it has printed.
+:PARML.
+:PT.:PK def.*NO:EPK.
+:PD.The output is not saved.
+:PT.:PV.*YES:EPV.
+:PD.The output is saved.
+:EPARML.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/USRDTA'.User Datat (USRDTA)- Help
+:XH3.USRDTA - User Data
+:P.Specifies the user data for spool file.
+:PARML.
+:PT.:PK def.*DFT:EPK.
+:PD.The user data will contain the query name.
+:PT.:PV.character value:EPV.
+:PD.Enter a value to be used for the user data. Char(10)
+:EPARML.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/WIDTH'.Width (WIDTH)- Help
+:XH3.WIDTH - Width
+:P.Specifies the width of the spool file. The default is 132.
+Any data that does not fit in the width is trunctated. The width
+also determines the CPI. See the chart below for details.
+:XMP.
+ up to    80  -  CPI(10)  Portrait
+ 81   -   96  -  CPI(12)  Portrait
+ 97   -  132  -  CPI(12)  Landscape
+ 133  -  198  -  CPI(15)  Landscape
+ over 198     -  CPI(18)  Landscape
+:EXMP.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/LENGTH'.Length (LENGTH)- Help
+:XH3.LENGTH - Length
+:P.Specifies the page length of the spool file. The default is 66.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/PINVR'.Include variables (PINVR)- Help
+:XH3.PINVR - Include Variables
+:P.Designates whether variable values are included on the report or
+not. If a Y is entered in this parameter, the first page of the report
+will include any variable values before the detail starts to print.
+:P.The varaibles have to defined in a saved query deffinition or
+nothing will be included. If varaiable overrides are passed to the
+command then the values passed will be included. Otherwise the query
+will be run with the default values and they will be listed.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/PINQY'.Include Query (PINQY)- Help
+:XH3.PINQY - Include Querys
+:P.Designates whether to print the passed query or not. If a Y is
+entered in this parameter, the report will include a paritially
+formatted printout of the SQL statement passed to the print program.
+:P.The formatting is simple because the query statment is passed as
+a compressed string. This means any formatting done in a saved query
+definition is stipped and not included in this printout.
+:P.This option is only displayed if the ACTION is *PRINT.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/PNAME'.Program Name (PNAME)- Help
+:XH3.PNAME - Program Name
+:P.Allows entry of a program name. The name is used wheN creating
+a printed report or a PDF file. It is used In the headings to simulate
+standard report formatting. The name is optional and will not be
+included if it is not passed.
+:P.The name should be passed if a program is creating a report. The
+name should be the name of the RPG or CL program creating the report.
+:P.This option is only displayed if the ACTION is *PRINT or if a PDF
+file is being created. If creating an Excel or CSV file
+use the sheet name
+to show the program name, include it in on a title line or incoprerate
+it into the file name, subject or email message.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQL/VAROVR'.Variable overrides (VAROVR) - Help
+:XH3.VAROVR - Variable overrides
+:P.Specifies values to use for specific variables. The entry requires a
+variable name and a value. The variables are setup in the query
+definition and the names must match. Each variable setup is also
+given a type. The value entered for the variable name must match
+the type the varaible is defined for.
+:P.This option is only displayed if the ACTION is *PRINT,
+*EMAIL, *DISPLAY, *OUTFILE OR *IFSFILE.
+:H3.Element 1: Variable
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Enter the name of the variable to override. CHAR(10)
+:EPARML.
+:H3.Element 2: Value
+:PARML.
+:PT.:PV.character-value:EPV.
+:PD.Enter the value to override the variable to. CHAR(30)
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1'.Query Manager - List Screen
+:XH3.Screen 1 - List Screen
+:P.This screen is the primary maintenance screen. It lists
+the queries that have already been setup. From this screen queries can
+maintained or added.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1F'.
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1/USER'.User
+:XH3.USER - User
+:P.This option restricts the queries in the list to a spceific user. The
+system is setup to allow different user to create queries with the same
+name. This means that each user has thier own list of queries. However
+each user can work witrh another users queries by enter that users profile
+name in the field. If the fiels is left blank the list will include all
+queries setup in the system.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1/SRCH'.Search Field
+:XH3.SEARCH - Search Field
+:P.The search field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:P.For example if "TEST PROGRAM" is entered in the search field an
+entry with the text of "TESTING THIS PROGRAM" would show up because
+it contains both character sets from the search string.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1/SELECT'.Selection Column
+:XH3.SELECT - Selection Column
+:P.This column allows selecting a specific entry to preform an action
+to.
+The screen alwo allows IBM's standard options although they are not
+listed in the options. They are included in the list below.
+The options are listed above the list in blue.
+:H2.Options
+:UL.
+:LI.:HP2.X/2:EHP2.=Update, Allows maintenance on the query.
+:LI.:HP2.V/5:EHP2.=View, Displays the queries definition.
+:LI.:HP2.R/1:EHP2.=Run, Brings up a screen to run the query.
+:LI.:HP2.C/3:EHP2.=Copy, Copys an entry to a new one.
+:LI.:HP2.D/4:EHP2.=Delete, Deletes an entry.
+:LI.:HP2.E/7:EHP2.=Reinstate, Reinstates a deleted entry.
+Only shown if deleted entries are displayed.
+:LI.:HP2.A/9:EHP2.=Open in Ad Hoc, copies the query into the ad hoc screen
+:EUL.
+:P.Enter an option in the selection column next to the query that you
+want to perform that action to. The program will automatically perform
+the option, there is no need to press enter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1/SF1NAME'.Name Column
+:XH3.Name Column
+:P.This column shows the name of the query.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1/SF1type'.Type Column
+:XH3.Type Column
+:P.This column shows the type of the query.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1/SF1desc'.Description Column
+:XH3.Description Column
+:P.This column shows the queries description.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1/SF1LRUS'.User Column
+:XH3.User Column
+:P.This column shows the entry or the last change user. Use F9 to
+toggle which value is shown
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF1/SF1LRDT'.Date Column
+:XH3.Date Column
+:P.This column shows entry date or the last change date. Use F9 to
+toggle which value is shown
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF2'.Query Manager - View Screen
+:XH3.Screen 2 - View Screen
+:P.This screen displays all properties of a save query.
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3'.Query Manager - Add/Maintenance Screen
+:XH3.Screen 3 - Add/Maintenance Screen
+:P.This screen allows changing header level information about the query.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3F'.
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3NAME'.Query Name
+:XH3.Query Name
+:P.The query name is a unqique name that is used to run and select
+the query.
+:P.The name must be unique for an individual user. The name can exist
+under multiple user though. The name cannot begin with #$LST because
+these special names are used to save the last run queries for each
+user.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3DESC'.Query Description
+:XH3.Query Description
+:P.The query description is a breife description of what the query is
+used for. This is the description that is displayed on the search
+screen. It is also the field used when entering a search parameter.
+:P.The decription should be something meaningful that describes what
+the query produces. It should also include the terms that would be
+used when searching for this query in the future.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3TYPE'.Query Type
+:XH3.Query Type
+:P.The query type is required however it is for reference only. As of
+now the progrma onyl works with select queries so that is the only
+value that should be entered in the type.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3OUTP'.Default Output Type
+:XH3.Default Output Type
+:P.The default output type is used when a user runs the query. The
+type can be overidden at run time so just enter the prefered run type
+here. The values are lsited below:
+:UL.
+:LI.:HP2.1:EHP2.=Display
+:LI.:HP2.2:EHP2.=Print
+:LI.:HP2.3:EHP2.=Email
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3EM01'.Default Email Address
+:XH3.Default Email Address
+:P.The default email address is used when the query is run using the
+SQL command. It is only used if an email address of *DFT is entered
+on the command.
+:P.If an email address is entered here it must be valid or an error
+will be displayed.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3VROV'.Enter Variables
+:XH3.Enter Variables
+:P.This option allows variable to be entered for the SQL statement.
+These variable can be overriden at run time.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3LD01'.Long Description/Notes
+:XH3.Long Description/Notes
+:P.The long description is just that, a lond description. It can be
+used to document the query or just as notes. It is not required, so
+you can leave it blank if you want.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3ENUS'.Entry Information
+:XH3.Entry Information
+:P.The entry information section lists the user, date, time and
+workstation used when the query was first created.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF3/F3LRUS'.Last Revised Information
+:XH3.Last Revised Information
+:P.The last revised information section lists the user, date, time and
+workstation used when the query was last updated.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF4'.Query Manager - Variable Definition Screen
+:XH3.Screen 4 - Variable Definition Screen
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF4F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF4/SF4SEQ'.SEQ - Sequence Number
+:XH3.SEQ - Sequence Number
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF4/SF4NAME'.NAME - Variable Name
+:XH3.Name - Variable Name
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF4/SF4TYPE'.Type - Variable Type
+:XH3.Type - Variable Type
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF4/SF4LEN'.Max Length
+:XH3.Max Length
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF4/SF4DEC'.Dec Pos - Decimal Positions
+:XH3.Dec Pos - Decimal Positions
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF4/SF4DFT'.Default Value
+:XH3.Default Value
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF5'.Query Manager - Variable Definition Screen
+:XH3.Screen 5 - Variable Definition Screen
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF5F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF5/SF5LINE'.SQL Query Statement
+:XH3.SQL Query Statement
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF7'.Query Manager - Run Query
+:XH3.Screen 7 - Run Query
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF7F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF7/F7OUTP'.Output Type
+:XH3.Output Type
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF7/VRNAME'.Variable Name
+:XH3.Variable Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF7/F7TYPE'.Variable Type
+:XH3.Variable Type
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF7/VRDFT'.Variable Value
+:XH3.Variable Value
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF8'.Query Manager - Email Query
+:XH3.Screen 8 - Email Query
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF8F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF8/F8EM01'.Email Addresses
+:XH3.Email Addresses
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF8/F8RPID'.Report Distribution ID
+:XH3.Report Distribution ID
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF8/F8SUBJ'.Subject
+:XH3.Subject
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF8/F8INVR'.Include Variable Overrides
+:XH3.Include Variable Overrides
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF8/F8MS01'.Message
+:XH3.Message
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9'.Query Manager - Print Query
+:XH3.Screen 9 - Print Query
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9/F9OUTQ'.Output Queue
+:XH3.Output Queue
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9/F9oqlb'.Output Queue Library
+:XH3.Output Queue Library
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9/F9COPY'.Number of Copies
+:XH3.Number of Copies
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9/F9HOLD'.Hold Ouput
+:XH3.Hold Output
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9/F9SAVE'.Save Output
+:XH3.Save Output
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9/F9USDT'.User Data
+:XH3.User Data
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9/F9FRLN'.Form Length
+:XH3.Form Length
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF9/F9FRWD'.Form Width
+:XH3.Form Width
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF10'.Query Manager - Ad Hoc Query Screen
+:XH3.Screen 10 - Ad Hoc Query Screen
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF10F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF10/SF10LINE'.Ad Hoc Query Statement
+:XH3.Ad Hoc Query Statement
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF11'.Query Manager - Last Query Lookup
+:XH3.Screen 11 - Last Query Lookup
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF11F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF11/SELECT'.Selection Column
+:XH3.Selection Column
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF11/SF11LINE'.Last Query Details
+:XH3.Last Query Details
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12'.Query Manager - Field Lookup/Selection
+:XH3.Screen 12 - Field Lookup/Selection
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/F12FILE'.File
+:XH3.File
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/F12LIB'.Library
+:XH3.Library
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SELECT'.Selection Column
+:XH3.Selection Column
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SF12FILE2'.File Name
+:XH3.File Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SF12FLD'.Field Name
+:XH3.Field Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SF12TYP'.Field Type
+:XH3.Field Type
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SF12LEN'.Field Length
+:XH3.Field Length
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SF12DECA'.Field Deciaml Positions
+:XH3.Field Decimal Positions
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SF12BUF'.Field Buffer
+:XH3.Field Buffer
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SF12TXT'.Field Text/Header
+:XH3.Field Text/Header
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF12/SF12USE'.Field Use
+:XH3.Field Use
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF13'.Query Manager - File Selection
+:XH3.Screen 13 - File Selection
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF13F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF13/SELECT'.Selection Column
+:XH3.Selection Column
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF13/SF13FILE'.File Name
+:XH3.File Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF13/SF13LIB'.File Library
+:XH3.File Library
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF13/SF13DESC'.File Description
+:XH3.File Description
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF14'.Query Manager - Copy Query
+:XH3.Screen 14 - Copy Query
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF14F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF14/SF1ENUS'.Original Query User
+:XH3.Original Query User
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF14/SF1NAME'.Original Query Name
+:XH3.Original Query Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF14/SQLDESC'.Original Query Description
+:XH3.Original Query Description
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF14/USER'.New Query User
+:XH3.New Query User
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF14/F14NAME'.New Query Name
+:XH3.New Query Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF14/F14DESC'.New Query Description
+:XH3.New Query Description
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15'.Query Manager - Field Additions
+:XH3.Screen 15 - Field Additions
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15/SF12FILE2'.File Name
+:XH3.File Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15/SF12fld'.Field Name
+:XH3.Field Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15/SF12TYP'.Field Type
+:XH3.Field Type
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15/SF12LEN'.Field Len
+:XH3.Field Length
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15/SF12DECA'.Decimal Positions
+:XH3.Decimal Positions
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15/SF15TXT'.Column Header
+:XH3.Column Header
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15/SF15EDTZ'.Edit as 0 Decimals
+:XH3.Edit as 0 Decimals
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF15/SF15DATE'.Edit as Date
+:XH3.Edit as Date
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF16'.Query Manager - Save Ad Hoc Query
+:XH3.Screen 16 - Save Ad Hoc Query
+:P.TODO
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF16F'.
+:P.TODO
+:XH3.Command Keys
+:P.This screen has the following command keys:
+:P.:HP2.F1=Help:EHP2. Displays this help text.
+:P.:HP2.F3=Exit:EHP2. Exits the program.
+:P.:HP2.F4=Ad Hoc:EHP2. Open the ad hoc query screen.
+:P.:HP2.F6=Add:EHP2. Opens a screen to create a new query.
+:P.:HP2.F8=Sort Toggle:EHP2. Toggles the sort between entry date and
+query description.
+:P.:HP2.F9=User/Date Toggle:EHP2. Toggles the user and date between
+entry and last revised values.
+:P.:HP2.F11=Show Deleted Toggle:EHP2. Toggles between showing and hiding
+deleted entries.
+:P.:HP2.F12=Cancel:EHP2. Cancels any options and returns to the previous
+screen.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF16/USER'.User
+:XH3.User
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF16/F16NAME'.Query Name
+:XH3.Query Name
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SQLF16/F16DESC'.Query Description
+:XH3.Query Description
+:P.TODOsearch field allows limiting the data in the list. The field
+handles multiple words and returns any lines that have the search
+criteria.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

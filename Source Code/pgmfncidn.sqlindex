@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.PGMFNCIDN;
+Create Index APLLIB.PGMFNCIDN on APLLIB.PGMFNC (
+  PGMFNCIDN
+);
+
+Label on Index APLLIB.PGMFNCIDN is 'Program Function Keys - Id';

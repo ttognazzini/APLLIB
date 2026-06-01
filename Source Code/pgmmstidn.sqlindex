@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.PGMMSTIDN;
+Create Index APLLIB.PGMMSTIDN on APLLIB.PGMMST (
+  PGMMSTIDN
+);
+
+Label on Index APLLIB.PGMMSTIDN is 'Program Master - Id';

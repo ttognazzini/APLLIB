@@ -1,0 +1,30 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP NAME='ANZDLT'.Analize Deleted Records in a Library - Help
+:P.This command produces an excel file with infomraiton about
+files/tables with deleted records. It is intended to assist in cleaning
+up the files to save storage and decrease unneeded resource usage.
+:P.The command can take a while to finish, so it is suggested to submit
+it to batch. It ios also suggested that it be run outside of primary
+usage hours so it does not slow the system down at peak times.
+:p.The command runs for one library and emails the results as an
+excel file the email address entered on the command.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='ANZDLT/LIB'.Library (LIB) - Help
+:XH3.Library (LIB)
+:P.Specifies the anme of the library to analyze.
+:P.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='ANZDLT/EMAILTO'.Email to Address (EMAILTO) - Help
+:XH3.Email to Address (EMAILTO)
+:P.Specifies the address to email the results to.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='ANZDLT/REORG'.Reorganize Files (REORG) - Help
+:XH3.Reorganize Files (REORG)
+:P.Allows member with deleted records to be reorganized.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

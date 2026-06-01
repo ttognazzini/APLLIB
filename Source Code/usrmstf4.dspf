@@ -1,0 +1,184 @@
+     A*%%TS  SD  20230413  125819  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master List
+     A*
+     A*%%EC
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(*LIBL/APLLIB)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*------------------------------------------------------------------------
+     A                                      HLPTITLE('')
+     A          R SFL                       SFL
+     A*%%TS  SD  20230413  103648  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A  58                                  SFLNXTCHG
+     A            SEL@           1A  P
+     A            SHWCMP@        1A  P
+     A            KEY       R        H      REFFLD(ACODE)
+     A                                      ALIAS(KEY_FIELD)
+     A            SEL       R        B 11  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL@)
+     A            PGMNAM    R        O 11  5
+     A            PGMDES    R        O 11 14
+     A            CMPDES    R        O 11 75
+     A                                      DSPATR(&SHWCMP@)
+     A*
+     A*------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFL)
+     A*%%TS  SD  20230413  125819  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      SFLPAG(0015)
+     A                                      PAGEUP
+     A                                      PAGEDOWN
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROW     OUTCOL)
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&CSRRRN1)
+     A  51                                  SFLDSP
+     A N50                                  SFLDSPCTL
+     A  50                                  SFLCLR
+     A                                      SFLSIZ(&SFLSIZ)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(USRMSTD4 USRMSTP4)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' USRMSTP4)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' USRMSTP4)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' USRMSTP4)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('USRPRF' USRMSTP4)
+     A                                      HLPARA(*FLD USRPRF)
+     A          H                           HLPPNLGRP('USRNAM' USRMSTP4)
+     A                                      HLPARA(*FLD USRNAM)
+     A          H                           HLPPNLGRP('CMPUSR' USRMSTP4)
+     A                                      HLPARA(*FLD CMPUSR)
+     A          H                           HLPPNLGRP('CMPNME' USRMSTP4)
+     A                                      HLPARA(*FLD CMPNME)
+     A          H                           HLPPNLGRP('SCHVAL' USRMSTP4)
+     A                                      HLPARA(*FLD SCHVAL)
+     A          H                           HLPPNLGRP('OPTIONS' USRMSTP4)
+     A                                      HLPARA(*FLD OPTIONS)
+     A          H                           HLPPNLGRP('OPTIONS' USRMSTP4)
+     A                                      HLPARA(10 002 22 001)
+     A          H                           HLPPNLGRP('PGMNAM' USRMSTP4)
+     A                                      HLPARA(10 005 22 004)
+     A          H                           HLPPNLGRP('PGMDES' USRMSTP4)
+     A                                      HLPARA(10 014 22 013)
+     A          H                           HLPPNLGRP('CMPDES' USRMSTP4)
+     A                                      HLPARA(10 075 22 074)
+     A*                                     End Automated help text information
+     A            OUTRRN1        4S 0H      SFLRCDNBR
+     A            OUTROW         3S 0H
+     A            OUTCOL         3S 0H
+     A            CSRRRN1        5S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            SFLSIZ         5S 0P
+     A            SEL1@          1A  P
+     A            PGMNAM1@       1A  P
+     A            PGMDES1@       1A  P
+     A            CMPDES1@       1A  P
+     A            SHWCMP@        1A  P
+     A            SHWCMPH@       1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 47MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1122
+     A            MDE           10A  O  2  2
+     A                                  2 54'Users Authorized Programs'
+     A                                      COLOR(WHT)
+     A                                  2122USER
+     A                                  4  1'User'
+     A            USRPRF    R        O  4  9
+     A            USRNAM    R        O  4 20
+     A                                  4 69'Compared to'
+     A                                      DSPATR(&SHWCMP@)
+     A            CMPUSR    R        O  4 81REFFLD(USRPRF)
+     A                                      ALIAS(COMPARISON_USER)
+     A                                      DSPATR(&SHWCMP@)
+     A            CMPNME    R        O  4 92REFFLD(USRNAM)
+     A                                      ALIAS(COMPARISON_NAME)
+     A                                      DSPATR(&SHWCMP@)
+     A                                  6  1'Search'
+     A            SCHVAL    R        B  6  9
+     A            OPTIONS      131A  O  8  1COLOR(BLU)
+     A                                  9  1'Sel'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  9  5'Pgm Name'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  9 14'Description                       -
+     A                                                                '
+     A                                      DSPATR(UL)
+     A                                      DSPATR(HI)
+     A                                  9 75'Comparison Description            -
+     A                                            '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                      DSPATR(&SHWCMPH@)
+     A            SEL1      R        B 10  2REFFLD(OPTION)
+     A                                      DSPATR(&SEL1@)
+     A            PGMNAM1   R        B 10  5REFFLD(PGMNAM)
+     A                                      DSPATR(&PGMNAM1@)
+     A            PGMDES1   R        B 10 14REFFLD(PGMDES)
+     A                                      DSPATR(&PGMDES1@)
+     A            CMPDES1   R        B 10 75REFFLD(CMPDES)
+     A                                      DSPATR(&CMPDES1@)
+     A*
+     A*------------------------------------------------------------------------
+     A          R FOOTER
+     A*%%TS  SD  20221219  083746  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      OVERLAY
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(USRMSTD4 USRMSTP4)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('FNCKEYS' USRMSTP4)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            FNCKEYS      131A  O 26  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(27)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A*                                     SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

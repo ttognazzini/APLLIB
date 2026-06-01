@@ -22,7 +22,7 @@
 //   characters and spcaes in column names are replaced with an underscore. If the
 //   the column name stars with a number, then an underscore is added as the first character
 
-Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt) DatFmt(*ISO) main(Main) debug;
+Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt:*nounref) DatFmt(*ISO) main(Main) debug;
 
 /copy QSRC,JDBSRVV1PR // Scott Klements JDBCR4 service program headers
 /copy QSRC,JDBPSTB1PR // Set up Java environment for Postgress, also contains postgress connection stuff

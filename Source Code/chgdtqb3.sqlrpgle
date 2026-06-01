@@ -1,4 +1,4 @@
-     H Option( *SrcStmt ) dftactgrp(*no) actgrp(*new)
+     H Option(*SrcStmt:*nounref) dftactgrp(*no) actgrp(*new)
      **
      **  Program . . : CBX220V
      **  Description : Change Data Queue - VCP

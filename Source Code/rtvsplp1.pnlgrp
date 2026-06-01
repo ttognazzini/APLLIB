@@ -1,0 +1,310 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=RTVSPLFA.Retrieve SPLF Attributes - Help
+:P.This command was created to retrieve a spooled files attributes.
+It allows one, many or all attributes to be retrieved.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/SPLF'.Spool File Name - HELP
+:XH3.SPLF - Spool File Name
+:P.Enter the name of the spool file to retrieve attrbiutes for.
+:P.Example: QPRINT
+:P.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/JOB'.Job name (JOB) - Help
+:XH3.JOB - Job name
+:P.Specifies the job that created the spooled file.
+:PARML.
+:PT.:PK def.*:EPK.
+:PD.The job that created the spooled file issued this command.
+:PT.:PV.Qualifier 1: Job name:EPV.
+:PD.Specify the name of the job that contains the spooled file.
+:PT.:PV.Qualifier 2: User:EPV.
+:PD.Specify the user name that identifies the user profile under which
+the job is run.
+:PT.:PV.Qualifier 3: Number:EPV.
+:PD.Specify the system-assigned job number.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/SPLNBR'.Spooled file number (SPLNBR) - Help
+:XH3.SPLNBR - Spooled file number
+:P.Specifies the unique number of the spooled file in the job
+whose attributes are being changed.
+:P.This is a required parameter.
+:P.The possible values are:
+:PARML.
+:PT.:PK def.*LAST:EPK.
+:PD.If there is more than one spooled file with the specified file name
+the one with the highest number is the file whose attributes are
+changed.
+:PT.:PV.*ONLY:EPV.
+:PD.Only one spooled file in the job has the specified file name;
+therefore, the number of the spooled file is not necessary.
+:PT.:PV.1-999999:EPV.
+:PD.Specify the number of the spooled file that matches the file name
+whose attributes you wish to change.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/FORMTYPE'.Form Type (FORMTYPE) - Help
+:XH3.FORMTYPE - Form Type
+:P.Specifies a variable to receive the form type. The variable must be
+declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/OUTPTY'.Output Priority (OUTPTY) - Help
+:XH3.OUTPTY - Output Priority
+:P.Specifies a variable to receive the output priorty. The variable must be
+declared as *CHAR LEN(1).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/CPYLEFT'.Number of Copies Left (CPYLEFT) - Help
+:XH3.CPYLEFT - Number of Copies Left
+:P.Specifies a variable to receive the number of copies left.
+The variable must be declared as *CHAR LEN(3).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/COPIES'.Total Number of Copies (COPIES) - Help
+:XH3.COPIES - Total Number of Copies
+:P.Specifies a variable to receive the total number of copies.
+The variable must be declared as *CHAR LEN(3).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/MAXRCDS'.Maximum Records (MAXRCDS) - Help
+:XH3.MAXRCDS - Maximum Records
+:P.Specifies a variable to receive the maximum records.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/FILESEP'.File Seperators (FILESEP) - Help
+:XH3.FILESEP - File Seperators
+:P.Specifies a variable to receive the file seperators.
+The variable must be declared as *CHAR LEN(1).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/SCHEDULE'.Schedule (SCHEDULE) - Help
+:XH3.SCHEDULE - Schedule
+:P.Specifies a variable to receive the schedule.
+The variable must be declared as *CHAR LEN(8).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/HOLD'.Hold (HOLD) - Help
+:XH3.HOLD - Hold
+:P.Specifies a variable to receive the holde.
+The variable must be declared as *CHAR LEN(4).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/SAVE'.Save (SAVE) - Help
+:XH3.SAVE - Save
+:P.Specifies a variable to receive the save.
+The variable must be declared as *CHAR LEN(4).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/DEVTYPE'.Device Type (DEVTYPE) - Help
+:XH3.DEVTYPE - Device Type
+:P.Specifies a variable to receive the device type.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/PRTTYPE'.Printer Type(PRTTYPE) - Help
+:XH3.PRTTYPE - Printer Type
+:P.Specifies a variable to receive the printer type.
+The variable must be declared as *CHAR LEN(5).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/DEVFILE'.Device File (DEVFILE) - Help
+:XH3.DEVFILE - Device File
+:P.Specifies a variable to receive the device file.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/DEVFILEL'.Device File Library (DEVFILEL) - Help
+:XH3.DEVFILEL - Device File Library
+:P.Specifies a variable to receive the device file library.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/USRDTA'.User Data (USRDTA) - Help
+:XH3.USRDTA - User Data
+:P.Specifies a variable to receive the user data.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/ACGCDE'.Accounting Code (ACGCDE) - Help
+:XH3.ACGCDE - Accounting Code
+:P.Specifies a variable to receive the accounting code.
+The variable must be declared as *CHAR LEN(15).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/OPNPGM'.Program Which Opened File (OPNPGM) - Help
+:XH3.OPNPGM - Program Which Opened File
+:P.Specifies a variable to receive the program which opened the file.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/OPNPGML'.PGM LIB Which Opened File (OPNPGML) - Help
+:XH3.OPNPGML - PGM LIB Which Opened File
+:P.Specifies a variable to receive the program library which opened the file.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/OPNDAT'.Open Date (OPNDAT) - Help
+:XH3.OPNDAT - Open Date
+:P.Specifies a variable to receive the Open Date.
+The variable must be declared as *CHAR LEN(8).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/OPNTIM'.Open Time (OPNTIM) - Help
+:XH3.OPNTIM - Open Time
+:P.Specifies a variable to receive the open time.
+The variable must be declared as *CHAR LEN(8).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/PAGWTN'.Page Being Written (PAGWTN) - Help
+:XH3.PAGWTN - Page Being Written
+:P.Specifies a variable to receive the page being written.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/TOTPAG'.Total Pages (TOTPAG) - Help
+:XH3.TOTPAG - Total Pages
+:P.Specifies a variable to receive the total pages.
+The variable must be declared as *CHAR LEN(10).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/RCDLEN'.Record Length (RCDLEN) - Help
+:XH3.RCDLEN - Record Length
+:P.Specifies a variable to receive the record lenght.
+The variable must be declared as *CHAR LEN(5).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/PAGLEN'.Page Length (PAGLEN) - Help
+:XH3.PAGLEN - Page Length
+:P.Specifies a variable to receive the page length.
+The variable must be declared as *CHAR LEN(3).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/PAGWDT'.Page Width (PAGWDT) - Help
+:XH3.PAGWDT - Page Width
+:P.Specifies a variable to receive the page width.
+The variable must be declared as *CHAR LEN(3).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/LPI'.Lines Per Inch (LPI) - Help
+:XH3.LPI - Lines Per Inch
+:P.Specifies a variable to receive the lines per inch.
+The variable must be declared as *CHAR LEN(1).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/CPI'.Characters Per Inch (CPI) - Help
+:XH3.CPI - Characters Per Inch
+:P.Specifies a variable to receive the characters per inch.
+The variable must be declared as *CHAR LEN(2).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/OVRFLW'.Overflow Line (OVRFLW) - Help
+:XH3.OVRFLW - Overflow Line
+:P.Specifies a variable to receive the overflow line.
+The variable must be declared as *CHAR LEN(3).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/FOLD'.Fold Print Line (FOLD) - Help
+:XH3.FOLD - Fold Print Line
+:P.Specifies a variable to receive the fold print line.
+The variable must be declared as *CHAR LEN(4).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/CTLCHAR'.Control Character (CTLCHAR) - Help
+:XH3.CTLCHAR - Control Character
+:P.Specifies a variable to receive the control character.
+The variable must be declared as *CHAR LEN(5).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='RTVSPLFA/RPLUNPRT'.Replace Unprintable Characters(RPLUNPRT) - Help
+:XH3.RPLUNPRT - Replace Unprintable Characters
+:P.Specifies a variable to receive the replace unprintable characters.
+The variable must be declared as *CHAR LEN(4).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/ALIGN'.Align Forms (ALIGN) - Help
+:XH3.ALIGN - Align Forms
+:P.Specifies a variable to receive the allign forms.
+The variable must be declared as *CHAR LEN(4).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/PRTQLTY'.Print Quality (PRTQLTY) - Help
+:XH3.PRTQLTY - Print Quality
+:P.Specifies a variable to receive the print quality.
+The variable must be declared as *CHAR LEN(6).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/FORMFEED'.Form Feed (FORMFEED) - Help
+:XH3.FORMFEED - Form Feed
+:P.Specifies a variable to receive the form feed.
+The variable must be declared as *CHAR LEN(8).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/DRAWER'.Source Drawer (DRAWER) - Help
+:XH3.DRAWER - Source Drawer
+:P.Specifies a variable to receive the source drawer.
+The variable must be declared as *CHAR LEN(1).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/FONT'.Printer Font (FONT) - Help
+:XH3.FONT - Printer Font
+:P.Specifies a variable to receive the printer font.
+The variable must be declared as *CHAR LEN(5).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/PAGRTT'.Page Rotation (PAGRTT) - Help
+:XH3.PAGRTT - Page Rotation
+:P.Specifies a variable to receive the page rotation.
+The variable must be declared as *CHAR LEN(5).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='RTVSPLFA/JUSTIFY'.Justification (JUSTIFY) - Help
+:XH3.JUSTIFY - Justification
+:P.Specifies a variable to receive the justification.
+The variable must be declared as *CHAR LEN(3).
+:P.This is an optional parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

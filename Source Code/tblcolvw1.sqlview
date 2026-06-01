@@ -1,0 +1,25 @@
+Create or replace view APLLIB.TBLCOL as
+
+Select
+  system_table_schema schema,
+  system_table_name table,
+  Ordinal_position,
+  system_column_name field_name,
+  column_name,
+  cast(column_text as varchar(50)) column_text,
+  case when data_type in ('DECIMAL','NUMERIC') and numeric_scale > 0
+       then data_type||'('||length||','||numeric_scale||')'
+       when data_type in ('DECIMAL','NUMERIC','CHAR','VARCHAR','CLOB','GRAPHIC',
+                          'VARG','DBCLOB','BINARY','VARBIN','BLOB')
+       then data_type||'('||length||')'
+       else data_type end type,
+  coalesce(column_default,'') column_default,
+  is_nullable,
+  is_identity
+from syscolumns;
+
+-- Add long table name for the Web Developers
+Create or replace Alias table_columns for APLLIB/TBLCOL;
+
+-- Add Table Description
+Label on Table APLLIB/TBLCOL is 'List of AS400-ERP Table Columns';

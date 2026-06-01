@@ -1,0 +1,132 @@
+     A*%%TS  SD  20220121  105157  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A*  Program Master Detail
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A          R SCREEN
+     A*%%TS  SD  20220121  105157  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FRMKEYS@       1A  P
+     A            PGMNMECPY@     1A  P
+     A            PGMNME@        1A  P
+     A            DES@           1A  P
+     A            APLDES@        1A  P
+     A            OBJTYP@        1A  P
+     A            MNUOBJDES@     1A  P
+     A            SECAUT@        1A  P
+     A            DFTAUTDES@     1A  P
+     A            WEBAPLDES@     1A  P
+     A            MNUNME@        1A  P
+     A            DSPFLE@        1A  P
+     A            REQITR@        1A  P
+     A            REQOWN@        1A  P
+     A            REQDBA@        1A  P
+     A            SECPGM@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 20MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME2       10A  O  1 70
+     A            MODE          10A  O  2  2
+     A                                  2 28'Program Master Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  4  2'Copy Program'
+     A                                      DSPATR(&FRMKEYS@)
+     A            PGMNMECPY R        O  4 18REFFLD(PGMNME *LIBL/APLDCT)
+     A                                      DSPATR(&PGMNMECPY@)
+     A                                  5  2'Program'
+     A            PGMNME        10A  B  5 18DSPATR(&PGMNME@)
+     A                                  6  2'Display File'
+     A            DSPFLE    R        B  6 18DSPATR(&DSPFLE@)
+     A                                  8  2'Description'
+     A            DES       R        B  8 18DSPATR(&DES@)
+     A                                      CHECK(LC)
+     A                                  9  2'Application'
+     A            APLDES        20A  B  9 18DSPATR(&APLDES@)
+     A                                  9 39'?'
+     A                                 10  2'Object Type'
+     A            OBJTYP    R        B 10 18DSPATR(&OBJTYP@)
+     A                                 10 29'(RPGLE,DSFP,CLLE,SQL...)'
+     A                                 11  2'Menu Object'
+     A            MNUOBJDES      3A  B 11 18DSPATR(&MNUOBJDES@)
+     A                                 11 22'?'
+     A                                 11 24'(Yes/No)'
+     A                                 12  2'Web App'
+     A            WEBAPLDES      3A  B 12 18DSPATR(&WEBAPLDES@)
+     A                                 12 22'?'
+     A                                 12 24'(Yes/No)'
+     A                                 13  2'Menu Name'
+     A            MNUNME    R        B 13 18DSPATR(&MNUNME@)
+     A                                 14  2'                               Sec-
+     A                                      urity Options                      -
+     A                                               '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 15  2'Security Authorization'
+     A            SECAUT    R        B 15 29DSPATR(&SECAUT@)
+     A                                 16  2'Default Authorization'
+     A            DFTAUTDES     20A  B 16 29DSPATR(&DFTAUTDES@)
+     A                                 16 50'?'
+     A                                 17  2'Require IT Requester'
+     A            REQITR    R        B 17 29DSPATR(&REQITR@)
+     A                                 18  2'Require Owner'
+     A            REQOWN    R        B 18 29DSPATR(&REQOWN@)
+     A                                 19  2'Require DBA'
+     A            REQDBA        10A  B 19 29DSPATR(&REQDBA@)
+     A                                 20  2'Security Override Program'
+     A            SECPGM    R        B 20 29DSPATR(&SECPGM@)
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

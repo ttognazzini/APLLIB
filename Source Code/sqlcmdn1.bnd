@@ -1,0 +1,8 @@
+STRPGMEXP PGMLVL(*CURRENT) SIGNATURE(X'00EE2272160AD7E41128EDF72BA37D2B')
+/********************************************************************/
+/*   *SRVPGM      SQLCMDV1     TIMOLD       05/13/25  14:15:23      */
+/********************************************************************/
+  EXPORT SYMBOL("#$FORMATSQL")
+  EXPORT SYMBOL("#$PREVIOUSWORD")
+  EXPORT SYMBOL("#$SQLGETCOLUMNS")
+ENDPGMEXP

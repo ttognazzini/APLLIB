@@ -1,0 +1,77 @@
+-- This member creates the SCRLOC file
+
+Create or Replace Table APLLIB/SCRLOC (
+    active_row for Column AcvRow Char(1) not null with default '1',
+    screen_location_id for Column scrLocIdn bigInt
+        not null generated always as identity (start with 1 increment by 1),
+    library_name for Column lib char(10) not null with default,
+    file_name for Column fle char(10) not null with default,
+    member_name for Column mbr char(10) not null with default,
+    record_format for Column rcdFmt char(10) not null with default,
+    record_format_type for Column rcdFmtTyp char(10) not null with default,
+    field_name for Column fldNme char(10) not null with default,
+    field_column for Column fldCol decimal(3) not null with default,
+    field_row for Column fldRow decimal(3) not null with default,
+    field_length for Column fldLen decimal(3) not null with default,
+    field_scale for Column fldScl decimal(3) not null with default,
+    file_type for Column fldTyp char(10) not null with default,
+    extended_type for Column extTyp char(10) not null with default,
+    reference_library for Column refLib char(10) not null with default,
+    reference_file for Column refFle char(10) not null with default,
+    reference_field for Column refFld char(10) not null with default,
+    creation_timestamp for Column crtDtm timestamp not null with default current timestamp,
+    creation_user for Column crtUsr char(18) not null with default user,
+    creation_job for Column crtJob char(28) not null with default,
+    creation_program for Column crtPgm char(10) not null with default
+    )
+  RcdFmt SCRLOCR;
+
+Alter Table APLLIB.SCRLOC add Constraint APLLIB.SCRLOC Primary Key( lib,fle,mbr,rcdfmt,fldNme );
+
+Label on Table APLLIB/SCRLOC is 'Screen Location File';
+
+Label on Column APLLIB.SCRLOC
+ (ACTIVE_ROW         is 'Active              Row' ,
+  screen_location_id is 'Screen              Location            Id' ,
+  library_name       is 'Library             Name' ,
+  field_name         is 'Field               Name' ,
+  member_name        is 'Member              Name' ,
+  record_format      is 'Record              Format' ,
+  record_format_type is 'Record              Format              Type' ,
+  field_name         is 'Field               Name                ' ,
+  field_column       is 'Field               Column              ' ,
+  field_row          is 'Field               Row                 ' ,
+  field_length       is 'Field               Length              ' ,
+  field_scale        is 'Field               Scale               ' ,
+  file_type          is 'File                Type                ' ,
+  extended_type      is 'Extended            Type                ' ,
+  reference_library  is 'Reference           Library             ' ,
+  reference_file     is 'Reference           File                ' ,
+  reference_field    is 'Reference           Field               ' ,
+  creation_timestamp is 'Creation            Timestamp           ' ,
+  creation_user      is 'Creation            User                ' ,
+  creation_job       is 'Creation            Job                 ' ,
+  creation_program   is 'Creation            Program             ' );
+
+Label on Column APLLIB.SCRLOC
+ (ACTIVE_ROW          text is 'Active Row' ,
+  screen_location_id  text is 'Screen Location Id' ,
+  library_name        text is 'Library Name' ,
+  file_name           text is 'File Name' ,
+  member_name         text is 'Member Name' ,
+  record_format       text is 'Record Format' ,
+  record_format_type  text is 'Record Format Type' ,
+  field_name          text is 'Field Name' ,
+  field_column        text is 'Field Column' ,
+  field_row           text is 'Field Row' ,
+  field_length        text is 'Field Length' ,
+  field_scale         text is 'Field Scale' ,
+  file_type           text is 'File Type' ,
+  extended_type       text is 'Extended Type' ,
+  reference_library   text is 'Reference Library' ,
+  reference_file      text is 'Reference File' ,
+  reference_field     text is 'Reference Field',
+  creation_timestamp  text is 'Creation Timestamp' ,
+  creation_user       text is 'Creation User' ,
+  creation_job        text is 'Creation Job' ,
+  creation_program    text is 'Creation Program' );

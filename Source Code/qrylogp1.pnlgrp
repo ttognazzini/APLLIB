@@ -1,0 +1,25 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP NAME='QRYJOBLOG'.Querry Job Log - Help
+:P.
+The Querry Job Log (QRYJOBLOG) command builds a temporary file for all job logs
+for active jobs for a workstation id, and then runs a query over the file.
+:P.
+This is inteneded to be used to look for errors in a user job log when they
+are running multiple group jobs under one workstation id.
+:P.
+To use the command just enter it on a command line like this: QRYJOGLOG WS24,
+replace WS24 with the correct workstation Id. It opens the SQL command with a
+default query statement already entered for the temporary file. Change the
+querry to show what you want and press enter to run it.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP NAME='QRYJOBLOG/WRKSTN'.Workstation Id (WRKSTN) - Help
+:XH3.Workstation ID (WRKSTN)
+:P.
+Specifies the workstation to query the job logs for.
+:P.
+This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

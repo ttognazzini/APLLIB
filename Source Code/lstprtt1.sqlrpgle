@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt debug Option(*SrcStmt:*NoDebugIO) dftactgrp(*no);
+Ctl-Opt debug Option(*SrcStmt:*NoDebugIO:*nounref) dftactgrp(*no);
 
 // List Printer Devices
 //

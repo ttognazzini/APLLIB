@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug option(*srcstmt:*nodebugio:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 // Output options - Fix File Name
 

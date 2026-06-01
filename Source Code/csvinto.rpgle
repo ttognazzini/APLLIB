@@ -41,7 +41,7 @@
 //                            %PARSER('CSVINTO');
 //
 
-ctl-opt OPTION(*SRCSTMT:*NODEBUGIO: *NOSHOWCPY)
+ctl-opt OPTION(*SRCSTMT:*NODEBUGIO:*NOSHOWCPY:*nounref)
         BNDDIR('APLLIB/APLLIB') main(CSVINTO);
 
 /copy QOAR/QRPGLESRC,QRNDTAINTO

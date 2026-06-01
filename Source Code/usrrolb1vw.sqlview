@@ -1,0 +1,33 @@
+Create or replace view APLLIB.USRROLB1VW as (
+
+  Select
+    USRROL.acvRow,
+    usrRolIdn,
+    USRROL.rolMstIdn,
+    rolNme,
+    USRROL.usrMstIdn,
+    usrPrf,
+    coalesce(trim(acLNam) || ', ' || trim(acFNam),'') usrNme,
+    coalesce(lngCMt,'') lngCmt,
+    acEMail as emlAdd,
+    Coalesce(acDept,'') usrDpt,
+    coalesce(acJobD,'') usrJob,
+    coalesce(apr.enmDes,'Error') aprDes,
+    coalesce(acv.enmDes,'Error') acvDes,
+    USRROL.rolAprIdn,
+    coalesce(ROLAPR.crtDtm,'0001-01-01') aprDtm,
+    coalesce(ROLAPR.crtUsr,'') aprUsr,
+    coalesce(ROLAPR.crtJob,'') aprJob,
+    coalesce(ROLAPR.crtPgm,'') aprPgm,
+    USRROL.crtDtm, USRROL.crtUsr, USRROL.crtJob, USRROL.crtPgm,
+    USRROL.mntDtm, USRROL.mntUsr, USRROL.mntJob, USRROL.mntPgm
+  From USRROL
+  Left Join USRMST on USRMST.usrMstIdn = USRROL.usrMstIdn
+  Left Join ROLMST on ROLMST.rolMstIdn = USRROL.rolMstIdn
+  Left Join ROLAPR on ROLAPR.rolAprIdn = USRROL.rolAprIdn
+  left join ACCESSPF on acNo = accNbr
+  Left Join DCTVAL as apr on (apr.dctNme,apr.fldNme,apr.enmVal) = ('APLDCT','ROLAPR',USRROL.rolApr)
+  Left Join DCTVAL as acv on (acv.dctNme,acv.fldNme,acv.enmVal) = ('APLDCT','ACVROW',USRROL.acvRow)
+);
+
+Label on Table APLLIB/USRROLB1VW is 'User Roles - Print List View';

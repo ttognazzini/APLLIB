@@ -1,0 +1,6 @@
+-- Drop Index If Exists APLLIB/SCRLOCMBR;
+
+Create Index APLLIB/SCRLOCMBR
+ on SCRLOC(MBR,RCDFMT,RCDFMTTYP,FLDNME);
+
+Label on Index APLLIB/SCRLOCMBR is 'Screen Location of Fields by Member';

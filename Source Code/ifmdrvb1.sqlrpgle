@@ -1,8 +1,8 @@
 **FREE
-Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt) ActGrp(*new) Main(Main);
+Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt:*nounref) ActGrp(*new) Main(Main);
 
 // IFS Monitor Driver Program
-// This program monitors IFS directories and moves files fin them to a different location.
+// This program monitors IFS directories and moves files in them to a different location.
 // The intent is to move file to network shares in batch so suers do not get errors if the
 // folder is not accessable.
 

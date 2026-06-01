@@ -1,0 +1,67 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+/*   Help Detail                                           */
+
+Create or Replace Table help_detail For System Name APLLIB.HLPDTL (
+  active_row                     for Column ACVROW    CHAR(1) Not Null Default '1',
+  help_detail_id                 for Column HLPDTLIDN BIGINT Not Null
+                                 Generated Always as Identity (Start With 1 Increment by 1),
+  dictionary_name                for Column DCTNME    CHAR(10) Not Null With Default,
+  field_name                     for Column FLDNME    CHAR(10) Not Null With Default,
+  display_file                   for Column DSPFLE    CHAR(10) Not Null With Default,
+  value_                         for Column VAL       CHAR(10) Not Null With Default,
+  sequence_number                for Column SEQNBR    SMALLINT Not Null With Default,
+  help_text                      for Column HLPTXT    CHAR(79) Not Null With Default,
+  create_time_stamp              for Column CRTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  create_user                    for Column CRTUSR    CHAR(18) Not Null Default USER,
+  create_job                     for Column CRTJOB    CHAR(28) Not Null With Default,
+  create_program                 for Column CRTPGM    CHAR(10) Not Null With Default,
+  maintenance_time_stamp         for Column MNTDTM    TIMESTAMP Not Null Default CURRENT_TIMESTAMP,
+  maintenance_user               for Column MNTUSR    CHAR(18) Not Null Default USER,
+  maintenance_job                for Column MNTJOB    CHAR(28) Not Null With Default,
+  maintenance_program            for Column MNTPGM    CHAR(10) Not Null With Default,
+  primary key (DCTNME,FLDNME,DSPFLE,VAL,SEQNBR)
+);
+
+Label on Table HLPDTL is 'Help Detail';
+
+Label on Column APLLIB.HLPDTL (
+  ACVROW     is 'Active              Row',
+  HLPDTLIDN  is 'Help                Detail              Id',
+  DCTNME     is 'Dictionary          Name',
+  FLDNME     is 'Field               Name',
+  DSPFLE     is 'Display             File',
+  VAL        is 'Value',
+  SEQNBR     is 'Sequence            Number',
+  HLPTXT     is 'Help                Text',
+  CRTDTM     is 'Create              Date',
+  CRTUSR     is 'Create              User',
+  CRTJOB     is 'Create              Job',
+  CRTPGM     is 'Create              Program',
+  MNTDTM     is 'Maintenance         Date',
+  MNTUSR     is 'Maintenance         User',
+  MNTJOB     is 'Maintenance         Job',
+  MNTPGM     is 'Maintenance         Program'
+);
+
+Label on Column APLLIB.HLPDTL (
+  ACVROW     text is 'Active Row',
+  HLPDTLIDN  text is 'Help Detail Id',
+  DCTNME     text is 'Dictionary Name',
+  FLDNME     text is 'Field Name',
+  DSPFLE     text is 'Display File',
+  VAL        text is 'Value',
+  SEQNBR     text is 'Sequence Number',
+  HLPTXT     text is 'Help Text',
+  CRTDTM     text is 'Create Date/Time (Time stamp)',
+  CRTUSR     text is 'Create User',
+  CRTJOB     text is 'Create Job',
+  CRTPGM     text is 'Create Program',
+  MNTDTM     text is 'Maintenance Date',
+  MNTUSR     text is 'Maintenance User',
+  MNTJOB     text is 'Maintenance Job',
+  MNTPGM     text is 'Maintenance Program'
+);

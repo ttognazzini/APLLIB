@@ -1,0 +1,26 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=LSTOBJ.List Objects in Library with Sizes (LSTOBJ)
+:P.This command is used create and email an excel file of all objects
+in the selscted library or library list.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSTOBJ/LIBRARY'.Library - Help
+:XH3.LIBRARY - Library
+:P.This is the name of the library to list the objects for. It allows
+the following special values.
+:ul.
+:li.*LIBL - List all libraries in the current jobs library list.
+:li.*ALLUSR - List all user libraries on the system.
+:li.*ALL - List all libraries on the system.
+:eul.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='LSTOBJ/EMAILTO'.Email To - Help
+:XH3.EMAILTO - Email To
+:P.This is email address the report will be sent to.
+:p.This is a required parameter.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

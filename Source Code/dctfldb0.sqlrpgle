@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt debug Option(*SrcStmt:*NoDebugIO) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug Option(*SrcStmt:*NoDebugIO:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 //  Dictionary Field Driver
 
@@ -48,7 +48,7 @@ Dcl-Proc Main;
     pmDspFle = ' ';
     pmVal    = ' ';
     pmOption='2';
-    CallP HLPDTLD1(pmDctNme:pmFldNme:pmDspFle:pmVal:pmOption:keyPressed);
+    HLPDTLD1(pmDctNme:pmFldNme:pmDspFle:pmVal:pmOption:keyPressed);
     If keyPressed <> 'F3';
       keyPressed='';
     EndIf;
@@ -56,7 +56,7 @@ Dcl-Proc Main;
     Return;
   elseif Option = '11'; // View Log
     pmOption='5';
-    CallP AUDLOGD1('APLLIB':'DCTFLD':'':pmrDctFldIdn:pmOption:KeyPressed);
+    AUDLOGD1('APLLIB':'DCTFLD':'':pmrDctFldIdn:pmOption:KeyPressed);
     If keyPressed <> 'F3';
       keyPressed='';
     EndIf;
@@ -70,9 +70,9 @@ Dcl-Proc Main;
 
     If NxtScr = 2;
       If pmrOption='9';
-        CallP DCTVALD1(pmDctNme:pmFldNme:pmEnmVal:'2':keyPressed);
+        DCTVALD1(pmDctNme:pmFldNme:pmEnmVal:'2':keyPressed);
       Else;
-        CallP DCTFLDD2(pmrDctFldIdn:pmrDctMstIdn:Option:keyPressed);
+        DCTFLDD2(pmrDctFldIdn:pmrDctMstIdn:Option:keyPressed);
       EndIf;
     Else;
       Return;

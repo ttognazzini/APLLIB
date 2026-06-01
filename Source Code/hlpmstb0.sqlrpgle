@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug option(*srcstmt:*nodebugio:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 // Help Master Navigation
 
@@ -30,7 +30,7 @@ Dcl-Proc Main;
 
   // Display Help text
   If pmrOption = '5';
-    CallP HLPMSTB4(pmrDctNme:pmrFldNme:pmrDspFle:pmrVal);
+    HLPMSTB4(pmrDctNme:pmrFldNme:pmrDspFle:pmrVal);
     Return;
   EndIf;
 
@@ -41,7 +41,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP(e) HLPDTLD1(pmrDctNme:pmrFldNme:pmrDspFle:pmrVal:Option:keyPressed);
+      HLPDTLD1(pmrDctNme:pmrFldNme:pmrDspFle:pmrVal:Option:keyPressed);
 
       If keyPressed = 'F12';
         NxtScr -= 1;

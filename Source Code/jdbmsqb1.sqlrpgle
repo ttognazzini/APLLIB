@@ -2,7 +2,7 @@
 // This program sets up the Java environment needed to do MS SQL connections
 // This was abstracted out so it did not have to duplciated in addtional programs
 
-Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt) DatFmt(*ISO) Main(Main);
+Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt:*nounref) DatFmt(*ISO) Main(Main);
 
 /copy QSRC,JDBSRVV1PR // Scott Klements JDBCR4 service program headers
 /Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures

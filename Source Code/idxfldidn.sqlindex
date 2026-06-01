@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.IDXFLDIDN;
+Create Index APLLIB.IDXFLDIDN on APLLIB.IDXFLD (
+  IDXFLDIDN
+);
+
+Label on Index APLLIB.IDXFLDIDN is 'Index Fields - Id';

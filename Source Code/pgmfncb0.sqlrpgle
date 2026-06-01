@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt debug option(*srcstmt:*nodebugio) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug option(*srcstmt:*nodebugio:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 // Program Function Key Master Driver
 
@@ -41,7 +41,7 @@ Dcl-Proc Main;
     EndIf;
 
     If NxtScr = 2;
-      CallP PGMFNCD2(pmrPgmNme:pmrFncKey:pmrOption:Option2:keyPressed);
+      PGMFNCD2(pmrPgmNme:pmrFncKey:pmrOption:Option2:keyPressed);
     Else;
       Return;
     EndIf;

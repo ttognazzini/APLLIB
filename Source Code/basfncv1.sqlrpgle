@@ -36,6 +36,8 @@
 //   #$H2C     = Convert a hex string to a character string
 //   #$IN      = Checks if a value is in a list, character
 //   #$INN     = Checks if a value is in a list, numeric
+//   #$MDY2YMD = Convert MMDDYYYY to YYYYMMDD or MMDDYY to YYMMDD
+//   #$YMD2MDY = Convert YYYYMMDD to MMDDYYYY or YYMMDD to MMDDYY
 //
 // Time Functions
 // An HMS field is defined as 10,0 and contains a length of
@@ -121,6 +123,7 @@
 //   #$ALPH      = converts a number to readable text
 //   #$GetKeys   = returns key fields for a file
 //   #$RtvMbrD   = Retrieve Member Description
+//   #$RtvMbrTyp = Retrieve Member Type
 //
 // *************************************************************
 // If you add modules to this source you need to update the
@@ -142,7 +145,7 @@
 //
 // *************************************************************
 
-Ctl-Opt NoMain Option(*NoDebugIO:*SrcStmt) StgMdl(*Inherit);
+Ctl-Opt NoMain Option(*NoDebugIO:*SrcStmt:*nounref) StgMdl(*Inherit);
 /Copy QSRC,BASFNCV1PR
 // INCLUDE LIBHTTP3/QRPGLESRC,HTTPAPI_H
 
@@ -7570,5 +7573,111 @@ Dcl-Proc #$RtvMbrD Export;
   IBMAPI_RtvMbrDesc(MBRD0100: %len(MBRD0100): 'MBRD0100': fle + lib: mbr: '0' : apiError:'0');
 
   Return MBRD0100.mbrTxt;
+
+End-Proc;
+
+
+// ****************************************************************
+// Convert MMDDYYYY to YYYYMMDD or MMDDYY to YYMMDD
+//
+// Parameters
+//   1. Date in either MMDDYYYY or MMDDYY format
+//
+// Returns Date in either YYYYMMDD or YYMMDD format
+Dcl-Proc #$mdy2ymd Export;
+  Dcl-Pi *n packed(8);
+    datein packed(8) const;
+  End-Pi;
+
+  If dateIn < 1000000;
+    Return %rem(dateIn:100) * 10000 + %int(DateIn/100);
+  Else;
+    Return %rem(dateIn:10000) * 10000 + %int(DateIn/10000);
+  EndIf;
+
+End-Proc;
+
+
+// ****************************************************************
+// Convert YYYYMMDD to MMDDYYYY or YYMMDD to MMDDYY
+//
+// Parameters
+//   1. Date in either YYYYMMDD or YYMMDD format
+//
+// Returns Date in either MMDDYYYY or MMDDYY format
+Dcl-Proc #$ymd2mdy Export;
+  Dcl-Pi *n packed(8);
+    datein packed(8) const;
+  End-Pi;
+
+  If dateIn < 1000000;
+    Return %rem(dateIn:10000) * 100 + %int(DateIn/10000);
+  Else;
+    Return %rem(dateIn:10000) * 10000 + %int(DateIn/10000);
+  EndIf;
+
+End-Proc;
+
+
+// ****************************************************************
+// Retrieve Member Type
+Dcl-Proc #$RtvMbrTyp Export;
+  Dcl-Pi *n char(10);
+    lib char(10) const;
+    fle char(10) const;
+    mbr char(10) const;
+  End-Pi;
+
+  // Data structure for format MBRD0100
+  Dcl-Ds MBRD0100 qualified;
+    bytesReturned int(10) inz(134);
+    bytesAvailable int(10);
+    fleNme char(10);
+    libNme char(10);
+    mbrNme char(10);
+    fleAtr char(10);
+    srcTyp char(10);
+    crtDtm char(13);
+    mntDtm char(13);
+    mbrTxt char(50);
+    srcFle char(1);
+  End-Ds;
+
+  // IBM API to Retrieve a Member's Description
+  Dcl-Pr IBMAPI_RtvMbrDesc          extpgm('QUSRMBRD');
+    MbrDesc               likeds(MBRD0100)    options(*varsize);
+    MbrDscL               int(10)   const;
+    MbrDFmt               char(8)   const;
+    MbrFile               char(20)  const;
+    MbrName               char(10)  const;
+    MbrOvrP               char(1)   const;
+    // optional parm group 1
+    MbrErrC               likeds(apiError)     options(*nopass:*varsize);
+    // optional parm group 2
+    MbrFndP               char(1)   const     options(*nopass);
+  End-Pr;
+
+  IBMAPI_RtvMbrDesc(MBRD0100: %len(MBRD0100): 'MBRD0100': fle + lib: mbr: '0' : apiError:'0');
+
+  Return MBRD0100.srcTyp;
+
+End-Proc;
+
+
+// Clear message queue
+Dcl-Proc #$ClrMsgq Export;
+  Dcl-Pi *n;
+    msgq char(10) const;
+  End-Pi;
+  Dcl-Pr clearMsg extPgm('QMHRMVPM');
+    messageq   Char(276)  const;
+    CallStack  int(10) const;
+    Messagekey Char(4) const;
+    messagermv Char(10) const;
+    ErrorCode  Char(256);
+  End-Pr;
+  Dcl-S APIError Char(256);
+
+  clearMsg(msgq : 0 : '    ': '*ALL':APIError);
 
 End-Proc;

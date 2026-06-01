@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.DCTFLDIDN;
+Create Index APLLIB.DCTFLDIDN on APLLIB.DCTFLD (
+  DCTFLDIDN
+);
+
+Label on Index APLLIB.DCTFLDIDN is 'Dictionary Fields - Id';

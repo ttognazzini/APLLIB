@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.FLELOGIDN;
+Create Index APLLIB.FLELOGIDN on APLLIB.FLELOG (
+  FLELOGIDN
+);
+
+Label on Index APLLIB.FLELOGIDN is 'File Log - Id';

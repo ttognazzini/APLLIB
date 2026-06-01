@@ -1,0 +1,53 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=SYNCTEST.Synchronize Test Library
+:P.This command was created to sysnchronize a test data library with
+the production data library. It acts a varification tool and a refresh
+tool.
+:P.To use as verification only, use option REFRESH(*NO), the default. Use
+REFRESH(*YES) to refresh the files in the data library.
+:P.The verification happens whether refreshing or not. If refreshing the
+the verificaiton happens after the refersh to ensure the refresh worked
+properly.
+:P.The verification checkes to ensure that all data libraries exist in the
+test library that are in the production library. It also ensures that no
+file in the test library relates to the produciton library. Such as a
+logical file or view pointing to the produciton library.
+:p.The refresh operation deletes all logical files, views and indexes
+in the testdata library. It then duplicates each table and physical file
+from the production library into the test library. The it duplicates all
+logical files, views and indexes from the production library to the test
+library.
+:p.All results are emailed to the address specified in the command.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SYNCTEST/PRDLIB'.PRDLIB - From (Production) Library
+:XH3.PRDLIB - From (Production) Library
+:P.This is the library to verify against and/or refersh from. Nothing
+in this library is changed.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SYNCTEST/TSTLIB'.TESTLIB - To (Test) Library
+:XH3.TESTLIB - To (Test) Library
+:P.This is the library to compare to the production library and/or
+refresh from.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SYNCTEST/REFRESH'.REFRESH - Refresh all data objects
+:XH3.REFRESH - Refresh all data objects
+:P.This options determines if the data objects in the test library are
+rebuilt/refreshed. Se the extedned help for what this does.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SYNCTEST/EMAILTO'.EMAILTO - Email To
+:XH3.EMAILTO - Email To
+:P.Specifies the email address to send the results to.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SRJ/JOBNAME'.JOBNAME - Job Name
+:XH3.JOBNAME - Job Name
+:P.Specifies the name of the job used on the SBMJOB command. This
+can be useful to see if the job is still running.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

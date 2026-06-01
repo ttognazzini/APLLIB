@@ -58,7 +58,7 @@ KEY  A            LIBNME@        1A  P
      A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
      A            PGMNME    R        O  1 70
      A            MDE       R        O  2  2
-     A                                  2 27'Fabricut Library Maintenance'
+     A                                  2 26'Aplication Library Maintenance'
      A                                      COLOR(WHT)
      A                                  2 70USER
      A                                  4  2'Copy Library'

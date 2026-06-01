@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.DCTMSTIDN;
+Create Index APLLIB.DCTMSTIDN on APLLIB.DCTMST (
+  DCTMSTIDN
+);
+
+Label on Index APLLIB.DCTMSTIDN is 'Dictionary Master - Id';

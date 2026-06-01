@@ -1,5 +1,5 @@
 **free
-Ctl-Opt OPTION(*SrcStmt) Dftactgrp(*No) Actgrp(*new) BNDDIR('APLLIB') Main(Main);
+Ctl-Opt OPTION(*SrcStmt:*nounref) Dftactgrp(*No) Actgrp(*new) BNDDIR('APLLIB') Main(Main);
 
 // This program tests the #$CSV procedures
 
@@ -22,7 +22,7 @@ Dcl-Proc Main;
   #$OpenCSV(file);
 
   // ADD HEADER RECORD 1
-  #$CSVChar('Fabricut');
+  #$CSVChar('APLLIB-CVS TEST');
   #$CSVChar(' ');
   #$CSVChar(' ');
   #$CSVChar('#$CSVTS');

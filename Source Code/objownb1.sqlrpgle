@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) Main(Main) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB');
+Ctl-Opt Option(*SrcStmt:*nounref) Main(Main) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB');
 
 // Email list of objects not owned by QPGMR or QSECOFR
 

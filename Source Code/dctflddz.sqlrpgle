@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
 
 // Dictionary Master Filter
 
@@ -100,14 +100,14 @@ Dcl-Proc Prompt;
 
   // Prompt dictionary name
   If CsrFld = 'ACVDES';
-    Callp DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       AcvDes = pmEnmDes;
     EndIf;
 
   // Prompt Enumerated Option
   ElseIf CsrFld = 'FLDENMD';
-    Callp DCTVALDP('APLDCT':'FLDENM':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'FLDENM':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       FldEnmD = pmEnmDes;
     EndIf;
@@ -147,7 +147,7 @@ Dcl-Proc ValidateScreen;
   If AcvDes<>'';
     pmEnmVal='';
     pmEnmDes=AcvDes;
-    Callp(e) DCTVALBP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:pmKeyPressed);
     If AcvDes <> pmEnmDes;
       AcvDes = pmEnmDes;
       error=*on;
@@ -161,7 +161,7 @@ Dcl-Proc ValidateScreen;
   If FldEnmD<>'';
     pmEnmVal='';
     pmEnmDes=FldEnmD;
-    Callp(e) DCTVALBP('APLDCT':'FldEnm':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'FldEnm':pmEnmVal:pmEnmDes:pmKeyPressed);
     If FldEnmD <> pmEnmDes;
       FldEnmD = pmEnmDes;
       error=*on;

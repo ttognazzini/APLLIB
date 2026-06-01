@@ -1,0 +1,106 @@
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A*
+     A                                      HLPTITLE('')
+     A          R SCREEN
+     A                                      CLRL(23)
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A*                                     Start automated help text informatio
+     A          H                           HLPPNLGRP(USRMSTD8 USRMSTP8)
+     A                                      HLPARA(01 001 01 001)
+     A          H                           HLPPNLGRP('ENVIRONMNT' USRMSTP8)
+     A                                      HLPARA(*FLD ENVIRONMNT)
+     A          H                           HLPPNLGRP('PGMNME' USRMSTP8)
+     A                                      HLPARA(*FLD PGMNME)
+     A          H                           HLPPNLGRP('MDE' USRMSTP8)
+     A                                      HLPARA(*FLD MDE)
+     A          H                           HLPPNLGRP('ACNO' USRMSTP8)
+     A                                      HLPARA(*FLD ACNO)
+     A          H                           HLPPNLGRP('USRNME' USRMSTP8)
+     A                                      HLPARA(*FLD USRNME)
+     A          H                           HLPPNLGRP('FST3' USRMSTP8)
+     A                                      HLPARA(*FLD FST3)
+     A          H                           HLPPNLGRP('FNCKEYS' USRMSTP8)
+     A                                      HLPARA(*FLD FNCKEYS)
+     A*                                     End Automated help text information
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FST3@          1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME        10A  O  1 70
+     A            MDE           10A  O  2  2
+     A                                  2 29'User Master Maintenance'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  3 27'Create Developer Environment'
+     A                                      DSPATR(HI)
+     A                                  5  2'User Number'
+     A            ACNO      R        O  5 21REFFLD(ACNO APLDCT)
+     A                                      EDTCDE(Z)
+     A            USRNME    R        O  5 28REFFLD(USRNME APLDCT)
+     A                                  7  2'First 3 Letters'
+     A            FST3      R        B  7 21REFFLD(OPR)
+     A                                      DSPATR(&FST3@)
+     A                                  7 32'First 3 letters of their library --
+     A                                       calls CLP472'
+     A                                  9 32'First 3 letters of their first nam-
+     A                                      e if not used'
+     A                                 10 32'else the first 3 letters of their -
+     A                                      last name if'
+     A                                 11 32'not used. If blanks, manually assi-
+     A                                      gn the first'
+     A                                 12 32'3 letters of their development lib-
+     A                                      rary.'
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      OVERLAY SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // File Fields Filter
 
@@ -97,14 +97,14 @@ Dcl-Proc Prompt;
 
   // Prompt status description
   If CsrFld = 'STSDES';
-    Callp DCTVALDP('APLDCT':'FLDSTS':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'FLDSTS':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       stsDes = pmEnmDes;
     EndIf;
 
     // Prompt Enumerated Option
   ElseIf CsrFld = 'FLDENMD';
-    Callp DCTVALDP('APLDCT':'FLDENM':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'FLDENM':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       FldEnmD = pmEnmDes;
     EndIf;
@@ -143,7 +143,7 @@ Dcl-Proc ValidateScreen;
   If stsDes<>'';
     pmEnmVal='';
     pmEnmDes=stsDes;
-    Callp(e) DCTVALBP('APLDCT':'FLDSTS':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'FLDSTS':pmEnmVal:pmEnmDes:pmKeyPressed);
     If stsDes <> pmEnmDes;
       stsDes = pmEnmDes;
       error=*on;
@@ -157,7 +157,7 @@ Dcl-Proc ValidateScreen;
   If FldEnmD<>'';
     pmEnmVal='';
     pmEnmDes=FldEnmD;
-    Callp(e) DCTVALBP('APLDCT':'FldEnm':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'FldEnm':pmEnmVal:pmEnmDes:pmKeyPressed);
     If FldEnmD <> pmEnmDes;
       FldEnmD = pmEnmDes;
       error=*on;

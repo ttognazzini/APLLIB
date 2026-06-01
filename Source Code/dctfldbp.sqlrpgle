@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
 
 // Dictionary Field Prompt
 // Validate or Prompt Dictionary Field Name
@@ -42,7 +42,7 @@ Dcl-Proc Main;
 
   // if no value is already returned, call the prompt program
   schVal = pmrColTxt;
-  Callp DCTFLDD1(pmrDctNme:pmrFldNme:Option:pmrKeyPressed:schVal);
+  DCTFLDD1(pmrDctNme:pmrFldNme:Option:pmrKeyPressed:schVal);
 
   // if an Id is passed, get the name to return
   If pmrFldNme<>'';

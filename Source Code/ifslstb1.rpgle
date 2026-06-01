@@ -1,5 +1,5 @@
 **free
-Ctl-Opt OPTION(*SrcStmt) DFTACTGRP( *NO ) Main(Main);
+Ctl-Opt OPTION(*SrcStmt:*nounref) DFTACTGRP( *NO ) Main(Main);
 
 // Get A list of files in an IFS folder
 // This is the command processor program for command IFSLST

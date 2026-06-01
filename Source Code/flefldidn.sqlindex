@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.FLEFLDIDN;
+Create Index APLLIB.FLEFLDIDN on APLLIB.FLEFLD (
+  FLEFLDIDN
+);
+
+Label on Index APLLIB.FLEFLDIDN is 'File Fields - Id';

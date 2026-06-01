@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) BndDir('APLLIB/APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) BndDir('APLLIB/APLLIB') Main(Main);
 
 // Test scanning for a string in all files in a library.
 

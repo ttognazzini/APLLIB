@@ -1,0 +1,34 @@
+/* Move source member with search capabilities */
+Pgm Parm(&srcMbr &srcFle &srcLib)
+  /* Input parameters */
+  DCL &SRCMBR   *CHAR LEN(10)
+  DCL &SRCFLE   *CHAR LEN(10)
+  DCL &SRCLIB   *CHAR LEN(10)
+  DCL &SRCTYP   *CHAR LEN(10)
+
+  /* If a library or file is not passed try to find them */
+  Call FSMCMDC1 (&SRCMBR &SRCFLE &SRCLIB)
+
+  RmvMsg Clear(*ALL)
+  MonMsg CPF0000
+
+  If (&srcLib *eq ' ') (Do)
+    SndPgmMsg  Msg('Error source library not provided or found.')
+    Return
+  EndDo
+
+  If (&srcFle *eq ' ') (Do)
+    SndPgmMsg  Msg('Error source file not provided or found.')
+    Return
+  EndDo
+
+  /* make sure the source member is a DSPF */
+  RTVMBRD  FILE(&SRCLIB/&SRCFLE) MBR(&SRCMBR) SRCTYPE(&SRCTYP)
+  If (&srcTyp *NE 'DSPF ') (Do)
+    SndPgmMsg  Msg('Error only DPSF source members can be opened in SDA.')
+    Return
+  EndDo
+
+  STRSDA  OPTION(1) SRCFILE(&SRCLIB/&SRCFLE) SRCMBR(&SRCMBR)
+
+EndPgm

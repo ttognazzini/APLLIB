@@ -1,5 +1,5 @@
 **free
-Ctl-Opt option(*SrcStmt) Main(Main);
+Ctl-Opt option(*SrcStmt:*nounref) Main(Main);
 
 // Get an email Address, processes command GETEML
 

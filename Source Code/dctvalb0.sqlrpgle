@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt debug Option(*SrcStmt:*NoDebugIO) DftActGrp(*No) ActGrp(*Caller) Main(Main);
+Ctl-Opt debug Option(*SrcStmt:*NoDebugIO:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main);
 
 // Dictionary Master Driver
 
@@ -35,7 +35,7 @@ Dcl-Proc Main;
     EndIf;
 
     If NxtScr = 2;
-      CallP(e) DCTVALD2(pmrDctNme:pmrFldNme:pmrEnmVal:Option:keyPressed);
+      DCTVALD2(pmrDctNme:pmrFldNme:pmrEnmVal:Option:keyPressed);
     Else;
       Return;
     EndIf;

@@ -1,6 +1,5 @@
 **FREE
-Ctl-Opt option(*srcstmt) DftActGrp(*No)
-        ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt option(*srcstmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // Output Queue Master Driver
 
@@ -43,7 +42,7 @@ Dcl-Proc Main;
     Exec SQL Select otqNme into :otqNme from OTQMST where OTQMSTIdn = :pmrOTQMSTIdn;
     prt = otqNme;
     If cde = 'N';
-      CallP PRTTGLD1(prt);
+      PRTTGLD1(prt);
     Else;
       #$CMD('WRKOUTQ ' + %trim(prt):1);
     EndIf;
@@ -78,7 +77,7 @@ Dcl-Proc Main;
     Return;
   ElseIf Option = '11'; // View Log
     pmOption='5';
-    CallP AUDLOGD1('APLLIB':'OTQMST':'':pmrOTQMSTIdn:pmOption:keyPressed);
+    AUDLOGD1('APLLIB':'OTQMST':'':pmrOTQMSTIdn:pmOption:keyPressed);
     If keyPressed <> 'F3';
       keyPressed='';
     EndIf;
@@ -91,7 +90,7 @@ Dcl-Proc Main;
   DoW NxtScr > 1 and NxtScr <= LASSCR;
 
     If NxtScr = 2;
-      CallP OTQMSTD2(pmrOTQMSTIdn:Option:keyPressed);
+      OTQMSTD2(pmrOTQMSTIdn:Option:keyPressed);
     Else;
       Leave;
     EndIf;

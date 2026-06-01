@@ -1,0 +1,1795 @@
+     A          R HEADER
+     A                                      BOX( 1.500 0.25 10.75 8.25 *NARROW)
+     A          R FNT1                      SKIPB(8)
+     A                                    54'POINT'
+     A                                       SPACEB(2)
+     A                                     5'DESCRIPTION'
+     A                                       SPACEB(1)
+     A                                    49'FONT'
+     A                                    55'SIZE'
+     A                                    60'CODE FOR FNTCHRSET'
+      *LARGE           42 10 SERIF                (C0D0ST10 T1V10037)
+     A                                     5'SERIF LARGE              '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0GT13 T1V10037)
+     A                                    49'  42'
+     A                                    55'  10'
+     A                                    60'(C0D0ST10 T1V10037)'
+      *NORMAL          70 12 SERIF                (C0D0ST12 T1V10037)
+     A                                     5'SERIF NORMAL            '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0ST12 T1V10037)
+     A                                    49'  70'
+     A                                    55'  12'
+     A                                    60'(C0D0ST12 T1V10037)'
+      *SMALL          229 15 SERIF                (C0D0ST15 T1V10037)
+     A                                     5'SERIF SMALL        229/15'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0ST15 T1V10037)
+     A                                    49' 229'
+     A                                    55'  15'
+     A                                    60'(C0D0ST15 T1V10037)'
+      *             GOTHIC TEXT LATIN1 OUTLINE    (CZ6200   T1V10037)
+     A                                     5'GOTHIC TEXT LATIN1 OUTLINEA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(CZ6200   T1001037)
+     A                                    60'(CZ6200   T1001037)'
+      *             GOTHIC ROMAN BOLD 100 10-PT   (C0D0GB10 T1V10037)
+     A                                     5'GOTHIC ROMAN BOLD 100 10-PT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0GB10 T1001037)
+     A                                    55'  10'
+     A                                    60'(C0D0GB10 T1001037)'
+      *             GOTHIC ROMAN BOLD 90 10-PT    (C0D0GB12 T1V10037)
+     A                                     5'GOTHIC ROMAN BOLD 90 10-PTT'
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GB12 T1001037)
+     A                                    55'  10'
+     A                                    60'(C0D0GB12 T1001037)'
+      *             GOTHIC ROMAN SEMI-CON 70 10   (C0D0GC15 T1V10037)
+     A                                     5'GOTHIC ROMAN SEMI-CON 70 10'
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GC15 T1001037)
+     A                                    55'  10'
+     A                                    60'(C0D0GC15 T1001037)'
+      *             GOTHIC ITALIC 9-PT            (C0D0GI12 T1V10037)
+     A                                     5'GOTHIC ITALIC 9-PT         '
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GI12 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GI12 T1001037)'
+      *             GOTHIC ROMAN SEMI-LIGHT 10-   (C0D0GL10 T1V10037)
+     A                                     5'GOTHIC ROMAN SEMI-LIGHT 10-'
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GL10 T1001037)
+     A                                    55'  10'
+     A                                    60'(C0D0GL10 T1001037)'
+      *             GOTHIC ROMAN SEMI-LIGHT 9-P   (C0D0GL12 T1V10037)
+     A                                     5'GOTHIC ROMAN SEMI-LIGHT 9-P'
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GL12 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GL12 T1001037)'
+      *             GOTHIC ROMAN SEMI-LIGHT 8-P   (C0D0GL15 T1V10037)
+     A                                     5'GOTHIC ROMAN SEMI-LIGHT 8-P'
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GL15 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GL15 T1001037)'
+      *             GOTHIC PROPORTIONAL ROMAN 9   (C0D0GP12 T1V10037)
+     A                                     5'GOTHIC PROPORTIONAL ROMAN 9'
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GP12 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GP12 T1001037)'
+      *             GOTHIC REVERSE ROMAN 10-PT    (C0D0GR10 T1V10037)
+     A                                     5'GOTHIC REVERSE ROMAN 10-PT9'
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GR10 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GR10 T1001037)'
+      *             GOTHIC ROMAN 10-PT            (C0D0GT10 T1V10037)
+     A                                     5'GOTHIC ROMAN 10-PT         '
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GT10 T1001037)
+     A                                    55'  10'
+     A                                    60'(C0D0GT10 T1001037)'
+      *             GOTHIC ROMAN 9-PT             (C0D0GT12 T1V10037)
+     A                                     5'GOTHIC ROMAN 9-PT          '
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GT12 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GT12 T1001037)'
+      *             GOTHIC13 ROMAN 8-PT           (C0D0GT13 T1V10037)
+     A                                     5'GOTHIC13 ROMAN 8-PT        '
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GT13 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GT13 T1001037)'
+      *             GOTHIC ROMAN 8-PT             (C0D0GT15 T1V10037)
+     A                                     5'GOTHIC ROMAN 8-PT          '
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GT15 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GT15 T1001037)'
+      *             GOTHIC ROMAN 6-PT             (C0D0GT18 T1V10037)
+     A                                     5'GOTHIC ROMAN 6-PT          '
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GT18 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GT18 T1001037)'
+      *             GOTHIC ROMAN 5-PT             (C0D0GT20 T1V10037)
+     A                                     5'GOTHIC ROMAN 5-PT          '
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GT20 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GT20 T1001037)'
+      *             GOTHIC ROMAN 4-PT             (C0D0GT24 T1V10037)
+     A                                     5'GOTHIC ROMAN 4-PT          '
+     A                                      SPACEB(1)
+     A                                      FNTCHRSET(C0D0GT24 T1001037)
+     A                                    55'   9'
+     A                                    60'(C0D0GT24 T1001037)'
+      *             ROMAN ROMAN 10-PT             (C0D0RT10 T1V10037)
+     A                                     5'ROMAN ROMAN 10-PT9-PT      '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0RT10 T1001037)
+     A                                    60'(C0D0RT10 T1001037)'
+      *             SERIF ROMAN BOLD 9-PT         (C0D0SB12 T1V10037)
+     A                                     5'SERIF ROMAN BOLD 9-PT      '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0SB12 T1001037)
+     A                                    60'(C0D0SB12 T1001037)'
+      *             SERIF ITALIC 10-PT            (C0D0SI10 T1V10037)
+     A                                     5'SERIF ITALIC 10-PT         '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0SI10 T1001037)
+     A                                    60'(C0D0SI10 T1001037)'
+      *             SERIF ITALIC 9-PT             (C0D0SI12 T1V10037)
+     A                                     5'SERIF ITALIC 9-PTTRUCK 9-PT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0SI12 T1001037)
+     A                                    60'(C0D0SI12 T1001037)'
+      *             SERIF ROMAN OVERSTRUCK 9-PT   (C0D0SO12 T1V10037)
+     A                                     5'SERIF ROMAN OVERSTRUCK 9-PT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0SO12 T1001037)
+     A                                    60'(C0D0SO12 T1001037)'
+      *             SERIF ROMAN 10-PT             (C0D0ST10 T1V10037)
+     A                                     5'SERIF ROMAN 10-PT          '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0ST10 T1001037)
+     A                                    60'(C0D0ST10 T1001037)'
+      *             SERIF ROMAN 9-PT              (C0D0ST12 T1V10037)
+     A                                     5'SERIF ROMAN 9-PT           '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0ST12 T1001037)
+     A                                    60'(C0D0ST12 T1001037)'
+      *             SERIF ROMAN 8-PT              (C0D0ST15 T1V10037)
+     A                                     5'SERIF ROMAN 8-PT           '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0D0ST15 T1001037)
+     A                                    60'(C0D0ST15 T1001037)'
+      *             DUMP ROMAN 8-PT               (C0L0DUMP T1V10037)
+     A                                     5'DUMP ROMAN 8-PT            '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L0DUMP T1001037)
+     A                                    60'(C0L0DUMP T1001037)'
+      *             FORMAT ROMAN 10-PT            (C0L0FM10 T1V10037)
+     A                                     5'FORMAT ROMAN 10-PT         '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L0FM10 T1001037)
+     A                                    60'(C0L0FM10 T1001037)'
+      *             FORMAT ROMAN 9-PT             (C0L0FM12 T1V10037)
+     A                                     5'FORMAT ROMAN 9-PT          '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L0FM12 T1001037)
+     A                                    60'(C0L0FM12 T1001037)'
+      *             FORMAT ROMAN 8-PT             (C0L0FM15 T1V10037)
+     A                                     5'FORMAT ROMAN 8-PT          '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L0FM15 T1001037)
+     A                                    60'(C0L0FM15 T1001037)'
+      *             GOTHIC UPPERCASE ROMAN UNDE   (C0L0GU10 T1V10037)
+      *             GOTHIC UPPERCASE ROMAN UNDE   (C0L0GU12 T1V10037)
+      *             GOTHIC UPPERCASE ROMAN UNDE   (C0L0GU15 T1V10037)
+      *             KATAKANA ROMAN 10-PT          (C0L0KATA T1V10037)
+      *             KATAKANA ROMAN SEMI-LIGHT 1   (C0L0KL10 T1V10037)
+      *             KATAKANA ROMAN SEMI-LIGHT 9   (C0L0KL12 T1V10037)
+      *             KATAKANA ROMAN SEMI-LIGHT 8   (C0L0KL15 T1V10037)
+      *             KATAKANA ROMAN 9-PT           (C0L0KN12 T1V10037)
+      *             KATAKANA ROMAN 8-PT           (C0L0KN15 T1V10037)
+      *             KATAKANA ROMAN 5-PT           (C0L0KN20 T1V10037)
+      *             TEXT ROMAN UNDERSCORED 10-P   (C0L0TU10 T1V10037)
+      *             OCRA AOA ROMAN 10-PT          (C0L00AOA T1V10037)
+      *             OCRA AON ROMAN 10-PT          (C0L00AON T1V10037)
+      *             OCRB BOA ROMAN 10-PT          (C0L00BOA T1V10037)
+      *             OCRB BON ROMAN 10-PT          (C0L00BON T1V10037)
+      *             GOTHIC UPPERCASE ROMAN CON    (C0L00GSC T1V10037)
+     A                                     5'GOTHIC UPPERCASE ROMAN CON '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L00GSC T1001037)
+     A                                    60'(C0L00GSC T1001037)'
+      *             GOTHIC UPPERCASE ROMAN UNDE   (C0L00GUC T1V10037)
+     A                                     5'GOTHIC UPPERCASE ROMAN UNDE'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L00GUC T1001037)
+     A                                    60'(C0L00GUC T1001037)'
+      *             OCRB OAB ROMAN 10-PT          (C0L00OAB T1V10037)
+     A                                     5'OCRB OAB ROMAN 10-PT       '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L00OAB T1001037)
+     A                                    60'(C0L00OAB T1001037)'
+      *             TEXT ROMAN 10-PT              (C0L00T11 T1V10037)
+     A                                     5'TEXT ROMAN 10-PT           '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L00T11 T1001037)
+     A                                    60'(C0L00T11 T1001037)'
+      *             OCRA AOA1 ROMAN 10-PT         (C0L01AOA T1V10037)
+     A                                     5'OCRA AOA1 ROMAN 10-PT      '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L01AOA T1001037)
+     A                                    60'(C0L01AOA T1001037)'
+      *             OCRA AON1 ROMAN 10-PT         (C0L01AON T1V10037)
+     A                                     5'OCRA AON1 ROMAN 10-PT      '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0L01AON T1001037)
+     A                                    60'(C0L01AON T1001037)'
+      *             APL ROMAN 10-PT               (C0S0AE10 T1V10037)
+     A*                                    5'APL ROMAN 10-PT            '
+     A*                                      SPACEB(1)
+     A*                                     FNTCHRSET(C0S0AE10 T1001037)
+     A*                                   60'(C0S0AE10 T1001037)'
+      *             APL ROMAN 5-PT                (C0S0AE20 T1V10037)
+     A                                     5'APL ROMAN 5-PT             '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0AE20 T1001037)
+     A                                    60'(C0S0AE20 T1001037)'
+     A          R FNT2                      SKIPB(8)
+     A                                    54'POINT'
+     A                                       SPACEB(2)
+     A                                     5'DESCRIPTION'
+     A                                       SPACEB(1)
+     A                                    49'FONT'
+     A                                    55'SIZE'
+     A                                    60'CODE FOR FNTCHRSET'
+      *             BOOK ITALIC BOLD 10-PT        (C0S0BITR T1V10037)
+     A                                     5'BOOK ITALIC BOLD 10-PT     '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0BITR T1001037)
+     A                                    60'(C0S0BITR T1001037)'
+      *             BOOK ROMAN BOLD 10-PT         (C0S0BRTR T1V10037)
+     A                                     5'BOOK ROMAN BOLD 10-PT      '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0BRTR T1001037)
+     A                                    60'(C0S0BRTR T1001037)'
+      *             COURIER ROMAN BOLD 10-PT      (C0S0CB10 T1V10037)
+     A                                     5'COURIER ROMAN BOLD 10-PT   '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CB10 T1001037)
+     A                                    60'(C0S0CB10 T1001037)'
+      *             COURIER ROMAN BOLD 9-PT       (C0S0CB12 T1V10037)
+     A                                     5'COURIER ROMAN BOLD 9-PT    '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CB12 T1001037)
+     A                                    60'(C0S0CB12 T1001037)'
+      *             COURIER ROMAN BOLD 8-PT       (C0S0CB15 T1V10037)
+     A                                     5'COURIER ROMAN BOLD 8-PT    '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CB15 T1001037)
+     A                                    60'(C0S0CB15 T1001037)'
+      *             COURIER ROMAN ULTRA-EXP 8-P   (C0S0CD15 T1V10037)
+     A                                     5'COURIER ROMAN ULTRA-EXP 8-P'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CD15 T1001037)
+     A                                    60'(C0S0CD15 T1001037)'
+      *             COURIER EXTENDED ROMAN 10-P   (C0S0CE10 T1V10037)
+     A                                     5'COURIER EXTENDED ROMAN 10-P'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CE10 T1001037)
+     A                                    60'(C0S0CE10 T1001037)'
+      *             COURIER ROMAN 9-PT            (C0S0CE12 T1V10037)
+     A                                     5'COURIER ROMAN 9-PT         '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CE12 T1001037)
+     A                                    60'(C0S0CE12 T1001037)'
+      *             COURIER OVERSTRIKE ROMAN OV   (C0S0CH10 T1V10037)
+     A                                     5'COURIER OVERSTRIKE ROMAN OV'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CH10 T1001037)
+     A                                    60'(C0S0CH10 T1001037)'
+      *             COURIER ITALIC 10-PT          (C0S0CI10 T1V10037)
+     A                                     5'COURIER ITALIC 10-PT       '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CI10 T1001037)
+     A                                    60'(C0S0CI10 T1001037)'
+      *             COURIER ITALIC 9-PT           (C0S0CI12 T1V10037)
+     A                                     5'COURIER ITALIC 9-PT        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CI12 T1001037)
+     A                                    60'(C0S0CI12 T1001037)'
+      *             COURIER ITALIC 8-PT           (C0S0CI15 T1V10037)
+     A                                     5'COURIER ITALIC 8-PT        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CI15 T1001037)
+     A                                    60'(C0S0CI15 T1001037)'
+      *             COURIER ROMAN OVERSTRUCK 10   (C0S0CO10 T1V10037)
+     A                                     5'COURIER ROMAN OVERSTRUCK 10'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CO10 T1001037)
+     A                                    60'(C0S0CO10 T1001037)'
+      *             COURIER ROMAN 10-PT           (C0S0CR10 T1V10037)
+     A                                     5'COURIER ROMAN 10-PTT       '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CR10 T1001037)
+     A                                    60'(C0S0CR10 T1001037)'
+      *             COURIER12 ROMAN 9-PT          (C0S0CR12 T1V10037)
+     A                                     5'COURIER12 ROMAN 9-PT       '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CR12 T1001037)
+     A                                    60'(C0S0CR12 T1001037)'
+      *             COURIER ROMAN 8-PT            (C0S0CR15 T1V10037)
+     A                                     5'COURIER ROMAN 8-PT         '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CR15 T1001037)
+     A                                    60'(C0S0CR15 T1001037)'
+      *             COURIER ITALIC ULTRA-EXP 8-   (C0S0CW15 T1V10037)
+     A                                     5'COURIER ITALIC ULTRA-EXP 8-'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0CW15 T1001037)
+     A                                    60'(C0S0CW15 T1001037)'
+      *             BOOK ROMAN 10-PT              (C0S0DOTR T1V10037)
+     A                                     5'BOOK ROMAN 10-PT           '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0DOTR T1001037)
+     A                                    60'(C0S0DOTR T1001037)'
+      *             ESSAY ROMAN BOLD 10-PT        (C0S0EBTR T1V10037)
+     A                                     5'ESSAY ROMAN BOLD 10-PT     '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0EBTR T1001037)
+     A                                    60'(C0S0EBTR T1001037)'
+      *             ESSAY ITALIC 10-PT            (C0S0EITR T1V10037)
+     A                                     5'ESSAY ITALIC 10-PT        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0EITR T1001037)
+     A                                    60'(C0S0EITR T1001037)'
+      *             ESSAY ROMAN LIGHT 10-PT       (C0S0ELTR T1V10037)
+     A                                     5'ESSAY ROMAN LIGHT 10-PT    '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0ELTR T1001037)
+     A                                    60'(C0S0ELTR T1001037)'
+      *             ESSAY ROMAN OVERSTRUCK 10-P   (C0S0EOTR T1V10037)
+     A                                     5'ESSAY ROMAN OVERSTRUCK 10-P'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0EOTR T1001037)
+     A                                    60'(C0S0EOTR T1001037)'
+      *             ESSAY ROMAN 10-PT             (C0S0ESTR T1V10037)
+     A                                     5'ESSAY ROMAN 10-PT          '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0ESTR T1001037)
+     A                                    60'(C0S0ESTR T1001037)'
+      *             LETTER GOTHIC ROMAN BOLD 9-   (C0S0LB12 T1V10037)
+     A                                     5'LETTER GOTHIC ROMAN BOLD 9-'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0LB12 T1001037)
+     A                                    60'(C0S0LB12 T1001037)'
+      *             LETTER GOTHIC ROMAN 9-PT      (C0S0LR12 T1V10037)
+     A                                     5'LETTER GOTHIC ROMAN 9-PT   '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0LR12 T1001037)
+     A                                    60'(C0S0LR12 T1001037)'
+      *             ORATOR ROMAN BOLD 10-PT       (C0S0OB10 T1V10037)
+     A                                     5'ORATOR ROMAN BOLD 10-PT    '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0OB10 T1001037)
+     A                                    60'(C0S0OB10 T1001037)'
+      *             ORATOR ROMAN 10-PT            (C0S0OR10 T1V10037)
+     A                                     5'ORATOR ROMAN 10-PT         '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0OR10 T1001037)
+     A                                    60'(C0S0OR10 T1001037)'
+      *             PRESTIGE ROMAN BOLD 9-PT      (C0S0PB12 T1V10037)
+     A                                     5'PRESTIGE ROMAN BOLD 9-PT   '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0PB12 T1001037)
+     A                                    60'(C0S0PB12 T1001037)'
+      *             PRESTIGE ITALIC 9-PT          (C0S0PI12 T1V10037)
+     A                                     5'PRESTIGE ITALIC 9-PT       '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0PI12 T1001037)
+     A                                    60'(C0S0PI12 T1001037)'
+      *             PRESTIGE ROMAN 10-PT          (C0S0PR10 T1V10037)
+     A                                     5'PRESTIGE ROMAN 10-PT       '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0PR10 T1001037)
+     A                                    60'(C0S0PR10 T1001037)'
+      *             PRESTIGE ROMAN 9-PT           (C0S0PR12 T1V10037)
+     A                                     5'PRESTIGE ROMAN 9-PT        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0PR12 T1001037)
+     A                                    60'(C0S0PR12 T1001037)'
+      *             SCRIPT ROMAN 9-PT             (C0S0SR12 T1V10037)
+     A                                     5'SCRIPT ROMAN 9-PT          '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0SR12 T1001037)
+     A                                    60'(C0S0SR12 T1001037)'
+      *             SYMBOLS7 ROMAN 10-PT          (C0S0SYM0 T1V10037)
+     A                                     5'SYMBOLS7 ROMAN 10-PTPT     '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0SYM0 T1001037)
+     A                                    60'(C0S0SYM0 T1001037)'
+      *             SYMBOLS7 ROMAN 12-PT          (C0S0SYM2 T1V10037)
+     A                                     5'SYMBOLS7 ROMAN 12-PTPT     '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0SYM2 T1001037)
+     A                                    60'(C0S0SYM2 T1001037)'
+      *             SYMBOLS OS6 ROMAN 9-PT        (C0S0S192 T1V10037)
+     A                                     5'SYMBOLS OS6 ROMAN 9-PT     '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0S192 T1001037)
+     A                                    60'(C0S0S192 T1001037)'
+      *             SYMBOLS ROMAN 9-PT            (C0S0S193 T1V10037)
+     A                                     5'SYMBOLS ROMAN 9-PT        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0S193 T1001037)
+     A                                    60'(C0S0S193 T1001037)'
+      *             SYMBOLS ROMAN 10-PT           (C0S0S198 T1V10037)
+     A                                     5'SYMBOLS ROMAN 10-PT       '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0S0S198 T1001037)
+     A                                    60'(C0S0S198 T1001037)'
+     A          R FNT3                      SKIPB(8)
+     A                                    54'POINT'
+     A                                       SPACEB(2)
+     A                                     5'DESCRIPTION'
+     A                                       SPACEB(1)
+     A                                    49'FONT'
+     A                                    55'SIZE'
+     A                                    60'CODE FOR FNTCHRSET'
+      *             PROPTR EMUL 18 PT ROMAN ULT   (C02051H0 T1V10037)
+     A                                     5'PROPTR EMUL 18 PT ROMAN ULT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02051H0 T1001037)
+     A                                    60'(C02051H0 T1001037)'
+      *             PROPTR EMUL 10 CPI DBHI ROM   (C02051K0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI DBHI ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02051K0 T1001037)
+     A                                    60'(C02051K0 T1001037)'
+      *             PROPTR EMUL 17.1 CPI SMALL    (C02051R0 T1V10037)
+     A                                     5'PROPTR EMUL 17.1 CPI SMALL '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02051R0 T1001037)
+     A                                    60'(C02051R0 T1001037)'
+      *             PROPTR EMUL 12 CPI SMALL RO   (C02054Q0 T1V10037)
+     A                                     5'PROPTR EMUL 12 CPI SMALL RO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02054Q0 T1001037)
+     A                                    60'(C02054Q0 T1001037)'
+      *             PROPTR EMUL 10 CPI ROMAN 9-   (C02055D0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI ROMAN 9-'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055D0 T1001037)
+     A                                    60'(C02055D0 T1001037)'
+      *             PROPTR EMUL 12 CPI ROMAN 9-   (C02055E0 T1V10037)
+     A                                     5'PROPTR EMUL 12 CPI ROMAN 9-'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055E0 T1001037)
+     A                                    60'(C02055E0 T1001037)'
+      *             PROPTR EMUL 17.1 CPI ROMAN    (C02055F0 T1V10037)
+     A                                     5'PROPTR EMUL 17.1 CPI ROMAN '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055F0 T1001037)
+     A                                    60'(C02055F0 T1001037)'
+      *             PROPTR EMUL 9 PT ROMAN 9-PT   (C02055G0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT ROMAN 9-PT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055G0 T1001037)
+     A                                    60'(C02055G0 T1001037)'
+      *             PROPTR EMUL 18 PT ROMAN 18-   (C02055H0 T1V10037)
+     A                                     5'PROPTR EMUL 18 PT ROMAN 18-'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055H0 T1001037)
+     A                                    60'(C02055H0 T1001037)'
+      *             PROPTR EMUL 5 CPI DBHI ROMA   (C02055J0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI DBHI ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055J0 T1001037)
+     A                                    60'(C02055J0 T1001037)'
+      *             PROPTR EMUL 10 CPI SMALL RO   (C02055P0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI SMALL RO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055P0 T1001037)
+     A                                    60'(C02055P0 T1001037)'
+      *             PROPTR EMUL 9 PT SMALL ROMA   (C02055S0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT SMALL ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055S0 T1001037)
+     A                                    60'(C02055S0 T1001037)'
+      *             PROPTR EMUL 8.55 CPI SMALL    (C02056N0 T1V10037)
+     A                                     5'PROPTR EMUL 8.55 CPI SMALL '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02056N0 T1001037)
+     A                                    60'(C02056N0 T1001037)'
+      *             PROPTR EMUL 9 PT SMALL ROMA   (C02057S0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT SMALL ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02057S0 T1001037)
+     A                                    60'(C02057S0 T1001037)'
+      *             PROPTR EMUL 6 CPI SMALL ROM   (C02058M0 T1V10037)
+     A                                     5'PROPTR EMUL 6 CPI SMALL ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02058M0 T1001037)
+     A                                    60'(C02058M0 T1001037)'
+      *             PROPTR EMUL 5 CPI ROMAN ULT   (C02059A0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI ROMAN ULT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059A0 T1001037)
+     A                                    60'(C02059A0 T1001037)'
+      *             PROPTR EMUL 6 CPI ROMAN ULT (C02059B0 T1V10037)
+     A                                     5'PROPTR EMUL 6 CPI ROMAN ULT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059B0 T1001037)
+     A                                    60'(C02059B0 T1001037)'
+      *             PROPTR EMUL 8.55 CPI ROMAN  (C02059C0 T1V10037)
+     A                                     5'PROPTR EMUL 8.55 CPI ROMAN '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059C0 T1001037)
+     A                                    60'(C02059C0 T1001037)'
+      *             PROPTR EMUL 9 PT ROMAN ULTR (C02059G0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT ROMAN ULTR'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059G0 T1001037)
+     A                                    60'(C02059G0 T1001037)'
+      *             PROPTR EMUL 5 CPI SMALL ROM (C02059L0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI SMALL ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059L0 T1001037)
+     A                                    60'(C02059L0 T1001037)'
+      *             PROPTR EMUL 18 PT ROMAN BOL (C02071H0 T1V10037)
+     A                                     5'PROPTR EMUL 18 PT ROMAN BOL'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02071H0 T1001037)
+     A                                    60'(C02071H0 T1001037)'
+      *             PROPTR EMUL 10 CPI DBHI ROM (C02071K0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI DBHI ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02071K0 T1001037)
+     A                                    60'(C02071K0 T1001037)'
+      *             PROPTR EMUL 12 CPI SMALL RO (C02074Q0 T1V10037)
+     A                                     5'PROPTR EMUL 12 CPI SMALL RO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02074Q0 T1001037)
+     A                                    60'(C02074Q0 T1001037)'
+      *             PROPTR EMUL 10 CPI ROMAN BO (C02075D0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI ROMAN BO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075D0 T1001037)
+     A                                    60'(C02075D0 T1001037)'
+      *             PROPTR EMUL 12 CPI ROMAN BO (C02075E0 T1V10037)
+     A                                     5'PROPTR EMUL 12 CPI ROMAN BO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075E0 T1001037)
+     A                                    60'(C02075E0 T1001037)'
+      *             PROPTR EMUL 9 PT ROMAN BOLD (C02075G0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT ROMAN BOLD'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075G0 T1001037)
+     A                                    60'(C02075G0 T1001037)'
+      *             PROPTR EMUL 18 PT ROMAN BOL (C02075H0 T1V10037)
+     A                                     5'PROPTR EMUL 18 PT ROMAN BOL'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075H0 T1001037)
+     A                                    60'(C02075H0 T1001037)'
+      *             PROPTR EMUL 5 CPI DBHI ROMA (C02075J0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI DBHI ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075J0 T1001037)
+     A                                    60'(C02075J0 T1001037)'
+      *             PROPTR EMUL 10 CPI SMALL RO (C02075P0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI SMALL RO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075P0 T1001037)
+     A                                    60'(C02075P0 T1001037)'
+      *             PROPTR EMUL 9 PT SMALL ROMA (C02075S0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT SMALL ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075S0 T1001037)
+     A                                    60'(C02075S0 T1001037)'
+      *             PROPTR EMUL 9 PT SMALL ROMA (C02077S0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT SMALL ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02077S0 T1001037)
+     A                                    60'(C02077S0 T1001037)'
+      *PROPTR EMUL 6 CPI SMALL ROM                (C02078M0 T1V10037)
+     A                                     5'PROPTR EMUL 6 CPI SMALL ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02078M0 T1001037)
+     A                                    60'(C02078M0 T1001037)'
+      *PROPTR EMUL 5 CPI ROMAN BOL                (C02079A0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI ROMAN BOL'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02079A0 T1001037)
+     A                                    60'(C02079A0 T1001037)'
+      *PROPTR EMUL 6 CPI ROMAN BOL                (C02079B0 T1V10037)
+     A                                     5'PROPTR EMUL 6 CPI ROMAN BOL'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02079B0 T1001037)
+     A                                    60'(C02079B0 T1001037)'
+      *PROPTR EMUL 9 PT ROMAN BOLD                (C02079G0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT ROMAN BOLD'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02079G0 T1001037)
+     A                                    60'(C02079G0 T1001037)'
+      *PROPTR EMUL 5 CPI SMALL ROM                (C02079L0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI SMALL ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02079L0 T1001037)
+     A                                    60'(C02079L0 T1001037)'
+      *MICR ACMC 300DPI                           (C0R0ACMC T1001033)
+     A                                     5'MICR ACMC 300DPI EUROPEAN'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0ACMC T1001033)
+     A                                    60'(C0R0ACMC T1001033)'
+      *MICR E-138 240DPI                          (C0R0AE13 T1001032)
+     A                                     5'MICR E-13B 240DPI        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0AE13 T1001032)
+     A                                    60'(C0R0AE13 T1001032)'
+      *MICR E-138 300DPI                          (C0R0AE14 T1001032)
+     A                                     5'MICR E-13B 300DPI        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0AE14 T1001032)
+     A                                    60'(C0R0AE14 T1001032)'
+      *MICR TEST 240DPI                           (C0R0AT13 T1001032)
+     A                                     5'MICR E-13B 240DPI TEST   '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0AT13 T1001032)
+     A                                    60'(C0R0AT13 T1001032)'
+      * MICR TEST 300DPI                          (C0R0AT14 T1001032)
+     A                                     5'MICR E-13B 300DPI TEST   '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0AT14 T1001032)
+     A                                    60'(C0R0AT14 T1001032)'
+      * BARCODE CODE128 TEST                      (C0R0AT14 T1001032)
+     A                                     5'BARCODE CODE 128 TEST   '
+     A                                       SPACEB(1)
+     A                                     5'BARCODE'
+     A                                       BARCODE(CODE128)
+     A          R CDE1                      SKIPB(7)
+     A                                     1'FONT'
+     A                                       SPACEB(2)
+     A                                     7'EXAMPLE'
+     A                                    27'FONT'
+     A                                    34'EXAMPLE'
+     A                                    54'FONT'
+     A                                    61'EXAMPLE'
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'2    '
+     A                                     7'ABC abc 123'
+     A                                      FONT(    2 (*POINTSIZE 10))
+     A                                    27'3    '
+     A                                    34'ABC abc 123'
+     A                                      FONT(3     (*POINTSIZE 10))
+     A                                    54'5    '
+     A                                    61'ABC abc 123'
+     A                                      FONT(5     (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'8    '
+     A                                     7'ABC abc 123'
+     A                                      FONT(8     (*POINTSIZE 10))
+     A                                    27'10   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(10    (*POINTSIZE 10))
+     A                                    54'11   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(11    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'12   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(12    (*POINTSIZE 10))
+     A                                    27'13   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(13    (*POINTSIZE 10))
+     A                                    54'18   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(19    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'19   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(19    (*POINTSIZE 10))
+     A                                    27'20   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(20    (*POINTSIZE 10))
+     A                                    54'21   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(21    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'25   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(25    (*POINTSIZE 10))
+     A                                    27'26   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(26    (*POINTSIZE 10))
+     A                                    54'30   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(30    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'31   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(31    (*POINTSIZE 10))
+     A                                    27'36   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(36    (*POINTSIZE 10))
+     A                                    54'38   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(38    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'39   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(39    (*POINTSIZE 10))
+     A                                    27'40   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(40    (*POINTSIZE 10))
+     A                                    54'41   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(41    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'42   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(42    (*POINTSIZE 10))
+     A                                    27'43   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(43    (*POINTSIZE 10))
+     A                                    54'44   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(44    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'46   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(46    (*POINTSIZE 10))
+     A                                    27'49   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(49    (*POINTSIZE 10))
+     A                                    54'50   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(50    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'51   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(51    (*POINTSIZE 10))
+     A                                    27'52   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(52    (*POINTSIZE 10))
+     A                                    54'55   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(55    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'61   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(61    (*POINTSIZE 10))
+     A                                    27'62   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(62    (*POINTSIZE 10))
+     A                                    54'63   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(63    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'64   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(64    (*POINTSIZE 10))
+     A                                    27'66   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(66    (*POINTSIZE 10))
+     A                                    54'68   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(68    (*POINTSIZE 10))
+      ************
+     A          R CDE2                      SKIPB(7)
+     A                                     1'FONT'
+     A                                       SPACEB(2)
+     A                                     7'EXAMPLE'
+     A                                    27'FONT'
+     A                                    34'EXAMPLE'
+     A                                    54'FONT'
+     A                                    61'EXAMPLE'
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'69   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(69    (*POINTSIZE 10))
+     A                                    27'70   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(70    (*POINTSIZE 10))
+     A                                    54'71   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(71    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'74   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(74    (*POINTSIZE 10))
+     A                                    27'75   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(75    (*POINTSIZE 10))
+     A                                    54'76   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(76    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'78   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(78    (*POINTSIZE 10))
+     A                                    27'80   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(80    (*POINTSIZE 10))
+     A                                    54'84   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(84    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'85   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(85    (*POINTSIZE 10))
+     A                                    27'86   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(86    (*POINTSIZE 10))
+     A                                    54'87   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(87    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'91   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(91    (*POINTSIZE 10))
+     A                                    27'92   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(92    (*POINTSIZE 10))
+     A                                    54'95   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(95    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'96   '
+     A                                     7'ABC abc 123'
+     A                                      FONT(96    (*POINTSIZE 10))
+     A                                    27'98   '
+     A                                    34'ABC abc 123'
+     A                                      FONT(98    (*POINTSIZE 10))
+     A                                    54'99   '
+     A                                    61'ABC abc 123'
+     A                                      FONT(99    (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'101  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(101   (*POINTSIZE 10))
+     A                                    27'102  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(102   (*POINTSIZE 10))
+     A                                    54'103  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(103   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'109  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(109   (*POINTSIZE 10))
+     A                                    27'110  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(110   (*POINTSIZE 10))
+     A                                    54'111  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(111   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'112  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(112   (*POINTSIZE 10))
+     A                                    27'154  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(154   (*POINTSIZE 10))
+     A                                    54'155  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(155   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'157  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(157   (*POINTSIZE 10))
+     A                                    27'158  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(158   (*POINTSIZE 10))
+     A                                    54'159  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(159   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'160  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(160   (*POINTSIZE 10))
+     A                                    27'162  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(162   (*POINTSIZE 10))
+     A                                    54'163  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(163   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'164  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(164   (*POINTSIZE 10))
+     A                                    27'167  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(167   (*POINTSIZE 10))
+     A                                    54'168  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(168   (*POINTSIZE 10))
+      ************
+     A          R CDE3                      SKIPB(7)
+     A                                     1'FONT'
+     A                                       SPACEB(2)
+     A                                     7'EXAMPLE'
+     A                                    27'FONT'
+     A                                    34'EXAMPLE'
+     A                                    54'FONT'
+     A                                    61'EXAMPLE'
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'173  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(173   (*POINTSIZE 10))
+     A                                    27'174  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(174   (*POINTSIZE 10))
+     A                                    54'175  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(175   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'178  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(178   (*POINTSIZE 10))
+     A                                    27'179  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(179   (*POINTSIZE 10))
+     A                                    54'180  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(180   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'181  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(181   (*POINTSIZE 10))
+     A                                    27'182  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(182   (*POINTSIZE 10))
+     A                                    54'183  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(183   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'186  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(186   (*POINTSIZE 10))
+     A                                    27'187  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(187   (*POINTSIZE 10))
+     A                                    54'188  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(188   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'189  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(189   (*POINTSIZE 10))
+     A                                    27'190  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(190   (*POINTSIZE 10))
+     A                                    54'191  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(191   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'194  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(194   (*POINTSIZE 10))
+     A                                    27'195  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(195   (*POINTSIZE 10))
+     A                                    54'204  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(204   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'205  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(205   (*POINTSIZE 10))
+     A                                    27'211  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(211   (*POINTSIZE 10))
+     A                                    54'212  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(212   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'221  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(221   (*POINTSIZE 10))
+     A                                    27'222  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(222   (*POINTSIZE 10))
+     A                                    54'223  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(223   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'225  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(225   (*POINTSIZE 10))
+     A                                    27'226  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(226   (*POINTSIZE 10))
+     A                                    54'229  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(229   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'230  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(230   (*POINTSIZE 10))
+     A                                    27'232  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(232   (*POINTSIZE 10))
+     A                                    54'233  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(233   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'234  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(234   (*POINTSIZE 10))
+     A                                    27'244  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(244   (*POINTSIZE 10))
+     A                                    54'245  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(245   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'247  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(247   (*POINTSIZE 10))
+     A                                    27'248  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(248   (*POINTSIZE 10))
+     A                                    54'249  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(249   (*POINTSIZE 10))
+      ************
+     A          R CDE4                      SKIPB(7)
+     A                                     1'FONT'
+     A                                       SPACEB(2)
+     A                                     7'EXAMPLE'
+     A                                    27'FONT'
+     A                                    34'EXAMPLE'
+     A                                    54'FONT'
+     A                                    61'EXAMPLE'
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'252  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(252   (*POINTSIZE 10))
+     A                                    27'253  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(253   (*POINTSIZE 10))
+     A                                    54'254  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(254   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'255  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(255   (*POINTSIZE 10))
+     A                                    27'256  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(256   (*POINTSIZE 10))
+     A                                    54'258  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(258   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'259  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(259   (*POINTSIZE 10))
+     A                                    27'279  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(279   (*POINTSIZE 10))
+     A                                    54'281  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(281   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'282  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(282   (*POINTSIZE 10))
+     A                                    27'285  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(285   (*POINTSIZE 10))
+     A                                    54'290  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(290   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'300  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(300   (*POINTSIZE 10))
+     A                                    27'304  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(304   (*POINTSIZE 10))
+     A                                    54'305  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(305   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'306  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(306   (*POINTSIZE 10))
+     A                                    27'307  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(307   (*POINTSIZE 10))
+     A                                    54'318  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(318   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'319  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(319   (*POINTSIZE 10))
+     A                                    27'400  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(400   (*POINTSIZE 10))
+     A                                    54'404  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(404   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'416  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(416   (*POINTSIZE 10))
+     A                                    27'420  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(420   (*POINTSIZE 10))
+     A                                    54'424  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(424   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'428  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(428   (*POINTSIZE 10))
+     A                                    27'432  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(432   (*POINTSIZE 10))
+     A                                    54'434  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(434   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'435  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(435   (*POINTSIZE 10))
+     A                                    27'751  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(751   (*POINTSIZE 10))
+     A                                    54'752  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(752   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'753  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(753   (*POINTSIZE 10))
+     A                                    27'754  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(754   (*POINTSIZE 10))
+     A                                    54'755  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(755   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'754  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(754   (*POINTSIZE 10))
+     A                                    27'755  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(755   (*POINTSIZE 10))
+     A                                    54'756  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(756   (*POINTSIZE 10))
+      ************
+     A          R CDE5                      SKIPB(7)
+     A                                     1'FONT'
+     A                                       SPACEB(2)
+     A                                     7'EXAMPLE'
+     A                                    27'FONT'
+     A                                    34'EXAMPLE'
+     A                                    54'FONT'
+     A                                    61'EXAMPLE'
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'757  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(757   (*POINTSIZE 10))
+     A                                    27'758  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(758   (*POINTSIZE 10))
+     A                                    54'759  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(759   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'760  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(760   (*POINTSIZE 10))
+     A                                    27'761  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(761   (*POINTSIZE 10))
+     A                                    54'762  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(762   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'763  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(763   (*POINTSIZE 10))
+     A                                    27'764  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(764   (*POINTSIZE 10))
+     A                                    54'765  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(765   (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'1051 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(1051  (*POINTSIZE 10))
+     A                                    27'1053 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(1053  (*POINTSIZE 10))
+     A                                    54'1056 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(1056  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'1351 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(1351  (*POINTSIZE 10))
+     A                                    27'1653 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(1653  (*POINTSIZE 10))
+     A                                    54'1803 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(1803  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'2103 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(2103  (*POINTSIZE 10))
+     A                                    27'2304 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(2304  (*POINTSIZE 10))
+     A                                    54'2305 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(2305  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'2306 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(2306  (*POINTSIZE 10))
+     A                                    27'2307 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(2307  (*POINTSIZE 10))
+     A                                    54'2308 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(2308  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'2309 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(2309  (*POINTSIZE 10))
+     A                                    27'2310 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(2310  (*POINTSIZE 10))
+     A                                    54'2311 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(2311  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'4407 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(4407  (*POINTSIZE 10))
+     A                                    27'4427 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(4427  (*POINTSIZE 10))
+     A                                    54'4535 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(4535  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'4919 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(4919  (*POINTSIZE 10))
+     A                                    27'4939 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(4939  (*POINTSIZE 10))
+     A                                    54'5047 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(5047  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'5067 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(5067  (*POINTSIZE 10))
+     A                                    27'5687 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(5687  (*POINTSIZE 10))
+     A                                    54'5707 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(5707  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'5815 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(5815  (*POINTSIZE 10))
+     A                                    27'5835 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(5835  (*POINTSIZE 10))
+     A                                    54'5943 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(5943  (*POINTSIZE 10))
+      ************
+     A          R CDE6                      SKIPB(7)
+     A                                     1'FONT'
+     A                                       SPACEB(2)
+     A                                     7'EXAMPLE'
+     A                                    27'FONT'
+     A                                    34'EXAMPLE'
+     A                                    54'FONT'
+     A                                    61'EXAMPLE'
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'6199 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(6199  (*POINTSIZE 10))
+     A                                    27'6219 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(6219  (*POINTSIZE 10))
+     A                                    54'6327 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(6327  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'6347 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(6347  (*POINTSIZE 10))
+     A                                    27'8503 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(8503  (*POINTSIZE 10))
+     A                                    54'8523 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(8523  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'8631 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(8631  (*POINTSIZE 10))
+     A                                    27'8651 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(8651  (*POINTSIZE 10))
+     A                                    54'8759 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(8759  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'8779 '
+     A                                     7'ABC abc 123'
+     A                                      FONT(8779  (*POINTSIZE 10))
+     A                                    27'8887 '
+     A                                    34'ABC abc 123'
+     A                                      FONT(8887  (*POINTSIZE 10))
+     A                                    54'8907 '
+     A                                    61'ABC abc 123'
+     A                                      FONT(8907  (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'12855'
+     A                                     7'ABC abc 123'
+     A                                      FONT(12855 (*POINTSIZE 10))
+     A                                    27'12875'
+     A                                    34'ABC abc 123'
+     A                                      FONT(12875 (*POINTSIZE 10))
+     A                                    54'16951'
+     A                                    61'ABC abc 123'
+     A                                      FONT(16951 (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'16971'
+     A                                     7'ABC abc 123'
+     A                                      FONT(16971 (*POINTSIZE 10))
+     A                                    27'17079'
+     A                                    34'ABC abc 123'
+     A                                      FONT(17079 (*POINTSIZE 10))
+     A                                    54'17099'
+     A                                    61'ABC abc 123'
+     A                                      FONT(17099 (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'33335'
+     A                                     7'ABC abc 123'
+     A                                      FONT(33335 (*POINTSIZE 10))
+     A                                    27'33355'
+     A                                    34'ABC abc 123'
+     A                                      FONT(33355 (*POINTSIZE 10))
+     A                                    54'33463'
+     A                                    61'ABC abc 123'
+     A                                      FONT(33463 (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'33483'
+     A                                     7'ABC abc 123'
+     A                                      FONT(33483 (*POINTSIZE 10))
+     A                                    27'33591'
+     A                                    34'ABC abc 123'
+     A                                      FONT(33591 (*POINTSIZE 10))
+     A                                    54'33601'
+     A                                    61'ABC abc 123'
+     A                                      FONT(33601 (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'33719'
+     A                                     7'ABC abc 123'
+     A                                      FONT(33719 (*POINTSIZE 10))
+     A                                    27'33729'
+     A                                    34'ABC abc 123'
+     A                                      FONT(33729 (*POINTSIZE 10))
+     A                                    54'34103'
+     A                                    61'ABC abc 123'
+     A                                      FONT(34103 (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'34123'
+     A                                     7'ABC abc 123'
+     A                                      FONT(34123 (*POINTSIZE 10))
+     A                                    27'34231'
+     A                                    34'ABC abc 123'
+     A                                      FONT(34231 (*POINTSIZE 10))
+     A                                    54'34251'
+     A                                    61'ABC abc 123'
+     A                                      FONT(34251 (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'37431'
+     A                                     7'ABC abc 123'
+     A                                      FONT(37431 (*POINTSIZE 10))
+     A                                    27'41783'
+     A                                    34'ABC abc 123'
+     A                                      FONT(41783 (*POINTSIZE 10))
+     A                                    54'41803'
+     A                                    61'ABC abc 123'
+     A                                      FONT(41803 (*POINTSIZE 10))
+      ************
+     A                                     1' '
+     A                                       SPACEB(2)
+     A                                     1'001  '
+     A                                     7'ABC abc 123'
+     A                                      FONT(001   (*POINTSIZE 10))
+     A                                    27'002  '
+     A                                    34'ABC abc 123'
+     A                                      FONT(002   (*POINTSIZE 10))
+     A                                    54'003  '
+     A                                    61'ABC abc 123'
+     A                                      FONT(003   (*POINTSIZE 10))
+      ************
+     A          R CLR1                      SKIPB(8)
+     A                                    54'POINT'
+     A                                       SPACEB(2)
+     A                                     5'DESCRIPTION'
+     A                                       SPACEB(1)
+     A                                    49'FONT'
+     A                                    55'SIZE'
+     A                                    60'CODE FOR FNTCHRSET'
+      *             PROPTR EMUL 18 PT ROMAN ULT   (C02051H0 T1V10037)
+     A                                     5'PROPTR EMUL 18 PT ROMAN ULT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02051H0 T1001037)
+     A                                    60'(C02051H0 T1001037)'
+      *             PROPTR EMUL 10 CPI DBHI ROM   (C02051K0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI DBHI ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02051K0 T1001037)
+     A                                    60'(C02051K0 T1001037)'
+      *             PROPTR EMUL 17.1 CPI SMALL    (C02051R0 T1V10037)
+     A                                     5'PROPTR EMUL 17.1 CPI SMALL '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02051R0 T1001037)
+     A                                    60'(C02051R0 T1001037)'
+      *             PROPTR EMUL 12 CPI SMALL RO   (C02054Q0 T1V10037)
+     A                                     5'PROPTR EMUL 12 CPI SMALL RO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02054Q0 T1001037)
+     A                                    60'(C02054Q0 T1001037)'
+      *             PROPTR EMUL 10 CPI ROMAN 9-   (C02055D0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI ROMAN 9-'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055D0 T1001037)
+     A                                    60'(C02055D0 T1001037)'
+      *             PROPTR EMUL 12 CPI ROMAN 9-   (C02055E0 T1V10037)
+     A                                     5'PROPTR EMUL 12 CPI ROMAN 9-'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055E0 T1001037)
+     A                                    60'(C02055E0 T1001037)'
+      *             PROPTR EMUL 17.1 CPI ROMAN    (C02055F0 T1V10037)
+     A                                     5'PROPTR EMUL 17.1 CPI ROMAN '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055F0 T1001037)
+     A                                    60'(C02055F0 T1001037)'
+      *             PROPTR EMUL 9 PT ROMAN 9-PT   (C02055G0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT ROMAN 9-PT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055G0 T1001037)
+     A                                    60'(C02055G0 T1001037)'
+      *             PROPTR EMUL 18 PT ROMAN 18-   (C02055H0 T1V10037)
+     A                                     5'PROPTR EMUL 18 PT ROMAN 18-'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055H0 T1001037)
+     A                                    60'(C02055H0 T1001037)'
+      *             PROPTR EMUL 5 CPI DBHI ROMA   (C02055J0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI DBHI ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055J0 T1001037)
+     A                                    60'(C02055J0 T1001037)'
+      *             PROPTR EMUL 10 CPI SMALL RO   (C02055P0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI SMALL RO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055P0 T1001037)
+     A                                    60'(C02055P0 T1001037)'
+      *             PROPTR EMUL 9 PT SMALL ROMA   (C02055S0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT SMALL ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02055S0 T1001037)
+     A                                    60'(C02055S0 T1001037)'
+      *             PROPTR EMUL 8.55 CPI SMALL    (C02056N0 T1V10037)
+     A                                     5'PROPTR EMUL 8.55 CPI SMALL '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02056N0 T1001037)
+     A                                    60'(C02056N0 T1001037)'
+      *             PROPTR EMUL 9 PT SMALL ROMA   (C02057S0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT SMALL ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02057S0 T1001037)
+     A                                    60'(C02057S0 T1001037)'
+      *             PROPTR EMUL 6 CPI SMALL ROM   (C02058M0 T1V10037)
+     A                                     5'PROPTR EMUL 6 CPI SMALL ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02058M0 T1001037)
+     A                                    60'(C02058M0 T1001037)'
+      *             PROPTR EMUL 5 CPI ROMAN ULT   (C02059A0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI ROMAN ULT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059A0 T1001037)
+     A                                    60'(C02059A0 T1001037)'
+      *             PROPTR EMUL 6 CPI ROMAN ULT (C02059B0 T1V10037)
+     A                                     5'PROPTR EMUL 6 CPI ROMAN ULT'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059B0 T1001037)
+     A                                    60'(C02059B0 T1001037)'
+      *             PROPTR EMUL 8.55 CPI ROMAN  (C02059C0 T1V10037)
+     A                                     5'PROPTR EMUL 8.55 CPI ROMAN '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059C0 T1001037)
+     A                                    60'(C02059C0 T1001037)'
+      *             PROPTR EMUL 9 PT ROMAN ULTR (C02059G0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT ROMAN ULTR'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059G0 T1001037)
+     A                                    60'(C02059G0 T1001037)'
+      *             PROPTR EMUL 5 CPI SMALL ROM (C02059L0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI SMALL ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02059L0 T1001037)
+     A                                    60'(C02059L0 T1001037)'
+      *             PROPTR EMUL 18 PT ROMAN BOL (C02071H0 T1V10037)
+     A                                     5'PROPTR EMUL 18 PT ROMAN BOL'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02071H0 T1001037)
+     A                                    60'(C02071H0 T1001037)'
+      *             PROPTR EMUL 10 CPI DBHI ROM (C02071K0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI DBHI ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02071K0 T1001037)
+     A                                    60'(C02071K0 T1001037)'
+      *             PROPTR EMUL 12 CPI SMALL RO (C02074Q0 T1V10037)
+     A                                     5'PROPTR EMUL 12 CPI SMALL RO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02074Q0 T1001037)
+     A                                    60'(C02074Q0 T1001037)'
+      *             PROPTR EMUL 10 CPI ROMAN BO (C02075D0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI ROMAN BO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075D0 T1001037)
+     A                                    60'(C02075D0 T1001037)'
+      *             PROPTR EMUL 12 CPI ROMAN BO (C02075E0 T1V10037)
+     A                                     5'PROPTR EMUL 12 CPI ROMAN BO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075E0 T1001037)
+     A                                    60'(C02075E0 T1001037)'
+      *             PROPTR EMUL 9 PT ROMAN BOLD (C02075G0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT ROMAN BOLD'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075G0 T1001037)
+     A                                    60'(C02075G0 T1001037)'
+      *             PROPTR EMUL 18 PT ROMAN BOL (C02075H0 T1V10037)
+     A                                     5'PROPTR EMUL 18 PT ROMAN BOL'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075H0 T1001037)
+     A                                    60'(C02075H0 T1001037)'
+      *             PROPTR EMUL 5 CPI DBHI ROMA (C02075J0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI DBHI ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075J0 T1001037)
+     A                                    60'(C02075J0 T1001037)'
+      *             PROPTR EMUL 10 CPI SMALL RO (C02075P0 T1V10037)
+     A                                     5'PROPTR EMUL 10 CPI SMALL RO'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075P0 T1001037)
+     A                                    60'(C02075P0 T1001037)'
+      *             PROPTR EMUL 9 PT SMALL ROMA (C02075S0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT SMALL ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02075S0 T1001037)
+     A                                    60'(C02075S0 T1001037)'
+      *             PROPTR EMUL 9 PT SMALL ROMA (C02077S0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT SMALL ROMA'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02077S0 T1001037)
+     A                                    60'(C02077S0 T1001037)'
+      *PROPTR EMUL 6 CPI SMALL ROM                (C02078M0 T1V10037)
+     A                                     5'PROPTR EMUL 6 CPI SMALL ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02078M0 T1001037)
+     A                                    60'(C02078M0 T1001037)'
+      *PROPTR EMUL 5 CPI ROMAN BOL                (C02079A0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI ROMAN BOL'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02079A0 T1001037)
+     A                                    60'(C02079A0 T1001037)'
+      *PROPTR EMUL 6 CPI ROMAN BOL                (C02079B0 T1V10037)
+     A                                     5'PROPTR EMUL 6 CPI ROMAN BOL'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02079B0 T1001037)
+     A                                    60'(C02079B0 T1001037)'
+      *PROPTR EMUL 9 PT ROMAN BOLD                (C02079G0 T1V10037)
+     A                                     5'PROPTR EMUL 9 PT ROMAN BOLD'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02079G0 T1001037)
+     A                                    60'(C02079G0 T1001037)'
+      *PROPTR EMUL 5 CPI SMALL ROM                (C02079L0 T1V10037)
+     A                                     5'PROPTR EMUL 5 CPI SMALL ROM'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C02079L0 T1001037)
+     A                                    60'(C02079L0 T1001037)'
+      *MICR ACMC 300DPI                           (C0R0ACMC T1001033)
+     A                                     5'MICR ACMC 300DPI EUROPEAN'
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0ACMC T1001033)
+     A                                    60'(C0R0ACMC T1001033)'
+      *MICR E-138 240DPI                          (C0R0AE13 T1001032)
+     A                                     5'MICR E-13B 240DPI        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0AE13 T1001032)
+     A                                    60'(C0R0AE13 T1001032)'
+      *MICR E-138 300DPI                          (C0R0AE14 T1001032)
+     A                                     5'MICR E-13B 300DPI        '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0AE14 T1001032)
+     A                                    60'(C0R0AE14 T1001032)'
+      *MICR TEST 240DPI                           (C0R0AT13 T1001032)
+     A                                     5'MICR E-13B 240DPI TEST   '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0AT13 T1001032)
+     A                                    60'(C0R0AT13 T1001032)'
+      * MICR TEST 300DPI                          (C0R0AT14 T1001032)
+     A                                     5'MICR E-13B 300DPI TEST   '
+     A                                       SPACEB(1)
+     A                                      FNTCHRSET(C0R0AT14 T1001032)
+     A                                    60'(C0R0AT14 T1001032)'
+      * BARCODE CODE128 TEST                      (C0R0AT14 T1001032)
+     A                                     5'BARCODE CODE 128 TEST   '
+     A                                       SPACEB(1)
+     A                                     5'BARCODE'
+     A                                       BARCODE(CODE128)
+

@@ -1,5 +1,5 @@
 **free
-Ctl-Opt OPTION(*srcStmt) Dftactgrp(*No) Actgrp(*new) BNDDIR('APLLIB');
+Ctl-Opt OPTION(*srcStmt:*nounref) Dftactgrp(*No) Actgrp(*new) BNDDIR('APLLIB');
 
 // This program tests the #$XML procedure
 

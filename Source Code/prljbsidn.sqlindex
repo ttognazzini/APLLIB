@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.PRLJBSIDN;
+Create Index APLLIB.PRLJBSIDN on APLLIB.PRLJBS (
+  PRLJBSIDN
+);
+
+Label on Index APLLIB.PRLJBSIDN is 'Performace Logger - Job Statistics Log by Id';

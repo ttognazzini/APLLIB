@@ -2,7 +2,7 @@
 // This program sets up the Java environment needed to do Postgres connections
 // This was abrstracted out so it did not have to duplciated in addtional programs
 
-Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt) DatFmt(*ISO) main(Main);
+Ctl-Opt DftActGrp(*No) BndDir('APLLIB/APLLIB') Option(*Srcstmt:*nounref) DatFmt(*ISO) main(Main);
 
 /copy QSRC,JDBSRVV1PR // Scott Klements JDBCR4 service program headers
 /Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures

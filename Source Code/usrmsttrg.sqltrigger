@@ -1,0 +1,374 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Create or Replace Trigger APLLIB.USRMSTTRG
+before Insert or Update on APLLIB.USRMST
+Referencing new row as n old row as o
+for each row mode db2row
+
+Begin
+  /* On create set the crtXXX values */
+  If Inserting Then
+    set n.create_time_stamp = current timestamp,
+        n.create_user = user,
+        n.create_job = job_name,
+        n.create_program = APLLIB.current_program();
+  End If ;
+
+
+  /* On create, or update and a field changes, set the mntXXX values */
+  If inserting or
+     (updating and (
+        n.active_row <> o.active_row
+       or n.user_master_id <> o.user_master_id
+       or n.user_department <> o.user_department
+       or n.first_name <> o.first_name
+       or n.last_name <> o.last_name
+       or n.user_initials <> o.user_initials
+       or n.user_title <> o.user_title
+       or n.user_class <> o.user_class
+       or n.user_status <> o.user_status
+       or n.user_output_queu <> o.user_output_queu
+       or n.group_profile <> o.group_profile
+       or n.employee_number <> o.employee_number
+       or n.user_employee_number <> o.user_employee_number
+       or n.phone_number <> o.phone_number
+       or n.phone_extension <> o.phone_extension
+       or n.accounting_code <> o.accounting_code
+       or n.archive_folder <> o.archive_folder
+       or n.print_device <> o.print_device
+       or n.print_output_queue <> o.print_output_queue
+       or n.auto_archive_folder <> o.auto_archive_folder
+       or n.output_options_email <> o.output_options_email
+       or n.output_options_name <> o.output_options_name
+       or n.hold_output <> o.hold_output
+       or n.save_output <> o.save_output
+       or n.attachment_type <> o.attachment_type
+       or n.attachment_format <> o.attachment_format
+       or n.print_output <> o.print_output
+       or n.email_output <> o.email_output
+       or n.archive_output <> o.archive_output
+       or n.fax_output <> o.fax_output
+       or n.user_output_queue_library <> o.user_output_queue_library
+       or n.user_profile <> o.user_profile
+       or n.user_profile_text <> o.user_profile_text
+       or n.user_email <> o.user_email
+  )) Then
+    set n.maintenance_time_stamp = current timestamp,
+        n.maintenance_user = user,
+        n.maintenance_job = job_name,
+        n.maintenance_program = APLLIB.current_program();
+  End If;
+
+  /* Add all audited columns */
+
+  If o.user_department <>  n.user_department Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USRDPT',432,
+           o.user_department, n.user_department);
+  End If;
+
+  If o.first_name <>  n.first_name Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'FSTNME',433,
+           o.first_name, n.first_name);
+  End If;
+
+  If o.last_name <>  n.last_name Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'LSTNME',434,
+           o.last_name, n.last_name);
+  End If;
+
+  If o.user_initials <>  n.user_initials Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USRINT',435,
+           o.user_initials, n.user_initials);
+  End If;
+
+  If o.user_title <>  n.user_title Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USRTTL',436,
+           o.user_title, n.user_title);
+  End If;
+
+  If o.user_class <>  n.user_class Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USRCLS',437,
+           o.user_class, n.user_class);
+  End If;
+
+  If o.user_status <>  n.user_status Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USRSTS',438,
+           o.user_status, n.user_status);
+  End If;
+
+  If o.user_output_queu <>  n.user_output_queu Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USROQN',439,
+           o.user_output_queu, n.user_output_queu);
+  End If;
+
+  If o.group_profile <>  n.group_profile Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'GRPPRF',440,
+           o.group_profile, n.group_profile);
+  End If;
+
+  If o.employee_number <>  n.employee_number Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'EMPNBR',441,
+           o.employee_number, n.employee_number);
+  End If;
+
+  If o.user_employee_number <>  n.user_employee_number Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USREMP',442,
+           o.user_employee_number, n.user_employee_number);
+  End If;
+
+  If o.phone_number <>  n.phone_number Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'PHNNBR',443,
+           o.phone_number, n.phone_number);
+  End If;
+
+  If o.phone_extension <>  n.phone_extension Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'PHNEXT',444,
+           o.phone_extension, n.phone_extension);
+  End If;
+
+  If o.accounting_code <>  n.accounting_code Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'ACGCDE',445,
+           o.accounting_code, n.accounting_code);
+  End If;
+
+  If o.archive_folder <>  n.archive_folder Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'ARCFLR',446,
+           o.archive_folder, n.archive_folder);
+  End If;
+
+  If o.print_device <>  n.print_device Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'PRTDEV',447,
+           o.print_device, n.print_device);
+  End If;
+
+  If o.print_output_queue <>  n.print_output_queue Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'PRTOTQ',448,
+           o.print_output_queue, n.print_output_queue);
+  End If;
+
+  If o.auto_archive_folder <>  n.auto_archive_folder Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'AARFLR',449,
+           o.auto_archive_folder, n.auto_archive_folder);
+  End If;
+
+  If o.output_options_email <>  n.output_options_email Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'OTOEML',450,
+           o.output_options_email, n.output_options_email);
+  End If;
+
+  If o.output_options_name <>  n.output_options_name Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'OTONME',451,
+           o.output_options_name, n.output_options_name);
+  End If;
+
+  If o.hold_output <>  n.hold_output Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'HLDOUT',452,
+           o.hold_output, n.hold_output);
+  End If;
+
+  If o.save_output <>  n.save_output Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'SAVOUT',453,
+           o.save_output, n.save_output);
+  End If;
+
+  If o.attachment_type <>  n.attachment_type Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'ATATYP',454,
+           o.attachment_type, n.attachment_type);
+  End If;
+
+  If o.attachment_format <>  n.attachment_format Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'ATAFMT',455,
+           o.attachment_format, n.attachment_format);
+  End If;
+
+  If o.print_output <>  n.print_output Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'PRTOUT',456,
+           o.print_output, n.print_output);
+  End If;
+
+  If o.email_output <>  n.email_output Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'EMLOUT',457,
+           o.email_output, n.email_output);
+  End If;
+
+  If o.archive_output <>  n.archive_output Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'ARCOUT',458,
+           o.archive_output, n.archive_output);
+  End If;
+
+  If o.fax_output <>  n.fax_output Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'FAXOUT',459,
+           o.fax_output, n.fax_output);
+  End If;
+
+  If o.user_profile_text <>  n.user_profile_text Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USRTXT',462,
+           o.user_profile_text, n.user_profile_text);
+  End If;
+
+  If o.user_email <>  n.user_email Then
+    Insert into APLLIB.AUDLOG
+          (fleLib, fleNme, fleMstIdn,
+           rcdIdn, fldNme, fleFldIdn,
+           bfrVal, aftVal)
+    Values('APLLIB','USRMST', 35,
+           n.user_master_id,'USREML',463,
+           o.user_email, n.user_email);
+  End If;
+
+  /* Trim all varchar columns */
+  set n.user_department = trim(n.user_department);
+  set n.first_name = trim(n.first_name);
+  set n.last_name = trim(n.last_name);
+  set n.user_title = trim(n.user_title);
+  set n.user_profile_text = trim(n.user_profile_text);
+
+End

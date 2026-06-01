@@ -5,7 +5,7 @@
 
 /*   Check Batch Jobs                                      */
 
-Create or Replace Table APLLIB.CHKBJB (
+Create or Replace Table check_batch_jobs For System Name APLLIB.CHKBJB (
   active_row                     for Column ACVROW    CHAR(1) Not Null Default '1',
   check_batch_job_id             for Column CHKBJBIDN BIGINT Not Null
                                  Generated Always as Identity (Start With 1 Increment by 1),
@@ -27,7 +27,6 @@ Create or Replace Table APLLIB.CHKBJB (
 );
 
 Label on Table CHKBJB is 'Check Batch Jobs';
-Create or Replace Alias check_batch_jobs For APLLIB.CHKBJB;
 
 Label on Column APLLIB.CHKBJB (
   ACVROW     is 'Active              Row',
@@ -57,7 +56,7 @@ Label on Column APLLIB.CHKBJB (
   JOBTTL     text is 'Job Title',
   STRCMD     text is 'Start Command',
   LNGCMT     text is 'Long Comment',
-  CRTDTM     text is 'Create Date',
+  CRTDTM     text is 'Create Date/Time (Time stamp)',
   CRTUSR     text is 'Create User',
   CRTJOB     text is 'Create Job',
   CRTPGM     text is 'Create Program',

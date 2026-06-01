@@ -1,0 +1,20 @@
+Pgm
+  Dcl &T1WTR *char len(10) value('QPRINT3B')
+  Dcl &T1STS *char len(10)
+  Dcl &T2WTR *char len(10) value('TOGOUTQ')
+  Dcl &T2STS *char len(10)
+  Dcl &T3WTR *char len(10) value('QPRINT3A')
+  Dcl &T3STS *char len(10)
+  Dcl &T4WTR *char len(10) value('QPRINT3')
+  Dcl &T4STS *char len(10)
+  Dcl &T5WTR *char len(10) value('LASER1')
+  Dcl &T5STS *char len(10)
+
+  rtvwtrsts &T1WTR &T1STS
+  rtvwtrsts &T2WTR &T2STS
+  rtvwtrsts &T3WTR &T3STS
+  rtvwtrsts &T4WTR &T4STS
+  rtvwtrsts &T5WTR &T5STS
+  DMPCLPGM
+
+ENDPGM

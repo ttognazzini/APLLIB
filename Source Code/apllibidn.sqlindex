@@ -1,0 +1,11 @@
+/************************************************************************/
+/* This source code was auto created via the APLLIB/FLEMST command. Do  */
+/* not manually update this or it will get overlaid if generated again. */
+/************************************************************************/
+
+Drop Index If Exists APLLIB.APLLIBIDN;
+Create Index APLLIB.APLLIBIDN on APLLIB.APLLIB (
+  APLLIBIDN
+);
+
+Label on Index APLLIB.APLLIBIDN is 'Application Libraries - Id';

@@ -1,0 +1,25 @@
+/* User Master Maintenance - Enable User Profile  */
+
+/****** COMPILE AS QSECOFR OR CHANGE THE OWNER ******/
+/* CHGPGM PGM(USRMSTC6) USRPRF(*OWNER) USEADPAUT(*YES)     */
+/* CHGOBJOWN OBJ(USRMSTC6) OBJTYPE(*PGM)  NEWOWN(QSECOFR)  */
+
+PGM (&USRPRF &MESSAGE)
+
+  DCL &USRPRF *CHAR 10
+  DCL &MESSAGE *CHAR 100
+
+  /* WORK VARIABLES */
+  DCL &USRCLS  *CHAR 10
+
+  /* enable the profile */
+  CHGUSRPRF  USRPRF(&USRPRF) STATUS(*ENABLED)
+  MONMSG CPF0000 EXEC(DO)
+    CHGVAR &MESSAGE ('Error occurred, check the job log.')
+    RETURN
+  ENDDO
+
+  CHGVAR &MESSAGE ('User Profile Enabled.')
+  RETURN
+
+ENDPGM

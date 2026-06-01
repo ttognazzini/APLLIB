@@ -1,0 +1,194 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=USRMSTD7.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ENVIRONMNT'.Environment
+:XH3.Environment
+:p.This field shows what environment the program is being run in. It may
+show the company name for the production environment or something like Test
+for a test environment.
+:P.Screen: USRMSTF7 Field: ENVIRONMNT
+Type: CHAR(40)
+Location: (1,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PGMNME'.Program Name
+:XH3.Program Name
+:p.This is the name of the program being run. It is helpful to reference
+when contacting I/T.
+:P.Screen: USRMSTF7 Field: PGMNME
+Type: CHAR(10)
+Location: (1,70)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='MDE'.Program Mode
+:XH3.Program Mode
+:p.Many programs can be called in different modes. This field shows what
+mode the program is running in. The following are some common modes.
+:ul.
+:li.View/Inquiry - The information on the screen is display only, it cannot
+be updated.
+:li.Update/Revise - The data on the screen can be changed.
+:li.Add - A new record can be added.
+:li.Deactivate - The entry will be deactivated when the Enter key is pressed.
+:li.Reinstate/Reactivate - The entry will be reinstated when the Enter key
+is pressed.
+:eul.
+:P.Screen: USRMSTF7 Field: MDE
+Type: CHAR(10)
+Location: (2,2)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRPRF'.User Profile
+:XH3.User Profile
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: USRPRF
+Type: CHAR(10)
+Location: (5,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='USRTXT'.User Profile Text
+:XH3.User Profile Text
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: USRTXT
+Type: VARCHAR
+Location: (5,33)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTOUT'.Print Output
+:XH3.Print Output
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: PRTOUT
+Type: CHAR(1)
+Location: (7,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='EMLOUT'.Email Output
+:XH3.Email Output
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: EMLOUT
+Type: CHAR(1)
+Location: (8,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ARCOUT'.Archive Output
+:XH3.Archive Output
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: ARCOUT
+Type: CHAR(1)
+Location: (9,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='FAXOUT'.Fax Output
+:XH3.Fax Output
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: FAXOUT
+Type: CHAR(1)
+Location: (10,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTDEV'.Print Device
+:XH3.Print Device
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: PRTDEV
+Type: CHAR(10)
+Location: (11,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTOTQ'.Print Output Queue
+:XH3.Print Output Queue
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: PRTOTQ
+Type: CHAR(10)
+Location: (12,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='HLDOUT'.Hold Output
+:XH3.Hold Output
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: HLDOUT
+Type: CHAR(5)
+Location: (13,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='SAVOUT'.Save Output
+:XH3.Save Output
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: SAVOUT
+Type: CHAR(5)
+Location: (14,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='OTONME'.Output Options Name
+:XH3.Output Options Name
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: OTONME
+Type: CHAR(50)
+Location: (15,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='OTOEML'.Output Options Email
+:XH3.Output Options Email
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: OTOEML
+Type: CHAR(50)
+Location: (16,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ARCFLR'.Archive Folder
+:XH3.Archive Folder
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: ARCFLR
+Type: CHAR(128)
+Location: (17,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='AARFLR'.Auto Archive Folder
+:XH3.Auto Archive Folder
+:p.This is the path where reports are automatically archived to.
+:p.This is used by the output options system to archive requested reports. The
+system allows users to automatically archive all reports to a specific
+folder. The reports are archived as PDF files. The path needs to be
+a path in the IFS. The user running the report must have permission to access
+the folder.
+:p.The QNTC system can be used to archive reports on local network shared
+drives. If using the QNTC file system the user signed on to the IBM i server
+must have access to the NFS share.
+:P.Screen: USRMSTF7 Field: AARFLR
+Type: CHAR(128)
+Location: (19,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ATATYP'.Attachment Type
+:XH3.Attachment Type
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: ATATYP
+Type: CHAR(5)
+Location: (21,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='ATAFMT'.Attachment Format
+:XH3.Attachment Format
+:P.Help text not entered.
+:P.Screen: USRMSTF7 Field: ATAFMT
+Type: CHAR(1)
+Location: (22,21)
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME=FNCKEYS.Function Keys
+:XH3.Function Keys
+:P.This screen has the following function keys
+:UL.
+:LI.:HP2.F1=Help:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F3=Exit:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F5=Refresh:EHP2.
+:P.Help text not entered.
+:LI.:HP2.F12=Cancel:EHP2.
+:P.Help text not entered.
+:EUL.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

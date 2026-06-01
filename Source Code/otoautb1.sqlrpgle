@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Dftactgrp(*No) Actgrp(*Caller) Main(Main) Option(*SrcStmt)  BndDir('APLLIB');
+Ctl-Opt Dftactgrp(*No) Actgrp(*Caller) Main(Main) Option(*SrcStmt:*nounref)  BndDir('APLLIB');
 
 // Output Options - Preform auto prompt if system is setup to do so
 

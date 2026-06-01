@@ -1,0 +1,160 @@
+     A*%%TS  SD  20230503  104302  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A* Dictionary Master List
+     A*
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(APLDCT)
+     A                                      CHGINPDFT(CS UL)
+     A                                      ALTHELP(CA01)
+     A                                      HELP
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R SCREEN
+     A*%%TS  SD  20230503  104302  TTOGNAZZIN  REL-V7R4M0  5770-WDS
+     A                                      CF01
+     A                                      CF02
+     A                                      CF03
+     A                                      CF04
+     A                                      CF05
+     A                                      CF06
+     A                                      CF07
+     A                                      CF08
+     A                                      CF09
+     A                                      CF10
+     A                                      CF11
+     A                                      CF12
+     A                                      CF13
+     A                                      CF14
+     A                                      CF15
+     A                                      CF16
+     A                                      CF17
+     A                                      CF18
+     A                                      CF19
+     A                                      CF20
+     A                                      CF21
+     A                                      CF22
+     A                                      CF23
+     A                                      CF24
+     A                                      RTNCSRLOC(*WINDOW &CSRROW &CSRCOL)
+     A                                      RTNCSRLOC(&CSRRCD &CSRFLD &CSRPOS)
+     A                                      CSRLOC(OUTROWSCR  OUTCOLSCR)
+     A            OUTROWSCR      3S 0H
+     A            OUTCOLSCR      3S 0H
+     A            CSRRCD        10A  H
+     A            CSRFLD        10A  H
+     A            CSRPOS         4S 0H
+     A            CSRROW         3S 0H
+     A            CSRCOL         3S 0H
+     A            FRMLIB@        1A  P
+     A            TOLIB@         1A  P
+     A            FRMDLB@        1A  P
+     A            TODLB@         1A  P
+     A            FRMPLB@        1A  P
+     A            TOPLB@         1A  P
+     A            FRMVLB@        1A  P
+     A            TOVLB@         1A  P
+     A            CPYFNC@        1A  P
+     A            CPYOPT@        1A  P
+     A            CPYSRC@        1A  P
+     A            CPYDSP@        1A  P
+     A            CPYPRT@        1A  P
+     A            CPYVIW@        1A  P
+     A                                  1  2DATE
+     A                                      EDTWRD('0  /  /  ')
+     A                                  1 11TIME
+     A                                      EDTWRD(' 0:  :  ')
+     A            ENVIRONMNT    40A  O  1 21MSGID(AAA 0000 ENVIRONMNT)
+     A            PGMNME2   R        O  1 70REFFLD(PGMNME)
+     A                                      ALIAS(CURRENT_PROGRAM)
+     A            MODE          10A  O  2  2
+     A                                  2 27'Program Master Copy Options'
+     A                                      COLOR(WHT)
+     A                                  2 70USER
+     A                                  4  2'Copy Function Keys'
+     A            CPYFNC         1A  B  4 22DSPATR(&CPYFNC@)
+     A                                  4 25'(Y/N)'
+     A                                      COLOR(WHT)
+     A                                  5  2'Copy SFL Options'
+     A            CPYOPT         1A  B  5 22DSPATR(&CPYOPT@)
+     A                                  5 25'(Y/N)'
+     A                                      COLOR(WHT)
+     A                                  6  2'Copy Program Source'
+     A            CPYSRC         1A  B  6 22DSPATR(&CPYSRC@)
+     A                                  6 25'(Y/N)'
+     A                                      COLOR(WHT)
+     A                                  7  2'Copy Display Source'
+     A            CPYDSP         1A  B  7 22DSPATR(&CPYDSP@)
+     A                                  7 25'(Y/N)'
+     A                                      COLOR(WHT)
+     A                                 11 22'Program Source'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                 11 39'DSPF Source'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                 11 53'Prototype '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 11 66'View      '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                 12  2'From Library'
+     A            FRMLIB    R        B 12 22DSPATR(&FRMLIB@)
+     A            FRMDLB    R        B 12 39REFFLD(LIB)
+     A                                      DSPATR(&FRMDLB@)
+     A                                      ALIAS(FROM_DISPLAY_FILE_LIBRARY)
+     A            FRMPLB        10A  B 12 53DSPATR(&FRMPLB@)
+     A            FRMVLB        10A  B 12 66DSPATR(&FRMVLB@)
+     A                                 13  2'From Source File'
+     A                                 13 22'QSRC'
+     A                                 13 39'QSRC'
+     A                                 13 53'QSRC'
+     A                                 13 66'QSRC'
+     A                                 14  2'From Member'
+     A            FRMPGM    R        O 14 22REFFLD(PGMNME)
+     A            FRMDSP    R        O 14 39REFFLD(DSPFLE)
+     A                                      ALIAS(FROM_DISPLAY)
+     A            FRMPRT        10A  O 14 53
+     A            FRMVIW        10A  O 14 66
+     A                                 16  2'To Library'
+     A            TOLIB     R        B 16 22REFFLD(LIB)
+     A                                      DSPATR(&TOLIB@)
+     A                                      ALIAS(TO_PROGRAM_LIBRARY)
+     A            TODLB     R        B 16 39REFFLD(LIB)
+     A                                      DSPATR(&TODLB@)
+     A                                      ALIAS(TO_DISPLAY_FILE_LIBRARY)
+     A            TOPLB         10A  B 16 53DSPATR(&TOPLB@)
+     A            TOVLB         10A  B 16 66DSPATR(&TOVLB@)
+     A                                 17  2'To Source File'
+     A                                 17 22'QSRC'
+     A                                 17 39'QSRC'
+     A                                 17 53'QSRC'
+     A                                 17 66'QSRC'
+     A                                 18  2'To Member'
+     A            TOPGM     R        O 18 22REFFLD(PGMNME)
+     A                                      ALIAS(TO_PROGRAM_NAME)
+     A            TODSP     R        O 18 39REFFLD(DSPFLE)
+     A                                      ALIAS(TO_DISPLAY_FILE)
+     A            TOPRT         10A  O 18 53
+     A            TOVIW         10A  O 18 66
+     A            FNCKEYS       79A  O 23  2COLOR(BLU)
+     A                                  8  2'Copy Prototype Src'
+     A                                  9  2'Copy View Source'
+     A            CPYPRT         1A  B  8 22DSPATR(&CPYPRT@)
+     A            CPYVIW         1A  B  9 22DSPATR(&CPYVIW@)
+     A                                  8 25'(Y/N)'
+     A                                      COLOR(WHT)
+     A                                  9 25'(Y/N)'
+     A                                      COLOR(WHT)
+      *
+      *------------------------------------------------------------------------
+     A          R MSGRCD                    TEXT('MSG SFL RECORD')
+     A                                      SFL SFLMSGRCD(24)
+     A            MSGKEY                    SFLMSGKEY
+     A            CALLSTK                   SFLPGMQ
+      *
+      *------------------------------------------------------------------------
+     A          R MSGCTL                    TEXT('MSG SFL CONTROL')
+     A                                      SFLCTL(MSGRCD) SFLSIZ(10)
+     A                                      SFLPAG(1) SFLDSPCTL SFLDSP SFLINZ
+     A N99                                  SFLEND
+     A            CALLSTK                   SFLPGMQ

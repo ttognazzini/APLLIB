@@ -1,0 +1,171 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=PRGJRNRCV.Purge Journal Recievers
+:P.This command is used to purge old joural receivers before a specified
+number of days. It allows for selection of receiver by name and library
+and it includes optons for wildcards and excluding libraries.
+:P.It prints a report of what was purged and has the option to include
+receiver not being purged. It can also be run without doing the purge
+to preview what is going to happen when the purge option is run.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRGJRNRCV/JRNRCV'.Journal Receiver
+:XH3.JRNRCV - Journal Receiver
+:P.Specifies the name and library of the journal receiver or receivers
+being deleted.
+:p.This is a required parameter.
+
+:H3.Qualifier 1: Journal receiver
+:PARML.
+:PT.:PK.journal-receiver-name:EPK.
+:PD.Specify the name and library of the journal receiver
+being deleted.  If *LIBL or *USRLIBL is specified for
+the library name, only the first journal receiver
+found to have this name is deleted.  If *ALLUSR or
+*ALL is specified for the library name, journal
+receiver objects by the name specified can be deleted
+from multiple libraries.
+
+:PT.:PK.generic*-journal-receiver-name:EPK.
+:PD.
+Specify the generic name of the journal receiver being deleted.  A
+generic name is a character string that contains one or more
+characters followed by an asterisk (*); for example, ABC*.  The
+asterisk substitutes for any valid characters.  A generic name
+specifies all objects with names that begin with the generic prefix
+for which the user has authority.  If an asterisk is not included
+with the generic (prefix) name, the system assumes it to be the
+complete object name.
+:EPARML.
+
+:H3.Qualifier 2: Library
+
+:PARML.
+:PT.:PK.*LIBL:EPK.
+:PD.All libraries in the library list for the current thread are
+searched until the first match is found.
+:PT.:PK.*CURLIB:EPK.
+:PD.The current library for the thread is searched.  If no library is
+specified as the current library for the thread, the QGPL library is
+searched.
+:PT.:PK.*USRLIBL:EPK.
+:PD.If a current library entry exists in the library list for the
+current thread, the current library and the libraries in the user
+portion of the library list are searched.  If there is no current
+library entry, only the libraries in the user portion of the library
+list are searched.
+:PT.:PK.*ALLUSR:EPK.
+:PD.All user libraries are searched.  All libraries with names that do
+not begin with the letter Q are searched except for the following:
+:XMP.
+#CGULIB     #DSULIB     #SEULIB
+#COBLIB     #RPGLIB
+#DFULIB     #SDALIB
+:EXMP.
+:P.Although the following Qxxx libraries are provided by IBM, they
+typically contain user data that changes frequently.  Therefore,
+these libraries are considered user libraries and are also searched:
+
+:XMP.
+QDSNX       QRCLxxxxx   QUSRDIRDB   QUSRVI
+QGPL        QSRVAGT     QUSRIJS     QUSRVxRxMx
+QGPL38      QSYS2       QUSRINFSKR  QWQCENT
+QMGTC       QSYS2xxxxx  QUSRNOTES   QWQREPOS
+QMGTC2      QS36F       QUSROND
+QMPGDATA    QUSER38     QUSRPOSGS
+QMQMDATA    QUSRADSM    QUSRPOSSA
+QMQMPROC    QUSRBRM     QUSRPYMSVR
+QPFRDATA    QUSRDIRCF   QUSRRDARS
+QRCL        QUSRDIRCL   QUSRSYS
+:EXMP.
+
+:ol.:li.'xxxxx' is the number of a primary auxiliary storage pool (ASP).
+    :li.A different library name, in the format QUSRVxRxMx, can be
+created by the user for each previous release supported by IBM
+to contain any user commands to be compiled in a CL program
+for the previous release.  For the QUSRVxRxMx user library,
+VxRxMx is the version, release, and modification level of a
+previous release that IBM continues to support.
+:EOL.
+:PT.:PK.*ALL:EPK.
+:PD.All libraries in the system, including QSYS, are searched.
+
+:PT.:PK. name:EPK.
+:PD.Specify the name of the library to be searched.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRGJRNRCV/PRGDAYS'.Days Old to Purge
+:XH3.PRGDAYS - Days Old to Purge
+:P.Enter the number of days old to purge. For exmaple, 30 will purge
+entries that have been detached for over 30 days before today and are saved.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRGJRNRCV/PURGE'.Purge Receivers
+:XH3.PURGE - Purge Receivers
+:P.This option allows the purge program to not purge. This allows the user
+to view the purge report before actually purgin the entries.
+:PARML.
+:PT.:PK def.*YES:EPK.
+:PD.Purges selected entries.
+:PT.:PK.*NO:EPK.
+:PD.Prints the purge list, but does not purge any receivers.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRGJRNRCV/PRGUNSAVED'.Purge Un-Saved Journals
+:XH3.PRGUNSAVED - Purge Un-Saved Journals
+:P.This option allows puring of entries that have not been saved.
+:PARML.
+:PT.:PK def.*NO:EPK.
+:PD.Unsaved entries are not purged.
+:PT.:PK.*YES:EPK.
+:PD.Unsaved entries are purged.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRGJRNRCV/EXCLIB'.Exclude Libraries
+:XH3.EXCLIB - Exclude Libraries
+:P.This allows a list of libraries to excluded from the search.
+:p.This can be used have seperate purging logic for specific libraries
+then the whole system.
+:p.For exmaple, you may want to purge all saved jounals after 60 days
+for most libraries, but keep journals for your primary data library for 120
+days. Assuming your primary data library is MYDATAJRN you could use this
+command twice. One including all libraries except MYDATAJRN and once just using
+MYDATA.
+:p.The following examples show how this would be done.
+:XMP.
+
+/* Purge all recievers except data library, older than 60 days */
+   PRGJRNRCV JRNRCV(*ALL/*ALL) PRGDAYS(60) EXCLIB(MYDATAJRN)
+
+/* Purge the data library receivers older than 120 days */
+   PRGJRNRCV JRNRCV(MYDATAJRN/*ALL) PRGDAYS(120)
+
+:EXMP.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRGJRNRCV/PRTOPT'.Print Option
+:XH3.PRTOPT - Print Option
+:P.This option determines what is included on the report.
+:PARML.
+:PT.:PK def.*PURGED:EPK.
+:PD.This option only prints journal receivers that are purged.
+:PT.:PK.*SAVED:EPK.
+:PD.This option will print all journals that have been saved and are
+no longer active. It will still only purge entries before the entered
+number of days. The detached saved entries after the purge date will
+be marked as not purged on the report.
+:PT.:Pk.*ALL:EPK.
+:PD.The *ALL option print all journal receivers within the selection
+criteria. It will still only purge entries before the entered
+number of days that have been detached and saved. Each entry that
+is not purged will show so in the message column.
+:PT.:Pk.*NOLIST:EPK.
+:PD.This option will run the purge but no listing will
+be produced.
+:EPARML.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

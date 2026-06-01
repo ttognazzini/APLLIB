@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
 
 // Output Queue Master Maintenance
 
@@ -273,14 +273,14 @@ Dcl-Proc Prompt;
 
   // Prompt State
   If CsrFld = 'DES';
-    // Callp(e) FLDDTLD1('STE':PmFldVal:1:keyPressed);
+    // FLDDTLD1('STE':PmFldVal:1:keyPressed);
     // If keyPressed = 'Enter' and not ProtectDta;
     //    Des = PmFldVal;
     // EndIf;
 
     // Prompt Country
   ElseIf CsrFld = 'NTE';
-    // Callp(e) FLDDTLD1('COU':PmFldVal:1:keyPressed);
+    // FLDDTLD1('COU':PmFldVal:1:keyPressed);
     // If keyPressed = 'Enter' and not ProtectDta;
     //    Nte = PmFldVal;
     // EndIf;

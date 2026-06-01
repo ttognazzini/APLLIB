@@ -1,0 +1,124 @@
+/*********************************************************************/
+/* GEFIS GESELLSCHAFT FÜR INDIVIDUAL-SOFTWARE MBH                    */
+/*********************************************************************/
+/* Program : ANLSRCC5                                                */
+/* Function: VCP for ANLSRCF command                                 */
+/* Author  : Werner Noll                                             */
+/* Remarks : This is free software.                                  */
+/*           You can redistribute it and/or modify it.               */
+/*           The only restriction is that you may not distribute     */
+/*           it for the purposes of monetary gain.                   */
+/*           We do not garantee for the expected functionalties.     */
+/*           The use of this software is always at your own risk.    */
+/*           All comments or reuqests for enhancements are           */
+/*           welcome. My email: werner.noll@gefis.com.               */
+/*********************************************************************/
+             PGM        PARM(&SRCFLIB &STR01 &STR02 &STR03 +
+                          &STR04 &STR05 &STR06 &STR07 &STR08 &STR09 +
+                          &STR10 &CMATCH &SBMJOB)
+             DCLPRCOPT  ALWRTVSRC(*YES) DFTACTGRP(*NO) ACTGRP(*CALLER)
+             DCL        VAR(&SRCFLIB) TYPE(*CHAR) LEN(20)
+             DCL        VAR(&SRCF) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SRCLIB) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR01) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR02) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR03) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR04) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR05) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR06) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR07) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR08) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR09) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR10) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&STR10) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&CMATCH) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&SBMJOB) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&MSGID) TYPE(*CHAR) LEN(7)
+             DCL        VAR(&MSGDTA) TYPE(*CHAR) LEN(132)
+             DCL        VAR(&MSGF)   TYPE(*CHAR) LEN(10)
+             DCL        VAR(&MSG) TYPE(*CHAR) LEN(80)
+             DCL        VAR(&RCVVAR) TYPE(*CHAR) LEN(96)
+
+/* Variables for program QCLSCAN                                   */
+             DCL        VAR(&GENERIC) TYPE(*LGL) VALUE('0')
+             DCL        VAR(&#STRING)     TYPE(*CHAR) LEN(30)
+             DCL        VAR(&#STRLEN)     TYPE(*DEC)  LEN(3 0)
+             DCL        VAR(&#STRPOS)     TYPE(*DEC)  LEN(3 0)
+             DCL        VAR(&#PATTERN)    TYPE(*CHAR) LEN(10)
+             DCL        VAR(&#PATLEN)     TYPE(*DEC)  LEN(3 0)
+             DCL        VAR(&#XLATE)      TYPE(*CHAR) LEN(1)
+             DCL        VAR(&#TRIM)       TYPE(*CHAR) LEN(1)
+             DCL        VAR(&#WILD)       TYPE(*CHAR) LEN(1)
+             DCL        VAR(&#RESULT)     TYPE(*DEC)  LEN(3 0)
+/*------------------------------------------------------------------*/
+/* Global message monitor                                           */
+             MONMSG     MSGID(CPF0000) EXEC(GOTO CMDLBL(GLBERR))
+/*------------------------------------------------------------------*/
+/*   Check if library is a generic name                        */
+             CHGVAR     VAR(&SRCF) VALUE(%SST(&SRCFLIB 1 10))
+             CHGVAR     VAR(&SRCLIB) VALUE(%SST(&SRCFLIB 11 10))
+             IF         COND(&SRCLIB *NE '*ALLUSR') THEN(DO)
+             CHGVAR     VAR(&#STRING) VALUE(&SRCLIB)
+             CHGVAR     VAR(&#STRLEN) VALUE(10)
+             CHGVAR     VAR(&#STRPOS) VALUE(1)
+             CHGVAR     VAR(&#PATTERN) VALUE('*')
+             CHGVAR     VAR(&#PATLEN) VALUE(1)
+             CHGVAR     VAR(&#XLATE) VALUE('0')
+             CHGVAR     VAR(&#TRIM) VALUE('1')
+             CHGVAR     VAR(&#WILD) VALUE(' ')
+             CALL       PGM(QCLSCAN) PARM(&#STRING &#STRLEN &#STRPOS +
+                          &#PATTERN &#PATLEN &#XLATE &#TRIM &#WILD +
+                          &#RESULT)
+             IF         COND(&#RESULT *NE 0) THEN(DO)
+             CHGVAR     VAR(&GENERIC) VALUE('1')
+             ENDDO
+             ENDDO
+
+             IF         COND(&SRCLIB *NE '*ALLUSR' *AND &GENERIC *NE +
+                          '1') THEN(DO)
+             CHKOBJ     OBJ(QSYS/&SRCLIB) OBJTYPE(*LIB)
+             MONMSG     MSGID(CPF9801) EXEC(DO)
+             RCVMSG     MSG(&MSG)
+             GOTO       CMDLBL(ERROR)
+             ENDDO
+             IF         COND(%SST(&SRCF 1 1) *NE '*') THEN(DO)
+             CHKOBJ     OBJ(&SRCLIB/&SRCF) OBJTYPE(*FILE)
+             MONMSG     MSGID(CPF9801) EXEC(DO)
+             RCVMSG     MSG(&MSG)
+             GOTO       CMDLBL(ERROR)
+             ENDDO
+/* Check if SRCF  */
+             CALL       PGM(ANLSRCB2) PARM(&SRCF &SRCLIB &RCVVAR)
+             IF         COND(%SST(&RCVVAR 13 3) *NE 'SRC') THEN(DO)
+             CHGVAR     VAR(&MSG) VALUE('File' *BCAT &SRCF *BCAT 'in +
+                          library' *BCAT &SRCLIB *BCAT 'is not a +
+                          source file')
+             GOTO       CMDLBL(ERROR)
+             ENDDO
+             ENDDO
+             ENDDO
+
+/* Check input string                                               */
+             IF         COND(&STR01 *EQ ' ' *AND &STR02 *EQ ' ' *AND +
+                          &STR03 *EQ ' ' *AND &STR04 *EQ ' ' *AND +
+                          &STR05 *EQ ' ' *AND &STR06 *EQ ' ' *AND +
+                          &STR07 *EQ ' ' *AND &STR08 *EQ ' ' *AND +
+                          &STR09 *EQ ' ' *AND &STR10 *EQ ' ') THEN(DO)
+             CHGVAR     VAR(&MSG) VALUE('At least one string must be +
+                          entered for search')
+             GOTO       CMDLBL(ERROR)
+             ENDDO
+
+             GOTO       CMDLBL(EOP)
+/*------------------------------------------------------------------*/
+/* Global error handling                                            */
+ GLBERR:     RCVMSG     MSGDTA(&MSGDTA) MSGID(&MSGID) MSGF(&MSGF)
+             SNDPGMMSG  MSGID(&MSGID) MSGF(&MSGF) MSGTYPE(*ESCAPE)
+/*------------------------------------------------------------------*/
+/* Error handling                                                   */
+ ERROR:      SNDPGMMSG  MSGID(CPD0006) MSGF(QCPFMSG) MSGDTA('0000' +
+                          *CAT &MSG) MSGTYPE(*DIAG)
+             SNDPGMMSG  MSGID(CPF0002) MSGF(QCPFMSG) MSGTYPE(*ESCAPE)
+/*------------------------------------------------------------------*/
+ EOP:        ENDPGM
+/*------------------------------------------------------------------*/

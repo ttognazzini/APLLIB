@@ -1,0 +1,13 @@
+:PNLGRP.
+.*---------------------------------------------------------------------
+:HELP   NAME=PRTQRYD.Print Query Definition
+:P.This command is used to print the details of a query definition.
+QUSRSYS.
+:EHELP.
+.*---------------------------------------------------------------------
+:HELP   NAME='PRTQRYD/QRY'.Query Definition
+:XH3.QRY - Query Definition
+:P.Enter the query to print.
+:EHELP.
+.*---------------------------------------------------------------------
+:EPNLGRP.

@@ -1,0 +1,84 @@
+     A* TEMPORARY UPS HEADER FILE
+     A*
+     A                                      UNIQUE
+     A          R SQLLSTR
+     A            SQLDLT         1          TEXT('DELETED=Y')
+     A            SQLNAME       10          TEXT('STATEMENT NAME')
+     A            SQLDESC       40          TEXT('STATMENT DESCRIPTION')
+     A            SQLTYPE        6          TEXT('STATEMENT TYPE')
+     A*                                         SELECT, UPDATE, DELETE...
+     A            SQLOUTP        1          TEXT('DEFAULT OUTPUT')
+     A*                                         1=SCREEN
+     A*                                         2=FILE
+     A*                                         3=REPORT
+     A*                                         4=EMAIL EXCEL
+     A            SQLLD01       60          TEXT('LONG DESCRIPTION 1')
+     A            SQLLD02       60          TEXT('LONG DESCRIPTION 2')
+     A            SQLLD03       60          TEXT('LONG DESCRIPTION 3')
+     A            SQLLD04       60          TEXT('LONG DESCRIPTION 4')
+     A            SQLLD05       60          TEXT('LONG DESCRIPTION 5')
+     A            SQLVARS      500          TEXT('VARIABLES')
+     A*                                     DATA STRUCTURE, DIM(10)
+     A*                                     DS= 1-10  VARIALBE NAME
+     A*                                         11    TYPE 1=DEC, 2=CHAR, 3=DATE
+     A*                                         12    DECIMAL POSTITIONS
+     A*                                         13-15 MAX LENGTH
+     A*                                         16    ADD % AT END
+     A*                                         17    SAVE LAST FOR DEFAULT
+     A*                                         18    ALLOW BLANK/0 FOR ALL
+     A*                                         19-20 RESERVED FOR FUTURE USE
+     A*                                         21-50 DEFAULT VALUE
+     A            SQLCCNT        5P 0       TEXT('COLUMN COUNT')
+     A            SQLENDT        8P 0       TEXT('ENTERED DATE')
+     A            SQLENTM        6P 0       TEXT('ENTERED TIME')
+     A            SQLENUS       10A         TEXT('ENTERED USER')
+     A            SQLENWS       10A         TEXT('ENTERED WORKSTATION')
+     A            SQLLRDT        8P 0       TEXT('LAST REVISED DATE')
+     A            SQLLRTM        6P 0       TEXT('LAST REVISED TIME')
+     A            SQLLRUS       10A         TEXT('LAST REVISED USER')
+     A            SQLLRWS       10A         TEXT('LAST REVISED WORKSTATION')
+     A* EMAIL DEFAULT FIELDS
+     A            SQLEM01       50          TEXT('DEFAULT TO EMAIL')
+     A*                                      SPECIAL VALUES: *PROMPT
+     A*                                                      *CURRENT
+     A*                                                      *RPTDSTID
+     A            SQLEM02       50          TEXT('DEFAULT TO EMAIL')
+     A            SQLEM03       50          TEXT('DEFAULT TO EMAIL')
+     A            SQLEM04       50          TEXT('DEFAULT TO EMAIL')
+     A            SQLRPID       10          TEXT('REPORT DIST ID')
+     A            SQLFILE      123          TEXT('EMAIL FILE NAME')
+     A            SQLATTY        5          TEXT('EMAIL ATTACHMENT TYPE')
+     A            SQLSUBJ      128          TEXT('EMAIL SUBJECT')
+     A            SQLINVR        4          TEXT('INVCLUDE VARIABLES')
+     A            SQLMS01       76          TEXT('EMAIL MESSAGE  1')
+     A            SQLMS02       76          TEXT('EMAIL MESSAGE  2')
+     A            SQLMS03       76          TEXT('EMAIL MESSAGE  3')
+     A            SQLMS04       76          TEXT('EMAIL MESSAGE  4')
+     A            SQLMS05       76          TEXT('EMAIL MESSAGE  5')
+     A            SQLMS06       76          TEXT('EMAIL MESSAGE  6')
+     A            SQLMS07       76          TEXT('EMAIL MESSAGE  7')
+     A            SQLMS08       76          TEXT('EMAIL MESSAGE  8')
+     A            SQLMS09       76          TEXT('EMAIL MESSAGE  9')
+     A            SQLMS10       76          TEXT('EMAIL MESSAGE 10')
+     A            SQLMSAS       10          TEXT('EMAIL MESSAGE TYPE')
+     A* PRINT DEFAULT FIELDS
+     A            SQLOUTQ       10          TEXT('OUTPUT QUEUE')
+     A*                                      SPECIAL VALUES: *JOB
+     A            SQLOQLB       10          TEXT('OUTPUT QUEUE LIBRARY')
+     A            SQLCOPY        3P 0       TEXT('COPIES')
+     A            SQLHOLD        5          TEXT('HOLD')
+     A            SQLSAVE        5          TEXT('SAVE')
+     A            SQLUSDT       10          TEXT('USER DATA')
+     A            SQLFRLN        3P 0       TEXT('FORM LENGTH')
+     A            SQLFRWD        3P 0       TEXT('FORM WIDTH')
+     A            SQLPINVR       4          TEXT('*YES=INCLUDE VARIABLES')
+     A            SQLPINQY       4          TEXT('*YES=INCLUDE QUERY')
+     A            SQLTITL1      80          TEXT('TITLE 1')
+     A            SQLTITL2      80          TEXT('TITLE 2')
+     A            SQLTITL3      80          TEXT('TITLE 3')
+     A            SQLTITL4      80          TEXT('TITLE 4')
+     A            SQLTITL5      80          TEXT('TITLE 5')
+     A            SQLSHTNAM     32          TEXT('SHEET NAME')
+     A*
+     A          K SQLENUS
+     A          K SQLNAME

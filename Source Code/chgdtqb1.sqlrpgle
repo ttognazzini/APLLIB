@@ -1,4 +1,4 @@
-     H Option( *SrcStmt ) dftactgrp(*no) actgrp(*new)
+     H Option(*SrcStmt:*nounref) dftactgrp(*no) actgrp(*new)
      **
      **  Description : Change Data Queue - CPP
      **  Author  . . : Carsten Flensburg

@@ -1,5 +1,6 @@
 **free
-Ctl-Opt Option( *SrcStmt ) dftactgrp(*no) actgrp(*new) Main(Main);
+Ctl-Opt actgrp(*new);
+/copy APLLIB/QSRC,$ctlopt  // Default Ctl-Opt's, does not include activation group
 
 // CPP for CHGMSD - Change Message Desription
 

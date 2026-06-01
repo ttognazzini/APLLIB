@@ -1,0 +1,24 @@
+Create or Replace Function APLLIB/PGMHLPT1 (
+  pmrPgmNme Char(10),
+  pmrDspFle Char(10),
+  pmrLib Char(10)
+  )
+Returns Table (
+  Key    Char(20),
+  fldRow Decimal(3),
+  fldCol Decimal(3),
+  fldNme Char(10),
+  val    Char(10),
+  hlpTypD Char(20),
+  lneCnt Decimal(5),
+  txt    Char(25),
+  refFle Char(10),
+  refFld Char(10),
+  fldDes Char(22))
+Modifies SQL Data
+Fenced
+External Name 'APLLIB/PGMHLPT1'
+Returns null on null input
+Language RPGLE
+Allow Parallel
+Parameter Style DB2SQL;

@@ -1,0 +1,21 @@
+Create or replace view APLLIB/USRROLV1 as
+
+Select
+  rolNme,
+  usrPrf,
+  acEMail as emlAdr,
+  case when coalesce(acFNam,'') <> '' and coalesce(acLNam,'') <> '' then trim(acLNam) || ', ' || trim(acFNam)
+       when coalesce(acFNam,'') <> '' then acFNam
+       when coalesce(acLNam,'') <> '' then acLNam
+       Else usrPrf
+  end usrNme,
+  Coalesce(acDept,'') usrDpt,
+  coalesce(acJobD,'') usrJob
+From USRROL
+Left Join USRMST on USRMST.usrMstIdn = USRROL.usrMStIdn
+Left Join ROLMST on ROLMST.rolMstIdn = USRROL.rolMStIdn
+left join ACCESSPF on acNo = accNbr
+where USRROL.acvRow = '1'
+  and USRROL.rolApr = '1';
+
+Label on Table APLLIB/USRROLV1 is 'User Roles - List View';

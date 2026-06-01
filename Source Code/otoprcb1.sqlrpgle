@@ -1,5 +1,5 @@
 **FREE
-Ctl-Opt Dftactgrp(*No) Actgrp(*Caller) Option(*SrcStmt:*NoDebugIO) Main(Main);
+Ctl-Opt Dftactgrp(*No) Actgrp(*Caller) Option(*SrcStmt:*NoDebugIO:*nounref) Main(Main);
 
 // Create XML Attribute File
 

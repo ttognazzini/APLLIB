@@ -5,7 +5,7 @@
 
 /*   IFS Monitor Log                                       */
 
-Create or Replace Table APLLIB.IFMLOG (
+Create or Replace Table ifs_monitor_log For System Name APLLIB.IFMLOG (
   active_row                     for Column ACVROW    CHAR(1) Not Null Default '1',
   ifs_monitor_log_id             for Column IFMLOGIDN BIGINT Not Null
                                  Generated Always as Identity (Start With 1 Increment by 1),
@@ -25,7 +25,6 @@ Create or Replace Table APLLIB.IFMLOG (
 );
 
 Label on Table IFMLOG is 'IFS Monitor Log';
-Create or Replace Alias ifs_monitor_log For APLLIB.IFMLOG;
 
 Label on Column APLLIB.IFMLOG (
   ACVROW     is 'Active              Row',
@@ -51,7 +50,7 @@ Label on Column APLLIB.IFMLOG (
   DSTPTH     text is 'Destination Path',
   IFMSTS     text is 'IFS Monitor Status',
   LNGCMT     text is 'Long Comment',
-  CRTDTM     text is 'Create Date',
+  CRTDTM     text is 'Create Date/Time (Time stamp)',
   CRTUSR     text is 'Create User',
   CRTJOB     text is 'Create Job',
   CRTPGM     text is 'Create Program',

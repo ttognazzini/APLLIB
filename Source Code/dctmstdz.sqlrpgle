@@ -1,16 +1,16 @@
 **free
-Ctl-Opt  Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') main(Main);
+Ctl-Opt  Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB/APLLIB') main(Main);
 
 // Dictionary Master Filter
 
 Dcl-F DCTMSTFZ workstn infds(dspDs) UsrOpn;
 
-/Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures
-/Copy QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
+/Copy APLLIB/QSRC,BASFNCV1PR // prototypes for all #$ procedures
+/Copy APLLIB/QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
 /Copy QSRC,DCTMSTDZ_@ // auto generatde data structures for field attribute fields
 /Copy QSRC,DCTMSTDZPR // Always include the prototype for the current program
-/Copy QSRC,DCTVALBPPR
-/Copy QSRC,DCTVALDPPR
+/Copy APLLIB/QSRC,DCTVALBPPR
+/Copy APLLIB/QSRC,DCTVALDPPR
 
 Dcl-Ds filterDs extname('DCTMSTFZ') Inz End-DS;
 

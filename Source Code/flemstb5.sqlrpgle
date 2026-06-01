@@ -1,5 +1,5 @@
 **Free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) Main(Main) BndDir('APLLIB');
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*Caller) Main(Main) BndDir('APLLIB');
 
 // File Master - Add all SQL tables in production libraries fo FLEMST
 // This should only need to be run one time

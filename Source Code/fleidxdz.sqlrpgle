@@ -1,5 +1,5 @@
 **free
-Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
+Ctl-Opt Option(*SrcStmt:*nounref) DftActGrp(*No) ActGrp(*New) BndDir('APLLIB') Main(Main);
 
 // File Indexes Filter
 
@@ -97,14 +97,14 @@ Dcl-Proc Prompt;
 
   // Prompt type description
   If CsrFld = 'IDXUNID';
-    Callp DCTVALDP('APLDCT':'IDXUNI':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'IDXUNI':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       idxUniD = pmEnmDes;
     EndIf;
 
     // Prompt status
   ElseIf CsrFld = 'ACVDES';
-    Callp DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
+    DCTVALDP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:keyPressed);
     If keyPressed = 'ENTER';
       acvDes = pmEnmDes;
     EndIf;
@@ -142,7 +142,7 @@ Dcl-Proc ValidateScreen;
   If acvDes<>'';
     pmEnmVal='';
     pmEnmDes=acvDes;
-    Callp(e) DCTVALBP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'ACVROW':pmEnmVal:pmEnmDes:pmKeyPressed);
     If acvDes <> pmEnmDes;
       acvDes = pmEnmDes;
       error=*on;
@@ -156,7 +156,7 @@ Dcl-Proc ValidateScreen;
   If idxUniD<>'';
     pmEnmVal='';
     pmEnmDes=idxUniD;
-    Callp(e) DCTVALBP('APLDCT':'IDXUNI':pmEnmVal:pmEnmDes:pmKeyPressed);
+    DCTVALBP('APLDCT':'IDXUNI':pmEnmVal:pmEnmDes:pmKeyPressed);
     If idxUniD <> pmEnmDes;
       idxUniD = pmEnmDes;
       error=*on;
