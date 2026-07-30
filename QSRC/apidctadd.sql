@@ -1,0 +1,40 @@
+-- APLLIB.API_DCT_ADD - create a dictionary (DCTMST).
+-- POST /api/dictionaries/add
+-- Body: { "dictionary", "description", "note" }
+
+CREATE OR REPLACE PROCEDURE APLLIB.API_DCT_ADD (
+  IN  PAYLOAD  CLOB(64K),
+  OUT RESPONSE CLOB(1M)
+)
+  LANGUAGE SQL
+  MODIFIES SQL DATA
+  SET OPTION COMMIT = *NONE
+BEGIN
+  DECLARE V_DCT VARCHAR(20);
+  DECLARE V_DES VARCHAR(40);
+  DECLARE V_NTE VARCHAR(60);
+
+  SET V_DCT = UPPER(TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.dictionary'), '')));
+  SET V_DES = TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.description'), ''));
+  SET V_NTE = TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.note'), ''));
+
+  IF V_DCT = '' OR LENGTH(V_DCT) > 10 THEN
+    SIGNAL SQLSTATE '75001'
+      SET MESSAGE_TEXT = 'Dictionary name must be 1 to 10 characters';
+  END IF;
+
+  IF V_DES = '' THEN
+    SIGNAL SQLSTATE '75002'
+      SET MESSAGE_TEXT = 'Description is required';
+  END IF;
+
+  IF EXISTS (SELECT 1 FROM APLLIB.DCTMST WHERE DCTNME = V_DCT) THEN
+    SIGNAL SQLSTATE '75003'
+      SET MESSAGE_TEXT = 'Dictionary already exists';
+  END IF;
+
+  INSERT INTO APLLIB.DCTMST (DCTNME, DES, NTE)
+  VALUES (V_DCT, V_DES, V_NTE);
+
+  SET RESPONSE = '{"ok":true}';
+END;

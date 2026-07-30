@@ -1,0 +1,43 @@
+/* APIINS  install the APLLIBGUI webserver   */
+PGM
+
+  DCL &WWW    TYPE(*CHAR) LEN(32) VALUE('/www/APLLIBGUI')
+  DCL &PATH   TYPE(*CHAR) LEN(256)
+  DCL &CMD    TYPE(*CHAR) LEN(512)
+
+  /* Create IFS layout */
+  CRTDIR     DIR(&WWW)
+  MONMSG     MSGID(CPFA0A0)   /* already exists */
+  CHGVAR     VAR(&PATH) VALUE(&WWW *TCAT '/conf')
+  CRTDIR     DIR(&PATH)
+  MONMSG     MSGID(CPFA0A0)
+  CHGVAR     VAR(&PATH) VALUE(&WWW *TCAT '/htdocs')
+  CRTDIR     DIR(&PATH)
+  MONMSG     MSGID(CPFA0A0)
+  CHGVAR     VAR(&PATH) VALUE(&WWW *TCAT '/logs')
+  CRTDIR     DIR(&PATH)
+  MONMSG     MSGID(CPFA0A0)
+
+  /* Create/Replace IFS configuration file */
+  CPYTOSTMF FROMMBR('/QSYS.LIB/APLLIB.LIB/QSRC.FILE/APIHTTP.MBR') +
+            TOSTMF('/www/apllibgui/conf/httpd.conf') +
+            STMFOPT(*REPLACE) STMFCCSID(1208) ENDLINFMT(*LF)
+
+  /* Register the HTTP server instance: a member in QATMHINSTC  holding the startup line. */
+  CPYF FROMFILE(APLLIB/QSRC) +
+     TOFILE(QUSRSYS/QATMHINSTC) +
+     FROMMBR(APISRV) +
+     TOMBR(APLLIBGUI) +
+     MBROPT(*REPLACE) +
+     CRTFILE(*YES) +
+     FMTOPT(*CVTSRC)
+
+  /* (Re)start the server */
+  ENDTCPSVR  SERVER(*HTTP) HTTPSVR(APLLIBGUI)
+  MONMSG     MSGID(TCP0000 CPF0000)  /* not running yet */
+  STRTCPSVR  SERVER(*HTTP) HTTPSVR(APLLIBGUI)
+  SNDPGMMSG  MSG('APIINS completed - smoke-test: curl -u +
+               <profile> -X POST http://<system>:8500+
+               /api/signon') TOPGMQ(*EXT)
+
+ENDPGM

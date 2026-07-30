@@ -54,7 +54,7 @@ Dcl-Proc SaveOptions;
   // Check for entries in the subfile
   For sflRcd = 1 To RRN1SV;
     Chain(e) sflRcd SFL;
-    If %found;
+    If %found and sel <> '';
       // Left Justify Option
       Sel=%trim(Sel);
       // add to optionsArray

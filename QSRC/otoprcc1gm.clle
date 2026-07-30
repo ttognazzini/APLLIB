@@ -158,31 +158,14 @@ PGM  (&OTO)
 
     /* SEND EMAIL WITH CONVERTED SPLF AS ATTACHEMNT */
     /* TODO FIGURE OUT HOW TO ADD NAMES TO THE EMAIL ADDRESSES */
-    IF (&CC1EML *NE ' ' & &CC2EML *NE ' ' & &CC3EML *NE ' ') ( +
-          RJSSMTP/SMTPSEND TOADDR(&EMLADD &CC1EML &CC2EML &CC3EML) +
-                           FROMADDR(&FRMEML) SUBJECT(&EMLSBJ) +
-                           MESSAGE(&MSG) ATTACHMENT(&PATH) +
-                           CONTYPE('text/html'))
-    ELSE IF (&CC1EML *NE ' ' & &CC2EML *NE ' ') ( +
-          RJSSMTP/SMTPSEND TOADDR(&EMLADD &CC1EML &CC3EML) +
-                           FROMADDR(&FRMEML) SUBJECT(&EMLSBJ) +
-                           MESSAGE(&MSG) ATTACHMENT(&PATH) +
-                           CONTYPE('text/html'))
-    ELSE IF (&CC1EML *NE ' ') ( +
-          RJSSMTP/SMTPSEND TOADDR(&EMLADD &CC1EML) +
-                           FROMADDR(&FRMEML) SUBJECT(&EMLSBJ) +
-                           MESSAGE(&MSG) ATTACHMENT(&PATH) +
-                           CONTYPE('text/html'))
-    ELSE ( RJSSMTP/SMTPSEND TOADDR(&EMLADD) +
-                           FROMADDR(&FRMEML) SUBJECT(&EMLSBJ) +
-                           MESSAGE(&MSG) ATTACHMENT(&PATH) +
-                           CONTYPE('text/html'))
-    /* Send BCC as a seperate email */
-    IF (&BCCEML *NE ' ') ( +
-       RJSSMTP/SMTPSEND TOADDR(&BCCEML) FROMADDR(&FRMEML) +
-                        SUBJECT(&EMLSBJ) MESSAGE(&MSG) +
-                        ATTACHMENT(&PATH) CONTYPE('text/html'))
-
+    IF (&CC1EML *EQ ' ') (CHGVAR &CC1EML '*NONE')
+    IF (&CC2EML *EQ ' ') (CHGVAR &CC2EML '*NONE')
+    IF (&CC3EML *EQ ' ') (CHGVAR &CC3EML '*NONE')
+    IF (&BCCEML *EQ ' ') (CHGVAR &BCCEML '*NONE')
+    IF (&CC1EML *EQ '*NONE') ( GUMBOMAIL/GSENDMAIL TOSMTPNAME((&EMLADD)) +
+          SUBJECT(&EMLSBJ) MSG(&MSG) OBJ((&PATH)) BCC((&BCCEML)) FROM(&FRMEML))
+    ELSE (GUMBOMAIL/GSENDMAIL TOSMTPNAME((&EMLADD)) SUBJECT(&EMLSBJ) MSG(&MSG) +
+          OBJ((&PATH)) CC((&CC1EML) (&CC2EML) (&CC3EML)) BCC((&BCCEML)) FROM(&FRMEML))
 
     /* CLEANUP TEMP FILE */
      DEL OBJLNK(&PATH)
@@ -192,7 +175,7 @@ PGM  (&OTO)
 
   /* IF ARCHIVE */
   IF (&ARCOUT = 'Y' *AND &ARCFLR *NE ' ') (DO)
-    CALL SYS280 'DDRIVEINT'
+    CALL SYS280 'ZZWINCHTAG'
     /* USE CSV FILE IF SELECTED, MUST ALREADY BE MADE */
     IF (&ATATYP = '*CSV' *AND &ARCFLR *NE '/EMAIL/TMP') (DO)
       CHGVAR &PATH   (&ARCFLR *TCAT '/' *TCAT &ATANME *TCAT '.csv')
@@ -245,7 +228,7 @@ PGM  (&OTO)
 
   /* IF POST ARCHIVE THE REPORT */
   IF (&PSTFLG = 'Y' *AND &PSTFLR *NE ' ') (DO)
-    CALL SYS280 'DDRIVEINT'
+    CALL SYS280 'ZZWINCHTAG'
     CHGVAR  &PATH (&PSTFLR *TCAT '/' *TCAT &ATANME *TCAT '.pdf')
     CPYSPLF &PRTFLE *TOSTMF JOB(&JOBNBR/&USERNAME/&JOBNAME) SPLNBR(&SPLFNBR) TOSTMF(&PATH) WSCST(*PDF)
     CALL SYS280

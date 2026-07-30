@@ -7,8 +7,23 @@
 
 /copy APLLIB/QSRC,$ctlopt  // Default Ctl-Opt's, does not include activation group
 
+// Prototype for the QMHSNDPM API
+Dcl-Pr SendMessage extpgm('QMHSNDPM');
+  msgId       char(7)   const;
+  msgFileLib  char(20)  const;
+  msgData     char(256) const;
+  msgDataLen  int(10)   const;
+  msgType     char(10)  const;
+  stackEntry  char(10)  const;
+  stackCount  int(10)   const;
+  msgKey      char(4);
+  errCode     char(16)  options(*varsize);
+End-Pr;
+
 Dcl-S Handle char(12);
 Dcl-S RC int(10);
+Dcl-S msgKey   char(4);
+Dcl-S errCode  char(16) inz;
 
 //  Get Profile Handle API
 Dcl-Pr GetProfile extpgm('QSYGETPH');
@@ -81,6 +96,15 @@ Dcl-Proc RtvProfile;
 
   GetProfile(userid: password: Handle: ErrDs);
   If  BytesAvl > 0;
+    SendMessage(ErrMsgID
+               : 'QCPFMSG   QSYS      '
+               : ErrMsgDta
+               : %len(%trim(ErrMsgDta))
+               : '*ESCAPE'
+               : '*'
+               : 1
+               : msgKey
+               : errCode);
     Return 0;
   Else;
     Return 1;

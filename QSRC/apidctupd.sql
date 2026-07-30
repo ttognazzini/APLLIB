@@ -1,0 +1,38 @@
+-- APLLIB.API_DCT_UPDATE - update a dictionary (key cannot change).
+-- POST /api/dictionaries/update - same body as add.
+
+CREATE OR REPLACE PROCEDURE APLLIB.API_DCT_UPDATE (
+  IN  PAYLOAD  CLOB(64K),
+  OUT RESPONSE CLOB(1M)
+)
+  LANGUAGE SQL
+  MODIFIES SQL DATA
+  SET OPTION COMMIT = *NONE
+BEGIN
+  DECLARE V_DCT  VARCHAR(20);
+  DECLARE V_DES  VARCHAR(40);
+  DECLARE V_NTE  VARCHAR(60);
+  DECLARE V_ROWS INTEGER;
+
+  SET V_DCT = UPPER(TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.dictionary'), '')));
+  SET V_DES = TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.description'), ''));
+  SET V_NTE = TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.note'), ''));
+
+  IF V_DES = '' THEN
+    SIGNAL SQLSTATE '75002'
+      SET MESSAGE_TEXT = 'Description is required';
+  END IF;
+
+  UPDATE APLLIB.DCTMST
+     SET DES = V_DES,
+         NTE = V_NTE
+   WHERE DCTNME = V_DCT;
+
+  GET DIAGNOSTICS V_ROWS = ROW_COUNT;
+  IF V_ROWS = 0 THEN
+    SIGNAL SQLSTATE '75004'
+      SET MESSAGE_TEXT = 'Dictionary not found';
+  END IF;
+
+  SET RESPONSE = '{"ok":true}';
+END;

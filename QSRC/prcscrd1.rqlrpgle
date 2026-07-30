@@ -1,0 +1,60 @@
+**Free
+Ctl-Opt Option(*SrcStmt) DftActGrp(*No) ActGrp(*Caller) BndDir('APLLIB') Main(Main);
+
+// Generic Processing Screen
+
+Dcl-F PRCSCRF1 WORKSTN InfDS(dspDs) usrOpn;
+
+/Copy QSRC,BASFNCV1PR // prototypes for all #$ procedures
+/Copy QSRC,APLSRVV1PR // prototypes for $ procedures used for template programs
+/Copy QSRC,PRCSCRD1_@ // auto generatde data structures for field attribute fields
+/Copy QSRC,PRCSCRD1PR // Always include the prototype for the current program
+
+Exec SQL Set Option Commit = *none, UsrPrf = *owner, DatFmt = *ISO, DynUsrPrf = *owner, CloSQLCsr = *endactgrp;
+
+Dcl-Proc Main;
+  Dcl-Pi *n ExtPgm('PRCSCRD1');
+    pmrMessage Varchar(500) Options(*nopass) const;
+  End-Pi;
+
+  Dcl-S wrdWrp Char(250) dim(250);
+
+  // leave the program if this is not an interactive job
+  If #$INTACT() <> 'I';
+    Return;
+  EndIf;
+
+  // Sets the call stack entry name for the MSG SFL, the call stack entry is the procedure name,
+  // the first procedure is always Main. pgmNme is used in the screen headers.
+  pgmNme=psdsPgmNam;
+
+  // wrap the message text and move it to the individual message field
+  If %parms() >= 1;
+    wrdWrp = #$WORDWRP2(pmrMessage:70);
+    message01 = %subst(wrdWrp(1):1:70);
+    message02 = %subst(wrdWrp(2):1:70);
+    message03 = %subst(wrdWrp(3):1:70);
+    message04 = %subst(wrdWrp(4):1:70);
+    message05 = %subst(wrdWrp(5):1:70);
+    message06 = %subst(wrdWrp(6):1:70);
+    message07 = %subst(wrdWrp(7):1:70);
+    message08 = %subst(wrdWrp(8):1:70);
+  Else;
+    message01 = '';
+    message02 = '';
+    message03 = '';
+    message04 = '';
+    message05 = '';
+    message06 = '';
+    message07 = '';
+    message08 = '';
+  EndIf;
+
+
+  // display the screen
+  Open PRCSCRF1;
+  Write SCREEN;
+  Close PRCSCRF1;
+  // #$wait(.01);
+
+End-Proc;

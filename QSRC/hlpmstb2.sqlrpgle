@@ -137,7 +137,7 @@ Dcl-Proc Main;
       Exec SQL Fetch Next From SQLCRS2 Into :src;
       Iter;
     EndIf;
-    If %subst(src.function:1:9) = 'HLPTITLE(' and #$LAST(src.function:2) <> ')';
+    If %subst(src.function:1:9) = 'HLPTITLE(' and #$LAST(src.function:1) <> ')';
       inHelpTitle = *on;
     ElseIf inHelpTitle;
       inHelpTitle = *off;
@@ -174,10 +174,10 @@ Dcl-Proc Main;
     ElseIf src.dta = '     A*                                     End Automated help text information';
       inHelpText = *off;
     ElseIf not inHelpText and (%subst(src.function:1:10) = 'HLPPNLGRP(' or %subst(src.function:1:7) = 'HLPARA(')
-        and #$LAST(src.function:2) = ')';
+        and #$LAST(src.function:1) = ')';
       inHelpField = *off;
     ElseIf not inHelpText and (%subst(src.function:1:10) = 'HLPPNLGRP(' or %subst(src.function:1:7) = 'HLPARA(')
-        and #$LAST(src.function:2) <> ')';
+        and #$LAST(src.function:1) <> ')';
       inHelpField = *on;
     ElseIf inHelpField;
       inHelpField = *off;

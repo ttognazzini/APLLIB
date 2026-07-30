@@ -10,10 +10,13 @@ Begin
   Declare ResultDate Date ;
   Declare InvalidDate Condition For '22007';
   Declare Exit Handler For InvalidDate
-
     Begin
       Return cast(Null as Date);
       Signal SQLState '01HDI' Set Message_Text='Invalid date';
+    End;
+  Declare Continue Handler for sqlState '22003'
+    Begin
+      Set ResultDate = null;
     End;
 
   If DateDec = 999999   Then Set DateDec = 99999999;
@@ -30,10 +33,12 @@ Begin
      End If;
 
   Set ResultDate = date(
-  substring(digits(DateDec),5,4) || '-' ||
-  substring(digits(DateDec),1,2) || '-' ||
-  substring(digits(DateDec),3,2));
+    substring(digits(DateDec),5,4) || '-' ||
+    substring(digits(DateDec),1,2) || '-' ||
+    substring(digits(DateDec),3,2));
+
   Return ResultDate;
+
 End;
 Label on function APLLIB/DATE8M is 'Convert MMDDYYYY date to Date type';
 Comment on function APLLIB/DATE8M is 'Convert MMDDYYYY date to Date type. A zero date return ''0001-01-01''. A date of

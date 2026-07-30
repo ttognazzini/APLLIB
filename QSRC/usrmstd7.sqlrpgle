@@ -189,7 +189,7 @@ Dcl-Proc ValidateScreen;
 
   // Validate folder name
   If arcFlr <> '';
-    CHGUSRB1('DDRIVEINT');
+    CHGUSRB1('ZZWINCHTAG');
     dir = opendir(%trim(arcFlr));
     If dir = *NULL;
       $ErrorMessage('':'Error folder not found.':error:arcFlr@:'arcFlr':outRow:outCol:psDsPgmNam);
@@ -201,7 +201,7 @@ Dcl-Proc ValidateScreen;
 
   // Validate folder name
   If aarFlr <> '';
-    CHGUSRB1('DDRIVEINT');
+    CHGUSRB1('ZZWINCHTAG');
     dir = opendir(%trim(aarFlr));
     If dir = *NULL;
       $ErrorMessage('':'Error folder not found.':error:aarFlr@:'aarFlr':outRow:outCol:psDsPgmNam);

@@ -35,7 +35,7 @@
      C**
      C**  PROCESS RECORDS...
      C     LDTABL        CASEQ     '**'          ENDPGM
-     C     OPTION        CASEQ     'CLEAR'       CLEAR
+     C     OPTION        CASEQ     '*CLEAR'      CLEAR
      C     D(6)          CASEQ     ' '           CLEAR
      C     D(7)          CASEQ     '*'           CLEAR
      C     D(7)          CASEQ     '/'           CLEAR

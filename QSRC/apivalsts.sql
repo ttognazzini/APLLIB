@@ -1,0 +1,36 @@
+-- APLLIB.API_VAL_SET_STATUS - deactivate/reactivate an enumerated value.
+-- POST /api/dictionaries/values/set-status
+-- Body: { "dictionary", "field", "value", "active": true|false }
+
+CREATE OR REPLACE PROCEDURE APLLIB.API_VAL_SET_STATUS (
+  IN  PAYLOAD  CLOB(64K),
+  OUT RESPONSE CLOB(1M)
+)
+  LANGUAGE SQL
+  MODIFIES SQL DATA
+  SET OPTION COMMIT = *NONE
+BEGIN
+  DECLARE V_DCT  VARCHAR(20);
+  DECLARE V_FLD  VARCHAR(20);
+  DECLARE V_VAL  VARCHAR(20);
+  DECLARE V_ACT  CHAR(1);
+  DECLARE V_ROWS INTEGER;
+
+  SET V_DCT = UPPER(TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.dictionary'), '')));
+  SET V_FLD = UPPER(TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.field'), '')));
+  SET V_VAL = TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.value'), ''));
+  SET V_ACT = CASE WHEN COALESCE(JSON_VALUE(PAYLOAD, '$.active'), 'false')
+                        IN ('true', '1') THEN '1' ELSE '0' END;
+
+  UPDATE APLLIB.DCTVAL
+     SET ACVROW = V_ACT
+   WHERE DCTNME = V_DCT AND FLDNME = V_FLD AND ENMVAL = V_VAL;
+
+  GET DIAGNOSTICS V_ROWS = ROW_COUNT;
+  IF V_ROWS = 0 THEN
+    SIGNAL SQLSTATE '75004'
+      SET MESSAGE_TEXT = 'Value not found';
+  END IF;
+
+  SET RESPONSE = '{"ok":true}';
+END;

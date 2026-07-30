@@ -75,18 +75,23 @@ Dcl-Proc Main;
   // only start processing from when the program starts
   lstPrc = %timestamp();
 
-  // for testing set the time stamp to one second before last message
+  // for testing set the time stamp to one second before last unreplied to message
   If debug = '*YES';
     Exec SQL
-        Select message_timestamp - 1 second
+        Select i.message_timestamp - 1 second
         Into  :lstPrc
-        From qsys2.message_queue_info
-        Where message_queue_library = :msqLib
-          and message_queue_name = :msqNme
-          and (severity >= 40 or message_type ='INQUIRY')
-          and message_id <> 'CPA3394' // ignore printer forms errors
-          and message_id <> 'PQT3625' // ignore connection retries
-        ORDER BY message_timestamp DESC
+        From qsys2.message_queue_info as i
+        Exception Join QSYS2.MESSAGE_QUEUE_INFO r
+            on r.message_timestamp >= i.message_timestamp
+           and r.message_timestamp <= i.message_timestamp + 1 minute
+           and r.message_type = 'REPLY'
+        Where i.message_queue_library = :msqLib
+          and i.message_queue_name = :msqNme
+          and i.message_type ='INQUIRY'
+          and i.message_id <> 'CPA3394' // ignore printer forms errors
+          and i.message_id <> 'PQT3625' // ignore connection retries
+          and i.message_id <> 'CPA4002' // ignore verify allingment messages
+        ORDER BY i.message_timestamp DESC
         limit 1;
     If sqlState < '02';
       Snd-Msg 'Starting timestamp set to ' + %char(lstPrc) + '. This is 1 second before the last messsage.';
@@ -104,24 +109,29 @@ Dcl-Proc Main;
     // loop through message queue process all message since the last one processed
     Exec SQL declare sqlCrs cursor for
       Select
-        message_timestamp,
-        MESSAGE_KEY,
-        MESSAGE_ID,
-        MESSAGE_TYPE,
-        SEVERITY,
-        coalesce(cast(message_text as char(1200) ccsid 37),'') msgTxt,
-        from_user,
-        from_job,
-        from_program,
-        coalesce(cast(MESSAGE_SECOND_LEVEL_TEXT as char(4096) ccsid 37),'') secLvl
-      From qsys2.message_queue_info
-      Where message_queue_library = :msqLib
-        and message_queue_name = :msqNme
-        and (severity >= 40 or message_type ='INQUIRY')
-        and message_id <> 'CPA3394' // ignore printer forms errors
-        and message_id <> 'PQT3625' // ignore connection retries
-        and message_timestamp > :lstPrc
-      ORDER BY message_timestamp DESC;
+        i.message_timestamp,
+        i.MESSAGE_KEY,
+        i.MESSAGE_ID,
+        i.MESSAGE_TYPE,
+        i.SEVERITY,
+        coalesce(cast(i.message_text as char(1200) ccsid 37),'') msgTxt,
+        i.from_user,
+        i.from_job,
+        i.from_program,
+        coalesce(cast(i.message_second_level_text as char(4096) ccsid 37),'') secLvl
+      From QSYS2.MESSAGE_QUEUE_INFO i
+      Exception Join QSYS2.MESSAGE_QUEUE_INFO r
+          on r.message_timestamp >= i.message_timestamp
+         and r.message_timestamp <= i.message_timestamp + 1 minute
+         and r.message_type = 'REPLY'
+      Where i.message_queue_library = :msqLib
+        and i.message_queue_name = :msqNme
+        and i.message_type ='INQUIRY'
+        and i.message_id <> 'CPA3394' // ignore printer forms errors
+        and i.message_id <> 'PQT3625' // ignore connection retries
+        and i.message_id <> 'CPA4002' // ignore verify allingment messages
+        and i.message_timestamp > :lstPrc
+      ORDER BY i.message_timestamp DESC;
     Exec SQL Open sqlCrs;
     Exec SQL Fetch Next From sqlCrs into :msg;
     If debug = '*YES' and sqlState > '02000';
@@ -177,7 +187,8 @@ Dcl-Proc EmailMessage;
           '<br><br>The message is still in the message queue to be reviewed.' +
           '<br><br><small>This message is being sent by job ' +
           psds.jobNme + '/' + psds.usrNme + '/' + psds.jobNbr +
-          ', this job was started using the command MONMSQ</small>';
+          ', this job was started using the command MONMSQ</small>+
+          #Category ERP-Help';
 
   // duoble up an quotes in the subject and message
   subject = %scanrpl('''' :'''''' :subject);

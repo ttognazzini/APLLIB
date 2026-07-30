@@ -1,0 +1,32 @@
+             PGM        PARM(&URL) /* LAUNCH BROWSER TO PASSED IN URL */
+             DCL        VAR(&URL) TYPE(*CHAR) LEN(499)
+             DCL        VAR(&WSNO) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&ISSUEMSG) TYPE(*CHAR) LEN(1) VALUE('N')
+
+             /* Clean URL, Escape & with ^&, and append start command */
+             CALL DSPURLB1 &URL
+
+             STRPCO     PCTA(*NO)
+             MONMSG     MSGID(IWS4032) EXEC(CALLSUBR SUBR(CHK4MSG))
+             MONMSG     MSGID(CPF0000)
+             STRPCCMD   PCCMD(&URL) PAUSE(*NO)
+             MONMSG     MSGID(IWS4032) EXEC(CALLSUBR SUBR(CHK4MSG))
+             MONMSG     MSGID(CPF0000)
+             DLYJOB     DLY(1)
+
+             /*******************************************************************/
+             /* CHECK FOR MESSAGE FROM STRPCO & STRPCCMD TO CATCH ERROR WHICH   */
+             /* PREVENTS LAUNCHING OF WEB BROWSER (ONLY SEND BRK MSGL ONCE)     */
+             SUBR CHK4MSG
+               IF (&ISSUEMSG *EQ 'N') DO
+                 SNDBRKMSG  MSG('The tracking function is temporarily +
+                            unavailable from this workstation. This +
+                            problem has been reported and someone +
+                            from I/T will be contacting you shortly. +
+                            If you have any questions, please contact +
+                            the Helpdesk.') TOMSGQ(&WSNO)
+                 CHGVAR &ISSUEMSG 'Y'
+               ENDDO
+             ENDSUBR
+
+             ENDPGM

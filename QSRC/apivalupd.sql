@@ -1,0 +1,40 @@
+-- APLLIB.API_VAL_UPDATE - update an enumerated value's description
+-- (the value itself is part of the key and cannot change).
+-- POST /api/dictionaries/values/update - same body as add.
+
+CREATE OR REPLACE PROCEDURE APLLIB.API_VAL_UPDATE (
+  IN  PAYLOAD  CLOB(64K),
+  OUT RESPONSE CLOB(1M)
+)
+  LANGUAGE SQL
+  MODIFIES SQL DATA
+  SET OPTION COMMIT = *NONE
+BEGIN
+  DECLARE V_DCT  VARCHAR(20);
+  DECLARE V_FLD  VARCHAR(20);
+  DECLARE V_VAL  VARCHAR(20);
+  DECLARE V_DES  VARCHAR(40);
+  DECLARE V_ROWS INTEGER;
+
+  SET V_DCT = UPPER(TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.dictionary'), '')));
+  SET V_FLD = UPPER(TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.field'), '')));
+  SET V_VAL = TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.value'), ''));
+  SET V_DES = TRIM(COALESCE(JSON_VALUE(PAYLOAD, '$.description'), ''));
+
+  IF V_DES = '' THEN
+    SIGNAL SQLSTATE '75002'
+      SET MESSAGE_TEXT = 'Description is required';
+  END IF;
+
+  UPDATE APLLIB.DCTVAL
+     SET ENMDES = V_DES
+   WHERE DCTNME = V_DCT AND FLDNME = V_FLD AND ENMVAL = V_VAL;
+
+  GET DIAGNOSTICS V_ROWS = ROW_COUNT;
+  IF V_ROWS = 0 THEN
+    SIGNAL SQLSTATE '75004'
+      SET MESSAGE_TEXT = 'Value not found';
+  END IF;
+
+  SET RESPONSE = '{"ok":true}';
+END;

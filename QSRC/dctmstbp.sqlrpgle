@@ -26,7 +26,7 @@ Dcl-Proc Main;
 
   // If a value is passed and only one option matches it, use it and leave
   If %parms >= 2 and pmrDes <> '';
-    likeDes = #$UPIFY(%trim(pmrDes))+'%';
+    likeDes = '%' + %upper(%trim(pmrDes)) + '%';
     Exec SQL Select Count(*) Into :Count
              From DCTMST
              Where Des like (:likeDes);
@@ -42,7 +42,7 @@ Dcl-Proc Main;
 
   // If a name is passed and only one option matches it, use it and leave
   If %parms >= 1 and pmrDctNme <> '';
-    likeDes = #$UPIFY(%trim(pmrDctNme))+'%';
+    likeDes = %upper(%trim(pmrDctNme))+'%';
     Exec SQL Select Count(*) Into :Count
              From DCTMST
              Where DctNme like (:likeDes);

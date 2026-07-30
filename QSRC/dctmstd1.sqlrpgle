@@ -388,7 +388,7 @@ Dcl-Proc ValidateScreen;
 
       // If any option but add or position to, make sure the entry exists
     ElseIf not (Sel in %list('1':'8')) and not found and not Maintenance;
-      $ErrorMessage('':'Error - Entery does not exist.':error:DctNme1@:'DctNme1':outRow:outCol:psDsPgmNam);
+      $ErrorMessage('':'Error - Entry does not exist.':error:DctNme1@:'DctNme1':outRow:outCol:psDsPgmNam);
     EndIf;
   EndIf;
 

@@ -48,7 +48,7 @@ PGM        PARM(&SRCMBR &SRCFLE &SRCLIB &OPTION)
   MonMsg CPF0000
 
   OvrDbf file(QRPGSRC) toFile(&srcLib/&srcFle) mbr(&srcMbr)
-  Call   LSMCMDB1 (&srcLib &srcFle &srcMbr &option)
+  Call   LSMCMDB1 (&option)
   DltOvr file(*ALL)
 
 EndPgm
