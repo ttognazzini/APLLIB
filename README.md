@@ -24,6 +24,14 @@ well as a program master system and templating environment that makes writing
 interactive RPG programs a breeze. Documentation for this is in a separate 
 document.
 
+- **APLLIBGUI** - A browser-based front end for the APLLIB tools, starting
+with the dictionary system (segments, dictionaries, fields, enumerated
+values). It is a Vue single-page app served entirely by the IBM i: Apache
+serves the built site and dispatches API calls to a single CGI program
+that runs SQL stored procedures as the signed-on user. The web app lives
+in [`APLLIBGUI/`](APLLIBGUI/) (see its README.md and BACKEND.md); its IBM i
+sources are `api*` members in [`QSRC/`](QSRC/).
+
 # Prerequisites
 The package is pretty self contained with the exception of the #$XLSX project
 used to create pretty Excel files in RPG. At some point I will integrate it 

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260">
+<polygon points="40,30 140,30 190,80 190,180 140,230 40,230 -10,180 -10,80" fill="#2F80ED"/>
+<path d="M90 45 L155 200 L125 200 L110 165 L70 165 L55 200 L25 200 Z" fill="white"/>
+<polygon points="90,95 120,112 90,129 60,112" fill="#8FD3FF"/>
+<polygon points="60,112 90,129 90,165 60,148" fill="#2F80ED"/>
+<polygon points="120,112 90,129 90,165 120,148" fill="#0B3D91"/>
+<text x="230" y="130" font-family="Arial,Helvetica,sans-serif" font-size="92" font-weight="700" fill="#EDF2F9">APLLIB</text>
+<text x="230" y="175" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#9CA3AF">APPLICATION DEVELOPMENT LIBRARY</text>
+</svg>

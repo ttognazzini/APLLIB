@@ -1,16 +1,15 @@
--- APLLIB.API_ROUTE_REGISTRY (system name APIRTE) — API routing table for the CGI
--- dispatcher (APIDSP). One row per endpoint: URL path → stored procedure.
+-- APLLIB.API_ROUTE_REGISTRY (system name APIRTE) - API routing table for the CGI
+-- dispatcher (APIDSP). One row per endpoint: URL path -> stored procedure.
 -- This table is the ALLOWLIST: a path not in it (or with ACVROW='0')
 -- returns HTTP 404 and no SQL ever runs (RULES.md S5/S7).
 --
 -- Follows the APLLIB table conventions (see DCTSEG): active_row first,
 -- <file>IDN identity second, audit columns populated by the file system's
 -- trigger program. If the standard tooling normally generates the table
--- and trigger, prefer regenerating it there — the dispatcher only reads
+-- and trigger, prefer regenerating it there - the dispatcher only reads
 -- PTHNME, PRCNME, ACVROW.
 
-CREATE OR REPLACE TABLE APLLIB.API_ROUTE_REGISTRY FOR SYSTEM NAME APIRTE
-  ON REPLACE PRESERVE ALL ROWS (
+CREATE OR REPLACE TABLE APLLIB.API_ROUTE_REGISTRY FOR SYSTEM NAME APIRTE (
   active_row             FOR COLUMN ACVROW    CHAR(1)      NOT NULL DEFAULT '1',
   api_route_id           FOR COLUMN APIRTEIDN BIGINT       NOT NULL
                            GENERATED ALWAYS AS IDENTITY
@@ -26,12 +25,12 @@ CREATE OR REPLACE TABLE APLLIB.API_ROUTE_REGISTRY FOR SYSTEM NAME APIRTE
   maintenance_job        FOR COLUMN MNTJOB    CHAR(28)     NOT NULL WITH DEFAULT,
   maintenance_program    FOR COLUMN MNTPGM    CHAR(10)     NOT NULL WITH DEFAULT,
   PRIMARY KEY (PTHNME)
-);
+) ON REPLACE PRESERVE ALL ROWS;
 
 -- Endpoints. MERGE so the script is rerunnable against a table that
 -- already has rows: missing paths are added, and existing paths get
 -- their procedure name synced to this source (covers procedure
--- renames). ACVROW is deliberately not touched — deactivate an endpoint
+-- renames). ACVROW is deliberately not touched - deactivate an endpoint
 -- by setting ACVROW='0' and this script will not reactivate it.
 MERGE INTO APLLIB.API_ROUTE_REGISTRY T
 USING (VALUES
