@@ -1,0 +1,220 @@
+**FREE
+ CTL-OPT nomain;
+ CTL-OPT AlwNull(*USRCTL);
+ // =================================================================
+ // Source code for the SQL NBRVAL user-defined function.
+ // =================================================================
+ // On each call, this function returns a Character field with a valid
+ // numeric value derived from the parameter receieved.
+ // =================================================================
+ // To create function in SQL:
+ // Call NBRVALFN
+ // =================================================================
+ // To use in SQL:
+ //      select xxx, NbrVal(chrfield)
+ DCL-PR NbrVal CHAR(30);
+   ChrIn CHAR(30);
+ END-PR;
+ DCL-PR NbrValC CHAR(30);
+   ChrIn VARCHAR(30) Const;
+ END-PR;
+ DCL-PR PCKCHRU1 packed(29:0);
+   ChrIn VARCHAR(15) Const;
+ END-PR;
+ DCL-PR ZONCHRU1 packed(29:0);
+   ChrIn VARCHAR(30) Const;
+ END-PR;
+
+ //-----------------------------------------
+ // NBRVAL
+
+ DCL-PROC NbrVal EXPORT;
+ DCL-PI NbrVal CHAR(30);
+   ChrIn CHAR(30);
+ END-PI;
+
+ DCL-S ChrInw CHAR(30);
+ DCL-S ChrOut CHAR(30);
+ DCL-S NbrOut PACKED(30:10);
+ DCL-S Pos INT(5);
+ DCL-S PosNxt INT(5);
+ DCL-S Negative IND;
+ DCL-S Decimal IND;
+
+
+ Exec SQL
+   Values(case When :ChrIn Is Null Then '0'
+               Else :ChrIn end)
+          Into :ChrInw;
+
+ If ChrInw = *blanks
+ or ChrInw = '0';
+    Return '0';
+ EndIf;
+
+ ChrOut = ChrInw;
+ Clear Negative;
+ Clear Decimal;
+ Pos = %scan('-':ChrOut :1);
+ If Pos > *zeros;
+    Negative = *on;
+ EndIf;
+
+ PosNxt = 1;
+ DoU Pos = *zeros or Pos > %len(%trimR(ChrOut ));
+     Pos = %check('0123456789':ChrOut :PosNxt);
+     If Pos > *zeros;
+        If %subst(ChrOut :Pos:1) = '.' and not Decimal
+        and Pos < %len(ChrOut );
+            Decimal = *on;
+            PosNxt = Pos + 1;
+        Else;
+            ChrOut  = %replace('':ChrOut :Pos:1);
+        EndIf;
+     EndIf;
+ EndDo;
+
+ If ChrOut = *blanks;
+    ChrOut = '0';
+ ElseIf Negative;
+    NbrOut = %dec(ChrOut:30:10);
+    NbrOut = 0 - NbrOut;
+    ChrOut = '-' + %trim(ChrOut);
+ EndIf;
+ Return ChrOut;
+
+ END-PROC NbrVal;
+
+//*-----------------------------------------
+//* NBRVALC
+
+ DCL-PROC NbrValC EXPORT;
+ DCL-PI NbrValC CHAR(30);
+   ChrIn VARCHAR(30) Const;
+ END-PI;
+
+ DCL-S ChrInw CHAR(30);
+ DCL-S ChrOut CHAR(30);
+ DCL-S Pos INT(5);
+ DCL-S PosNxt INT(5);
+ DCL-S Negative IND;
+ DCL-S Decimal IND;
+
+ Exec SQL
+   Values(case When :ChrIn Is Null Then '0'
+               Else :ChrIn end)
+          Into :ChrInw;
+
+ If ChrInw = *blanks
+ or ChrInw = '0';
+    ChrOut = '0';
+    Return ChrOut;
+ EndIf;
+
+ ChrOut = ChrInw;
+ Clear Negative;
+ Clear Decimal;
+ Pos = %scan('-':ChrOut :1);
+ If Pos > *zeros;
+    Negative = *on;
+ EndIf;
+
+ PosNxt = 1;
+ DoU Pos = *zeros or Pos > %len(%trimR(ChrOut ));
+     Pos = %check('0123456789':ChrOut :PosNxt);
+     If Pos > *zeros;
+        If %subst(ChrOut :Pos:1) = '.' and not Decimal
+        and Pos < %len(ChrOut );
+            Decimal = *on;
+            PosNxt = Pos + 1;
+        Else;
+            ChrOut  = %replace('':ChrOut :Pos:1);
+        EndIf;
+     EndIf;
+ EndDo;
+
+ If ChrOut = *blanks;
+    ChrOut = '0';
+ ElseIf Negative;
+    ChrOut = '-' + %trim(ChrOut);
+ EndIf;
+ Return ChrOut;
+
+ END-PROC NbrValC;
+
+//*-----------------------------------------
+//* PCKCHRU1 Convered character field of packed characters into decimal value
+
+ DCL-PROC PCKCHRU1 EXPORT;
+ DCL-PI PCKCHRU1 packed(29:0);
+   ChrIn VARCHAR(15) Const;
+ END-PI;
+
+ Dcl-s DecOut packed(29:0);
+
+ DCL-DS CVT;
+   Chr15 char(15) Pos(1);
+   Dec29 Packed(29:0) Pos(1);
+ END-DS;
+
+ DCL-S ChrInw CHAR(30);
+
+ Exec SQL
+   Values(case When :ChrIn Is Null Then x'000F'
+               Else :ChrIn end)
+          Into :ChrInw;
+
+ If ChrInw = *blanks
+ or ChrInw = '0';
+    Return 0;
+ EndIf;
+
+Monitor;
+ EvalR Chr15 =  x'0000000000000000000000000000' +  %trim(ChrInw);
+ Dec29 += 0;
+ Return Dec29;
+On-Error *All;
+   Return 0;
+EndMon;
+
+ END-PROC PCKCHRU1;
+
+
+
+//*-----------------------------------------
+//* ZONCHRU1 Convered zoned character field of packed characters into decimal value
+
+ DCL-PROC ZONCHRU1 EXPORT;
+ DCL-PI ZONCHRU1 packed(29:0);
+   ChrIn VARCHAR(30) Const;
+ END-PI;
+
+ Dcl-s Dec29 packed(29:0);
+
+ DCL-DS CVT;
+   Chr30 char(30) Pos(1);
+   Zon30 Zoned(30:0) Pos(1);
+ END-DS;
+
+ DCL-S ChrInw CHAR(30);
+
+ Exec SQL
+   Values(case When :ChrIn Is Null Then '0'
+               Else :ChrIn end)
+          Into :ChrInw;
+
+ If ChrInw = *blanks
+ or ChrInw = '0';
+    Return 0;
+ EndIf;
+
+Monitor;
+ EvalR Chr30 =  '000000000000000000000000000000' +  %trim(ChrInw);
+ Dec29 = Zon30;
+ Return Dec29;
+On-Error *All;
+   Return 0;
+EndMon;
+
+ END-PROC ZONCHRU1;
+

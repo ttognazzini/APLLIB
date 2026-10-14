@@ -106,7 +106,6 @@ Dcl-Proc BuildFile;
   Dcl-S nulTxt varchar(50);
   Dcl-S colTxt like(APLDCT.COLTXT);
   Dcl-S colHdg like(APLDCT.COLHDG);
-  Dcl-S lstFld like(APLDCT.FLDNME);
   Dcl-S lngCmt varchar(2000);
   Dcl-S cmtFldNme like(APLDCT.fldNme);
 
@@ -167,6 +166,7 @@ Dcl-Proc BuildFile;
     Join DCTFLD as dct on (dct.dctNme,dct.fldNme) = (FLEMST.dctNme,FLEFLD.fldNme)
     Join FLDTYP as typ on (typ.fldTyp) = (dct.fldTyp)
     Where (FLEFLD.fleLib,FLEFLD.fleNme) = (:fleLib,:fleNme)
+      and FLEFLD.acvRow = '1'
     Order by fldLvl, fldSeq;
   Exec SQL Open crs4;
   Exec SQL fetch next from crs4 into :dctDta;
@@ -257,6 +257,10 @@ Dcl-Proc BuildFile;
   EndDo;
   Exec SQL Close crs4;
 
+  // add hard coded row_changed Timestamp
+  WriteLine('  row_changed_time_stamp         for Column ROWDTM    TIMESTAMP Not Null Implicitly Hidden');
+  WriteLine('                                 Generated Always For Each Row On Update As Row Change Timestamp,');
+
   // add the primary key fields if found
   Clear line;
   Exec SQL
@@ -266,7 +270,8 @@ Dcl-Proc BuildFile;
     Join FLEMST on (FLEMST.fleLib, FLEMST.fleNme) = (FLEFLD.fleLib, FLEFLD.fleNme)
     Join DCTFLD as dct on (dct.dctNme,dct.fldNme) = (FLEMST.dctNme,FLEFLD.fldNme)
     Where (FLEMST.fleLib,FLEFLD.fleNme) = (:fleLib,:fleNme)
-      and priKey = 'Y';
+      and priKey = 'Y'
+      and FLEFLD.acvRow = '1';
   If line <> '';
     WriteLine('  primary key (' + line + ')');
   EndIf;
@@ -302,10 +307,14 @@ Dcl-Proc BuildFile;
   Clear cmtFldNme;
   Exec SQL Declare fldLngCmtCrs cursor for
     With dta as (
-      Select fldNme, listagg(cast(trim(nte) as varchar(32000)), ' ') Within Group (Order by nteSeq) notes
-      From FLDNTE
-      Where (fleLib,fleNme) = (:fleLib,:fleNme)
-      Group by fldNme
+      Select n.fldNme,
+             listagg(cast(trim(n.nte) as varchar(32000)), ' ') Within Group (Order by n.nteSeq) notes
+      From FLDNTE as n
+      join FLEFLD as f on (f.fleLib, f.fleNme, f.fldNme) = (n.fleLib, n.fleNme, n.fldNme)
+      Where (n.fleLib, n.fleNme) = (:fleLib, :fleNme)
+        and f.acvRow = '1'
+        and n.acvRow = '1'
+      Group by n.fldNme
       )
     Select
       fldnme,
@@ -322,15 +331,6 @@ Dcl-Proc BuildFile;
   EndDo;
   Exec SQL Close fldLngCmtCrs;
 
-  // get the last field for the file, used to add commas after all but the last field.
-  Exec SQL
-    Select fldNme
-    Into :lstFld
-    From FLEFLD
-    Where (FLEFLD.fleLib,FLEFLD.fleNme) = (:fleLib,:fleNme)
-    Order by fldLvl desc, fldSeq desc
-    Limit 1;
-
   // Add column labels
   WriteLine('');
   WriteLine('Label on Column ' + tblNme + ' (');
@@ -340,18 +340,16 @@ Dcl-Proc BuildFile;
     Join FLEMST on (FLEMST.fleLib, FLEMST.fleNme) = (FLEFLD.fleLib, FLEFLD.fleNme)
     Join DCTFLD as dct on (dct.dctNme,dct.fldNme) = (FLEMST.dctNme,FLEFLD.fldNme)
     Where (FLEFLD.fleLib,FLEFLD.fleNme) = (:fleLib,:fleNme)
+      and FLEFLD.acvRow = '1'
     Order by fldLvl, fldSeq;
   Exec SQL Open crs5;
   Exec SQL fetch next from crs5 into :fldNme,:colHdg;
   DoW SQLState < '02';
-    line = '  ' + fldNme + ' is ''' + %trim(colHdg) + '''';
-    If fldNme <> lstFld;
-      line += ',';
-    EndIf;
-    WriteLine(line);
+    WriteLine('  ' + fldNme + ' is ''' + %trim(colHdg) + ''',');
     Exec SQL fetch next from crs5 into :fldNme,:colHdg;
   EndDo;
   Exec SQL Close crs5;
+  WriteLine('  ROWDTM     is ''Row                 Changed             Date/Time''');
   WriteLine(');');
 
 
@@ -364,18 +362,16 @@ Dcl-Proc BuildFile;
     Join FLEMST on (FLEMST.fleLib, FLEMST.fleNme) = (FLEFLD.fleLib, FLEFLD.fleNme)
     Join DCTFLD as dct on (dct.dctNme,dct.fldNme) = (FLEMST.dctNme,FLEFLD.fldNme)
     Where (FLEFLD.fleLib,FLEFLD.fleNme) = (:fleLib,:fleNme)
+      and FLEFLD.acvRow = '1'
     Order by fldLvl, fldSeq;
   Exec SQL Open crs6;
   Exec SQL fetch next from crs6 into :fldNme,:colTxt;
   DoW SQLState < '02';
-    line = '  ' + fldNme + ' text is ''' + %trim(colTxt) + '''';
-    If fldNme <> lstFld;
-      line += ',';
-    EndIf;
-    WriteLine(line);
+    WriteLine('  ' + fldNme + ' text is ''' + %trim(colTxt) + ''',');
     Exec SQL fetch next from crs6 into :fldNme,:colTxt;
   EndDo;
   Exec SQL Close crs6;
+  WriteLine('  ROWDTM     text is ''Row Changed Date/Time''');
   WriteLine(');');
 
 End-Proc;
@@ -418,14 +414,7 @@ Dcl-Proc BuildTrigger;
   WriteLine('for each row mode db2row');
   WriteLine('');
   WriteLine('Begin');
-  WriteLine('  /* On create set the crtXXX values */');
-  WriteLine('  If Inserting Then');
-  WriteLine('    set n.create_time_stamp = current timestamp,');
-  WriteLine('        n.create_user = user,');
-  WriteLine('        n.create_job = job_name,');
-  WriteLine('        n.create_program = APLLIB.current_program();');
-  WriteLine('  End If ;');
-  WriteLine('');
+  WriteLine('  Declare pgm_name VARCHAR(100);');
   WriteLine('');
   WriteLine('  /* On create, or update and a field changes, set the mntXXX values */');
   WriteLine('  If inserting or');
@@ -445,9 +434,9 @@ Dcl-Proc BuildTrigger;
   or = '';
   DoW SQLState < '02';
     If fldTyp = 'XML';
-      WriteLine('       ' + or + ' hash(n.' + %trim(fldNmeSql) + ') <> hash(o.' + %trim(fldNmeSql) + ')');
+      WriteLine('       ' + or + ' hash(n.' + %trim(fldNmeSql) + ') is distinct from hash(o.' + %trim(fldNmeSql) + ')');
     Else;
-      WriteLine('       ' + or + ' n.' + %trim(fldNmeSql) + ' <> o.' + %trim(fldNmeSql));
+      WriteLine('       ' + or + ' n.' + %trim(fldNmeSql) + ' is distinct from o.' + %trim(fldNmeSql));
     EndIf;
     or = 'or';
     Exec SQL fetch next from crs1 into :fldNmeSql,:fldTyp;
@@ -455,10 +444,37 @@ Dcl-Proc BuildTrigger;
   Exec SQL Close crs1;
 
   WriteLine('  )) Then');
+
+  WriteLine('    /* A real program on the call stack, if there is one.  Trimmed');
+  WriteLine('       because this returns CHAR(10). */');
+  WriteLine('    Set pgm_name = Trim ( Coalesce ( APLLIB.current_program() , '''' ) ) ;');
+  WriteLine('');
+  WriteLine('    /* Nothing on the stack means the request arrived over SQL.  Take the');
+  WriteLine('       page the client declared, then whatever the client calls itself. */');
+  WriteLine('    If pgm_name = '''' Then');
+  WriteLine('      Set pgm_name =');
+  WriteLine('        Trim ( Left ( Trim ( Coalesce ( Current Client_ProgramID , '''' ) )');
+  WriteLine('                    , 100 ) ) ;');
+  WriteLine('    End If ;');
+  WriteLine('    If pgm_name = '''' Then');
+  WriteLine('      Set pgm_name =');
+  WriteLine('        Trim ( Left ( Trim ( Coalesce ( Current Client_ApplName , '''' ) )');
+  WriteLine('                    , 100 ) ) ;');
+  WriteLine('    End If ;');
+  WriteLine('');
+  WriteLine('    /* On create set the crtXXX values */');
+  WriteLine('    If Inserting Then');
+  WriteLine('      set n.create_time_stamp = current timestamp,');
+  WriteLine('          n.create_user = user,');
+  WriteLine('          n.create_job = job_name,');
+  WriteLine('          n.create_program = pgm_name;');
+  WriteLine('    End If ;');
+  WriteLine('');
   WriteLine('    set n.maintenance_time_stamp = current timestamp,');
   WriteLine('        n.maintenance_user = user,');
   WriteLine('        n.maintenance_job = job_name,');
-  WriteLine('        n.maintenance_program = APLLIB.current_program();');
+  WriteLine('        n.maintenance_program = pgm_name;');
+  WriteLine('');
   WriteLine('  End If;');
 
   // add all audited fields
@@ -476,14 +492,15 @@ Dcl-Proc BuildTrigger;
   Exec SQL fetch next from crs2 into :fldNme,:fldNmeSql,:fleFldIdn;
   DoW SQLState < '02';
     WriteLine('');
-    WriteLine('  If o.' + %trim(fldNmeSql) +' <>  n.' +%trim(fldNmeSql) + ' Then');
+    WriteLine('  If Updating and o.' + %trim(fldNmeSql) + ' is distinct from n.' + %trim(fldNmeSql) + ' Then');
     WriteLine('    Insert into APLLIB.AUDLOG');
     WriteLine('          (fleLib, fleNme, fleMstIdn,');
     WriteLine('           rcdIdn, fldNme, fleFldIdn,');
     WriteLine('           bfrVal, aftVal)');
     WriteLine('    Values('''+%trim(fleLib)+''','''+%trim(fleNme)+''', ' +%char(fleMstIdn) + ',');
     WriteLine('           n.'+%trim(idnFldNmeSql) + ','''+%trim(fldNme)+''','+%char(fleFldIdn) +',');
-    WriteLine('           o.'+%trim(fldNmeSql) + ', n.'+%trim(fldNmeSql)+');');
+    WriteLine('           Coalesce(Cast(o.' + %trim(fldNmeSql) + ' as VarChar(100)), ''*NULL''),');
+    WriteLine('           Coalesce(Cast(n.' + %trim(fldNmeSql) + ' as VarChar(100)), ''*NULL''));');
     WriteLine('  End If;');
     Exec SQL fetch next from crs2 into :fldNme,:fldNmeSql,:fleFldIdn;
   EndDo;

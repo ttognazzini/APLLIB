@@ -1,23 +1,23 @@
         Ctl-Opt DftActGrp(*no) ActGrp(*caller);
-    ‚ *****************************************************************
-    ‚ * Program : ANLSRCB1                                            *
-    ‚ * Function: Analyse Source Files (Sub-Program)                  *
-    ‚ * Author  : Werner Noll                                         *
-    ‚ * Modified:                                                     *
-    ‚ * Remarks : This is free software.                              *
-    ‚ *           You can redistribute it and/or modify it.           *
-    ‚ *           The only restriction is that you may not distribute *
-    ‚ *           it for the purposes of monetary gain.               *
-    ‚ *           We do not garantee for the expected functionalties. *
-    ‚ *           The use of this software is always at your own risk.*
-    ‚ *           All comments or reuqests for enhancements are       *
-    ‚ *           welcome. My email: werner.noll@gefis.com.           *
-    ‚ *****************************************************************
-    ‚ * Overridden source file
+      *****************************************************************
+      * Program : ANLSRCB1                                            *
+      * Function: Analyse Source Files (Sub-Program)                  *
+      * Author  : Werner Noll                                         *
+      * Modified:                                                     *
+      * Remarks : This is free software.                              *
+      *           You can redistribute it and/or modify it.           *
+      *           The only restriction is that you may not distribute *
+      *           it for the purposes of monetary gain.               *
+      *           We do not garantee for the expected functionalties. *
+      *           The use of this software is always at your own risk.*
+      *           All comments or reuqests for enhancements are       *
+      *           welcome. My email: werner.noll@gefis.com.           *
+      *****************************************************************
+      * Overridden source file
      FSRCMBR    IF   F  122        Disk    usropn
-    ‚ * Printerfile
+      * Printerfile
      FANLSRCO1  O    E             Printer oflind(*in98) usropn
-    ‚ *****************************************************************
+      *****************************************************************
       * Timestamp
      D #tmstmp         s               z
       * Today-Date/Time
@@ -31,14 +31,14 @@
       * Jobstamp (User/Job/Jobnbr/Date/Time)
      D #jobstmp        s             48a
       *
-  ˆ   * Program status DS (PSDS)
+      * Program status DS (PSDS)
      D #psds          sds
      D  #psds_sts        *status
      D  #psds_pgm        *proc
      D  #psds_job            244    253A
      D  #psds_usr            254    263A
      D  #psds_jnr            264    269A
-  ˆ   *
+      *
      D #char008        s              8a   inz(*blanks)
      D #char010        s             10a   inz(*blanks)
      D LetUC           C                   Const('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
@@ -60,7 +60,7 @@
      D P$SrcF          s             10a
      D P$SrcLib        s             10a
      D P$Mbr           s             10a
-    ‚ *****************************************************************
+      *****************************************************************
      ISRCMBR    KF
      I                                  1    6  SRCSEQ
      I                                  7   12  SRCDAT
@@ -70,20 +70,20 @@
        Exec SQL Set Option Commit = *none, UsrPrf = *owner, datfmt = *ISO,
                            DynUsrPrf = *owner, CloSQLCsr = *endmod;
 
-    ‚ *****************************************************************
-  ˆ   * Main Routine
-  ˆ   *----------------------------------------------------------------
-  ˆ   *
+      *****************************************************************
+      * Main Routine
+      *----------------------------------------------------------------
+      *
      C                   if        P$Mbr='*END'
      C                   exsr      $CLOSE
      C                   eval      *inlr=*on
      C                   return
      C                   endif
-  ˆ   *
+      *
      C                   eval      wlib=P$SrcLib
      C                   eval      wfile=P$SrcF
      C                   eval      wmbr=P$Mbr
-  ˆ   *
+      *
      C                   open      SRCMBR
      C                   do        *hival
      C                   read(e)   SRCMBR
@@ -91,14 +91,14 @@
      C                   close     SRCMBR
      C                   leave
      C                   endif
-  ˆ   *
-  ˆ   *-------------------------------------------------------------------------
-  ˆ   * Convert lower to upper case, if case is ignored
+      *
+      *-------------------------------------------------------------------------
+      * Convert lower to upper case, if case is ignored
      C                   if        P$CMatch='2'
      C     LetLC:LetUC   XLATE     SRCDTA        SRCDTA
      C                   endif
-  ˆ   *-------------------------------------------------------------------------
-  ˆ   * Process Strings 1 - 10
+      *-------------------------------------------------------------------------
+      * Process Strings 1 - 10
      C                   if        P$Stg01<>*blanks
      C                   eval      #Stg=%trimr(P$Stg01)
      C                   exsr      $SCAN
@@ -139,50 +139,50 @@
      C                   eval      #Stg=%trimr(P$Stg10)
      C                   exsr      $SCAN
      C                   endif
-  ˆ   *
+      *
      C                   enddo
      C                   return
-  ˆ   *----------------------------------------------------------------
-  ˆ   * Scan source data
-  ˆ   *----------------------------------------------------------------
+      *----------------------------------------------------------------
+      * Scan source data
+      *----------------------------------------------------------------
      C     $SCAN         begsr
-  ˆ   *
-  ˆ   * Convert lower to upper case, if case is ignored
+      *
+      * Convert lower to upper case, if case is ignored
      C                   if        P$CMatch='2'
      C     LetLC:LetUC   XLATE     #Stg          #Stg
      C                   endif
-  ˆ   *
+      *
      C     #Stg          scan      SRCDTA
      C                   if        %found
-  ˆ   *
+      *
      C                   if        not %open(ANLSRCO1)
      C                   exsr      $OPEN
      C                   endif
-  ˆ   *
+      *
      C                   eval      wstg=#Stg
      C                   eval      wseq=SRCSEQ
      C                   eval      wdta=SRCDTA
      C                   write     ANLSRC07
-  ˆ   *
+      *
      C                   if        *in98=*on
      C                   write     ANLSRC01
      C                   write     ANLSRC05
      C                   write     ANLSRC06
      C                   eval      *in98=*off
      C                   endif
-  ˆ   *
+      *
      C                   endif
-  ˆ   *
+      *
      C                   endsr
-  ˆ   *----------------------------------------------------------------
-  ˆ   * Open printer file
-  ˆ   *----------------------------------------------------------------
+      *----------------------------------------------------------------
+      * Open printer file
+      *----------------------------------------------------------------
      C     $OPEN         begsr
-  ˆ   *
+      *
      C                   eval      w$job=#jobstmp
      C                   eval      w$srcf=%subst(P$srcflib:1:10)
      C                   eval      w$lib=%subst(P$srcflib:11:10)
-  ˆ   *
+      *
      C                   eval      w$stg10=%TrimR(p$Stg01)+'  '+
      C                                     %TrimR(p$stg02)+'  '+
      C                                     %TrimR(p$stg03)+'  '+
@@ -193,29 +193,29 @@
      C                                     %TrimR(p$stg08)+'  '+
      C                                     %TrimR(p$stg09)+'  '+
      C                                     %TrimR(p$stg10)
-  ˆ   *
+      *
      C                   open      ANLSRCO1
      C                   write     ANLSRC01
      C                   write     ANLSRC05
      C                   write     ANLSRC06
-  ˆ   *
+      *
      C                   endsr
-  ˆ   *----------------------------------------------------------------
-  ˆ   * Close printer file
-  ˆ   *----------------------------------------------------------------
+      *----------------------------------------------------------------
+      * Close printer file
+      *----------------------------------------------------------------
      C     $CLOSE        begsr
-  ˆ   *
+      *
      C                   if        %open(ANLSRCO1)
      C                   write     ANLSRC97
      C                   close     ANLSRCO1
      C                   endif
-  ˆ   *
+      *
      C                   endsr
-  ˆ   *----------------------------------------------------------------
-  ˆ   * Initialization subroutine
-  ˆ   *----------------------------------------------------------------
+      *----------------------------------------------------------------
+      * Initialization subroutine
+      *----------------------------------------------------------------
      C     *inzsr        begsr
-  ˆ   *
+      *
      C     *entry        plist
      C                   parm                    P$SrcFLib
      C                   parm                    P$Stg01
@@ -232,18 +232,18 @@
      C                   parm                    P$SrcF
      C                   parm                    P$SrcLib
      C                   parm                    P$Mbr
-  ˆ   *
-  ˆ   * Retrieve date/time
+      *
+      * Retrieve date/time
      C                   time                    #tmstmp
      C                   move      #tmstmp       #today_dat
      C                   move      #tmstmp       #today_tim
-  ˆ   *
-  ˆ   * Retrieve jobstamp
+      *
+      * Retrieve jobstamp
      C                   move      #today_dat    #char010
      C                   move      #today_tim    #char008
      C                   eval      #jobstmp=%trimr(#psds_usr)+'/'+
      C                             %trimr(#psds_job)+'/' + #psds_jnr+
      C                             '/'+#char010+'/'+#char008
-  ˆ   *
+      *
      C                   endsr
-  ˆ   *----------------------------------------------------------------
+      *----------------------------------------------------------------

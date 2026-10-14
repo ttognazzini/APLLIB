@@ -154,7 +154,7 @@ Dcl-Proc AddField;
   // Unless they are valid SQL Key Words
   Exec SQL Set :DftValUpp = trim(upper(:dta.DftVal));
   If  dta.DftVal > *blanks
-  and %scan(%trim(dta.FldTyp):'CHAR¦VARCHAR') > *zeros
+  and %scan(%trim(dta.FldTyp):'CHARÂ¦VARCHAR') > *zeros
   and %scan(Tic:dta.DftVal) = *zeros
   and (DftValUpp <> 'USER' or dta.FldLen < 18);
     dta.DftVal = Tic + %trim(dta.DftVal) + Tic;

@@ -793,12 +793,12 @@ Dcl-Pr #$132OK Ind ExtProc;
 End-Pr;
 
 // #$NextBatch - Gets the next unqiue 6 character batch number
-// €                                                             ‚
-// €INPUT:   Nothing
-// €RETURNS: Char(6), the next 6 character alpha batch number     ‚
-// €                                                             ‚
-// €Example:                                                     ‚
-// € BchNbr=#$NextBatch();
+//
+//  INPUT:   Nothing
+//  RETURNS: Char(6), the next 6 character alpha batch number
+//
+//  Example:
+//   BchNbr=#$NextBatch();
 Dcl-Pr #$NextBatch Char(6) ExtProc;
 End-Pr;
 
@@ -1025,12 +1025,12 @@ End-Pr;
 
 
 // *************************************************************************
-// š                           IFS Prototypes
+//                             IFS Prototypes
 // *************************************************************************
-// € These prototypes are for IBM's IFS file reading and writing API's
-// € You can see an example of them working program #$IFSIOTS in APLLIB.
-// € These also include a handeful of predefined constants for use with thes
-// € API's and others
+//   These prototypes are for IBM's IFS file reading and writing API's
+//   You can see an example of them working program #$IFSIOTS in APLLIB.
+//   These also include a handeful of predefined constants for use with thes
+//   API's and others
 // *************************************************************************
 Dcl-S EOR          Char(2)    INZ( X'0D25' );
 Dcl-S CR           Char(1)    INZ( X'0D' );
@@ -1146,10 +1146,10 @@ Dcl-S O_INHERITMODE Int(10)    INZ(134217728); //inherit mode flag
 /DEFINE IFS_DEFINED
 
 // *************************************************************************
-// š                       Program Status Data Structure
+//                         Program Status Data Structure
 // *************************************************************************
-// € The following is the full program status data structure. Most fields st
-// € with psds, except for the common ones that APLLIB uses.
+//   The following is the full program status data structure. Most fields st
+//   with psds, except for the common ones that APLLIB uses.
 // *************************************************************************
 /if not defined(PSD_DEFINED)
 Dcl-Ds psds  psds; //Pgm status DS

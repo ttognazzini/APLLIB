@@ -56,7 +56,7 @@ Dcl-Pr #$CloseCSV ExtProc end-pr;
 //    #$XMLDate  = add a date file to csv file
 //    #$XMLClose = Close the open XML File
 //
-// š   Global Variables
+//     Global Variables
 Dcl-S #$XMLFile int(10);
 Dcl-S #$XMLPath char(1024);
 Dcl-S #$XMLStylO char(1);

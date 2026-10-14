@@ -46,12 +46,7 @@ Dcl-Proc Main;
             Referencing new row as n old row as o +
             for each row mode db2row +
             Begin +
-              If Inserting Then +
-                set n.creation_time_stamp = current timestamp, +
-                    n.creation_user = user, +
-                    n.creation_job = job_name, +
-                    n.creation_program = APLLIB.current_program(); +
-              End If ; +
+              Declare pgm_name VarChar(100); +
               If inserting or +
                  (updating and (';
 
@@ -69,20 +64,34 @@ Dcl-Proc Main;
   or = '';
   DoW SQLState < '02';
     If fldTyp = 'XML';
-      sqlStm += ' ' + or + ' hash(n.' + %trim(fldNmeSql) + ') <> hash(o.' + %trim(fldNmeSql) + ')';
+      sqlStm += ' ' + or + ' hash(n.' + %trim(fldNmeSql) + ') is distinct from hash(o.' + %trim(fldNmeSql) + ')';
     Else;
-      sqlStm += ' ' + or + ' n.' + %trim(fldNmeSql) + ' <> o.' + %trim(fldNmeSql);
+      sqlStm += ' ' + or + ' n.' + %trim(fldNmeSql) + ' is distinct from o.' + %trim(fldNmeSql);
     EndIf;
     or = 'or';
     Exec SQL fetch next from crs1 into :fldNmeSql,:fldTyp;
   EndDo;
   Exec SQL Close crs1;
 
+  // A real program on the call stack if there is one, otherwise what the SQL client calls itself
   sqlStm += ')) Then +
+              Set pgm_name = Trim(Coalesce(APLLIB.current_program(), '''')); +
+              If pgm_name = '''' Then +
+                Set pgm_name = Trim(Left(Trim(Coalesce(Current Client_ProgramID, '''')), 100)); +
+              End If; +
+              If pgm_name = '''' Then +
+                Set pgm_name = Trim(Left(Trim(Coalesce(Current Client_ApplName, '''')), 100)); +
+              End If; +
+              If Inserting Then +
+                set n.create_time_stamp = current timestamp, +
+                    n.create_user = user, +
+                    n.create_job = job_name, +
+                    n.create_program = pgm_name; +
+              End If; +
               set n.maintenance_time_stamp = current timestamp, +
                   n.maintenance_user = user, +
                   n.maintenance_job = job_name, +
-                  n.maintenance_program = APLLIB.current_program(); +
+                  n.maintenance_program = pgm_name; +
             End If;';
 
   // add all audited fields
@@ -91,20 +100,21 @@ Dcl-Proc Main;
     from fleMst
     join flefld on FLEFLD.fleMstIdn = FLEMST.fleMstIdn
     join DCTFLD on (DCTFLD.dctNme,DCTFLD.fldNme) = (FLEMST.dctNme,FLEFLD.fldNme)
-    where (FLEMST.fleLib,FLEFLD.fleNme,audFld) = (:fleLib,:fleNme,'1')
+    where (FLEMST.fleLib,FLEFLD.fleNme,audFld) = (:fleLib,:fleNme,'Y')
       and fldtyp not in ('XML','DATALINK','GRAPHIC','VARGRAPHIC','DBCLOB')
       and FLEFLD.acvRow = '1';
   Exec SQL Open crs2;
   Exec SQL fetch next from crs2 into :fldNme,:fldNmeSql,:fleFldIdn;
   DoW SQLState < '02';
-    sqlStm += ' If o.' + %trim(fldNmeSql) +' <>  n.' +%trim(fldNmeSql) + ' Then +
+    sqlStm += ' If Updating and o.' + %trim(fldNmeSql) + ' is distinct from n.' + %trim(fldNmeSql) + ' Then +
                 Insert into APLLIB.AUDLOG +
                   (fleLib, fleNme, fleMstIdn, +
                    rcdIdn, fldNme, fleFldIdn, +
                    bfrVal, aftVal) +
            Values('''+%trim(fleLib)+''','''+%trim(fleNme)+''', ' +%char(fleMstIdn) + ', +
                   n.'+%trim(idnFldNmeSql) + ','''+%trim(fldNme)+''','+%char(fleFldIdn) +', +
-                  o.'+%trim(fldNmeSql) + ', n.'+%trim(fldNmeSql)+'); +
+                  Coalesce(Cast(o.' + %trim(fldNmeSql) + ' as VarChar(100)), ''*NULL''), +
+                  Coalesce(Cast(n.' + %trim(fldNmeSql) + ' as VarChar(100)), ''*NULL'')); +
              End If;';
     Exec SQL fetch next from crs2 into :fldNme,:fldNmeSql,:fleFldIdn;
   EndDo;

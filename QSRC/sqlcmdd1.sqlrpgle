@@ -129,7 +129,7 @@ Dcl-S LIBS Char(10) dim(50);
 Dcl-S FILDSC Char(60) dim(50);
 
 // the following two structures are used to control the
-// cursor location on a screen                                     ‚
+// cursor location on a screen
 Dcl-Ds SCRDS len(512);
   #$ROW Char(1) pos(370);
   #$COL Char(1) pos(371);

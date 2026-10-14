@@ -1,6 +1,6 @@
 -- APLLIB.API_SEG_LIST - all segments as a JSON array (CGI-dispatcher shape).
--- POST /api/segments/list  ->  [ { segment, description, columnText,
---                                 columnHeading, conflict, note, active }, ... ]
+-- POST /api/segments/list    [ { segment, description, columnText,
+--                                 columnHeading, conflict, note, active },  ]
 -- Booleans are real JSON true/false (FORMAT JSON), matching the front
 -- end's Segment type exactly (src/api/segments.ts).
 
@@ -28,3 +28,4 @@ BEGIN
               RETURNING CLOB(1M)), '[]')
        FROM APLLIB.DCTSEG);
 END;
+

@@ -923,7 +923,7 @@ Dcl-Proc DateTimeC;
 End-Proc;
 
 
-// €#$INTACT - See if a Job is Interactive
+//  #$INTACT - See if a Job is Interactive
 Dcl-Proc #$INTACT;
   Dcl-Pi *N Char(1);
   End-Pi;

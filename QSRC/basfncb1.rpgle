@@ -1,11 +1,11 @@
      H DATEDIT(*YMD) OPTION(*SRCSTMT:*nounref) Dftactgrp(*No) ACTGRP(*NEW)
-     ‚*****************************************************************
-     ‚* Test #$ Functions and Explain                                 *
-     ‚*****************************************************************
-     ‚*€This program tests and explains how to use all functions     ‚*
-     ‚*€in the BASFNCV1 service program                              ‚*
-     ‚*š                                                             ‚*
-     ‚*****************************************************************
+      *****************************************************************
+      * Test #$ Functions and Explain                                 *
+      *****************************************************************
+      * This program tests and explains how to use all functions      *
+      * in the BASFNCV1 service program                               *
+      *                                                               *
+      *****************************************************************
 
       **** this has to be included on an H spec, it can be on the same
       **** line as other hspecs.

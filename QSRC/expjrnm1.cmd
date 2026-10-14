@@ -10,7 +10,7 @@
 /*  Application . : EXPJRNE                                            */
 /*  Object  . . . : EXPJRNE                                            */
 /*  Description . : Export Journal Entries - Eng                       */
-/*  Author  . . . : Thomas Raddatz   <thomas.raddatz§tools400.de>      */
+/*  Author  . . . : Thomas Raddatz   <thomas.raddatzÂ§tools400.de>      */
 /*  Date  . . . . : 22.05.2002                                         */
 /*                                                                     */
 /* =================================================================== */

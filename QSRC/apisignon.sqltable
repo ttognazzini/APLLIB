@@ -3,7 +3,7 @@
 -- profiles) and the job runs AS that user (UserID %%CLIENT%%), so CHKOBJ
 -- checks the CALLER's authority to the APLLIB library.
 --
--- POST /api/signon  ->  {"authorized":true|false}
+-- POST /api/signon    {"authorized":true|false}
 
 CREATE OR REPLACE PROCEDURE APLLIB.API_SIGNON (
   IN  PAYLOAD  CLOB(64K),
@@ -18,3 +18,4 @@ BEGIN
   SET RESPONSE = '{"authorized":true}';
   CALL QSYS2.QCMDEXC('CHKOBJ OBJ(QSYS/APLLIB) OBJTYPE(*LIB) AUT(*CHANGE)');
 END;
+
