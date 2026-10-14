@@ -3,7 +3,7 @@
       *  Application . : EXPJRNE                                            *
       *  Object  . . . : EXPJRNER1                                          *
       *  Description . : Export Journal Entries - POP                       *
-      *  Author  . . . : Thomas Raddatz   <thomas.raddatz§tools400.de>      *
+      *  Author  . . . : Thomas Raddatz   <thomas.raddatzÂ§tools400.de>      *
       *  Date  . . . . : 19.09.2008                                         *
       *                                                                     *
       *=====================================================================*

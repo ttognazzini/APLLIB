@@ -50,6 +50,20 @@ TODO
 
 TODO
 
+# Keeping the Repository Current
+
+The source on the IBM i (APLLIB/QSRC) is the master copy. `tools/sync_from_ibmi.py`
+pulls every member down into `QSRC/` so git shows what changed there:
+
+    python tools/sync_from_ibmi.py --dry-run          # list what changed, write nothing
+    python tools/sync_from_ibmi.py                    # refresh QSRC/, review with git diff
+    python tools/sync_from_ibmi.py --commit --push    # ...and commit and push the current branch
+
+It signs on with Kerberos as whoever runs it, so nothing is stored. Each member is written
+as `<member>.<source type>` in lower case with trailing blanks trimmed. SEU colour
+attributes become blanks so columns stay put, and a character the IBM i could not hold
+(an em dash in a comment) keeps the repository's copy when there is one.
+
 # The Story of APLLIB
 
 The APLLIB project came as the result of a set of events that happened 

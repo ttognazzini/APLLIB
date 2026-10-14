@@ -1141,9 +1141,9 @@ End-Proc;
 // This procedure replaces double spaces with &nbsp
 // and replaces the following characters
 //     < to &lt;        > to &gt;     & to &amp;
-//     ¢ to &cent;      £ to &pound;  ¥ to &yen;
-//     " to &quot;      ' to &apos;   © to &copy;
-//     ® to &reg;
+//     Â¢ to &cent;      Â£ to &pound;  Â¥ to &yen;
+//     " to &quot;      ' to &apos;   Â© to &copy;
+//     Â® to &reg;
 //
 //        INPUT:  #$IN = String in
 //      RETURNS:  Fixed String
@@ -1171,11 +1171,11 @@ Dcl-Proc #$FHTML EXPORT;
   #$IN=%scanrpl('>':'&gt':%trim(#$IN));
   #$IN=%scanrpl('"':'&quot':%trim(#$IN));
   #$IN=%scanrpl('''':'&apos':%trim(#$IN));
-  #$IN=%scanrpl('¢':'&cent':%trim(#$IN));
-  #$IN=%scanrpl('£':'&pound':%trim(#$IN));
-  #$IN=%scanrpl('¥':'&yen':%trim(#$IN));
-  #$IN=%scanrpl('©':'&copy':%trim(#$IN));
-  #$IN=%scanrpl('®':'&reg':%trim(#$IN));
+  #$IN=%scanrpl('Â¢':'&cent':%trim(#$IN));
+  #$IN=%scanrpl('Â£':'&pound':%trim(#$IN));
+  #$IN=%scanrpl('Â¥':'&yen':%trim(#$IN));
+  #$IN=%scanrpl('Â©':'&copy':%trim(#$IN));
+  #$IN=%scanrpl('Â®':'&reg':%trim(#$IN));
 
   Return #$IN;
 
@@ -2051,16 +2051,16 @@ End-Proc;
 
 // ****************************************************************
 // #$ADDHMS - Adds 2 HMS fields together                         *
-// €This procedure accepts two HMS seconds fields and retruns    ‚*
-// €the sum of them.                                             ‚*
-// €                                                             ‚*
-// €       INPUT:  #$HMS1 = First HMS field                      ‚*
-// €               #$HMS2 = Second HMS Field                     ‚*
-// €     RETURNS:  The sum of both fields                        ‚*
-// €                                                             ‚*
-// €Example #$ADDHMS(14000:2525)=20525      2:05:25              ‚*
-// €Example #$ADDHMS(1104729:1532)=1110301  111:03:01            ‚*
-// €                                                             ‚*
+//  This procedure accepts two HMS seconds fields and retruns     *
+//  the sum of them.                                              *
+//                                                                *
+//         INPUT:  #$HMS1 = First HMS field                       *
+//                 #$HMS2 = Second HMS Field                      *
+//       RETURNS:  The sum of both fields                         *
+//                                                                *
+//  Example #$ADDHMS(14000:2525)=20525      2:05:25               *
+//  Example #$ADDHMS(1104729:1532)=1110301  111:03:01             *
+//                                                                *
 // ****************************************************************
 Dcl-Proc #$ADDHMS EXPORT;
   Dcl-Pi *N Packed(10:0);
@@ -2908,7 +2908,7 @@ End-Proc;
 //         % - %25     : - %3a      _ - %5f XX
 //         & - %26     ; - %3b      ` - %60
 //         ' - %27     < - %3c      { - %7b
-//         ( - %28     = - %3d      ¦ - %7c
+//         ( - %28     = - %3d      Â¦ - %7c
 //         ) - %29     > - %3e      } - %7d
 //         * - %2a XX  ? - %3f      ~ - %7e
 //
@@ -2971,7 +2971,7 @@ Dcl-Proc #$URIESC EXPORT;
     // #$TXT=%SCANRPL('_':'%5F':#$TXT)
     #$TXT=%scanrpl('~':'%7E':#$TXT);
     #$TXT=%scanrpl('{':'%7B':#$TXT);
-    #$TXT=%scanrpl('¦':'%7C':#$TXT);
+    #$TXT=%scanrpl('Â¦':'%7C':#$TXT);
     #$TXT=%scanrpl('}':'%7D':#$TXT);
     #$TXT=%scanrpl(x'0D':'%0D':#$TXT);
     #$TXT=%scanrpl(x'25':'%0A':#$TXT);
@@ -2995,7 +2995,7 @@ Dcl-Proc #$URIESC EXPORT;
     // #$TXT=%SCANRPL('_':'%5f':#$TXT)
     #$TXT=%scanrpl('~':'%7e':#$TXT);
     #$TXT=%scanrpl('{':'%7b':#$TXT);
-    #$TXT=%scanrpl('¦':'%7c':#$TXT);
+    #$TXT=%scanrpl('Â¦':'%7c':#$TXT);
     #$TXT=%scanrpl('}':'%7d':#$TXT);
     #$TXT=%scanrpl(x'0D':'%0d':#$TXT);
     #$TXT=%scanrpl(x'25':'%0a':#$TXT);
@@ -3027,7 +3027,7 @@ End-Proc;
 //         % - %25     : - %3a      _ - %5f XX
 //         & - %26     ; - %3b      ` - %60
 //         ' - %27     < - %3c      { - %7b
-//         ( - %28     = - %3d      ¦ - %7c
+//         ( - %28     = - %3d      Â¦ - %7c
 //         ) - %29     > - %3e      } - %7d
 //         * - %2a XX  ? - %3f      ~ - %7e
 //
@@ -3097,8 +3097,8 @@ Dcl-Proc #$URIDESC EXPORT;
   #$TXT=%scanrpl('%60':'`':#$TXT);
   #$TXT=%scanrpl('%7b':'{':#$TXT);
   #$TXT=%scanrpl('%7B':'{':#$TXT);
-  #$TXT=%scanrpl('%7c':'¦':#$TXT);
-  #$TXT=%scanrpl('%7C':'¦':#$TXT);
+  #$TXT=%scanrpl('%7c':'Â¦':#$TXT);
+  #$TXT=%scanrpl('%7C':'Â¦':#$TXT);
   #$TXT=%scanrpl('%7d':'}':#$TXT);
   #$TXT=%scanrpl('%7D':'}':#$TXT);
   #$TXT=%scanrpl('%7e':'~':#$TXT);
@@ -3810,7 +3810,7 @@ Dcl-Proc #$XLDTTM EXPORT;
 End-Proc;
 
 // ****************************************************************
-// #$XLDATE€Converts an Excel floating point date to a
+// #$XLDATE Converts an Excel floating point date to a
 // YYYYMMDD field.
 //
 //  INPUT:  #$DATE = Excel Date, * bit floating point
@@ -3840,7 +3840,7 @@ Dcl-Proc #$XLDATE EXPORT;
 End-Proc;
 
 // ****************************************************************
-// #$XLTIME€Converts an Excel floating point date to a
+// #$XLTIME Converts an Excel floating point date to a
 // HHMMSS field.
 //
 //  INPUT:  #$DATE = Excel Date, * bit floating point

@@ -1,42 +1,42 @@
         Ctl-Opt DftActGrp(*no) ActGrp(*caller);
-    ‚ *****************************************************************
-    ‚ * Program : ANLSRCB2                                            *
-    ‚ * Function: Retrieve File Description (Version 1)               *
-    ‚ * Author  : Werner Noll                                         *
-    ‚ *                                                               *
-    ‚ * Parameter: P$File         Name of pyhsical file which is to   *
-    ‚ *                           retrieve.                           *
-    ‚ *                                                               *
-    ‚ *            P$Lib          Library where P$File is located     *
-    ‚ *                           or *LIBL or *CURLIB                 *
-    ‚ *                                                               *
-    ‚ *            P$RcvVar       Receiver Variable                   *
-    ‚ *                           001-010 Library where the file      *
-    ‚ *                                   was found (if *LIBL or      *
-    ‚ *                                   *CURLIB was specified)      *
-    ‚ *                           011-012 Type (PF or LF)             *
-    ‚ *                           013-015 SRC or DTA                  *
-    ‚ *                           016-016 K = Keyed access path       *
-    ‚ *                           017-018 LC= Level check is on       *
-    ‚ *                           019-028 Public authority            *
-    ‚ *                                   (*CHANGE, *ALL, *USE,       *
-    ‚ *                                   *EXCLUDE, Name of AUTL)     *
-    ‚ *                           029-034 Max. members                *
-    ‚ *                                   *NOMAX      = No maximum    *
-    ‚ *                                   00001-32767 = Max. nbr.     *
-    ‚ *                           035-039 Nbr. of members             *
-    ‚ *                                   00001-32767                 *
-    ‚ *                           040-046 Error message ID            *
-    ‚ *                           047-096 Message data                *
-    ‚ * Remarks : This is free software.                              *
-    ‚ *           You can redistribute it and/or modify it.           *
-    ‚ *           The only restriction is that you may not distribute *
-    ‚ *           it for the purposes of monetary gain.               *
-    ‚ *           We do not garantee for the expected functionalties. *
-    ‚ *           The use of this software is always at your own risk.*
-    ‚ *           All comments or reuqests for enhancements are       *
-    ‚ *           welcome. My email: werner.noll@gefis.com.           *
-    ‚ *****************************************************************
+      *****************************************************************
+      * Program : ANLSRCB2                                            *
+      * Function: Retrieve File Description (Version 1)               *
+      * Author  : Werner Noll                                         *
+      *                                                               *
+      * Parameter: P$File         Name of pyhsical file which is to   *
+      *                           retrieve.                           *
+      *                                                               *
+      *            P$Lib          Library where P$File is located     *
+      *                           or *LIBL or *CURLIB                 *
+      *                                                               *
+      *            P$RcvVar       Receiver Variable                   *
+      *                           001-010 Library where the file      *
+      *                                   was found (if *LIBL or      *
+      *                                   *CURLIB was specified)      *
+      *                           011-012 Type (PF or LF)             *
+      *                           013-015 SRC or DTA                  *
+      *                           016-016 K = Keyed access path       *
+      *                           017-018 LC= Level check is on       *
+      *                           019-028 Public authority            *
+      *                                   (*CHANGE, *ALL, *USE,       *
+      *                                   *EXCLUDE, Name of AUTL)     *
+      *                           029-034 Max. members                *
+      *                                   *NOMAX      = No maximum    *
+      *                                   00001-32767 = Max. nbr.     *
+      *                           035-039 Nbr. of members             *
+      *                                   00001-32767                 *
+      *                           040-046 Error message ID            *
+      *                           047-096 Message data                *
+      * Remarks : This is free software.                              *
+      *           You can redistribute it and/or modify it.           *
+      *           The only restriction is that you may not distribute *
+      *           it for the purposes of monetary gain.               *
+      *           We do not garantee for the expected functionalties. *
+      *           The use of this software is always at your own risk.*
+      *           All comments or reuqests for enhancements are       *
+      *           welcome. My email: werner.noll@gefis.com.           *
+      *****************************************************************
       * Workfields
      D P$File          S             10A
      D P$LIB           S             10A

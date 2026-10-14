@@ -9,9 +9,9 @@ Dcl-Pi *n;
   P2 LIKEDS(P2mdl); // Range
   P3 Char(55);      // titre
   P4 Char(20);      // index
-  P5 Char(1);       // plein écran ?
+  P5 Char(1);       // plein Ã©cran ?
   P6 LIKEDS(P6mdl); // position curseur
-  P7 LIKEDS(P7mdl); // Fenêtre;
+  P7 LIKEDS(P7mdl); // FenÃªtre;
 End-Pi;
 
 Dcl-Ds P1mdl Template;

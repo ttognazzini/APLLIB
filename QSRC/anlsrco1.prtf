@@ -2,22 +2,22 @@
       * W-File  : ANLSRCO1                                            *
       * Function: ANALYSE SOURCE FILES                                *
       * FORM    :                                                     *
-    ‚ * Author  : Werner Noll                                         *
-    ‚ * Modified:                                                     *
-    ‚ * Remarks : This is free software.                              *
-    ‚ *           You can redistribute it and/or modify it.           *
-    ‚ *           The only restriction is that you may not distribute *
-    ‚ *           it for the purposes of monetary gain.               *
-    ‚ *           We do not garantee for the expected functionalties. *
-    ‚ *           The use of this software is always at your own risk.*
-    ‚ *           All comments or reuqests for enhancements are       *
-    ‚ *           welcome. My email: werner.noll@gefis.com.           *
-    ‚ *           You have to create this Printerfile with            *
-    ‚ *           PAGESIZE    50                                      *
-    ‚ *                      170                                      *
-    ‚ *           OVRFLW      46                                      *
-    ‚ *           FONT       252                                      *
-    ‚ *****************************************************************
+      * Author  : Werner Noll                                         *
+      * Modified:                                                     *
+      * Remarks : This is free software.                              *
+      *           You can redistribute it and/or modify it.           *
+      *           The only restriction is that you may not distribute *
+      *           it for the purposes of monetary gain.               *
+      *           We do not garantee for the expected functionalties. *
+      *           The use of this software is always at your own risk.*
+      *           All comments or reuqests for enhancements are       *
+      *           welcome. My email: werner.noll@gefis.com.           *
+      *           You have to create this Printerfile with            *
+      *           PAGESIZE    50                                      *
+      *                      170                                      *
+      *           OVRFLW      46                                      *
+      *           FONT       252                                      *
+      *****************************************************************
       * Head Record
      A          R ANLSRC01
      A                                  1  1'**********************************'

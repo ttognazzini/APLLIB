@@ -18,8 +18,8 @@
                           PROMPT('Full Screen Display')
 
              PARM       KWD(CURSEUR) TYPE(E3) PROMPT('Cursor position before help')
- E3:         ELEM       TYPE(*INT4) DFT(1) RANGE(1 24) PROMPT('N° Line')
-             ELEM       TYPE(*INT4) DFT(1) RANGE(1 80) PROMPT('N° Column')
+ E3:         ELEM       TYPE(*INT4) DFT(1) RANGE(1 24) PROMPT('NÂ° Line')
+             ELEM       TYPE(*INT4) DFT(1) RANGE(1 80) PROMPT('NÂ° Column')
 
              PARM       KWD(FENETRE) TYPE(E4) PMTCTL(CTL1) PROMPT('Window')
  E4:         ELEM       TYPE(*INT4) DFT(01) RANGE(1 24) PROMPT('Top Left Corner Row')
