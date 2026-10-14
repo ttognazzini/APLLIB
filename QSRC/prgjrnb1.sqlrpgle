@@ -55,7 +55,9 @@ Dcl-Proc Main;
   prgDte = %char(%date() - %days(prgDys):*iso) ;
   #$CMD('OVRPRTF PRGJRNO1 HOLD(*YES)');
 
-  Open PRGJRNO1;
+  If prtOpt <> '*NOLIST';
+    Open PRGJRNO1;
+  EndIf;
 
   // Build fields for the headar record and print it
   If purge = '*YES';
@@ -95,7 +97,7 @@ Dcl-Proc Main;
     sqlStm += Where + ' detach_timestamp < current_date - ' + %char(prgDys) + ' days';
     where = ' and';
   ElseIf prtopt = '*SAVED';
-    sqlStm += Where + ' save_timestamp <> null';
+    sqlStm += Where + ' save_timestamp is not null';
     where = ' and';
   EndIf;
 
@@ -112,11 +114,11 @@ Dcl-Proc Main;
     where = ' and';
   ElseIf pmrLib = '*CURLIB';
     sqlStm += Where + ' journal_receiver_library in ( +
-      Select schema_name From QSYS2.LIBRARY_LIST_INFO Where type = ''CURRENT''';
+      Select schema_name From QSYS2.LIBRARY_LIST_INFO Where type = ''CURRENT'')';
     where = ' and';
   ElseIf pmrLib = '*USRLIBL';
     sqlStm += Where + ' journal_receiver_library in ( +
-      Select schema_name From QSYS2.LIBRARY_LIST_INFO Where type in (''CURRENT'',''USER'')';
+      Select schema_name From QSYS2.LIBRARY_LIST_INFO Where type in (''CURRENT'',''USER''))';
     where = ' and';
   ElseIf pmrLib = '*ALLUSR';
     sqlStm += Where + ' journal_receiver_library in ( +
@@ -135,11 +137,11 @@ Dcl-Proc Main;
       where = ' and';
     ElseIf excLib.lib(x) = '*CURLIB';
       sqlStm += Where + ' journal_receiver_library not in ( +
-        Select schema_name From QSYS2.LIBRARY_LIST_INFO Where type = ''CURRENT''';
+        Select schema_name From QSYS2.LIBRARY_LIST_INFO Where type = ''CURRENT'')';
       where = ' and';
     ElseIf excLib.lib(x) = '*USRLIBL';
       sqlStm += Where + ' journal_receiver_library not in ( +
-        Select schema_name From QSYS2.LIBRARY_LIST_INFO Where type in (''CURRENT'',''USER'')';
+        Select schema_name From QSYS2.LIBRARY_LIST_INFO Where type in (''CURRENT'',''USER''))';
       where = ' and';
     ElseIf excLib.lib(x) = '*ALLUSR';
       sqlStm += Where + ' journal_receiver_library not in ( +
@@ -165,7 +167,7 @@ Dcl-Proc Main;
     Clear message;
     // handle library change totals
     If rcvLib <> lstLib and lstLib <> '';
-      If prtOpt <> '*NOPRINT';
+      If prtOpt <> '*NOLIST';
         Write #libTotal;
       EndIf;
       Clear libSiz;
@@ -199,7 +201,7 @@ Dcl-Proc Main;
     If overFlow;
       PrintHeader();
     EndIf;
-    If prtOpt <> '*NOPRINT';
+    If prtOpt <> '*NOLIST';
       Write #Detail;
     EndIf;
     libSiz += jrnSiz;
@@ -210,24 +212,26 @@ Dcl-Proc Main;
 
   // Add last library total
   If lstLib <> '';
-    If prtOpt <> '*NOPRINT';
+    If prtOpt <> '*NOLIST';
       Write #libTotal;
     EndIf;
   EndIf;
 
   // Add report totals
-  If prtOpt <> '*NOPRINT';
+  If prtOpt <> '*NOLIST';
     Write #Total;
   EndIf;
 
-  Close PRGJRNO1;
+  If prtOpt <> '*NOLIST';
+    Close PRGJRNO1;
+  EndIf;
 
 End-Proc;
 
 
 Dcl-Proc PrintHeader;
 
-  If prtOpt <> '*NOPRINT';
+  If prtOpt <> '*NOLIST';
 
     Write #header;
     overFlow = *off;
@@ -239,7 +243,7 @@ Dcl-Proc PrintHeader;
         If excLibs = '';
           excLibs = 'Excluding libraries: ' + %trim(excLib.lib(x));
         ElseIf %len(%trim(excLibs) + ', ' + %trim(excLib.lib(x))) >= 132;
-          excLibs = %trim(excLib) + ',';
+          excLibs = %trim(excLibs) + ',';
           Write #excLibs;
           excLibs = %trim(excLib.lib(x));
         Else;
